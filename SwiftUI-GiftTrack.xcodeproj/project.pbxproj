@@ -11,14 +11,24 @@
 		4D19292C273BE60E0056653B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19292B273BE60E0056653B /* ContentView.swift */; };
 		4D19292E273BE60F0056653B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D19292D273BE60F0056653B /* Assets.xcassets */; };
 		4D192931273BE60F0056653B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D192930273BE60F0056653B /* Preview Assets.xcassets */; };
+		4D192938273BE6BC0056653B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192937273BE6BC0056653B /* AboutView.swift */; };
+		4D19293A273BE70C0056653B /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192939273BE70C0056653B /* PeopleView.swift */; };
+		4D19293C273BE72C0056653B /* OccasionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19293B273BE72C0056653B /* OccasionsView.swift */; };
+		4D19293E273BE7390056653B /* GiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19293D273BE7390056653B /* GiftsView.swift */; };
+		4D192940273BE76C0056653B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19293F273BE76C0056653B /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4D192926273BE60E0056653B /* gift-track.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gift-track.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D192926273BE60E0056653B /* SwiftUI-GiftTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-GiftTrack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D192929273BE60E0056653B /* gift_trackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gift_trackApp.swift; sourceTree = "<group>"; };
 		4D19292B273BE60E0056653B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4D19292D273BE60F0056653B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D192930273BE60F0056653B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4D192937273BE6BC0056653B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		4D192939273BE70C0056653B /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
+		4D19293B273BE72C0056653B /* OccasionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccasionsView.swift; sourceTree = "<group>"; };
+		4D19293D273BE7390056653B /* GiftsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsView.swift; sourceTree = "<group>"; };
+		4D19293F273BE76C0056653B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +45,7 @@
 		4D19291D273BE60E0056653B = {
 			isa = PBXGroup;
 			children = (
-				4D192928273BE60E0056653B /* gift-track */,
+				4D192928273BE60E0056653B /* SwiftUI-GiftTrack */,
 				4D192927273BE60E0056653B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,20 +53,25 @@
 		4D192927273BE60E0056653B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4D192926273BE60E0056653B /* gift-track.app */,
+				4D192926273BE60E0056653B /* SwiftUI-GiftTrack.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4D192928273BE60E0056653B /* gift-track */ = {
+		4D192928273BE60E0056653B /* SwiftUI-GiftTrack */ = {
 			isa = PBXGroup;
 			children = (
-				4D192929273BE60E0056653B /* gift_trackApp.swift */,
+				4D192937273BE6BC0056653B /* AboutView.swift */,
 				4D19292B273BE60E0056653B /* ContentView.swift */,
+				4D19293D273BE7390056653B /* GiftsView.swift */,
+				4D19293B273BE72C0056653B /* OccasionsView.swift */,
+				4D192939273BE70C0056653B /* PeopleView.swift */,
+				4D19293F273BE76C0056653B /* ViewModel.swift */,
+				4D192929273BE60E0056653B /* gift_trackApp.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D19292F273BE60F0056653B /* Preview Content */,
 			);
-			path = "gift-track";
+			path = "SwiftUI-GiftTrack";
 			sourceTree = "<group>";
 		};
 		4D19292F273BE60F0056653B /* Preview Content */ = {
@@ -70,9 +85,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4D192925273BE60E0056653B /* gift-track */ = {
+		4D192925273BE60E0056653B /* SwiftUI-GiftTrack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "gift-track" */;
+			buildConfigurationList = 4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "SwiftUI-GiftTrack" */;
 			buildPhases = (
 				4D192922273BE60E0056653B /* Sources */,
 				4D192923273BE60E0056653B /* Frameworks */,
@@ -82,9 +97,9 @@
 			);
 			dependencies = (
 			);
-			name = "gift-track";
+			name = "SwiftUI-GiftTrack";
 			productName = "gift-track";
-			productReference = 4D192926273BE60E0056653B /* gift-track.app */;
+			productReference = 4D192926273BE60E0056653B /* SwiftUI-GiftTrack.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +117,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4D192921273BE60E0056653B /* Build configuration list for PBXProject "gift-track" */;
+			buildConfigurationList = 4D192921273BE60E0056653B /* Build configuration list for PBXProject "SwiftUI-GiftTrack" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +130,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D192925273BE60E0056653B /* gift-track */,
+				4D192925273BE60E0056653B /* SwiftUI-GiftTrack */,
 			);
 		};
 /* End PBXProject section */
@@ -138,7 +153,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D19292C273BE60E0056653B /* ContentView.swift in Sources */,
+				4D19293C273BE72C0056653B /* OccasionsView.swift in Sources */,
+				4D192938273BE6BC0056653B /* AboutView.swift in Sources */,
 				4D19292A273BE60E0056653B /* gift_trackApp.swift in Sources */,
+				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
+				4D19293A273BE70C0056653B /* PeopleView.swift in Sources */,
+				4D192940273BE76C0056653B /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +342,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4D192921273BE60E0056653B /* Build configuration list for PBXProject "gift-track" */ = {
+		4D192921273BE60E0056653B /* Build configuration list for PBXProject "SwiftUI-GiftTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D192932273BE60F0056653B /* Debug */,
@@ -331,7 +351,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "gift-track" */ = {
+		4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "SwiftUI-GiftTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D192935273BE60F0056653B /* Debug */,
