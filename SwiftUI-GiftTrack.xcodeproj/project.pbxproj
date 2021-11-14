@@ -16,6 +16,10 @@
 		4D19293C273BE72C0056653B /* OccasionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19293B273BE72C0056653B /* OccasionsView.swift */; };
 		4D19293E273BE7390056653B /* GiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19293D273BE7390056653B /* GiftsView.swift */; };
 		4D192940273BE76C0056653B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19293F273BE76C0056653B /* ViewModel.swift */; };
+		4D192942273C09B20056653B /* MyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192941273C09B20056653B /* MyText.swift */; };
+		4D192944273C0B6F0056653B /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192943273C0B6F0056653B /* Page.swift */; };
+		4D192946273C0F1F0056653B /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192945273C0F1F0056653B /* SFSymbol.swift */; };
+		4D192948273C196F0056653B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192947273C196F0056653B /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		4D19293B273BE72C0056653B /* OccasionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccasionsView.swift; sourceTree = "<group>"; };
 		4D19293D273BE7390056653B /* GiftsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsView.swift; sourceTree = "<group>"; };
 		4D19293F273BE76C0056653B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		4D192941273C09B20056653B /* MyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyText.swift; sourceTree = "<group>"; };
+		4D192943273C0B6F0056653B /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		4D192945273C0F1F0056653B /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
+		4D192947273C196F0056653B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,12 +70,16 @@
 			isa = PBXGroup;
 			children = (
 				4D192937273BE6BC0056653B /* AboutView.swift */,
+				4D192943273C0B6F0056653B /* Page.swift */,
+				4D192941273C09B20056653B /* MyText.swift */,
 				4D19292B273BE60E0056653B /* ContentView.swift */,
 				4D19293D273BE7390056653B /* GiftsView.swift */,
+				4D192945273C0F1F0056653B /* SFSymbol.swift */,
 				4D19293B273BE72C0056653B /* OccasionsView.swift */,
 				4D192939273BE70C0056653B /* PeopleView.swift */,
 				4D19293F273BE76C0056653B /* ViewModel.swift */,
 				4D192929273BE60E0056653B /* gift_trackApp.swift */,
+				4D192947273C196F0056653B /* Color.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D19292F273BE60F0056653B /* Preview Content */,
 			);
@@ -154,6 +166,10 @@
 			files = (
 				4D19292C273BE60E0056653B /* ContentView.swift in Sources */,
 				4D19293C273BE72C0056653B /* OccasionsView.swift in Sources */,
+				4D192948273C196F0056653B /* Color.swift in Sources */,
+				4D192946273C0F1F0056653B /* SFSymbol.swift in Sources */,
+				4D192942273C09B20056653B /* MyText.swift in Sources */,
+				4D192944273C0B6F0056653B /* Page.swift in Sources */,
 				4D192938273BE6BC0056653B /* AboutView.swift in Sources */,
 				4D19292A273BE60E0056653B /* gift_trackApp.swift in Sources */,
 				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
@@ -288,7 +304,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"gift-track/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI-GiftTrack/Preview Content\"";
 				DEVELOPMENT_TEAM = P6LG6UCHTN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -317,7 +333,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"gift-track/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI-GiftTrack/Preview Content\"";
 				DEVELOPMENT_TEAM = P6LG6UCHTN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
