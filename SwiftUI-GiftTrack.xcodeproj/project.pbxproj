@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D19292A273BE60E0056653B /* gift_trackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192929273BE60E0056653B /* gift_trackApp.swift */; };
+		4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */; };
 		4D19292C273BE60E0056653B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19292B273BE60E0056653B /* ContentView.swift */; };
 		4D19292E273BE60F0056653B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D19292D273BE60F0056653B /* Assets.xcassets */; };
 		4D192931273BE60F0056653B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D192930273BE60F0056653B /* Preview Assets.xcassets */; };
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		4D192926273BE60E0056653B /* SwiftUI-GiftTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-GiftTrack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D192929273BE60E0056653B /* gift_trackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gift_trackApp.swift; sourceTree = "<group>"; };
+		4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_GiftTrack.swift; sourceTree = "<group>"; };
 		4D19292B273BE60E0056653B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4D19292D273BE60F0056653B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D192930273BE60F0056653B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 				4D19293B273BE72C0056653B /* OccasionsView.swift */,
 				4D192939273BE70C0056653B /* PeopleView.swift */,
 				4D19293F273BE76C0056653B /* ViewModel.swift */,
-				4D192929273BE60E0056653B /* gift_trackApp.swift */,
+				4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */,
 				4D192947273C196F0056653B /* Color.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D19292F273BE60F0056653B /* Preview Content */,
@@ -110,6 +110,8 @@
 			dependencies = (
 			);
 			name = "SwiftUI-GiftTrack";
+			packageProductDependencies = (
+			);
 			productName = "gift-track";
 			productReference = 4D192926273BE60E0056653B /* SwiftUI-GiftTrack.app */;
 			productType = "com.apple.product-type.application";
@@ -138,6 +140,8 @@
 				Base,
 			);
 			mainGroup = 4D19291D273BE60E0056653B;
+			packageReferences = (
+			);
 			productRefGroup = 4D192927273BE60E0056653B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -171,7 +175,7 @@
 				4D192942273C09B20056653B /* MyText.swift in Sources */,
 				4D192944273C0B6F0056653B /* Page.swift in Sources */,
 				4D192938273BE6BC0056653B /* AboutView.swift in Sources */,
-				4D19292A273BE60E0056653B /* gift_trackApp.swift in Sources */,
+				4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */,
 				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
 				4D19293A273BE70C0056653B /* PeopleView.swift in Sources */,
 				4D192940273BE76C0056653B /* ViewModel.swift in Sources */,

@@ -2,7 +2,6 @@ import SwiftUI
 
 struct ContentView: View {
     var vm = ViewModel()
-
     var body: some View {
         ZStack {
             Color.blue
