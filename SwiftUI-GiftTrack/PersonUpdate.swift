@@ -2,8 +2,9 @@ import SwiftUI
 
 struct PersonUpdate: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var vm: ViewModel
     
-    @Binding var person: PersonEntity
+    @ObservedObject var person: PersonEntity
     
     func back() {
         presentationMode.wrappedValue.dismiss()
@@ -11,20 +12,20 @@ struct PersonUpdate: View {
     
     var body: some View {
         Form {
-            /* TODO: Fix compile errors here.
-            TextField("Name", text: $person.name)
+            TextField("Name", text: person.name)
             DatePicker(
                 "Birthday",
-                selection: $person.birthday,
+                selection: person.birthday,
                 displayedComponents: .date
             )
-            */
             ControlGroup {
                 Button("Update") {
+                    print("person =", person)
+                    vm.saveContext()
                     back()
                 }
                 .buttonStyle(.borderedProminent)
-                //.disabled(name.isEmpty)
+                .disabled((person.name ?? "").isEmpty)
                 Button("Cancel", action: back).buttonStyle(.bordered)
             }.controlGroupStyle(.navigation)
         }

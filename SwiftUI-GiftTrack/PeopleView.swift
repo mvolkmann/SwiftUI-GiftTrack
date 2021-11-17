@@ -21,11 +21,11 @@ struct PeopleView: View {
         NavigationView {
             // If the iteration is done with List instead of ForEach,
             // we can't use onDelete or onMove.
-            // List(vm.people, id: \.name) { person in
+            // List(vm.people, id: \.self) { person in
             List {
-                ForEach($vm.people, id: \.name) { $person in
+                ForEach(vm.people, id: \.self) { person in
                     NavigationLink(
-                        destination: PersonUpdate(person: $person)
+                        destination: PersonUpdate(person: person)
                     ) {
                         HStack {
                             Text(person.name ?? "")
