@@ -2,8 +2,6 @@
 import SwiftUI
 
 struct AboutView: View {
-    @StateObject var vm: ViewModel
-
     let intro = """
     This app tracks gift ideas and purchased gifts \
     for multiple people and multiple occasions \

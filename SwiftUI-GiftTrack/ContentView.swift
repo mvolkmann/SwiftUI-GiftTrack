@@ -2,23 +2,24 @@ import SwiftUI
 
 struct ContentView: View {
     var vm = ViewModel()
+
     var body: some View {
         ZStack {
             Color.blue
             TabView {
-                AboutView(vm: vm).tabItem {
+                AboutView().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
                 }
-                PeopleView(vm: vm).tabItem {
+                PeopleView().tabItem {
                     Image(systemName: "person.3.fill")
                     Text("People")
                 }
-                OccasionsView(vm: vm).tabItem {
+                OccasionsView().tabItem {
                     Image("christmas-tree")
                     Text("Occasions")
                 }
-                GiftsView(vm: vm).tabItem {
+                GiftsView().tabItem {
                     Image(systemName: "gift")
                     Text("Gifts")
                 }
@@ -27,6 +28,8 @@ struct ContentView: View {
                 UITabBar.appearance().backgroundColor = .systemGray5
             }
         }
+        .environmentObject(vm)
+        // .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

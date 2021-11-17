@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D03F1C62744859500B0397D /* PersonUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D03F1C52744859500B0397D /* PersonUpdate.swift */; };
 		4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */; };
 		4D19292C273BE60E0056653B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19292B273BE60E0056653B /* ContentView.swift */; };
 		4D19292E273BE60F0056653B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D19292D273BE60F0056653B /* Assets.xcassets */; };
@@ -20,9 +21,12 @@
 		4D192944273C0B6F0056653B /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192943273C0B6F0056653B /* Page.swift */; };
 		4D192946273C0F1F0056653B /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192945273C0F1F0056653B /* SFSymbol.swift */; };
 		4D192948273C196F0056653B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192947273C196F0056653B /* Color.swift */; };
+		4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* Model.xcdatamodeld */; };
+		4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BDB2743F27F007C703E /* PersonAdd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D03F1C52744859500B0397D /* PersonUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonUpdate.swift; sourceTree = "<group>"; };
 		4D192926273BE60E0056653B /* SwiftUI-GiftTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-GiftTrack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_GiftTrack.swift; sourceTree = "<group>"; };
 		4D19292B273BE60E0056653B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +41,8 @@
 		4D192943273C0B6F0056653B /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		4D192945273C0F1F0056653B /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		4D192947273C196F0056653B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		4DF89BDB2743F27F007C703E /* PersonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAdd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +83,11 @@
 				4D192945273C0F1F0056653B /* SFSymbol.swift */,
 				4D19293B273BE72C0056653B /* OccasionsView.swift */,
 				4D192939273BE70C0056653B /* PeopleView.swift */,
+				4DF89BDB2743F27F007C703E /* PersonAdd.swift */,
+				4D03F1C52744859500B0397D /* PersonUpdate.swift */,
 				4D19293F273BE76C0056653B /* ViewModel.swift */,
 				4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */,
+				4DF89BD827432C13007C703E /* Model.xcdatamodeld */,
 				4D192947273C196F0056653B /* Color.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D19292F273BE60F0056653B /* Preview Content */,
@@ -177,8 +186,11 @@
 				4D192938273BE6BC0056653B /* AboutView.swift in Sources */,
 				4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */,
 				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
+				4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */,
 				4D19293A273BE70C0056653B /* PeopleView.swift in Sources */,
 				4D192940273BE76C0056653B /* ViewModel.swift in Sources */,
+				4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */,
+				4D03F1C62744859500B0397D /* PersonUpdate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +393,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4DF89BD827432C13007C703E /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4DF89BD927432C13007C703E /* Model.xcdatamodel */,
+			);
+			currentVersion = 4DF89BD927432C13007C703E /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4D19291E273BE60E0056653B /* Project object */;
 }

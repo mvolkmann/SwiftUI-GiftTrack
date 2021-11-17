@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GiftEntity" representedClassName="GiftEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="desc" optional="YES" attributeType="String"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="reason" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OccasionEntity" inverseName="gifts" inverseEntity="OccasionEntity"/>
+        <relationship name="to" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersonEntity" inverseName="gifts" inverseEntity="PersonEntity"/>
+    </entity>
+    <entity name="OccasionEntity" representedClassName="OccasionEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="gifts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GiftEntity" inverseName="reason" inverseEntity="GiftEntity"/>
+    </entity>
+    <entity name="PersonEntity" representedClassName="PersonEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="birthday" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <relationship name="gifts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GiftEntity" inverseName="to" inverseEntity="GiftEntity"/>
+    </entity>
+    <elements>
+        <element name="GiftEntity" positionX="207.2249755859375" positionY="264.0116577148438" width="128" height="148"/>
+        <element name="OccasionEntity" positionX="414.58349609375" positionY="403.7203979492188" width="128" height="88"/>
+        <element name="PersonEntity" positionX="-15.65240478515625" positionY="230.38818359375" width="128" height="88"/>
+    </elements>
+</model>
