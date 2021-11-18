@@ -2,10 +2,20 @@ import SwiftUI
 
 struct PeopleView: View {
     @EnvironmentObject var vm: ViewModel
+    /* TODO: Why doesn't this retrieve anything?
+    @FetchRequest(
+        entity: PersonEntity.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
+    ) var people: FetchedResults<PersonEntity>
+    */
 
     private var dateFormatter = DateFormatter()
 
     init() {
+        //print("people =", people)
+        //print("people.count =", people.count)
         dateFormatter.dateFormat = "M/d/yyyy"
     }
 
@@ -16,6 +26,10 @@ struct PeopleView: View {
     func update(person: PersonEntity) {
         print("ready to update", person.name ?? "")
     }
+    
+    func viewDidLoad() {
+        print("PeopleView: viewDidLoad entered")
+    }
 
     var body: some View {
         NavigationView {
@@ -24,6 +38,7 @@ struct PeopleView: View {
             // List(vm.people, id: \.self) { person in
             List {
                 ForEach(vm.people, id: \.self) { person in
+                //ForEach(people, id: \.self) { person in
                     NavigationLink(
                         destination: PersonUpdate(person: person)
                     ) {
@@ -31,7 +46,6 @@ struct PeopleView: View {
                             Text(person.name ?? "")
                             if let birthday = person.birthday {
                                 Spacer()
-                                // Text(dateFormatter.string(from: birthday))
                                 Text(format(date: birthday))
                             }
                         }
