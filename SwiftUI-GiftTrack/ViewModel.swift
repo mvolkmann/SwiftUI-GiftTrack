@@ -128,4 +128,12 @@ class ViewModel: ObservableObject {
             print("saveContext error:", error)
         }
     }
+    
+    func update(person: PersonEntity) {
+        let id = person.objectID
+        if let index = people.firstIndex(where: { $0.objectID == id }) {
+            people[index] = person
+            saveContext()
+        }
+    }
 }

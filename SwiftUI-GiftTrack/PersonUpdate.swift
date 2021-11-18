@@ -40,17 +40,10 @@ struct PersonUpdate: View {
                 displayedComponents: .date
             )
             ControlGroup {
-                // TODO: Try to persist changes as they are made
-                // TODO: so an Update button isn't needed.
                 Button("Done") {
                     person.name = name
                     person.birthday = birthday
-                    print("person =", person)
-                    vm.saveContext()
-                    
-                    // TODO: Can I update a single person in the ViewModel
-                    // TODO: without refetching all of them again?
-                    vm.fetchPeople()
+                    vm.update(person: person)
                     back()
                 }
                 .buttonStyle(.borderedProminent)
