@@ -1,7 +1,7 @@
 import CoreData
 
 class PersonStorage: NSObject, ObservableObject {
-    @Published var people: [PersonEntity] = []
+    @Published public private(set) var people: [PersonEntity] = []
     private let controller: NSFetchedResultsController<PersonEntity>
     private var moc: NSManagedObjectContext
         
@@ -9,7 +9,7 @@ class PersonStorage: NSObject, ObservableObject {
         self.moc = moc
         
         let request: NSFetchRequest<PersonEntity> = PersonEntity.fetchRequest()
-        // request.predicate = NSPredicate(format: "...")
+        // request.predicate = NSPredicate(format: "...") // to filter data
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 
         controller = NSFetchedResultsController(
@@ -18,16 +18,14 @@ class PersonStorage: NSObject, ObservableObject {
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-
-        super.init()
-
+        super.init() // must call before referencing self
         controller.delegate = self
 
         do {
             try controller.performFetch()
             people = controller.fetchedObjects ?? []
         } catch {
-            print("Error fetching PersonEntity objects:", error.localizedDescription)
+            print("PersonStorage error fetching:", error.localizedDescription)
         }
     }
     
