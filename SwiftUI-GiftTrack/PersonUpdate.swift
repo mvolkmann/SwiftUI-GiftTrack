@@ -2,8 +2,7 @@ import SwiftUI
 
 struct PersonUpdate: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var vm: ViewModel
-    
+    @EnvironmentObject var personStorage: PersonStorage
     @State private var name = ""
     @State private var birthday = Date.now
     
@@ -30,8 +29,6 @@ struct PersonUpdate: View {
             /* to persist immediately ...
                 .onChange(of: name) { newName in
                     person.name = newName
-                    vm.save()
-                    vm.fetchPeople()
                 }
              */
             DatePicker(
@@ -43,7 +40,6 @@ struct PersonUpdate: View {
                 Button("Done") {
                     person.name = name
                     person.birthday = birthday
-                    vm.update(person: person) //TODO: Shouldn't need this.
                     back()
                 }
                 .buttonStyle(.borderedProminent)

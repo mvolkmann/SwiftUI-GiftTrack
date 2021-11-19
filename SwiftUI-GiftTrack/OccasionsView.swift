@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct OccasionsView: View {
-    @EnvironmentObject var vm: ViewModel
-
     var body: some View {
         NavigationView {
-            List {}
+            Page { //TODO: Why isn't background blue?
+                List {}
+            }
             .navigationTitle("Occasions")
         }
     }

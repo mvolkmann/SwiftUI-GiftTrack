@@ -1,35 +1,16 @@
 import SwiftUI
 
 struct PeopleView: View {
-    @EnvironmentObject var vm: ViewModel
-    /*
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(
-        entity: PersonEntity.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(key: "name", ascending: true)
-        ]
-    ) var people: FetchedResults<PersonEntity>
-    */
+    @EnvironmentObject var personStorage: PersonStorage
 
     private var dateFormatter = DateFormatter()
 
     init() {
-        //print("people =", people)
-        //print("people.count =", people.count)
         dateFormatter.dateFormat = "M/d/yyyy"
     }
 
-    func format(date: Date) -> String {
+    private func format(date: Date) -> String {
         dateFormatter.string(from: date)
-    }
-
-    func update(person: PersonEntity) {
-        print("ready to update", person.name ?? "")
-    }
-    
-    func viewDidLoad() {
-        print("PeopleView: viewDidLoad entered")
     }
 
     var body: some View {
@@ -38,8 +19,7 @@ struct PeopleView: View {
             // we can't use onDelete or onMove.
             // List(vm.people, id: \.self) { person in
             List {
-                ForEach(vm.people, id: \.self) { person in
-                //ForEach(people, id: \.self) { person in
+                ForEach(personStorage.people, id: \.self) { person in
                     NavigationLink(
                         destination: PersonUpdate(person: person)
                     ) {
@@ -52,8 +32,8 @@ struct PeopleView: View {
                         }
                     }
                 }
-                .onDelete(perform: vm.deletePeople)
-                .onMove(perform: vm.movePeople)
+                .onDelete(perform: personStorage.delete)
+                .onMove(perform: personStorage.move)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

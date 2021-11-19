@@ -1,8 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
-    //var vm = ViewModel()
-
+struct MainView: View {
     var body: some View {
         ZStack {
             Color.blue
@@ -28,13 +26,11 @@ struct ContentView: View {
                 UITabBar.appearance().backgroundColor = .systemGray5
             }
         }
-        //.environmentObject(vm)
-        // .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }

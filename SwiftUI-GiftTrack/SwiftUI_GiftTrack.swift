@@ -3,16 +3,23 @@ import SwiftUI
 @main
 struct SwiftUI_GiftTrack: App {
     @Environment(\.scenePhase) var scenePhase
-    //let pc = PersistenceController.shared
-    var vm = ViewModel()
+    
+    let persistenceManager: PersistenceManager
+    @StateObject var personStorage: PersonStorage
+    
+    init() {
+        persistenceManager = PersistenceManager()
+
+        let moc = persistenceManager.persistentContainer.viewContext
+        let storage = PersonStorage(moc: moc)
+        //TODO: Why the underscore?
+        self._personStorage = StateObject(wrappedValue: storage)
+    }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                //.environment(\.managedObjectContext, pc.container.viewContext)
-                .environmentObject(vm)
+            MainView()
+                .environmentObject(personStorage)
         }
-        //.onChange(of: scenePhase) { _ in pc.save() }
-        .onChange(of: scenePhase) { _ in vm.save() }
     }
 }

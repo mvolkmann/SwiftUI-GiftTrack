@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PersonAdd: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var vm: ViewModel
+    @EnvironmentObject var personStorage: PersonStorage
     @State private var birthday = Date.now
     @State private var name = ""
 
@@ -20,7 +20,7 @@ struct PersonAdd: View {
             )
             ControlGroup {
                 Button("Add") {
-                    vm.addPerson(name: name, birthday: birthday)
+                    personStorage.add(name: name, birthday: birthday)
                     name = ""
                     birthday = Date.now
                     back()

@@ -1,6 +1,6 @@
 import CoreData
-import Foundation
 
+//TODO: This is no longer needed after code is copied from it.
 class ViewModel: ObservableObject {
     let container: NSPersistentContainer
     var context: NSManagedObjectContext { container.viewContext }
@@ -8,6 +8,8 @@ class ViewModel: ObservableObject {
     @Published var gifts: [GiftEntity] = []
     @Published var people: [PersonEntity] = []
     @Published var occasions: [OccasionEntity] = []
+    
+    //@Published public private(set) var fetchRequest: FetchRequest<P.Element>
 
     init() {
         container = NSPersistentContainer(name: "Model")
