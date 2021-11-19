@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    var vm = ViewModel()
+    //var vm = ViewModel()
 
     var body: some View {
         ZStack {
@@ -28,7 +28,7 @@ struct ContentView: View {
                 UITabBar.appearance().backgroundColor = .systemGray5
             }
         }
-        .environmentObject(vm)
+        //.environmentObject(vm)
         // .navigationViewStyle(StackNavigationViewStyle())
     }
 }

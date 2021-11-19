@@ -30,7 +30,7 @@ struct PersonUpdate: View {
             /* to persist immediately ...
                 .onChange(of: name) { newName in
                     person.name = newName
-                    vm.saveContext()
+                    vm.save()
                     vm.fetchPeople()
                 }
              */
@@ -43,7 +43,7 @@ struct PersonUpdate: View {
                 Button("Done") {
                     person.name = name
                     person.birthday = birthday
-                    vm.update(person: person)
+                    vm.update(person: person) //TODO: Shouldn't need this.
                     back()
                 }
                 .buttonStyle(.borderedProminent)

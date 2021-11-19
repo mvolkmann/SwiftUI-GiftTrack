@@ -33,7 +33,7 @@ class ViewModel: ObservableObject {
         let gift = GiftEntity(context: context)
         gift.name = name
         //if let birthday = birthday { person.birthday = birthday }
-        saveContext()
+        save()
         gifts.append(gift)
         gifts.sort { ($0.name ?? "") < ($1.name ?? "") }
     }
@@ -42,7 +42,7 @@ class ViewModel: ObservableObject {
             let occasion = OccasionEntity(context: context)
             occasion.name = name
             if let date = date { occasion.date = date }
-            saveContext()
+            save()
             occasions.append(occasion)
             occasions.sort { ($0.name ?? "") < ($1.name ?? "") }
         }
@@ -51,7 +51,7 @@ class ViewModel: ObservableObject {
         let person = PersonEntity(context: context)
         person.name = name
         if let birthday = birthday { person.birthday = birthday }
-        saveContext()
+        save()
         people.append(person)
         people.sort { ($0.name ?? "") < ($1.name ?? "") }
     }
@@ -61,7 +61,7 @@ class ViewModel: ObservableObject {
             context.delete(gifts[index])
             gifts.remove(at: index)
         }
-        saveContext()
+        save()
     }
     
 
@@ -70,7 +70,7 @@ class ViewModel: ObservableObject {
             context.delete(occasions[index])
             occasions.remove(at: index)
         }
-        saveContext()
+        save()
     }
     
     func deletePeople(indexSet: IndexSet) {
@@ -78,7 +78,7 @@ class ViewModel: ObservableObject {
             context.delete(people[index])
             people.remove(at: index)
         }
-        saveContext()
+        save()
     }
     
     func fetchGifts() {
@@ -121,11 +121,11 @@ class ViewModel: ObservableObject {
         people.move(fromOffsets: indexSet, toOffset: to)
     }
     
-    func saveContext() {
+    func save() {
         do {
             try context.save()
         } catch {
-            print("saveContext error:", error)
+            print("save error:", error)
         }
     }
     
@@ -133,7 +133,7 @@ class ViewModel: ObservableObject {
         let id = person.objectID
         if let index = people.firstIndex(where: { $0.objectID == id }) {
             people[index] = person
-            saveContext()
+            save()
         }
     }
 }

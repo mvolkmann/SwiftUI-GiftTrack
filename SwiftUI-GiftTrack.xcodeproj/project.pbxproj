@@ -21,6 +21,7 @@
 		4D192944273C0B6F0056653B /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192943273C0B6F0056653B /* Page.swift */; };
 		4D192946273C0F1F0056653B /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192945273C0F1F0056653B /* SFSymbol.swift */; };
 		4D192948273C196F0056653B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192947273C196F0056653B /* Color.swift */; };
+		4DDBF0692747310D00559404 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDBF0682747310D00559404 /* PersistenceController.swift */; };
 		4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* Model.xcdatamodeld */; };
 		4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BDB2743F27F007C703E /* PersonAdd.swift */; };
 /* End PBXBuildFile section */
@@ -41,6 +42,7 @@
 		4D192943273C0B6F0056653B /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		4D192945273C0F1F0056653B /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		4D192947273C196F0056653B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4DDBF0682747310D00559404 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4DF89BDB2743F27F007C703E /* PersonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAdd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 				4D03F1C52744859500B0397D /* PersonUpdate.swift */,
 				4D19293F273BE76C0056653B /* ViewModel.swift */,
 				4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */,
+				4DDBF0682747310D00559404 /* PersistenceController.swift */,
 				4DF89BD827432C13007C703E /* Model.xcdatamodeld */,
 				4D192947273C196F0056653B /* Color.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
@@ -186,6 +189,7 @@
 				4D192938273BE6BC0056653B /* AboutView.swift in Sources */,
 				4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */,
 				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
+				4DDBF0692747310D00559404 /* PersistenceController.swift in Sources */,
 				4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */,
 				4D19293A273BE70C0056653B /* PeopleView.swift in Sources */,
 				4D192940273BE76C0056653B /* ViewModel.swift in Sources */,

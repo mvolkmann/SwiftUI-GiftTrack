@@ -2,7 +2,8 @@ import SwiftUI
 
 struct PeopleView: View {
     @EnvironmentObject var vm: ViewModel
-    /* TODO: Why doesn't this retrieve anything?
+    /*
+    @Environment(\.managedObjectContext) var moc
     @FetchRequest(
         entity: PersonEntity.entity(),
         sortDescriptors: [
