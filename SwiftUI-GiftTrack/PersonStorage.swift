@@ -1,5 +1,8 @@
 import CoreData
 
+// This is based on the approach described at
+// https://www.donnywals.com/fetching-objects-from-core-data-in-a-swiftui-project/
+
 class PersonStorage: NSObject, ObservableObject {
     @Published public private(set) var people: [PersonEntity] = []
     private let controller: NSFetchedResultsController<PersonEntity>
