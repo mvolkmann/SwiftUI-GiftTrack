@@ -10,7 +10,7 @@ struct PersonAdd: View {
         let person = PersonEntity(context: moc)
         person.name = name
         person.birthday = birthday
-        PersistenceController.singleton.save()
+        PersistenceController.shared.save()
     }
 
     func back() {

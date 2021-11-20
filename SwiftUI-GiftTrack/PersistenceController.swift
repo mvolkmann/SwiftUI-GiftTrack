@@ -1,8 +1,8 @@
 import CoreData
 
 struct PersistenceController {
-    static let singleton = PersistenceController()
-    let container = NSPersistentContainer(name: "Model")
+    static let shared = PersistenceController()
+    let container = NSPersistentContainer(name: "Model") // cannot be private
 
     init() {
         // Load from Core Data.

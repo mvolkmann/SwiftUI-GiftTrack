@@ -19,7 +19,7 @@ struct PeopleView: View {
         for index in indexSet {
             moc.delete(people[index])
         }
-        PersistenceController.singleton.save()
+        PersistenceController.shared.save()
     }
 
     private func format(date: Date) -> String {

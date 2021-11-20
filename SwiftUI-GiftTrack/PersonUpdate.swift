@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct PersonUpdate: View {
-    @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     @State private var name = ""
     @State private var birthday = Date.now
@@ -39,7 +38,7 @@ struct PersonUpdate: View {
                 Button("Done") {
                     person.name = name
                     person.birthday = birthday
-                    PersistenceController.singleton.save()
+                    PersistenceController.shared.save()
                     back()
                 }
                 .buttonStyle(.borderedProminent)

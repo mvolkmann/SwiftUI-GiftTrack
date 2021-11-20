@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct SwiftUI_GiftTrack: App {
     @Environment(\.scenePhase) var scenePhase
-    let pc = PersistenceController.singleton
+    let pc = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
