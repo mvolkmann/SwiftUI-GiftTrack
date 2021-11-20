@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct PersonUpdate: View {
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var personStorage: PersonStorage
     @State private var name = ""
     @State private var birthday = Date.now
     
@@ -10,13 +10,12 @@ struct PersonUpdate: View {
     
     init(person: PersonEntity) {
         self.person = person
-        // TODO: Why do I need so much syntax to do this?
-        self._name = State(
-            initialValue: person.value(forKey: "name") as? String ?? ""
-        )
-        self._birthday = State(
-            initialValue: person.value(forKey: "birthday") as? Date ?? Date.now
-        )
+        // Preceding these property names with an underscore causes it
+        // to refer to the underlying value of the binding
+        // rather than the binding itself.
+        // This is required to set the value of an @State property.
+        _name = State(initialValue: person.name ?? "")
+        _birthday = State(initialValue: person.birthday ?? Date.now)
     }
     
     func back() {
@@ -40,6 +39,7 @@ struct PersonUpdate: View {
                 Button("Done") {
                     person.name = name
                     person.birthday = birthday
+                    PersistenceController.singleton.save()
                     back()
                 }
                 .buttonStyle(.borderedProminent)

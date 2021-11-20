@@ -1,10 +1,17 @@
 import SwiftUI
 
 struct PersonAdd: View {
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var personStorage: PersonStorage
     @State private var birthday = Date.now
     @State private var name = ""
+
+    func add(name: String, birthday: Date) {
+        let person = PersonEntity(context: moc)
+        person.name = name
+        person.birthday = birthday
+        PersistenceController.singleton.save()
+    }
 
     func back() {
         presentationMode.wrappedValue.dismiss()
@@ -20,7 +27,7 @@ struct PersonAdd: View {
             )
             ControlGroup {
                 Button("Add") {
-                    personStorage.add(name: name, birthday: birthday)
+                    add(name: name, birthday: birthday)
                     name = ""
                     birthday = Date.now
                     back()
