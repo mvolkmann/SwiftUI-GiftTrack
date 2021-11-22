@@ -46,6 +46,8 @@ struct OccasionsView: View {
                     ) {
                         HStack {
                             Text(occasion.name ?? "")
+                            // TODO: See the unhelpful error messages you get if
+                            // TODO: you change occasion.date to occasion.x!
                             if let date = occasion.date {
                                 Spacer()
                                 Text(format(date: date))
