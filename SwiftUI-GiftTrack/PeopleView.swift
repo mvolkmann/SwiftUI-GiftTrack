@@ -29,7 +29,7 @@ struct PeopleView: View {
     private func move(indexSet: IndexSet, to: Int) {
         //TODO: How can you implement this when using @FetchRequest?
         // This updates the UI, but doesn't save the order.
-        // If you navigating to another page and then return to this page,
+        // If you navigate to another page and then return to this page,
         // the people will return to alphabetical order.
         // $people.move(fromOffsets: indexSet, toOffset: to)
     }

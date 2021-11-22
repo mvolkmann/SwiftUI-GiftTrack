@@ -1,20 +1,20 @@
 import SwiftUI
 
-struct PersonUpdate: View {
+struct OccasionUpdate: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var name = ""
-    @State private var birthday = Date.now
+    @State private var date = Date.now
     
-    var person: PersonEntity
+    var occasion: OccasionEntity
     
-    init(person: PersonEntity) {
-        self.person = person
+    init(occasion: OccasionEntity) {
+        self.occasion = occasion
         // Preceding these property names with an underscore causes it
         // to refer to the underlying value of the binding
         // rather than the binding itself.
         // This is required to set the value of an @State property.
-        _name = State(initialValue: person.name ?? "")
-        _birthday = State(initialValue: person.birthday ?? Date.now)
+        _name = State(initialValue: occasion.name ?? "")
+        _date = State(initialValue: occasion.date ?? Date.now)
     }
     
     func back() {
@@ -25,14 +25,14 @@ struct PersonUpdate: View {
         Form {
             TextField("Name", text: $name)
             DatePicker(
-                "Birthday",
-                selection: $birthday,
+                "date",
+                selection: $date,
                 displayedComponents: .date
             )
             ControlGroup {
                 Button("Done") {
-                    person.name = name
-                    person.birthday = birthday
+                    occasion.name = name
+                    occasion.date = date
                     PersistenceController.shared.save()
                     back()
                 }
