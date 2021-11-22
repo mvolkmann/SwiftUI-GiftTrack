@@ -1,3 +1,4 @@
+import CoreData
 import SwiftUI
 
 struct GiftsView: View {
@@ -17,19 +18,46 @@ struct GiftsView: View {
         ]
     ) var people: FetchedResults<PersonEntity>
 
+    @State var gifts: [GiftEntity] = []
     @State var occasion: OccasionEntity? = nil
     @State var person: PersonEntity? = nil
 
-    private func addGift() {
-        print("GiftsView addGift: entered")
+    init() {
+        fetchGifts()
+    }
+
+    private func delete(indexSet: IndexSet) {
+        for index in indexSet {
+            moc.delete(people[index])
+        }
+        PersistenceController.shared.save()
+    }
+
+    private func fetchGifts() {
+        let request = NSFetchRequest<GiftEntity>(entityName: "GiftEntity")
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
+        request.predicate = NSPredicate(
+            format: "to.name == %@ and reason.name == %@",
+            person?.name ?? "",
+            occasion?.name ?? ""
+        )
+        do {
+            // gifts here must be the name of the
+            // @Published property declared above.
+            gifts = try moc.fetch(request)
+        } catch {
+            print("fetchGifts error:", error.localizedDescription)
+        }
     }
 
     var body: some View {
         NavigationView {
             // Page {
-            GeometryReader { geometry in
-                VStack(alignment: .leading, spacing: 0) {
-                    // See MenuPicker.swift which attempts to generalize this.
+            VStack(alignment: .leading, spacing: 0) {
+                // See MenuPicker.swift which attempts to generalize this.
+                GeometryReader { geometry in
                     HStack(spacing: 0) {
                         VStack(spacing: 0) {
                             Text("Person").font(.title2)
@@ -55,22 +83,36 @@ struct GiftsView: View {
                         .frame(maxWidth: geometry.size.width / 3)
                     }
                     // .border(.red)
+                }
 
-                    Button(action: addGift) {
-                        Image(systemName: "plus").font(.system(size: 24))
-                    }.padding()
+                Button("Show Report") {
+                    print("Show Report is not implemented yet")
+                }
+                .buttonStyle(.bordered)
+                .padding()
 
-                    Button("Show Report") {
-                        print("Show Report is not implemented yet")
+                List {
+                    ForEach(gifts, id: \.self) { gift in
+                        NavigationLink(
+                            destination: GiftUpdate(gift: gift)
+                        ) {
+                            HStack {
+                                Text(gift.name ?? "")
+                                // Show more gift properties here?
+                            }
+                        }
                     }
-                    .buttonStyle(.bordered)
-                    .padding()
-
-                    Spacer()
+                    .onDelete(perform: delete)
                 }
             }
-            // List {}
-            // }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink("Add", destination: GiftAdd())
+                }
+            }
             .navigationTitle("Gifts")
         }
     }
