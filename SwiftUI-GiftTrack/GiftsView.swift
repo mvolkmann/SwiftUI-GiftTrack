@@ -71,7 +71,10 @@ struct GiftsView: View {
                     EditButton()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Add", destination: GiftAdd())
+                    NavigationLink(
+                        "Add",
+                        destination: GiftAdd(person: person, occasion: occasion)
+                    )
                 }
             }
             .navigationTitle("Gifts")

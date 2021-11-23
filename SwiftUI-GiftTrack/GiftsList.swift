@@ -20,11 +20,13 @@ struct GiftsList: View {
         let sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true)
         ]
-        //TODO: What is wrong with this predicate?
+        // TODO: What is wrong with this predicate?
+        // TODO: You get gifts if no predicate is used.
         let predicate = NSPredicate(
-            format: "to.name == %@ and reason.name == %@",
-            personName,
-            occasionName
+            // format: "to.name == %@ AND reason.name == %@",
+            format: "to.name == %@",
+            personName
+            // occasionName
         )
         request = FetchRequest<GiftEntity>(
             entity: GiftEntity.entity(),
