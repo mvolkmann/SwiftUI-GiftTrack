@@ -20,6 +20,7 @@ struct GiftsList: View {
         let sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true)
         ]
+        //TODO: What is wrong with this predicate?
         let predicate = NSPredicate(
             format: "to.name == %@ and reason.name == %@",
             personName,
@@ -27,8 +28,8 @@ struct GiftsList: View {
         )
         request = FetchRequest<GiftEntity>(
             entity: GiftEntity.entity(),
-            sortDescriptors: sortDescriptors,
-            predicate: predicate
+            sortDescriptors: sortDescriptors
+            // predicate: predicate
         )
     }
 
@@ -41,25 +42,19 @@ struct GiftsList: View {
 
     var body: some View {
         VStack {
-            Text("gift count = \(gifts.count)")
-            List(request.wrappedValue, id: \.self) { gift in
-                Text(gift.name ?? "unnamed gift")
+            List {
+                ForEach(gifts, id: \.self) { gift in
+                    NavigationLink(
+                        destination: GiftUpdate(gift: gift)
+                    ) {
+                        HStack {
+                            Text(gift.name ?? "unnamed gift")
+                            // Show more gift properties here?
+                        }
+                    }
+                }
+                .onDelete(perform: delete)
             }
-            /*
-             List {
-                 ForEach(gifts, id: \.self) { gift in
-                     NavigationLink(
-                         destination: GiftUpdate(gift: gift)
-                     ) {
-                         HStack {
-                             Text(gift.name ?? "unnamed gift")
-                             // Show more gift properties here?
-                         }
-                     }
-                 }
-                 .onDelete(perform: delete)
-             }
-             */
         }
     }
 }
