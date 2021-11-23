@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="GiftEntity" representedClassName="GiftEntity" syncable="YES" codeGenerationType="class">
+    <entity name="GiftEntity" representedClassName="GiftEntity" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="location" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -20,8 +20,8 @@
         <relationship name="gifts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GiftEntity" inverseName="to" inverseEntity="GiftEntity"/>
     </entity>
     <elements>
-        <element name="GiftEntity" positionX="207.2249755859375" positionY="264.0116577148438" width="128" height="134"/>
-        <element name="OccasionEntity" positionX="414.58349609375" positionY="403.7203979492188" width="128" height="74"/>
-        <element name="PersonEntity" positionX="-15.65240478515625" positionY="230.38818359375" width="128" height="74"/>
+        <element name="GiftEntity" positionX="207.2249755859375" positionY="264.0116577148438" width="128" height="148"/>
+        <element name="OccasionEntity" positionX="414.5986938476562" positionY="107.0009155273438" width="128" height="88"/>
+        <element name="PersonEntity" positionX="205.4983215332031" positionY="71.810791015625" width="128" height="88"/>
     </elements>
 </model>

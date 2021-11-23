@@ -26,6 +26,9 @@
 		4D336748274BF88000D52F01 /* GiftAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336747274BF88000D52F01 /* GiftAdd.swift */; };
 		4D33674A274BFD6D00D52F01 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336749274BFD6D00D52F01 /* MainView.swift */; };
 		4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D33674B274C04D600D52F01 /* GiftUpdate.swift */; };
+		4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AF91274C4F70005A999F /* GiftsList.swift */; };
+		4D88AF95274C6D35005A999F /* GiftEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AF93274C6D35005A999F /* GiftEntity+CoreDataClass.swift */; };
+		4D88AF96274C6D35005A999F /* GiftEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AF94274C6D35005A999F /* GiftEntity+CoreDataProperties.swift */; };
 		4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90AA4627496AA10056FF3B /* PersistenceController.swift */; };
 		4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* Model.xcdatamodeld */; };
 		4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BDB2743F27F007C703E /* PersonAdd.swift */; };
@@ -52,6 +55,9 @@
 		4D336747274BF88000D52F01 /* GiftAdd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftAdd.swift; sourceTree = "<group>"; };
 		4D336749274BFD6D00D52F01 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4D33674B274C04D600D52F01 /* GiftUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftUpdate.swift; sourceTree = "<group>"; };
+		4D88AF91274C4F70005A999F /* GiftsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsList.swift; sourceTree = "<group>"; };
+		4D88AF93274C6D35005A999F /* GiftEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GiftEntity+CoreDataClass.swift"; path = "SwiftUI-GiftTrack/codegen/GiftEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4D88AF94274C6D35005A999F /* GiftEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GiftEntity+CoreDataProperties.swift"; path = "SwiftUI-GiftTrack/codegen/GiftEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4D90AA4627496AA10056FF3B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4DF89BDB2743F27F007C703E /* PersonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAdd.swift; sourceTree = "<group>"; };
@@ -71,6 +77,8 @@
 		4D19291D273BE60E0056653B = {
 			isa = PBXGroup;
 			children = (
+				4D88AF93274C6D35005A999F /* GiftEntity+CoreDataClass.swift */,
+				4D88AF94274C6D35005A999F /* GiftEntity+CoreDataProperties.swift */,
 				4D192928273BE60E0056653B /* SwiftUI-GiftTrack */,
 				4D192927273BE60E0056653B /* Products */,
 			);
@@ -92,6 +100,7 @@
 				4D192941273C09B20056653B /* MyText.swift */,
 				4D19292B273BE60E0056653B /* MainView.swift */,
 				4D19293D273BE7390056653B /* GiftsView.swift */,
+				4D88AF91274C4F70005A999F /* GiftsList.swift */,
 				4D192945273C0F1F0056653B /* SFSymbol.swift */,
 				4D19293B273BE72C0056653B /* OccasionsView.swift */,
 				4D192939273BE70C0056653B /* PeopleView.swift */,
@@ -205,6 +214,7 @@
 				4D192942273C09B20056653B /* MyText.swift in Sources */,
 				4D192944273C0B6F0056653B /* Page.swift in Sources */,
 				4D192938273BE6BC0056653B /* AboutView.swift in Sources */,
+				4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */,
 				4D336748274BF88000D52F01 /* GiftAdd.swift in Sources */,
 				4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */,
 				4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */,
@@ -212,7 +222,9 @@
 				4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */,
 				4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */,
 				4D336716274983C500D52F01 /* OccasionAdd.swift in Sources */,
+				4D88AF95274C6D35005A999F /* GiftEntity+CoreDataClass.swift in Sources */,
 				4D19293A273BE70C0056653B /* PeopleView.swift in Sources */,
+				4D88AF96274C6D35005A999F /* GiftEntity+CoreDataProperties.swift in Sources */,
 				4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */,
 				4D03F1C62744859500B0397D /* PersonUpdate.swift in Sources */,
 			);

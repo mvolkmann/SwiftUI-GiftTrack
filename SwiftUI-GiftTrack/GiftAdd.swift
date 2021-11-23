@@ -16,7 +16,6 @@ struct GiftAdd: View {
         gift.desc = desc
         gift.location = location
         gift.name = name
-        // gift.price = Int64(NSNumber(value: price).intValue)
         gift.price = Int64(price)
         gift.url = URL(string: url)
         PersistenceController.shared.save()

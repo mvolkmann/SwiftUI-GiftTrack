@@ -19,90 +19,51 @@ struct GiftsView: View {
     ) var people: FetchedResults<PersonEntity>
 
     @State var gifts: [GiftEntity] = []
-    @State var occasion: OccasionEntity? = nil
-    @State var person: PersonEntity? = nil
+    @State var occasionIndex = 0
+    @State var personIndex = 0
 
-    init() {
-        fetchGifts()
-    }
-
-    private func delete(indexSet: IndexSet) {
-        for index in indexSet {
-            moc.delete(people[index])
-        }
-        PersistenceController.shared.save()
-    }
-
-    private func fetchGifts() {
-        let request = NSFetchRequest<GiftEntity>(entityName: "GiftEntity")
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "name", ascending: true)
-        ]
-        request.predicate = NSPredicate(
-            format: "to.name == %@ and reason.name == %@",
-            person?.name ?? "",
-            occasion?.name ?? ""
-        )
-        do {
-            // gifts here must be the name of the
-            // @Published property declared above.
-            gifts = try moc.fetch(request)
-        } catch {
-            print("fetchGifts error:", error.localizedDescription)
-        }
-    }
+    private var occasion: OccasionEntity? { occasions[occasionIndex] }
+    private var person: PersonEntity? { people[personIndex] }
 
     var body: some View {
         NavigationView {
-            // Page {
-            VStack(alignment: .leading, spacing: 0) {
-                // See MenuPicker.swift which attempts to generalize this.
-                GeometryReader { geometry in
+            GeometryReader { geometry in
+                // Page {
+                VStack(alignment: .leading, spacing: 0) {
+                    // See MenuPicker.swift which attempts to generalize this.
                     HStack(spacing: 0) {
                         VStack(spacing: 0) {
                             Text("Person").font(.title2)
-                            Picker("Person", selection: $person) {
-                                ForEach(people, id: \.self) { person in
-                                    Text(person.name ?? "").tag(person)
+                            Picker("Person", selection: $personIndex) {
+                                ForEach(people.indices) { index in
+                                    Text(people[index].name ?? "").tag(index)
                                 }
                             }
                             .padding()
-                            .pickerStyle(.menu)
+                            // .pickerStyle(.menu)
+                            .pickerStyle(.wheel)
                         }
                         .frame(maxWidth: geometry.size.width / 2)
                         VStack(spacing: 0) {
                             Text("Occasion").font(.title2)
-                            Picker("Occasion", selection: $occasion) {
-                                ForEach(occasions, id: \.self) { occasion in
-                                    Text(occasion.name ?? "").tag(occasion)
+                            Picker("Occasion", selection: $occasionIndex) {
+                                ForEach(occasions.indices) { index in
+                                    Text(occasions[index].name ?? "").tag(index)
                                 }
                             }
                             .padding()
-                            .pickerStyle(.menu)
+                            .pickerStyle(.wheel)
                         }
-                        .frame(maxWidth: geometry.size.width / 3)
+                        .frame(maxWidth: geometry.size.width / 2)
                     }
-                    // .border(.red)
-                }
-
-                Button("Show Report") {
-                    print("Show Report is not implemented yet")
-                }
-                .buttonStyle(.bordered)
-                .padding()
-
-                List {
-                    ForEach(gifts, id: \.self) { gift in
-                        NavigationLink(
-                            destination: GiftUpdate(gift: gift)
-                        ) {
-                            HStack {
-                                Text(gift.name ?? "")
-                                // Show more gift properties here?
-                            }
-                        }
-                    }
-                    .onDelete(perform: delete)
+                    GiftsList(person: person, occasion: occasion)
+                    /*
+                     Button("Show Report") {
+                         print("Show Report is not implemented yet")
+                     }
+                     .buttonStyle(.bordered)
+                     .padding()
+                     */
                 }
             }
             .toolbar {
