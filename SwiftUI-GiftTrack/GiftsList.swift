@@ -23,15 +23,15 @@ struct GiftsList: View {
         // TODO: What is wrong with this predicate?
         // TODO: You get gifts if no predicate is used.
         let predicate = NSPredicate(
-            // format: "to.name == %@ AND reason.name == %@",
-            format: "to.name == %@",
-            personName
-            // occasionName
+            format: "to.name == %@ AND reason.name == %@",
+            // format: "to.name == %@",
+            personName,
+            occasionName
         )
         request = FetchRequest<GiftEntity>(
             entity: GiftEntity.entity(),
-            sortDescriptors: sortDescriptors
-            // predicate: predicate
+            sortDescriptors: sortDescriptors,
+            predicate: predicate
         )
     }
 
