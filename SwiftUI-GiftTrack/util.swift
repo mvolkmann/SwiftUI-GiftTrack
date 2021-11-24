@@ -14,7 +14,7 @@ func name(_ person: PersonEntity?) -> String {
 }
 
 func configureNavigationTitle() {
-    let color = UIColor(textColor)
+    let color = UIColor(titleColor)
 
     // Change color of the navigation title
     // when displayMode is not .inline.
@@ -36,5 +36,6 @@ extension Color {
     }
 }
 
-// let textColor = Color.white
-let textColor = Color(0xFFD17A)
+let bgColor = Color(0x002D62)
+let textColor = Color.white
+let titleColor = Color(0xFFD17A)

@@ -10,6 +10,10 @@ struct AboutView: View {
 
     var body: some View {
         Page {
+            Text("Gift Track")
+                .font(.largeTitle)
+                .foregroundColor(titleColor)
+                .padding(.bottom, 20)
             MyText(intro, bold: true).padding(.bottom)
             MyText(
                 "To use it, follow the steps below:",

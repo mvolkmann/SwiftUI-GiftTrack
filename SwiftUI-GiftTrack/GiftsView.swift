@@ -38,7 +38,7 @@ struct GiftsView: View {
                         VStack(spacing: 0) {
                             Text("Person")
                                 .font(.title2)
-                                .foregroundColor(textColor)
+                                .foregroundColor(titleColor)
                             Picker("Person", selection: $personIndex) {
                                 ForEach(people.indices) { index in
                                     Text(name(people[index])).tag(index)
@@ -52,7 +52,7 @@ struct GiftsView: View {
                         VStack(spacing: 0) {
                             Text("Occasion")
                                 .font(.title2)
-                                .foregroundColor(textColor)
+                                .foregroundColor(titleColor)
                             Picker("Occasion", selection: $occasionIndex) {
                                 ForEach(occasions.indices) { index in
                                     Text(name(occasions[index])).tag(index)

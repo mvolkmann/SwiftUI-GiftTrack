@@ -5,7 +5,7 @@ struct Page<Content: View>: View {
 
     var body: some View {
         ZStack {
-            Color(hex: "002d62").ignoresSafeArea()
+            bgColor.ignoresSafeArea()
             VStack(alignment: .leading) {
                 content()
             }
