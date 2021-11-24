@@ -1,4 +1,4 @@
-//import FontAwesomeSwiftUI
+// import FontAwesomeSwiftUI
 import SwiftUI
 
 struct AboutView: View {
@@ -10,22 +10,14 @@ struct AboutView: View {
 
     var body: some View {
         Page {
-            VStack(alignment: .leading) {
-                MyText(intro, bold: true).padding(.bottom)
-                MyText(
-                    "To use it, follow the steps below:",
-                    bold: true
-                ).padding(.bottom)
-                MyText("1. Click \"People\" and add people.")
-                MyText("2. Click \"Occasions\" and add occasions.")
-                MyText("3. Click \"Gifts\" and add gifts for specific people and occasions.")
-                /*
-                Text(AwesomeIcon.birthdayCake.rawValue)
-                    //.font(.awesome(style: .brand, size: 20))
-                    .font(.awesome(style: .solid, size: 20))
-                    .foregroundColor(.white)
-                */
-            }.padding(.horizontal)
+            MyText(intro, bold: true).padding(.bottom)
+            MyText(
+                "To use it, follow the steps below:",
+                bold: true
+            ).padding(.bottom)
+            MyText("1. Click \"People\" and add people.")
+            MyText("2. Click \"Occasions\" and add occasions.")
+            MyText("3. Click \"Gifts\" and add gifts for specific people and occasions.")
         }
     }
 }

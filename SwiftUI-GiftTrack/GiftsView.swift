@@ -25,18 +25,24 @@ struct GiftsView: View {
     private var occasion: OccasionEntity? { occasions[occasionIndex] }
     private var person: PersonEntity? { people[personIndex] }
 
+    init() {
+        configureNavigationTitle()
+    }
+
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
-                // Page {
-                VStack(alignment: .leading, spacing: 0) {
+                Page {
                     // See MenuPicker.swift which attempts to generalize this.
                     HStack(spacing: 0) {
                         VStack(spacing: 0) {
-                            Text("Person").font(.title2)
+                            Text("Person")
+                                .font(.title2)
+                                .foregroundColor(textColor)
                             Picker("Person", selection: $personIndex) {
                                 ForEach(people.indices) { index in
                                     Text(name(people[index])).tag(index)
+                                        .foregroundColor(textColor)
                                 }
                             }
                             .padding()
@@ -44,10 +50,13 @@ struct GiftsView: View {
                         }
                         .frame(maxWidth: geometry.size.width / 2)
                         VStack(spacing: 0) {
-                            Text("Occasion").font(.title2)
+                            Text("Occasion")
+                                .font(.title2)
+                                .foregroundColor(textColor)
                             Picker("Occasion", selection: $occasionIndex) {
                                 ForEach(occasions.indices) { index in
                                     Text(name(occasions[index])).tag(index)
+                                        .foregroundColor(textColor)
                                 }
                             }
                             .padding()

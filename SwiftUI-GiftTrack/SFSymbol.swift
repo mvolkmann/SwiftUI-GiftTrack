@@ -11,6 +11,6 @@ struct SFSymbol: View {
 
     var body: some View {
         Image(systemName: name).font(.system(size: size))
-            .foregroundColor(.white)
+            .foregroundColor(textColor)
     }
 }

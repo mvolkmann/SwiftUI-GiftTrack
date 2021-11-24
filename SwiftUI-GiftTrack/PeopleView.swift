@@ -12,6 +12,7 @@ struct PeopleView: View {
     private var dateFormatter = DateFormatter()
 
     init() {
+        configureNavigationTitle()
         dateFormatter.dateFormat = "M/d/yyyy"
     }
 
