@@ -56,13 +56,6 @@ struct GiftsView: View {
                         .frame(maxWidth: geometry.size.width / 2)
                     }
                     GiftsList(person: person, occasion: occasion)
-                    /*
-                     Button("Show Report") {
-                         print("Show Report is not implemented yet")
-                     }
-                     .buttonStyle(.bordered)
-                     .padding()
-                     */
                 }
             }
             .toolbar {

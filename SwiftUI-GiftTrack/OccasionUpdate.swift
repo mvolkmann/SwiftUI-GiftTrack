@@ -2,8 +2,10 @@ import SwiftUI
 
 struct OccasionUpdate: View {
     @Environment(\.dismiss) var dismiss
-    @State private var name = ""
+    
     @State private var date = Date.now
+    @State private var includeDate = false
+    @State private var name = ""
     
     var occasion: OccasionEntity
     
@@ -15,20 +17,24 @@ struct OccasionUpdate: View {
         // This is required to set the value of an @State property.
         _name = State(initialValue: occasion.name ?? "")
         _date = State(initialValue: occasion.date ?? Date.now)
+        _includeDate = State(initialValue: occasion.date != nil)
     }
     
     var body: some View {
         Form {
             TextField("Name", text: $name)
-            DatePicker(
-                "date",
-                selection: $date,
-                displayedComponents: .date
-            )
+            Toggle("Include Date", isOn: $includeDate)
+            if includeDate {
+                DatePicker(
+                    "date",
+                    selection: $date,
+                    displayedComponents: .date
+                )
+            }
             ControlGroup {
                 Button("Done") {
                     occasion.name = name
-                    occasion.date = date
+                    occasion.date = includeDate ? date : nil
                     PersistenceController.shared.save()
                     dismiss()
                 }

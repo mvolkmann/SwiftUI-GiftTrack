@@ -2,9 +2,10 @@ import SwiftUI
 
 struct PersonUpdate: View {
     @Environment(\.dismiss) var dismiss
-    @State private var name = ""
-    @State private var includeBirthday = false
+    
     @State private var birthday = Date.now
+    @State private var includeBirthday = false
+    @State private var name = ""
     
     var person: PersonEntity
     

@@ -70,6 +70,17 @@ struct GiftsList: View {
                 }
                 .onDelete(perform: delete)
             }
+
+            NavigationLink(
+                destination: GiftReport(
+                    person: person,
+                    occasion: occasion,
+                    gifts: gifts
+                )
+            ) {
+                Text("Report")
+            }
+
             Button(deleteAllText, role: .destructive) {
                 isConfirming = true
             }

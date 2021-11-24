@@ -3,6 +3,7 @@ import SwiftUI
 struct PersonAdd: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
+
     @State private var birthday = Date.now
     @State private var includeBirthday = false
     @State private var name = ""
