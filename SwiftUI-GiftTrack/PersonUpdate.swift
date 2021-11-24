@@ -1,8 +1,9 @@
 import SwiftUI
 
 struct PersonUpdate: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @State private var name = ""
+    @State private var includeBirthday = false
     @State private var birthday = Date.now
     
     var person: PersonEntity
@@ -15,30 +16,30 @@ struct PersonUpdate: View {
         // This is required to set the value of an @State property.
         _name = State(initialValue: person.name ?? "")
         _birthday = State(initialValue: person.birthday ?? Date.now)
-    }
-    
-    func back() {
-        presentationMode.wrappedValue.dismiss()
+        _includeBirthday = State(initialValue: person.birthday != nil)
     }
     
     var body: some View {
         Form {
             TextField("Name", text: $name)
-            DatePicker(
-                "Birthday",
-                selection: $birthday,
-                displayedComponents: .date
-            )
+            Toggle("Include Birthday", isOn: $includeBirthday)
+            if includeBirthday {
+                DatePicker(
+                    "Birthday",
+                    selection: $birthday,
+                    displayedComponents: .date
+                )
+            }
             ControlGroup {
                 Button("Done") {
                     person.name = name
-                    person.birthday = birthday
+                    person.birthday = includeBirthday ? birthday : nil
                     PersistenceController.shared.save()
-                    back()
+                    dismiss()
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(name.isEmpty)
-                Button("Cancel", action: back).buttonStyle(.bordered)
+                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
             }.controlGroupStyle(.navigation)
         }
     }

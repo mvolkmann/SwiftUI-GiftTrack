@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GiftUpdate: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
@@ -25,10 +25,6 @@ struct GiftUpdate: View {
         _url = State(initialValue: gift.url?.absoluteString ?? "")
     }
     
-    func back() {
-        presentationMode.wrappedValue.dismiss()
-    }
-    
     var body: some View {
         Form {
             TextField("Name", text: $name)
@@ -49,11 +45,11 @@ struct GiftUpdate: View {
                     gift.price = Int64(price)
                     gift.url = URL(string: url)
                     PersistenceController.shared.save()
-                    back()
+                    dismiss()
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(name.isEmpty)
-                Button("Cancel", action: back).buttonStyle(.bordered)
+                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
             }.controlGroupStyle(.navigation)
         }
     }

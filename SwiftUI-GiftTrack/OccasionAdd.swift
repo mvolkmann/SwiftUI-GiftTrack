@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct OccasionAdd: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
-    @Environment(\.presentationMode) var presentationMode
     @State private var date = Date.now
     @State private var name = ""
 
@@ -11,10 +11,6 @@ struct OccasionAdd: View {
         occasion.name = name
         occasion.date = date
         PersistenceController.shared.save()
-    }
-
-    func back() {
-        presentationMode.wrappedValue.dismiss()
     }
 
     var body: some View {
@@ -30,11 +26,11 @@ struct OccasionAdd: View {
                     add(name: name, date: date)
                     name = ""
                     date = Date.now
-                    back()
+                    dismiss()
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(name.isEmpty)
-                Button("Cancel", action: back).buttonStyle(.bordered)
+                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
             }.controlGroupStyle(.navigation)
         }
     }

@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct GiftAdd: View {
+    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
-    @Environment(\.presentationMode) var presentationMode
 
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
@@ -27,18 +27,14 @@ struct GiftAdd: View {
         // gift.addToOccasion(occasion)
 
         // This approach works!
-        //person?.addToGifts(gift)
-        //occasion?.addToGifts(gift)
+        // person?.addToGifts(gift)
+        // occasion?.addToGifts(gift)
 
         // This also works!
         gift.to = person
         gift.reason = occasion
 
         PersistenceController.shared.save()
-    }
-
-    func back() {
-        presentationMode.wrappedValue.dismiss()
     }
 
     var body: some View {
@@ -61,11 +57,11 @@ struct GiftAdd: View {
                     name = ""
                     price = 0
                     url = ""
-                    back()
+                    dismiss()
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(name.isEmpty)
-                Button("Cancel", action: back).buttonStyle(.bordered)
+                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
             }.controlGroupStyle(.navigation)
         }
     }

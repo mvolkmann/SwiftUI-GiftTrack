@@ -22,12 +22,13 @@ struct PeopleView: View {
         PersistenceController.shared.save()
     }
 
-    private func format(date: Date) -> String {
-        dateFormatter.string(from: date)
+    private func format(date: Date?) -> String {
+        guard let date = date else { return "" }
+        return dateFormatter.string(from: date)
     }
 
     private func move(indexSet: IndexSet, to: Int) {
-        //TODO: How can you implement this when using @FetchRequest?
+        // TODO: How can you implement this when using @FetchRequest?
         // This updates the UI, but doesn't save the order.
         // If you navigate to another page and then return to this page,
         // the people will return to alphabetical order.

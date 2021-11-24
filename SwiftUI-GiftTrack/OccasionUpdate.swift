@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct OccasionUpdate: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @State private var name = ""
     @State private var date = Date.now
     
@@ -17,10 +17,6 @@ struct OccasionUpdate: View {
         _date = State(initialValue: occasion.date ?? Date.now)
     }
     
-    func back() {
-        presentationMode.wrappedValue.dismiss()
-    }
-    
     var body: some View {
         Form {
             TextField("Name", text: $name)
@@ -34,11 +30,11 @@ struct OccasionUpdate: View {
                     occasion.name = name
                     occasion.date = date
                     PersistenceController.shared.save()
-                    back()
+                    dismiss()
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(name.isEmpty)
-                Button("Cancel", action: back).buttonStyle(.bordered)
+                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
             }.controlGroupStyle(.navigation)
         }
     }
