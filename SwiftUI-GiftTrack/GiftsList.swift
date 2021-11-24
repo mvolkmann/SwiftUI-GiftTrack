@@ -3,19 +3,23 @@ import SwiftUI
 
 struct GiftsList: View {
     @Environment(\.managedObjectContext) var moc
+    @State private var isConfirming = false
 
+    var occasion: OccasionEntity?
+    var person: PersonEntity?
     var request: FetchRequest<GiftEntity>
 
-    // Computed property
-    var gifts: FetchedResults<GiftEntity> {
+    private var deleteAllText: String {
+        "Delete all \(name(occasion)) gifts for \(name(person))"
+    }
+
+    private var gifts: FetchedResults<GiftEntity> {
         request.wrappedValue
     }
 
     init(person: PersonEntity?, occasion: OccasionEntity?) {
-        let personName = person?.name ?? ""
-        let occasionName = occasion?.name ?? ""
-        print("personName =", personName)
-        print("occasionName =", occasionName)
+        self.person = person
+        self.occasion = occasion
 
         let sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true)
@@ -25,8 +29,8 @@ struct GiftsList: View {
         let predicate = NSPredicate(
             format: "to.name == %@ AND reason.name == %@",
             // format: "to.name == %@",
-            personName,
-            occasionName
+            name(person),
+            name(occasion)
         )
         request = FetchRequest<GiftEntity>(
             entity: GiftEntity.entity(),
@@ -42,6 +46,15 @@ struct GiftsList: View {
         PersistenceController.shared.save()
     }
 
+    private func deleteAll() {
+        print("gift count = \(gifts.count)")
+        for gift in gifts {
+            print("deleting gift \(name(gift))")
+            moc.delete(gift)
+        }
+        PersistenceController.shared.save()
+    }
+
     var body: some View {
         VStack {
             List {
@@ -50,12 +63,26 @@ struct GiftsList: View {
                         destination: GiftUpdate(gift: gift)
                     ) {
                         HStack {
-                            Text(gift.name ?? "unnamed gift")
+                            Text(name(gift))
                             // Show more gift properties here?
                         }
                     }
                 }
                 .onDelete(perform: delete)
+            }
+            Button(deleteAllText, role: .destructive) {
+                isConfirming = true
+            }
+            .buttonStyle(.bordered)
+            .padding()
+            .confirmationDialog(
+                "Are you sure you want to delete these gifts?",
+                isPresented: $isConfirming,
+                titleVisibility: .visible
+            ) {
+                Button("Yes", role: .destructive) {
+                    deleteAll()
+                }
             }
         }
     }

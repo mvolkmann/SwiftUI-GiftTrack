@@ -36,11 +36,10 @@ struct GiftsView: View {
                             Text("Person").font(.title2)
                             Picker("Person", selection: $personIndex) {
                                 ForEach(people.indices) { index in
-                                    Text(people[index].name ?? "").tag(index)
+                                    Text(name(people[index])).tag(index)
                                 }
                             }
                             .padding()
-                            // .pickerStyle(.menu)
                             .pickerStyle(.wheel)
                         }
                         .frame(maxWidth: geometry.size.width / 2)
@@ -48,7 +47,7 @@ struct GiftsView: View {
                             Text("Occasion").font(.title2)
                             Picker("Occasion", selection: $occasionIndex) {
                                 ForEach(occasions.indices) { index in
-                                    Text(occasions[index].name ?? "").tag(index)
+                                    Text(name(occasions[index])).tag(index)
                                 }
                             }
                             .padding()
