@@ -57,9 +57,15 @@ struct GiftsList: View {
 
     var body: some View {
         if gifts.isEmpty {
-            Text("\(name(person)) has no \(name(occasion)) gifts yet.")
-                .foregroundColor(titleColor)
-                .padding(.top, 20)
+            if let person = person, let occasion = occasion {
+                Text("\(name(person)) has no \(name(occasion)) gifts yet.")
+                    .foregroundColor(titleColor)
+                    .padding(.top, 20)
+            } else {
+                Text("No people or occasions have been created yet.")
+                    .foregroundColor(titleColor)
+                    .padding(.top, 20)
+            }
         } else {
             VStack(spacing: 20) {
                 List {

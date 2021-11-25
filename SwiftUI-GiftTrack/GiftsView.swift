@@ -22,8 +22,13 @@ struct GiftsView: View {
     @State var occasionIndex = 0
     @State var personIndex = 0
 
-    private var occasion: OccasionEntity? { occasions[occasionIndex] }
-    private var person: PersonEntity? { people[personIndex] }
+    private var occasion: OccasionEntity? {
+        occasions.isEmpty ? nil : occasions[occasionIndex]
+    }
+
+    private var person: PersonEntity? {
+        people.isEmpty ? nil : people[personIndex]
+    }
 
     init() {
         configureNavigationTitle()

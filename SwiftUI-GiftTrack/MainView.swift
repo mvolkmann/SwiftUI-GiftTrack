@@ -17,7 +17,8 @@ struct MainView: View {
     var body: some View {
         ZStack {
             bgColor
-            TabView(selection: $selection) {
+            // TabView(selection: $selection) {
+            TabView {
                 AboutView().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
