@@ -21,27 +21,29 @@ struct OccasionUpdate: View {
     }
     
     var body: some View {
-        Form {
-            TextField("Name", text: $name)
-            Toggle("Include Date", isOn: $includeDate)
-            if includeDate {
-                DatePicker(
-                    "date",
-                    selection: $date,
-                    displayedComponents: .date
-                )
-            }
-            ControlGroup {
-                Button("Done") {
-                    occasion.name = name
-                    occasion.date = includeDate ? date : nil
-                    PersistenceController.shared.save()
-                    dismiss()
+        Page {
+            Form {
+                TextField("Name", text: $name)
+                Toggle("Include Date", isOn: $includeDate)
+                if includeDate {
+                    DatePicker(
+                        "date",
+                        selection: $date,
+                        displayedComponents: .date
+                    )
                 }
-                .buttonStyle(.borderedProminent)
-                .disabled(name.isEmpty)
-                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
-            }.controlGroupStyle(.navigation)
+                ControlGroup {
+                    Button("Done") {
+                        occasion.name = name
+                        occasion.date = includeDate ? date : nil
+                        PersistenceController.shared.save()
+                        dismiss()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(name.isEmpty)
+                    Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
+                }.controlGroupStyle(.navigation)
+            }
         }
     }
 }

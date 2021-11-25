@@ -16,27 +16,29 @@ struct OccasionAdd: View {
     }
 
     var body: some View {
-        Form {
-            TextField("Name", text: $name)
-            Toggle("Include Date", isOn: $includeDate)
-            if includeDate {
-                DatePicker(
-                    "Date",
-                    selection: $date,
-                    displayedComponents: .date
-                )
-            }
-            ControlGroup {
-                Button("Add") {
-                    add(name: name, date: date)
-                    name = ""
-                    date = Date.now
-                    dismiss()
+        Page {
+            Form {
+                TextField("Name", text: $name)
+                Toggle("Include Date", isOn: $includeDate)
+                if includeDate {
+                    DatePicker(
+                        "Date",
+                        selection: $date,
+                        displayedComponents: .date
+                    )
                 }
-                .buttonStyle(.borderedProminent)
-                .disabled(name.isEmpty)
-                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
-            }.controlGroupStyle(.navigation)
+                ControlGroup {
+                    Button("Add") {
+                        add(name: name, date: date)
+                        name = ""
+                        date = Date.now
+                        dismiss()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(name.isEmpty)
+                    Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
+                }.controlGroupStyle(.navigation)
+            }
         }
     }
 }

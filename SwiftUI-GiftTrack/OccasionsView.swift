@@ -13,7 +13,8 @@ struct OccasionsView: View {
 
     init() {
         configureNavigationTitle()
-        dateFormatter.dateFormat = "M/d/yyyy"
+        // Show dates as month/day without year.
+        dateFormatter.setLocalizedDateFormatFromTemplate("M/d")
     }
 
     private func delete(indexSet: IndexSet) {

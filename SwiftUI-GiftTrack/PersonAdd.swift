@@ -16,28 +16,30 @@ struct PersonAdd: View {
     }
 
     var body: some View {
-        Form {
-            TextField("Name", text: $name)
-            Toggle("Include Birthday", isOn: $includeBirthday)
-            if includeBirthday {
-                DatePicker(
-                    "Birthday",
-                    selection: $birthday,
-                    displayedComponents: .date
-                )
-            }
-            ControlGroup {
-                Button("Add") {
-                    add(name: name, birthday: birthday)
-                    name = ""
-                    birthday = Date.now
-                    dismiss()
+        Page {
+            Form {
+                TextField("Name", text: $name)
+                Toggle("Include Birthday", isOn: $includeBirthday)
+                if includeBirthday {
+                    DatePicker(
+                        "Birthday",
+                        selection: $birthday,
+                        displayedComponents: .date
+                    )
                 }
-                .buttonStyle(.borderedProminent)
-                .disabled(name.isEmpty)
-                // Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
-                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
-            }.controlGroupStyle(.navigation)
+                ControlGroup {
+                    Button("Add") {
+                        add(name: name, birthday: birthday)
+                        name = ""
+                        birthday = Date.now
+                        dismiss()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(name.isEmpty)
+                    // Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
+                    Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
+                }.controlGroupStyle(.navigation)
+            }
         }
     }
 }
