@@ -34,41 +34,39 @@ struct GiftsView: View {
             GeometryReader { geometry in
                 Page {
                     // See MenuPicker.swift which attempts to generalize this.
-                    // HStack(spacing: 0) {
-                    VStack(spacing: 0) {
-//                            Text("Person")
-//                                .font(.title2)
-//                                .foregroundColor(titleColor)
-                        Picker("Person", selection: $personIndex) {
-                            ForEach(people.indices) { index in
-                                Text(name(people[index])).tag(index)
-                                    .foregroundColor(textColor)
+                    HStack(spacing: 0) {
+                        VStack(spacing: 0) {
+                            Text("Person")
+                                .font(.title2)
+                                .foregroundColor(titleColor)
+                            Picker("Person", selection: $personIndex) {
+                                ForEach(people.indices) { index in
+                                    Text(name(people[index])).tag(index)
+                                        .foregroundColor(textColor)
+                                }
                             }
+                            .pickerStyle(.wheel)
+                            .padding(.vertical, -10)
                         }
-                        .padding()
-                        .pickerStyle(.wheel)
-                        .border(.red)
-                    }
-                    .frame(maxWidth: geometry.size.width / 2)
-                    .border(.green)
-                    /*
-                     VStack(spacing: 0) {
-                         Text("Occasion")
-                             .font(.title2)
-                             .foregroundColor(titleColor)
-                         Picker("Occasion", selection: $occasionIndex) {
-                             ForEach(occasions.indices) { index in
-                                 Text(name(occasions[index])).tag(index)
-                                     .foregroundColor(textColor)
+                        .frame(maxWidth: geometry.size.width / 2)
+                        
+                         VStack(spacing: 0) {
+                             Text("Occasion")
+                                 .font(.title2)
+                                 .foregroundColor(titleColor)
+                             Picker("Occasion", selection: $occasionIndex) {
+                                 ForEach(occasions.indices) { index in
+                                     Text(name(occasions[index])).tag(index)
+                                         .foregroundColor(textColor)
+                                 }
                              }
+                             .pickerStyle(.wheel)
+                            .padding(.vertical, -10)
                          }
-                         .padding()
-                         .pickerStyle(.wheel)
-                     }
-                     .frame(maxWidth: geometry.size.width / 2)
-                     */
-                    // }
+                         .frame(maxWidth: geometry.size.width / 2)
+                    }
                     GiftsList(person: person, occasion: occasion)
+                    Spacer()
                 }
             }
             .toolbar {

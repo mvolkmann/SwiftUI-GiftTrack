@@ -56,43 +56,49 @@ struct GiftsList: View {
     }
 
     var body: some View {
-        VStack {
-            List {
-                ForEach(gifts, id: \.self) { gift in
-                    NavigationLink(
-                        destination: GiftUpdate(gift: gift)
-                    ) {
-                        HStack {
-                            Text(name(gift))
-                            // Show more gift properties here?
+        if gifts.isEmpty {
+            Text("\(name(person)) has no \(name(occasion)) gifts yet.")
+                .foregroundColor(textColor)
+                .padding(.top, 20)
+        } else {
+            VStack {
+                List {
+                    ForEach(gifts, id: \.self) { gift in
+                        NavigationLink(
+                            destination: GiftUpdate(gift: gift)
+                        ) {
+                            HStack {
+                                Text(name(gift))
+                                // Show more gift properties here?
+                            }
                         }
                     }
+                    .onDelete(perform: delete)
                 }
-                .onDelete(perform: delete)
-            }
 
-            NavigationLink(
-                destination: GiftsDetail(
-                    person: person,
-                    occasion: occasion,
-                    gifts: gifts
-                )
-            ) {
-                Text("Detail")
-            }
+                NavigationLink(
+                    destination: GiftsDetail(
+                        person: person,
+                        occasion: occasion,
+                        gifts: gifts
+                    )
+                ) {
+                    Text("Detail")
+                }
 
-            Button(deleteAllText, role: .destructive) {
-                isConfirming = true
-            }
-            .buttonStyle(.bordered)
-            .padding()
-            .confirmationDialog(
-                "Are you sure you want to delete these gifts?",
-                isPresented: $isConfirming,
-                titleVisibility: .visible
-            ) {
-                Button("Yes", role: .destructive) {
-                    deleteAll()
+                Button(deleteAllText, role: .destructive) {
+                    isConfirming = true
+                }
+                .buttonStyle(.bordered)
+                .padding()
+                .confirmationDialog(
+                    "Are you sure you want to delete these gifts?",
+                    isPresented: $isConfirming,
+                    titleVisibility: .visible
+                ) {
+                    Button("Yes", role: .destructive) {
+                        deleteAll()
+                    }
                 }
             }
         }
