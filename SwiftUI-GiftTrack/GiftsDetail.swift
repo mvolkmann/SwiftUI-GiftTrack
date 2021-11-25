@@ -5,6 +5,10 @@ struct GiftsDetail: View {
     let occasion: OccasionEntity?
     let gifts: FetchedResults<GiftEntity>
 
+    private var title: String {
+        "\(name(person))'s \(name(occasion)) Gifts"
+    }
+
     private var total: Int {
         Int(gifts.reduce(0) { acc, gift in acc + gift.price })
     }
@@ -13,7 +17,7 @@ struct GiftsDetail: View {
         // TODO: How can you pass spacing to Page?
         // Page<<#Content: View#>>(spacing: 10) {
         Page {
-            Text("\(name(person))'s \(name(occasion)) Gifts")
+            Text(title)
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.yellow)
                 .padding(.bottom, 20)
@@ -27,5 +31,6 @@ struct GiftsDetail: View {
                 .foregroundColor(textColor)
                 .padding(.vertical, 20)
         }
+        // .navigationTitle(title)
     }
 }

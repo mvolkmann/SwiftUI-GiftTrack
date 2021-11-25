@@ -58,10 +58,10 @@ struct GiftsList: View {
     var body: some View {
         if gifts.isEmpty {
             Text("\(name(person)) has no \(name(occasion)) gifts yet.")
-                .foregroundColor(textColor)
+                .foregroundColor(titleColor)
                 .padding(.top, 20)
         } else {
-            VStack {
+            VStack(spacing: 20) {
                 List {
                     ForEach(gifts, id: \.self) { gift in
                         NavigationLink(
@@ -85,12 +85,17 @@ struct GiftsList: View {
                 ) {
                     Text("Detail")
                 }
+                .buttonStyle(.bordered)
+                .background(.white)
+                .cornerRadius(10)
+                .foregroundColor(bgColor)
 
                 Button(deleteAllText, role: .destructive) {
                     isConfirming = true
                 }
                 .buttonStyle(.bordered)
-                .padding()
+                .background(.white)
+                .cornerRadius(10)
                 .confirmationDialog(
                     "Are you sure you want to delete these gifts?",
                     isPresented: $isConfirming,

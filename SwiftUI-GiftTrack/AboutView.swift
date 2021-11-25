@@ -19,9 +19,9 @@ struct AboutView: View {
                 "To use it, follow the steps below:",
                 bold: true
             ).padding(.bottom)
-            MyText("1. Click \"People\" and add people.")
-            MyText("2. Click \"Occasions\" and add occasions.")
-            MyText("3. Click \"Gifts\" and add gifts for specific people and occasions.")
+            MyText("1. Tap \"People\" and add people.")
+            MyText("2. Tap \"Occasions\" and add occasions.")
+            MyText("3. Tap \"Gifts\" and add gifts for specific people and occasions.")
         }
     }
 }
