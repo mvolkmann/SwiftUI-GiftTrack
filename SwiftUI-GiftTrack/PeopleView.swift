@@ -69,6 +69,7 @@ struct PeopleView: View {
                 }
             }
             .navigationTitle("People")
+            .accentColor(titleColor)
         }
     }
 }

@@ -1,10 +1,23 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var selection = 1 // 3
+
+    init() {
+        // These lines affect all the views and allow the
+        // page background color to show though in List views.
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+
+        // Without the next line the TabView background is clear
+        // and the page background color shows through.
+        UITabBar.appearance().backgroundColor = .systemGray5
+    }
+
     var body: some View {
         ZStack {
-            Color.blue
-            TabView {
+            bgColor
+            TabView(selection: $selection) {
                 AboutView().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
@@ -13,6 +26,7 @@ struct MainView: View {
                     Image(systemName: "person.3.fill")
                     Text("People")
                 }
+                .tag(1)
                 OccasionsView().tabItem {
                     Image("christmas-tree")
                     Text("Occasions")
@@ -21,9 +35,7 @@ struct MainView: View {
                     Image(systemName: "gift")
                     Text("Gifts")
                 }
-            }
-            .onAppear {
-                UITabBar.appearance().backgroundColor = .systemGray5
+                .tag(3)
             }
         }
         // This removes the following console warning:

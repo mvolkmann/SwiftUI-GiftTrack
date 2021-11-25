@@ -70,6 +70,7 @@ struct OccasionsView: View {
                 }
             }
             .navigationTitle("Occasions")
+            .accentColor(titleColor)
         }
     }
 }

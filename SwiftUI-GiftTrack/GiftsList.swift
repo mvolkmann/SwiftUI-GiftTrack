@@ -72,13 +72,13 @@ struct GiftsList: View {
             }
 
             NavigationLink(
-                destination: GiftsReport(
+                destination: GiftsDetail(
                     person: person,
                     occasion: occasion,
                     gifts: gifts
                 )
             ) {
-                Text("Report")
+                Text("Detail")
             }
 
             Button(deleteAllText, role: .destructive) {

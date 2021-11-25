@@ -79,6 +79,7 @@ struct GiftsView: View {
                 }
             }
             .navigationTitle("Gifts")
+            .accentColor(titleColor)
         }
     }
 }

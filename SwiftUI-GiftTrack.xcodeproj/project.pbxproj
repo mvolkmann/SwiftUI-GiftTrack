@@ -20,6 +20,7 @@
 		4D192944273C0B6F0056653B /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192943273C0B6F0056653B /* Page.swift */; };
 		4D192946273C0F1F0056653B /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192945273C0F1F0056653B /* SFSymbol.swift */; };
 		4D192948273C196F0056653B /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192947273C196F0056653B /* Color.swift */; };
+		4D1D9CED27501065003555E5 /* GiftDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1D9CEC27501065003555E5 /* GiftDetail.swift */; };
 		4D336716274983C500D52F01 /* OccasionAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336715274983C500D52F01 /* OccasionAdd.swift */; };
 		4D336718274983D100D52F01 /* OccasionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336717274983D100D52F01 /* OccasionUpdate.swift */; };
 		4D336746274BE07700D52F01 /* MenuPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336745274BE07600D52F01 /* MenuPicker.swift */; };
@@ -28,7 +29,7 @@
 		4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D33674B274C04D600D52F01 /* GiftUpdate.swift */; };
 		4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AF91274C4F70005A999F /* GiftsList.swift */; };
 		4D88AFB2274E7FB9005A999F /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB1274E7FB9005A999F /* util.swift */; };
-		4D88AFB4274E91C5005A999F /* GiftsReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB3274E91C5005A999F /* GiftsReport.swift */; };
+		4D88AFB4274E91C5005A999F /* GiftsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB3274E91C5005A999F /* GiftsDetail.swift */; };
 		4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90AA4627496AA10056FF3B /* PersistenceController.swift */; };
 		4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* Model.xcdatamodeld */; };
 		4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BDB2743F27F007C703E /* PersonAdd.swift */; };
@@ -49,6 +50,7 @@
 		4D192943273C0B6F0056653B /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		4D192945273C0F1F0056653B /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		4D192947273C196F0056653B /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4D1D9CEC27501065003555E5 /* GiftDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftDetail.swift; sourceTree = "<group>"; };
 		4D336715274983C500D52F01 /* OccasionAdd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccasionAdd.swift; sourceTree = "<group>"; };
 		4D336717274983D100D52F01 /* OccasionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccasionUpdate.swift; sourceTree = "<group>"; };
 		4D336745274BE07600D52F01 /* MenuPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPicker.swift; sourceTree = "<group>"; };
@@ -57,7 +59,7 @@
 		4D33674B274C04D600D52F01 /* GiftUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftUpdate.swift; sourceTree = "<group>"; };
 		4D88AF91274C4F70005A999F /* GiftsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsList.swift; sourceTree = "<group>"; };
 		4D88AFB1274E7FB9005A999F /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
-		4D88AFB3274E91C5005A999F /* GiftsReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftsReport.swift; sourceTree = "<group>"; };
+		4D88AFB3274E91C5005A999F /* GiftsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftsDetail.swift; sourceTree = "<group>"; };
 		4D90AA4627496AA10056FF3B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4DF89BDB2743F27F007C703E /* PersonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAdd.swift; sourceTree = "<group>"; };
@@ -99,7 +101,8 @@
 				4D336747274BF88000D52F01 /* GiftAdd.swift */,
 				4D88AF91274C4F70005A999F /* GiftsList.swift */,
 				4D19293D273BE7390056653B /* GiftsView.swift */,
-				4D88AFB3274E91C5005A999F /* GiftsReport.swift */,
+				4D88AFB3274E91C5005A999F /* GiftsDetail.swift */,
+				4D1D9CEC27501065003555E5 /* GiftDetail.swift */,
 				4D33674B274C04D600D52F01 /* GiftUpdate.swift */,
 				4D19292B273BE60E0056653B /* MainView.swift */,
 				4D336745274BE07600D52F01 /* MenuPicker.swift */,
@@ -214,12 +217,13 @@
 				4D192946273C0F1F0056653B /* SFSymbol.swift in Sources */,
 				4D192942273C09B20056653B /* MyText.swift in Sources */,
 				4D192944273C0B6F0056653B /* Page.swift in Sources */,
-				4D88AFB4274E91C5005A999F /* GiftsReport.swift in Sources */,
+				4D88AFB4274E91C5005A999F /* GiftsDetail.swift in Sources */,
 				4D192938273BE6BC0056653B /* AboutView.swift in Sources */,
 				4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */,
 				4D336748274BF88000D52F01 /* GiftAdd.swift in Sources */,
 				4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */,
 				4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */,
+				4D1D9CED27501065003555E5 /* GiftDetail.swift in Sources */,
 				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
 				4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */,
 				4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */,
