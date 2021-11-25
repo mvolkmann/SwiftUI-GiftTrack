@@ -38,25 +38,27 @@ struct PeopleView: View {
 
     var body: some View {
         NavigationView {
-            // If the iteration is done with List instead of ForEach,
-            // we can't use onDelete or onMove.
-            // List(vm.people, id: \.self) { person in
-            List {
-                ForEach(people, id: \.self) { person in
-                    NavigationLink(
-                        destination: PersonUpdate(person: person)
-                    ) {
-                        HStack {
-                            Text(person.name ?? "")
-                            if let birthday = person.birthday {
-                                Spacer()
-                                Text(format(date: birthday))
+            Page {
+                // If the iteration is done with List instead of ForEach,
+                // we can't use onDelete or onMove.
+                // List(vm.people, id: \.self) { person in
+                List {
+                    ForEach(people, id: \.self) { person in
+                        NavigationLink(
+                            destination: PersonUpdate(person: person)
+                        ) {
+                            HStack {
+                                Text(person.name ?? "")
+                                if let birthday = person.birthday {
+                                    Spacer()
+                                    Text(format(date: birthday))
+                                }
                             }
                         }
                     }
+                    .onDelete(perform: delete)
+                    .onMove(perform: move)
                 }
-                .onDelete(perform: delete)
-                .onMove(perform: move)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

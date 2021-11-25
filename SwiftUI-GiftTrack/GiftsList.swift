@@ -72,7 +72,7 @@ struct GiftsList: View {
             }
 
             NavigationLink(
-                destination: GiftReport(
+                destination: GiftsReport(
                     person: person,
                     occasion: occasion,
                     gifts: gifts
