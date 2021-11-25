@@ -38,31 +38,33 @@ struct GiftAdd: View {
     }
 
     var body: some View {
-        Form {
-            TextField("Name", text: $name)
-                .autocapitalization(.none)
-            TextField("Description", text: $desc)
-                .autocapitalization(.none)
-            TextField("Location", text: $location)
-                .autocapitalization(.none)
-            TextField("Price", value: $price, format: .number)
-            TextField("URL", text: $url)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-            ControlGroup {
-                Button("Add") {
-                    add()
-                    desc = ""
-                    location = ""
-                    name = ""
-                    price = 0
-                    url = ""
-                    dismiss()
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(name.isEmpty)
-                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
-            }.controlGroupStyle(.navigation)
+        Page {
+            Form {
+                TextField("Name", text: $name)
+                    .autocapitalization(.none)
+                TextField("Description", text: $desc)
+                    .autocapitalization(.none)
+                TextField("Location", text: $location)
+                    .autocapitalization(.none)
+                TextField("Price", value: $price, format: .number)
+                TextField("URL", text: $url)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                ControlGroup {
+                    Button("Add") {
+                        add()
+                        desc = ""
+                        location = ""
+                        name = ""
+                        price = 0
+                        url = ""
+                        dismiss()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(name.isEmpty)
+                    Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
+                }.controlGroupStyle(.navigation)
+            }
         }
     }
 }

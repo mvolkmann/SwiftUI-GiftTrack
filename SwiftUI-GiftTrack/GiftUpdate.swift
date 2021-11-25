@@ -26,31 +26,33 @@ struct GiftUpdate: View {
     }
     
     var body: some View {
-        Form {
-            TextField("Name", text: $name)
-                .autocapitalization(.none)
-            TextField("Description", text: $desc)
-                .autocapitalization(.none)
-            TextField("Location", text: $location)
-                .autocapitalization(.none)
-            TextField("Price", value: $price, format: .number)
-            TextField("URL", text: $url)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-            ControlGroup {
-                Button("Done") {
-                    gift.desc = desc
-                    gift.location = location
-                    gift.name = name
-                    gift.price = Int64(price)
-                    gift.url = URL(string: url)
-                    PersistenceController.shared.save()
-                    dismiss()
-                }
-                .buttonStyle(.borderedProminent)
-                .disabled(name.isEmpty)
-                Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
-            }.controlGroupStyle(.navigation)
+        Page {
+            Form {
+                TextField("Name", text: $name)
+                    .autocapitalization(.none)
+                TextField("Description", text: $desc)
+                    .autocapitalization(.none)
+                TextField("Location", text: $location)
+                    .autocapitalization(.none)
+                TextField("Price", value: $price, format: .number)
+                TextField("URL", text: $url)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                ControlGroup {
+                    Button("Done") {
+                        gift.desc = desc
+                        gift.location = location
+                        gift.name = name
+                        gift.price = Int64(price)
+                        gift.url = URL(string: url)
+                        PersistenceController.shared.save()
+                        dismiss()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(name.isEmpty)
+                    Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
+                }.controlGroupStyle(.navigation)
+            }
         }
     }
 }
