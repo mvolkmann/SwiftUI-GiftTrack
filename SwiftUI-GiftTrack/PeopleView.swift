@@ -18,6 +18,7 @@ struct PeopleView: View {
 
     private func delete(indexSet: IndexSet) {
         for index in indexSet {
+            print("deleting person at index \(index)")
             moc.delete(people[index])
         }
         PersistenceController.shared.save()
