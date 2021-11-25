@@ -23,7 +23,11 @@ struct GiftDetail: View {
             }
 
             if let url = gift.url {
-                Link("website", destination: url)
+                Link(destination: url, label: {
+                    Text("website")
+                        .foregroundColor(bgColor)
+                        .underline()
+                })
             }
         }
         .frame(maxWidth: .infinity)

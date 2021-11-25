@@ -49,21 +49,21 @@ struct GiftsView: View {
                             .padding(.vertical, -10)
                         }
                         .frame(maxWidth: geometry.size.width / 2)
-                        
-                         VStack(spacing: 0) {
-                             Text("Occasion")
-                                 .font(.title2)
-                                 .foregroundColor(titleColor)
-                             Picker("Occasion", selection: $occasionIndex) {
-                                 ForEach(occasions.indices) { index in
-                                     Text(name(occasions[index])).tag(index)
-                                         .foregroundColor(textColor)
-                                 }
-                             }
-                             .pickerStyle(.wheel)
+
+                        VStack(spacing: 0) {
+                            Text("Occasion")
+                                .font(.title2)
+                                .foregroundColor(titleColor)
+                            Picker("Occasion", selection: $occasionIndex) {
+                                ForEach(occasions.indices) { index in
+                                    Text(name(occasions[index])).tag(index)
+                                        .foregroundColor(textColor)
+                                }
+                            }
+                            .pickerStyle(.wheel)
                             .padding(.vertical, -10)
-                         }
-                         .frame(maxWidth: geometry.size.width / 2)
+                        }
+                        .frame(maxWidth: geometry.size.width / 2)
                     }
                     GiftsList(person: person, occasion: occasion)
                     Spacer()
@@ -81,7 +81,8 @@ struct GiftsView: View {
                 }
             }
             .navigationTitle("Gifts")
-            .accentColor(titleColor)
+            .accentColor(titleColor) // navigation links color
         }
+        .accentColor(titleColor) // navigation back link color
     }
 }
