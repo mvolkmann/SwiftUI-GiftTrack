@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var selection = 1 // 3
+    @State private var selection = 3
 
     init() {
         // These lines affect all the views and allow the
@@ -26,7 +26,6 @@ struct MainView: View {
                     Image(systemName: "person.3.fill")
                     Text("People")
                 }
-                .tag(1)
                 OccasionsView().tabItem {
                     Image("christmas-tree")
                     Text("Occasions")
