@@ -33,6 +33,7 @@
 		4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90AA4627496AA10056FF3B /* PersistenceController.swift */; };
 		4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */; };
 		4DB339A1275145CC006ECBFD /* Prominent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB339A0275145CC006ECBFD /* Prominent.swift */; };
+		4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB339A227514A08006ECBFD /* NumbersOnly.swift */; };
 		4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* Model.xcdatamodeld */; };
 		4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BDB2743F27F007C703E /* PersonAdd.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		4D90AA4627496AA10056FF3B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButtonStyle.swift; sourceTree = "<group>"; };
 		4DB339A0275145CC006ECBFD /* Prominent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prominent.swift; sourceTree = "<group>"; };
+		4DB339A227514A08006ECBFD /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
 		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4DF89BDB2743F27F007C703E /* PersonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAdd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +112,7 @@
 				4D33674B274C04D600D52F01 /* GiftUpdate.swift */,
 				4D19292B273BE60E0056653B /* MainView.swift */,
 				4DB339A0275145CC006ECBFD /* Prominent.swift */,
+				4DB339A227514A08006ECBFD /* NumbersOnly.swift */,
 				4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */,
 				4D336745274BE07600D52F01 /* MenuPicker.swift */,
 				4DF89BD827432C13007C703E /* Model.xcdatamodeld */,
@@ -142,9 +145,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4D192925273BE60E0056653B /* SwiftUI-GiftTrack */ = {
+		4D192925273BE60E0056653B /* SwiftUI-SwiftUI-GiftTrack */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "SwiftUI-GiftTrack" */;
+			buildConfigurationList = 4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "SwiftUI-SwiftUI-GiftTrack" */;
 			buildPhases = (
 				4D192922273BE60E0056653B /* Sources */,
 				4D192923273BE60E0056653B /* Frameworks */,
@@ -154,7 +157,7 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftUI-GiftTrack";
+			name = "SwiftUI-SwiftUI-GiftTrack";
 			packageProductDependencies = (
 			);
 			productName = "gift-track";
@@ -191,7 +194,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D192925273BE60E0056653B /* SwiftUI-GiftTrack */,
+				4D192925273BE60E0056653B /* SwiftUI-SwiftUI-GiftTrack */,
 			);
 		};
 /* End PBXProject section */
@@ -232,6 +235,7 @@
 				4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */,
 				4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */,
 				4D1D9CED27501065003555E5 /* GiftDetail.swift in Sources */,
+				4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */,
 				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
 				4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */,
 				4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */,
@@ -383,7 +387,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "r.mark.volkmann-gmail.com.gift-track";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "SwiftUI-GiftTrack";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -412,7 +416,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "r.mark.volkmann-gmail.com.gift-track";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "SwiftUI-GiftTrack";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -431,7 +435,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "SwiftUI-GiftTrack" */ = {
+		4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "SwiftUI-SwiftUI-GiftTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D192935273BE60F0056653B /* Debug */,

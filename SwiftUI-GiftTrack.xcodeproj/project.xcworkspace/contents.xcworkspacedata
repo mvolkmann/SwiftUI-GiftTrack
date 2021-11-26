@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/mark/Documents/programming/languages/Swift/SwiftUI-GiftTrack/SwiftUI-GiftTrack.xcodeproj">
    </FileRef>
 </Workspace>
