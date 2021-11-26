@@ -34,7 +34,7 @@ struct OccasionUpdate: View {
                 }
                 ControlGroup {
                     Button("Done") {
-                        occasion.name = name
+                        occasion.name = name.trim()
                         occasion.date = includeDate ? date : nil
                         PersistenceController.shared.save()
                         dismiss()

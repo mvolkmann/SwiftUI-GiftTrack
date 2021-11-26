@@ -34,7 +34,7 @@ struct PersonUpdate: View {
                 }
                 ControlGroup {
                     Button("Done") {
-                        person.name = name
+                        person.name = name.trim()
                         person.birthday = includeBirthday ? birthday : nil
                         PersistenceController.shared.save()
                         dismiss()

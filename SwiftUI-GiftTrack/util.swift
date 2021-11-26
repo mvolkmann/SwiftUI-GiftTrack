@@ -39,3 +39,9 @@ extension Color {
 let bgColor = Color(0x002D62)
 let textColor = Color.white
 let titleColor = Color(0xFFD17A)
+
+extension String {
+    func trim() -> String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}

@@ -38,6 +38,7 @@ struct MainView: View {
                 .tag(3)
             }
         }
+        .datePickerStyle(.wheel)
         // This removes the following console warning:
         // [LayoutConstraints] Unable to simultaneously satisfy constraints.
         // Probably at least one of the constraints in the following list

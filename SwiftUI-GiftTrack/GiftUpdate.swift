@@ -40,11 +40,11 @@ struct GiftUpdate: View {
                     .disableAutocorrection(true)
                 ControlGroup {
                     Button("Done") {
-                        gift.desc = desc
-                        gift.location = location
-                        gift.name = name
+                        gift.desc = desc.trim()
+                        gift.location = location.trim()
+                        gift.name = name.trim()
                         gift.price = Int64(price)
-                        gift.url = URL(string: url)
+                        gift.url = URL(string: url.trim())
                         PersistenceController.shared.save()
                         dismiss()
                     }

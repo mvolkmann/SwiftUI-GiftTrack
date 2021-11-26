@@ -18,6 +18,7 @@ struct GiftsList: View {
     }
 
     init(person: PersonEntity?, occasion: OccasionEntity?) {
+        print("GiftsList init: entered")
         self.person = person
         self.occasion = occasion
 
@@ -102,6 +103,7 @@ struct GiftsList: View {
                 .buttonStyle(.bordered)
                 .background(.white)
                 .cornerRadius(10)
+                .padding(.bottom, 10)
                 .confirmationDialog(
                     "Are you sure you want to delete these gifts?",
                     isPresented: $isConfirming,

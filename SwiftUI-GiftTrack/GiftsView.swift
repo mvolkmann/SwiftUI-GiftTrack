@@ -18,7 +18,6 @@ struct GiftsView: View {
         ]
     ) var people: FetchedResults<PersonEntity>
 
-    @State var gifts: [GiftEntity] = []
     @State var occasionIndex = 0
     @State var personIndex = 0
 
@@ -28,6 +27,10 @@ struct GiftsView: View {
 
     private var person: PersonEntity? {
         people.isEmpty ? nil : people[personIndex]
+    }
+
+    func pickerWidth(_ geometry: GeometryProxy) -> CGFloat {
+        min(170, geometry.size.width / 2)
     }
 
     init() {
@@ -53,7 +56,7 @@ struct GiftsView: View {
                             .pickerStyle(.wheel)
                             .padding(.vertical, -10)
                         }
-                        .frame(maxWidth: geometry.size.width / 2)
+                        .frame(maxWidth: pickerWidth(geometry))
 
                         VStack(spacing: 0) {
                             Text("Occasion")
@@ -68,7 +71,7 @@ struct GiftsView: View {
                             .pickerStyle(.wheel)
                             .padding(.vertical, -10)
                         }
-                        .frame(maxWidth: geometry.size.width / 2)
+                        .frame(maxWidth: pickerWidth(geometry))
                     }
                     GiftsList(person: person, occasion: occasion)
                     Spacer()

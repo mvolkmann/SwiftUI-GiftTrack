@@ -10,7 +10,7 @@ struct OccasionAdd: View {
 
     func add(name: String, date: Date) {
         let occasion = OccasionEntity(context: moc)
-        occasion.name = name
+        occasion.name = name.trim()
         if includeDate { occasion.date = date }
         PersistenceController.shared.save()
     }

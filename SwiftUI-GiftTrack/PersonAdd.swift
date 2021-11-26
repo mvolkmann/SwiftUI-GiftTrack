@@ -10,7 +10,7 @@ struct PersonAdd: View {
 
     func add(name: String, birthday: Date) {
         let person = PersonEntity(context: moc)
-        person.name = name
+        person.name = name.trim()
         if includeBirthday { person.birthday = birthday }
         PersistenceController.shared.save()
     }
