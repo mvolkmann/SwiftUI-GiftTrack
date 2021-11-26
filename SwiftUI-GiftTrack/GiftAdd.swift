@@ -60,9 +60,9 @@ struct GiftAdd: View {
                         url = ""
                         dismiss()
                     }
-                    .buttonStyle(.borderedProminent)
+                    .prominent()
                     .disabled(name.isEmpty)
-                    Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
+                    Button("Cancel", action: { dismiss() })
                 }.controlGroupStyle(.navigation)
             }
         }

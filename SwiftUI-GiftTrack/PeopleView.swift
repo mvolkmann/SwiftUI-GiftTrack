@@ -72,5 +72,6 @@ struct PeopleView: View {
             .navigationTitle("People")
             .accentColor(titleColor)
         }
+        .accentColor(titleColor) // navigation back link color
     }
 }

@@ -34,9 +34,9 @@ struct OccasionAdd: View {
                         date = Date.now
                         dismiss()
                     }
-                    .buttonStyle(.borderedProminent)
+                    .prominent()
                     .disabled(name.isEmpty)
-                    Button("Cancel", action: { dismiss() }).buttonStyle(.bordered)
+                    Button("Cancel", action: { dismiss() })
                 }.controlGroupStyle(.navigation)
             }
         }

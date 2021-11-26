@@ -31,6 +31,8 @@
 		4D88AFB2274E7FB9005A999F /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB1274E7FB9005A999F /* util.swift */; };
 		4D88AFB4274E91C5005A999F /* GiftsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB3274E91C5005A999F /* GiftsDetail.swift */; };
 		4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90AA4627496AA10056FF3B /* PersistenceController.swift */; };
+		4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */; };
+		4DB339A1275145CC006ECBFD /* Prominent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB339A0275145CC006ECBFD /* Prominent.swift */; };
 		4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* Model.xcdatamodeld */; };
 		4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BDB2743F27F007C703E /* PersonAdd.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,8 @@
 		4D88AFB1274E7FB9005A999F /* util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		4D88AFB3274E91C5005A999F /* GiftsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftsDetail.swift; sourceTree = "<group>"; };
 		4D90AA4627496AA10056FF3B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButtonStyle.swift; sourceTree = "<group>"; };
+		4DB339A0275145CC006ECBFD /* Prominent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prominent.swift; sourceTree = "<group>"; };
 		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		4DF89BDB2743F27F007C703E /* PersonAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonAdd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +109,8 @@
 				4D19293D273BE7390056653B /* GiftsView.swift */,
 				4D33674B274C04D600D52F01 /* GiftUpdate.swift */,
 				4D19292B273BE60E0056653B /* MainView.swift */,
+				4DB339A0275145CC006ECBFD /* Prominent.swift */,
+				4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */,
 				4D336745274BE07600D52F01 /* MenuPicker.swift */,
 				4DF89BD827432C13007C703E /* Model.xcdatamodeld */,
 				4D192941273C09B20056653B /* MyText.swift */,
@@ -217,9 +223,11 @@
 				4D192946273C0F1F0056653B /* SFSymbol.swift in Sources */,
 				4D192942273C09B20056653B /* MyText.swift in Sources */,
 				4D192944273C0B6F0056653B /* Page.swift in Sources */,
+				4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */,
 				4D88AFB4274E91C5005A999F /* GiftsDetail.swift in Sources */,
 				4D192938273BE6BC0056653B /* AboutView.swift in Sources */,
 				4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */,
+				4DB339A1275145CC006ECBFD /* Prominent.swift in Sources */,
 				4D336748274BF88000D52F01 /* GiftAdd.swift in Sources */,
 				4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */,
 				4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */,

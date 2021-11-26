@@ -92,17 +92,10 @@ struct GiftsList: View {
                 ) {
                     Text("Detail")
                 }
-                .buttonStyle(.bordered)
-                .background(.white)
-                .cornerRadius(10)
-                .foregroundColor(bgColor)
 
                 Button(deleteAllText, role: .destructive) {
                     isConfirming = true
                 }
-                .buttonStyle(.bordered)
-                .background(.white)
-                .cornerRadius(10)
                 .padding(.bottom, 10)
                 .confirmationDialog(
                     "Are you sure you want to delete these gifts?",

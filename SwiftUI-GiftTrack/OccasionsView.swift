@@ -73,5 +73,6 @@ struct OccasionsView: View {
             .navigationTitle("Occasions")
             .accentColor(titleColor)
         }
+        .accentColor(titleColor) // navigation back link color
     }
 }
