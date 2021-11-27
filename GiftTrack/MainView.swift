@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var selection = 3
+    @StateObject var settings = Settings()
+    // @State private var selection = 3
 
     init() {
         // These lines affect all the views and allow the
@@ -16,7 +17,7 @@ struct MainView: View {
 
     var body: some View {
         ZStack {
-            bgColor
+            settings.bgColor
             // TabView(selection: $selection) {
             TabView {
                 AboutView().tabItem {
@@ -35,13 +36,14 @@ struct MainView: View {
                     Image(systemName: "gift")
                     Text("Gifts")
                 }
-                .tag(3)
+                // .tag(3)
                 SettingsView().tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
             }
         }
+        .environmentObject(settings)
         .buttonStyle(MyButtonStyle())
         .datePickerStyle(.wheel)
         // This removes the following console warning:

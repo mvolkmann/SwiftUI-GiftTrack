@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct GiftsDetail: View {
+    @EnvironmentObject var settings: Settings
+
     let person: PersonEntity?
     let occasion: OccasionEntity?
     let gifts: FetchedResults<GiftEntity>
@@ -21,16 +23,15 @@ struct GiftsDetail: View {
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.yellow)
                 .padding(.bottom, 20)
-            ScrollView { // TODO: This isn't working!
+            ScrollView {
                 ForEach(gifts, id: \.self) { gift in
                     GiftDetail(gift: gift)
                 }
             }
             Text("Total: $\(total)")
                 .font(.system(size: 20, weight: .bold))
-                .foregroundColor(textColor)
+                .foregroundColor(settings.textColor)
                 .padding(.vertical, 20)
         }
-        // .navigationTitle(title)
     }
 }

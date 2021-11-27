@@ -3,6 +3,8 @@ import SwiftUI
 
 struct GiftsList: View {
     @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var settings: Settings
+
     @State private var isConfirming = false
 
     var occasion: OccasionEntity?
@@ -24,11 +26,8 @@ struct GiftsList: View {
         let sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true)
         ]
-        // TODO: What is wrong with this predicate?
-        // TODO: You get gifts if no predicate is used.
         let predicate = NSPredicate(
             format: "to.name == %@ AND reason.name == %@",
-            // format: "to.name == %@",
             name(person),
             name(occasion)
         )
@@ -59,11 +58,11 @@ struct GiftsList: View {
         if gifts.isEmpty {
             if let person = person, let occasion = occasion {
                 Text("\(name(person)) has no \(name(occasion)) gifts yet.")
-                    .foregroundColor(titleColor)
+                    .foregroundColor(settings.titleColor)
                     .padding(.top, 20)
             } else {
                 Text("No people or occasions have been created yet.")
-                    .foregroundColor(titleColor)
+                    .foregroundColor(settings.titleColor)
                     .padding(.top, 20)
             }
         } else {

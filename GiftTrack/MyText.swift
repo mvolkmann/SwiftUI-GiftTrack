@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MyText: View {
+    @EnvironmentObject var settings: Settings
+
     private let bold: Bool
     private let text: String
 
@@ -12,6 +14,6 @@ struct MyText: View {
     var body: some View {
         Text(text)
             .font(.system(size: 18, weight: bold ? .bold : .regular))
-            .foregroundColor(textColor)
+            .foregroundColor(settings.textColor)
     }
 }

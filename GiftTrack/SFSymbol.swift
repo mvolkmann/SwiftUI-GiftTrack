@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SFSymbol: View {
+    @EnvironmentObject var settings: Settings
+
     private let name: String
     private let size: CGFloat
 
@@ -11,6 +13,6 @@ struct SFSymbol: View {
 
     var body: some View {
         Image(systemName: name).font(.system(size: size))
-            .foregroundColor(textColor)
+            .foregroundColor(settings.textColor)
     }
 }

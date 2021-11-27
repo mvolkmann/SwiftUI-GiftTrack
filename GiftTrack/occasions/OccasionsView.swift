@@ -2,6 +2,8 @@ import SwiftUI
 
 struct OccasionsView: View {
     @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var settings: Settings
+
     @FetchRequest(
         entity: OccasionEntity.entity(),
         sortDescriptors: [
@@ -12,7 +14,6 @@ struct OccasionsView: View {
     private var dateFormatter = DateFormatter()
 
     init() {
-        configureNavigationTitle()
         // Show dates as month/day without year.
         dateFormatter.setLocalizedDateFormatFromTemplate("M/d")
     }
@@ -28,14 +29,6 @@ struct OccasionsView: View {
 
     private func format(date: Date) -> String {
         dateFormatter.string(from: date)
-    }
-
-    private func move(indexSet: IndexSet, to: Int) {
-        // TODO: How can you implement this when using @FetchRequest?
-        // This updates the UI, but doesn't save the order.
-        // If you navigate to another page and then return to this page,
-        // the occasions will return to alphabetical order.
-        // $occasions.move(fromOffsets: indexSet, toOffset: to)
     }
 
     var body: some View {
@@ -61,7 +54,6 @@ struct OccasionsView: View {
                         }
                     }
                     .onDelete(perform: delete)
-                    .onMove(perform: move)
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -73,8 +65,11 @@ struct OccasionsView: View {
                 }
             }
             .navigationTitle("Occasions")
-            .accentColor(titleColor)
+            .accentColor(settings.titleColor)
         }
-        .accentColor(titleColor) // navigation back link color
+        .accentColor(settings.titleColor) // navigation back link color
+        .onAppear {
+            configureNavigationTitle(color: settings.titleColor)
+        }
     }
 }

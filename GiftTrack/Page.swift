@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct Page<Content: View>: View {
+    @EnvironmentObject var settings: Settings
+
     let spacing: CGFloat = 0
     @ViewBuilder let content: () -> Content
 
@@ -8,7 +10,7 @@ struct Page<Content: View>: View {
 
     var body: some View {
         ZStack {
-            bgColor.ignoresSafeArea()
+            settings.bgColor.ignoresSafeArea()
             VStack(alignment: .leading, spacing: spacing) {
                 content()
                 Spacer()

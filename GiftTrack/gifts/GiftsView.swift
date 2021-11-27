@@ -3,6 +3,7 @@ import SwiftUI
 
 struct GiftsView: View {
     @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var settings: Settings
 
     @FetchRequest(
         entity: OccasionEntity.entity(),
@@ -20,10 +21,6 @@ struct GiftsView: View {
 
     @State var occasionIndex = 0
     @State var personIndex = 0
-    
-    init() {
-        configureNavigationTitle()
-    }
 
     private var occasion: OccasionEntity? {
         occasions.isEmpty ? nil : occasions[occasionIndex]
@@ -37,7 +34,6 @@ struct GiftsView: View {
         min(170, geometry.size.width / 2)
     }
 
-
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
@@ -47,11 +43,11 @@ struct GiftsView: View {
                         VStack(spacing: 0) {
                             Text("Person")
                                 .font(.title2)
-                                .foregroundColor(titleColor)
+                                .foregroundColor(settings.titleColor)
                             Picker("Person", selection: $personIndex) {
                                 ForEach(people.indices, id: \.self) { index in
                                     Text(name(people[index])).tag(index)
-                                        .foregroundColor(textColor)
+                                        .foregroundColor(settings.textColor)
                                 }
                             }
                             .pickerStyle(.wheel)
@@ -62,11 +58,11 @@ struct GiftsView: View {
                         VStack(spacing: 0) {
                             Text("Occasion")
                                 .font(.title2)
-                                .foregroundColor(titleColor)
+                                .foregroundColor(settings.titleColor)
                             Picker("Occasion", selection: $occasionIndex) {
                                 ForEach(occasions.indices, id: \.self) { index in
                                     Text(name(occasions[index])).tag(index)
-                                        .foregroundColor(textColor)
+                                        .foregroundColor(settings.textColor)
                                 }
                             }
                             .pickerStyle(.wheel)
@@ -89,9 +85,12 @@ struct GiftsView: View {
                     )
                 }
             }
-            .navigationTitle("Gifts")
-            .accentColor(titleColor) // navigation links color
+            .navigationBarTitle("Gifts")
+            .accentColor(settings.titleColor) // navigation links color
         }
-        .accentColor(titleColor) // navigation back link color
+        .accentColor(settings.titleColor) // navigation back link color
+        .onAppear {
+            configureNavigationTitle(color: settings.titleColor)
+        }
     }
 }

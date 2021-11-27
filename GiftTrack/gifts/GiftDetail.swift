@@ -1,13 +1,15 @@
 import SwiftUI
 
 struct GiftDetail: View {
+    @EnvironmentObject var settings: Settings
+
     let gift: GiftEntity
 
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text(name(gift))
-                    .foregroundColor(bgColor)
+                    .foregroundColor(settings.bgColor)
                 if let price = gift.price {
                     Text("- $\(price)")
                 }
@@ -25,7 +27,7 @@ struct GiftDetail: View {
             if let url = gift.url {
                 Link(destination: url, label: {
                     Text("website")
-                        .foregroundColor(bgColor)
+                        .foregroundColor(settings.bgColor)
                         .underline()
                 })
             }

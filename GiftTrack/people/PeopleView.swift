@@ -2,6 +2,8 @@ import SwiftUI
 
 struct PeopleView: View {
     @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject var settings: Settings
+
     @FetchRequest(
         entity: PersonEntity.entity(),
         sortDescriptors: [
@@ -12,7 +14,6 @@ struct PeopleView: View {
     private var dateFormatter = DateFormatter()
 
     init() {
-        configureNavigationTitle()
         dateFormatter.dateFormat = "M/d/yyyy"
     }
 
@@ -27,14 +28,6 @@ struct PeopleView: View {
     private func format(date: Date?) -> String {
         guard let date = date else { return "" }
         return dateFormatter.string(from: date)
-    }
-
-    private func move(indexSet: IndexSet, to: Int) {
-        // TODO: How can you implement this when using @FetchRequest?
-        // This updates the UI, but doesn't save the order.
-        // If you navigate to another page and then return to this page,
-        // the people will return to alphabetical order.
-        // $people.move(fromOffsets: indexSet, toOffset: to)
     }
 
     var body: some View {
@@ -58,7 +51,6 @@ struct PeopleView: View {
                         }
                     }
                     .onDelete(perform: delete)
-                    .onMove(perform: move)
                 }
             }
             .toolbar {
@@ -70,8 +62,11 @@ struct PeopleView: View {
                 }
             }
             .navigationTitle("People")
-            .accentColor(titleColor)
+            .accentColor(settings.titleColor)
         }
-        .accentColor(titleColor) // navigation back link color
+        .accentColor(settings.titleColor) // navigation back link color
+        .onAppear {
+            configureNavigationTitle(color: settings.titleColor)
+        }
     }
 }

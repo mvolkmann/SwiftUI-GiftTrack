@@ -13,32 +13,16 @@ func name(_ person: PersonEntity?) -> String {
     person?.name ?? "unknown"
 }
 
-func configureNavigationTitle() {
-    let color = UIColor(titleColor)
+func configureNavigationTitle(color: Color) {
+    let uiColor = UIColor(color)
 
     // Change color of the navigation title
     // when displayMode is not .inline.
     let appearance = UINavigationBar.appearance()
-    appearance.largeTitleTextAttributes = [.foregroundColor: color]
+    appearance.largeTitleTextAttributes = [.foregroundColor: uiColor]
     // when displayMode is .inline.
-    appearance.titleTextAttributes = [.foregroundColor: color]
+    appearance.titleTextAttributes = [.foregroundColor: uiColor]
 }
-
-extension Color {
-    init(_ hex: UInt, alpha: Double = 1) {
-        self.init(
-            .sRGB,
-            red: Double((hex >> 16) & 0xFF) / 255,
-            green: Double((hex >> 8) & 0xFF) / 255,
-            blue: Double(hex & 0xFF) / 255,
-            opacity: alpha
-        )
-    }
-}
-
-let bgColor = Color(0x002D62)
-let textColor = Color.white
-let titleColor = Color(0xFFD17A)
 
 extension String {
     func trim() -> String {
