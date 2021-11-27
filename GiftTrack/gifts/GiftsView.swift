@@ -20,6 +20,10 @@ struct GiftsView: View {
 
     @State var occasionIndex = 0
     @State var personIndex = 0
+    
+    init() {
+        configureNavigationTitle()
+    }
 
     private var occasion: OccasionEntity? {
         occasions.isEmpty ? nil : occasions[occasionIndex]
@@ -33,9 +37,6 @@ struct GiftsView: View {
         min(170, geometry.size.width / 2)
     }
 
-    init() {
-        configureNavigationTitle()
-    }
 
     var body: some View {
         NavigationView {
@@ -48,7 +49,7 @@ struct GiftsView: View {
                                 .font(.title2)
                                 .foregroundColor(titleColor)
                             Picker("Person", selection: $personIndex) {
-                                ForEach(people.indices) { index in
+                                ForEach(people.indices, id: \.self) { index in
                                     Text(name(people[index])).tag(index)
                                         .foregroundColor(textColor)
                                 }
@@ -63,7 +64,7 @@ struct GiftsView: View {
                                 .font(.title2)
                                 .foregroundColor(titleColor)
                             Picker("Occasion", selection: $occasionIndex) {
-                                ForEach(occasions.indices) { index in
+                                ForEach(occasions.indices, id: \.self) { index in
                                     Text(name(occasions[index])).tag(index)
                                         .foregroundColor(textColor)
                                 }

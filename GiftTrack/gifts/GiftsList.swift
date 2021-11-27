@@ -18,7 +18,6 @@ struct GiftsList: View {
     }
 
     init(person: PersonEntity?, occasion: OccasionEntity?) {
-        print("GiftsList init: entered")
         self.person = person
         self.occasion = occasion
 

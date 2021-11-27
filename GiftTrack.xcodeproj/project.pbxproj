@@ -82,6 +82,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D150CAC275270780026C744 /* gifts */ = {
+			isa = PBXGroup;
+			children = (
+				4D336747274BF88000D52F01 /* GiftAdd.swift */,
+				4D1D9CEC27501065003555E5 /* GiftDetail.swift */,
+				4D88AFB3274E91C5005A999F /* GiftsDetail.swift */,
+				4D88AF91274C4F70005A999F /* GiftsList.swift */,
+				4D33674B274C04D600D52F01 /* GiftUpdate.swift */,
+				4D19293D273BE7390056653B /* GiftsView.swift */,
+			);
+			path = gifts;
+			sourceTree = "<group>";
+		};
+		4D150CAD275271150026C744 /* people */ = {
+			isa = PBXGroup;
+			children = (
+				4D192939273BE70C0056653B /* PeopleView.swift */,
+				4DF89BDB2743F27F007C703E /* PersonAdd.swift */,
+				4D03F1C52744859500B0397D /* PersonUpdate.swift */,
+			);
+			path = people;
+			sourceTree = "<group>";
+		};
+		4D150CAE275271840026C744 /* occasions */ = {
+			isa = PBXGroup;
+			children = (
+				4D336715274983C500D52F01 /* OccasionAdd.swift */,
+				4D19293B273BE72C0056653B /* OccasionsView.swift */,
+				4D336717274983D100D52F01 /* OccasionUpdate.swift */,
+			);
+			path = occasions;
+			sourceTree = "<group>";
+		};
 		4D19291D273BE60E0056653B = {
 			isa = PBXGroup;
 			children = (
@@ -101,15 +134,12 @@
 		4D192928273BE60E0056653B /* GiftTrack */ = {
 			isa = PBXGroup;
 			children = (
+				4D150CAC275270780026C744 /* gifts */,
+				4D150CAE275271840026C744 /* occasions */,
+				4D150CAD275271150026C744 /* people */,
 				4D192937273BE6BC0056653B /* AboutView.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D192947273C196F0056653B /* Color.swift */,
-				4D336747274BF88000D52F01 /* GiftAdd.swift */,
-				4D1D9CEC27501065003555E5 /* GiftDetail.swift */,
-				4D88AFB3274E91C5005A999F /* GiftsDetail.swift */,
-				4D88AF91274C4F70005A999F /* GiftsList.swift */,
-				4D19293D273BE7390056653B /* GiftsView.swift */,
-				4D33674B274C04D600D52F01 /* GiftUpdate.swift */,
 				4D19292B273BE60E0056653B /* MainView.swift */,
 				4DB339A0275145CC006ECBFD /* Prominent.swift */,
 				4DB339A227514A08006ECBFD /* NumbersOnly.swift */,
@@ -117,14 +147,8 @@
 				4D336745274BE07600D52F01 /* MenuPicker.swift */,
 				4DF89BD827432C13007C703E /* Model.xcdatamodeld */,
 				4D192941273C09B20056653B /* MyText.swift */,
-				4D336715274983C500D52F01 /* OccasionAdd.swift */,
-				4D19293B273BE72C0056653B /* OccasionsView.swift */,
-				4D336717274983D100D52F01 /* OccasionUpdate.swift */,
 				4D192943273C0B6F0056653B /* Page.swift */,
-				4D192939273BE70C0056653B /* PeopleView.swift */,
 				4D90AA4627496AA10056FF3B /* PersistenceController.swift */,
-				4DF89BDB2743F27F007C703E /* PersonAdd.swift */,
-				4D03F1C52744859500B0397D /* PersonUpdate.swift */,
 				4D19292F273BE60F0056653B /* Preview Content */,
 				4D192945273C0F1F0056653B /* SFSymbol.swift */,
 				4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */,
