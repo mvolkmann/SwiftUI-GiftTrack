@@ -11,6 +11,7 @@ struct Page<Content: View>: View {
             bgColor.ignoresSafeArea()
             VStack(alignment: .leading, spacing: spacing) {
                 content()
+                Spacer()
             }
             .padding(.horizontal)
         }

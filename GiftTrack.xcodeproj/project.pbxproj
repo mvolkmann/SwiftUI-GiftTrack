@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D03F1C62744859500B0397D /* PersonUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D03F1C52744859500B0397D /* PersonUpdate.swift */; };
+		4D150CB02752766F0026C744 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D150CAF2752766F0026C744 /* SettingsView.swift */; };
 		4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */; };
 		4D19292C273BE60E0056653B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19292B273BE60E0056653B /* MainView.swift */; };
 		4D19292E273BE60F0056653B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D19292D273BE60F0056653B /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		4D03F1C52744859500B0397D /* PersonUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonUpdate.swift; sourceTree = "<group>"; };
+		4D150CAF2752766F0026C744 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4D192926273BE60E0056653B /* GiftTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiftTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_GiftTrack.swift; sourceTree = "<group>"; };
 		4D19292B273BE60E0056653B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				4D192943273C0B6F0056653B /* Page.swift */,
 				4D90AA4627496AA10056FF3B /* PersistenceController.swift */,
 				4D19292F273BE60F0056653B /* Preview Content */,
+				4D150CAF2752766F0026C744 /* SettingsView.swift */,
 				4D192945273C0F1F0056653B /* SFSymbol.swift */,
 				4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */,
 				4D88AFB1274E7FB9005A999F /* util.swift */,
@@ -261,6 +264,7 @@
 				4D1D9CED27501065003555E5 /* GiftDetail.swift in Sources */,
 				4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */,
 				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
+				4D150CB02752766F0026C744 /* SettingsView.swift in Sources */,
 				4DF89BDC2743F27F007C703E /* PersonAdd.swift in Sources */,
 				4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */,
 				4D336716274983C500D52F01 /* OccasionAdd.swift in Sources */,

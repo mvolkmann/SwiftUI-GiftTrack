@@ -36,6 +36,10 @@ struct MainView: View {
                     Text("Gifts")
                 }
                 .tag(3)
+                SettingsView().tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
             }
         }
         .buttonStyle(MyButtonStyle())
