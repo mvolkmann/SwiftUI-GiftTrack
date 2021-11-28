@@ -1,16 +1,12 @@
 import SwiftUI
 
-// TODO: How can you replace these 3 functions with one?
-func name(_ gift: GiftEntity?) -> String {
-    gift?.name ?? "unknown"
-}
-
-func name(_ occasion: OccasionEntity?) -> String {
-    occasion?.name ?? "unknown"
-}
-
-func name(_ person: PersonEntity?) -> String {
-    person?.name ?? "unknown"
+func name(_ object: NSObject?) -> String {
+    if let object = object {
+        let v = object.value(forKey: "name") as? String
+        return v ?? "unknown"
+    } else {
+        return "nil"
+    }
 }
 
 func configureNavigationTitle(color: Color) {

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var settings = Settings()
-    @State private var selection = 3
+    @State private var selection = 0
 
     init() {
         // These lines affect all the views and allow the
@@ -26,26 +26,26 @@ struct MainView: View {
                 AboutView().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
-                }
+                }.tag(0)
                 PeopleView().tabItem {
                     Image(systemName: "person.3.fill")
                     Text("People")
-                }
+                }.tag(1)
                 OccasionsView().tabItem {
                     Image("christmas-tree")
                     Text("Occasions")
-                }
+                }.tag(2)
                 GiftsView().tabItem {
                     Image(systemName: "gift")
                     Text("Gifts")
-                }
-                .tag(3)
+                }.tag(3)
                 SettingsView().tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
             }
         }
+        // .preferredColorScheme(.dark)
         .environmentObject(settings)
         .buttonStyle(MyButtonStyle())
         .datePickerStyle(.wheel)

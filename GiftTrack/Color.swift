@@ -1,11 +1,5 @@
 import SwiftUI
 
-class Settings: ObservableObject {
-    @Published var bgColor = Color(0x002D62)
-    @Published var textColor = Color.white
-    @Published var titleColor = Color(0xFFD17A)
-}
-
 extension Color {
     init(_ hex: UInt, alpha: Double = 1) {
         self.init(
