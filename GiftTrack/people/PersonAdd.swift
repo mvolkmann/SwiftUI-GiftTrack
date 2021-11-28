@@ -21,11 +21,7 @@ struct PersonAdd: View {
                 TextField("Name", text: $name)
                 Toggle("Include Birthday", isOn: $includeBirthday)
                 if includeBirthday {
-                    DatePicker(
-                        "Birthday",
-                        selection: $birthday,
-                        displayedComponents: .date
-                    )
+                    MyDatePicker("Birthday", selection: $birthday)
                 }
                 ControlGroup {
                     Button("Add") {

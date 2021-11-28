@@ -21,11 +21,7 @@ struct OccasionAdd: View {
                 TextField("Name", text: $name)
                 Toggle("Include Date", isOn: $includeDate)
                 if includeDate {
-                    DatePicker(
-                        "Date",
-                        selection: $date,
-                        displayedComponents: .date
-                    )
+                    MyDatePicker("Date", selection: $date)
                 }
                 ControlGroup {
                     Button("Add") {
