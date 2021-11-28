@@ -36,7 +36,7 @@ struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
                         .foregroundColor(settings.bgColor)
                     Picker(title, selection: selectedIndex) {
                         ForEach(options.indices, id: \.self) { index in
-                            Text(value(options[index] as! NSObject)).tag(index)
+                            MyText(value(options[index] as! NSObject)).tag(index)
                         }
                     }
                     .frame(width: pickerWidth(geometry), height: pickerHeight)

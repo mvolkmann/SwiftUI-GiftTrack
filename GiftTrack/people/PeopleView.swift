@@ -45,7 +45,7 @@ struct PeopleView: View {
                                 MyText(person.name ?? "")
                                 if let birthday = person.birthday {
                                     Spacer()
-                                    Text(format(date: birthday))
+                                    MyText(format(date: birthday))
                                 }
                             }
                         }

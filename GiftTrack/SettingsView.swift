@@ -10,19 +10,21 @@ struct SettingsView: View {
                 .foregroundColor(settings.titleColor)
                 .padding(.bottom, 20)
 
-            VStack(spacing: 10) {
-                ColorPicker(
-                    "Background Color",
-                    selection: $settings.bgColor
-                ).foregroundColor(settings.textColor)
-                ColorPicker(
-                    "Title Color",
-                    selection: $settings.titleColor
-                ).foregroundColor(settings.textColor)
-                ColorPicker(
-                    "Text Color",
-                    selection: $settings.textColor
-                ).foregroundColor(settings.textColor)
+            Form {
+                VStack(spacing: 10) {
+                    ColorPicker(
+                        "Background Color",
+                        selection: $settings.bgColor
+                    ).foregroundColor(settings.textColor)
+                    ColorPicker(
+                        "Title Color",
+                        selection: $settings.titleColor
+                    ).foregroundColor(settings.textColor)
+                    ColorPicker(
+                        "Text Color",
+                        selection: $settings.textColor
+                    ).foregroundColor(settings.textColor)
+                }
             }
         }
     }

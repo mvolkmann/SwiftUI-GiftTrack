@@ -48,7 +48,7 @@ struct OccasionsView: View {
                                 // TODO: if you change occasion.date to occasion.x!
                                 if let date = occasion.date {
                                     Spacer()
-                                    Text(format(date: date))
+                                    MyText(format(date: date))
                                 }
                             }
                         }

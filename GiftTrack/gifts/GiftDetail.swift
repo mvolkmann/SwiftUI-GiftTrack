@@ -30,6 +30,7 @@ struct GiftDetail: View {
                         .foregroundColor(settings.bgColor)
                         .underline()
                 })
+                .buttonStyle(.borderless)
             }
         }
         .frame(maxWidth: .infinity)
