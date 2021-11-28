@@ -11,10 +11,6 @@ struct GiftsList: View {
     var person: PersonEntity?
     var request: FetchRequest<GiftEntity>
 
-    private var deleteAllText: String {
-        "Delete all \(name(occasion)) gifts for \(name(person))"
-    }
-
     private var gifts: FetchedResults<GiftEntity> {
         request.wrappedValue
     }
@@ -60,12 +56,12 @@ struct GiftsList: View {
 
     var body: some View {
         if gifts.isEmpty {
-            if let person = person, let occasion = occasion {
-                MyText(noGifts, bold: true)
+            if person == nil || occasion == nil {
+                Text("No people or occasions have been created yet.")
                     .foregroundColor(settings.titleColor)
                     .padding(.top, 20)
             } else {
-                Text("No people or occasions have been created yet.")
+                MyText(noGifts, bold: true)
                     .foregroundColor(settings.titleColor)
                     .padding(.top, 20)
             }
@@ -85,26 +81,28 @@ struct GiftsList: View {
                     .onDelete(perform: delete)
                 }
 
-                NavigationLink(
-                    destination: GiftsDetail(
-                        person: person,
-                        occasion: occasion,
-                        gifts: gifts
-                    )
-                ) {
-                    Text("Detail")
-                }
+                HStack {
+                    NavigationLink(
+                        destination: GiftsDetail(
+                            person: person,
+                            occasion: occasion,
+                            gifts: gifts
+                        )
+                    ) {
+                        Text("Detail")
+                    }
 
-                Button(deleteAllText, role: .destructive) {
-                    isConfirming = true
-                }
-                .confirmationDialog(
-                    "Are you sure you want to delete these gifts?",
-                    isPresented: $isConfirming,
-                    titleVisibility: .visible
-                ) {
-                    Button("Yes", role: .destructive) {
-                        deleteAll()
+                    Button("Delete These Gifts", role: .destructive) {
+                        isConfirming = true
+                    }
+                    .confirmationDialog(
+                        "Are you sure you want to delete these gifts?",
+                        isPresented: $isConfirming,
+                        titleVisibility: .visible
+                    ) {
+                        Button("Yes", role: .destructive) {
+                            deleteAll()
+                        }
                     }
                 }
             }
