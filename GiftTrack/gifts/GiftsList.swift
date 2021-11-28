@@ -66,7 +66,7 @@ struct GiftsList: View {
                     .padding(.top, 20)
             }
         } else {
-            VStack(spacing: 20) {
+            VStack(spacing: 10) {
                 List {
                     ForEach(gifts, id: \.self) { gift in
                         NavigationLink(
@@ -74,7 +74,7 @@ struct GiftsList: View {
                         ) {
                             HStack {
                                 Text(name(gift))
-                                // Show more gift properties here?
+                                // TODO: Show more gift properties here?
                             }
                         }
                     }
@@ -94,7 +94,6 @@ struct GiftsList: View {
                 Button(deleteAllText, role: .destructive) {
                     isConfirming = true
                 }
-                .padding(.bottom, 10)
                 .confirmationDialog(
                     "Are you sure you want to delete these gifts?",
                     isPresented: $isConfirming,

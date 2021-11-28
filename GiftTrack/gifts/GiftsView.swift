@@ -22,6 +22,10 @@ struct GiftsView: View {
     @State var occasionIndex = 0
     @State var personIndex = 0
 
+    private let padding: CGFloat = 15
+    private let pickerHeight: CGFloat = 200
+    private let textHeight: CGFloat = 30
+
     private var occasion: OccasionEntity? {
         occasions.isEmpty ? nil : occasions[occasionIndex]
     }
@@ -31,47 +35,33 @@ struct GiftsView: View {
     }
 
     func pickerWidth(_ geometry: GeometryProxy) -> CGFloat {
-        min(170, geometry.size.width / 2)
+        let width = geometry.size.width
+        return width == 0 ? 0 : (width - padding * 3) / 2
     }
 
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
+            GeometryReader { _ in
                 Page {
                     // See MenuPicker.swift which attempts to generalize this.
-                    HStack(spacing: 0) {
-                        VStack(spacing: 0) {
-                            Text("Person")
-                                .font(.title2)
-                                .foregroundColor(settings.titleColor)
-                            Picker("Person", selection: $personIndex) {
-                                ForEach(people.indices, id: \.self) { index in
-                                    Text(name(people[index])).tag(index)
-                                        .foregroundColor(settings.textColor)
-                                }
-                            }
-                            .pickerStyle(.wheel)
-                            .padding(.vertical, -10)
-                        }
-                        .frame(maxWidth: pickerWidth(geometry))
-
-                        VStack(spacing: 0) {
-                            Text("Occasion")
-                                .font(.title2)
-                                .foregroundColor(settings.titleColor)
-                            Picker("Occasion", selection: $occasionIndex) {
-                                ForEach(occasions.indices, id: \.self) { index in
-                                    Text(name(occasions[index])).tag(index)
-                                        .foregroundColor(settings.textColor)
-                                }
-                            }
-                            .pickerStyle(.wheel)
-                            .padding(.vertical, -10)
-                        }
-                        .frame(maxWidth: pickerWidth(geometry))
+                    HStack(spacing: padding) {
+                        TitledWheelPicker(
+                            title: "Person",
+                            options: people,
+                            property: "name",
+                            selectedIndex: $personIndex
+                        )
+                        TitledWheelPicker(
+                            title: "Occasion",
+                            options: occasions,
+                            property: "name",
+                            selectedIndex: $occasionIndex
+                        )
                     }
+                    .frame(height: pickerHeight + textHeight)
+                    .padding(.vertical, 10)
+
                     GiftsList(person: person, occasion: occasion)
-                    Spacer()
                 }
             }
             .toolbar {

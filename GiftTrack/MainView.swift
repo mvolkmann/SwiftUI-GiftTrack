@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var settings = Settings()
-    // @State private var selection = 3
+    @State private var selection = 3
 
     init() {
         // These lines affect all the views and allow the
@@ -13,13 +13,16 @@ struct MainView: View {
         // Without the next line the TabView background is clear
         // and the page background color shows through.
         UITabBar.appearance().backgroundColor = .systemGray5
+
+        // This removes excess space at the top and bottom of List views.
+        UITableView.appearance().contentInset.top = -35
+        UITableView.appearance().contentInset.bottom = -35
     }
 
     var body: some View {
         ZStack {
             settings.bgColor
-            // TabView(selection: $selection) {
-            TabView {
+            TabView(selection: $selection) {
                 AboutView().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
@@ -36,7 +39,7 @@ struct MainView: View {
                     Image(systemName: "gift")
                     Text("Gifts")
                 }
-                // .tag(3)
+                .tag(3)
                 SettingsView().tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

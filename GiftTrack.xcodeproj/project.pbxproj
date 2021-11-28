@@ -24,7 +24,7 @@
 		4D1D9CED27501065003555E5 /* GiftDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1D9CEC27501065003555E5 /* GiftDetail.swift */; };
 		4D336716274983C500D52F01 /* OccasionAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336715274983C500D52F01 /* OccasionAdd.swift */; };
 		4D336718274983D100D52F01 /* OccasionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336717274983D100D52F01 /* OccasionUpdate.swift */; };
-		4D336746274BE07700D52F01 /* MenuPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336745274BE07600D52F01 /* MenuPicker.swift */; };
+		4D336746274BE07700D52F01 /* TitledWheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336745274BE07600D52F01 /* TitledWheelPicker.swift */; };
 		4D336748274BF88000D52F01 /* GiftAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336747274BF88000D52F01 /* GiftAdd.swift */; };
 		4D33674A274BFD6D00D52F01 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D336749274BFD6D00D52F01 /* MainView.swift */; };
 		4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D33674B274C04D600D52F01 /* GiftUpdate.swift */; };
@@ -58,7 +58,7 @@
 		4D1D9CEC27501065003555E5 /* GiftDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftDetail.swift; sourceTree = "<group>"; };
 		4D336715274983C500D52F01 /* OccasionAdd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccasionAdd.swift; sourceTree = "<group>"; };
 		4D336717274983D100D52F01 /* OccasionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccasionUpdate.swift; sourceTree = "<group>"; };
-		4D336745274BE07600D52F01 /* MenuPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPicker.swift; sourceTree = "<group>"; };
+		4D336745274BE07600D52F01 /* TitledWheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledWheelPicker.swift; sourceTree = "<group>"; };
 		4D336747274BF88000D52F01 /* GiftAdd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftAdd.swift; sourceTree = "<group>"; };
 		4D336749274BFD6D00D52F01 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4D33674B274C04D600D52F01 /* GiftUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftUpdate.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 				4DB339A0275145CC006ECBFD /* Prominent.swift */,
 				4DB339A227514A08006ECBFD /* NumbersOnly.swift */,
 				4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */,
-				4D336745274BE07600D52F01 /* MenuPicker.swift */,
+				4D336745274BE07600D52F01 /* TitledWheelPicker.swift */,
 				4DF89BD827432C13007C703E /* Model.xcdatamodeld */,
 				4D192941273C09B20056653B /* MyText.swift */,
 				4D192943273C0B6F0056653B /* Page.swift */,
@@ -246,7 +246,7 @@
 				4D19292C273BE60E0056653B /* MainView.swift in Sources */,
 				4D336718274983D100D52F01 /* OccasionUpdate.swift in Sources */,
 				4D19293C273BE72C0056653B /* OccasionsView.swift in Sources */,
-				4D336746274BE07700D52F01 /* MenuPicker.swift in Sources */,
+				4D336746274BE07700D52F01 /* TitledWheelPicker.swift in Sources */,
 				4D192948273C196F0056653B /* Color.swift in Sources */,
 				4D88AFB2274E7FB9005A999F /* util.swift in Sources */,
 				4D33674A274BFD6D00D52F01 /* MainView.swift in Sources */,
