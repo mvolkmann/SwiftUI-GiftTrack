@@ -43,6 +43,7 @@ struct MainView: View {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
+                .tag(4)
             }
         }
         .environmentObject(settings)
