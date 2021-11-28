@@ -42,7 +42,7 @@ struct PeopleView: View {
                             destination: PersonUpdate(person: person)
                         ) {
                             HStack {
-                                Text(person.name ?? "")
+                                MyText(person.name ?? "")
                                 if let birthday = person.birthday {
                                     Spacer()
                                     Text(format(date: birthday))

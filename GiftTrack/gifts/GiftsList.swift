@@ -19,6 +19,10 @@ struct GiftsList: View {
         request.wrappedValue
     }
 
+    private var noGifts: String {
+        "\(name(person)) has no \(name(occasion)) gifts yet."
+    }
+
     init(person: PersonEntity?, occasion: OccasionEntity?) {
         self.person = person
         self.occasion = occasion
@@ -57,7 +61,7 @@ struct GiftsList: View {
     var body: some View {
         if gifts.isEmpty {
             if let person = person, let occasion = occasion {
-                Text("\(name(person)) has no \(name(occasion)) gifts yet.")
+                MyText(noGifts, bold: true)
                     .foregroundColor(settings.titleColor)
                     .padding(.top, 20)
             } else {
@@ -73,7 +77,7 @@ struct GiftsList: View {
                             destination: GiftUpdate(gift: gift)
                         ) {
                             HStack {
-                                Text(name(gift))
+                                MyText(name(gift))
                                 // TODO: Show more gift properties here?
                             }
                         }

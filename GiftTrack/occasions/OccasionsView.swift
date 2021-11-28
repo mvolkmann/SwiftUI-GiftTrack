@@ -43,7 +43,7 @@ struct OccasionsView: View {
                             destination: OccasionUpdate(occasion: occasion)
                         ) {
                             HStack {
-                                Text(occasion.name ?? "")
+                                MyText(occasion.name ?? "")
                                 // TODO: See the unhelpful error messages you get
                                 // TODO: if you change occasion.date to occasion.x!
                                 if let date = occasion.date {

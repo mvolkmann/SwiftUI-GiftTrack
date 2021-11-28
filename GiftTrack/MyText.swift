@@ -13,7 +13,7 @@ struct MyText: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: 18, weight: bold ? .bold : .regular))
-            .foregroundColor(settings.textColor)
+            .font(.system(size: 20, weight: bold ? .bold : .regular))
+        // The default foreground color is Color.primary.
     }
 }
