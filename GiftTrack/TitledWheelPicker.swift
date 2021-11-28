@@ -1,6 +1,7 @@
 import CoreData
 import SwiftUI
 
+//TODO: Can you make this work with an NSObject array?
 // struct TitledWheelPicker<T>: View where T: NSObject {
 struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
     @EnvironmentObject var settings: Settings
