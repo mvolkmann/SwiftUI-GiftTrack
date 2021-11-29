@@ -105,7 +105,9 @@ struct GiftUpdate: View {
                     Button("Copy") { mode = .copy }
                     
                     Button("Cancel") { dismiss() }
-                }.controlGroupStyle(.navigation)
+                }
+                .buttonStyle(MyButtonStyle())
+                .controlGroupStyle(.navigation)
                 
                 if mode != .update {
                     HStack(spacing: padding) {
@@ -134,8 +136,9 @@ struct GiftUpdate: View {
                             PersistenceController.shared.save()
                             dismiss()
                         }
-                        Button("Cancel") { mode = .update }
+                        Button("Close") { mode = .update }
                     }
+                    .buttonStyle(MyButtonStyle())
                 }
             }
         }

@@ -116,6 +116,7 @@ struct GiftsList: View {
                         }
                     }
                 }
+                .buttonStyle(MyButtonStyle())
             }
         }
     }

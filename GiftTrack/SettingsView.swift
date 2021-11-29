@@ -43,6 +43,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            .buttonStyle(MyButtonStyle())
         }
         .onDisappear(perform: save)
     }

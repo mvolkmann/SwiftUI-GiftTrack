@@ -55,7 +55,9 @@ struct GiftAdd: View {
                     .prominent()
                     .disabled(name.isEmpty)
                     Button("Cancel", action: { dismiss() })
-                }.controlGroupStyle(.navigation)
+                }
+                .buttonStyle(MyButtonStyle())
+                .controlGroupStyle(.navigation)
             }
         }
     }

@@ -40,6 +40,7 @@ struct PersonUpdate: View {
                     Button("Cancel", action: { dismiss() })
                 }.controlGroupStyle(.navigation)
             }
+            .buttonStyle(MyButtonStyle())
         }
     }
 }

@@ -47,7 +47,7 @@ struct MainView: View {
             }
         }
         .environmentObject(settings)
-        .buttonStyle(MyButtonStyle())
+        // .buttonStyle(MyButtonStyle())
         .datePickerStyle(.wheel)
         // This removes the following console warning:
         // [LayoutConstraints] Unable to simultaneously satisfy constraints.
