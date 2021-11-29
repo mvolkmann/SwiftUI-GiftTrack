@@ -7,9 +7,11 @@ struct GiftsList: View {
 
     @State private var isConfirming = false
 
-    var occasion: OccasionEntity?
-    var person: PersonEntity?
-    var request: FetchRequest<GiftEntity>
+    private var person: PersonEntity?
+    private var personIndex: Int
+    private var occasion: OccasionEntity?
+    private var occasionIndex: Int
+    private var request: FetchRequest<GiftEntity>
 
     private var gifts: FetchedResults<GiftEntity> {
         request.wrappedValue
@@ -19,9 +21,16 @@ struct GiftsList: View {
         "\(name(person)) has no \(name(occasion)) gifts yet."
     }
 
-    init(person: PersonEntity?, occasion: OccasionEntity?) {
+    init(
+        person: PersonEntity?,
+        personIndex: Int,
+        occasion: OccasionEntity?,
+        occasionIndex: Int
+    ) {
         self.person = person
+        self.personIndex = personIndex
         self.occasion = occasion
+        self.occasionIndex = occasionIndex
 
         let sortDescriptors = [
             NSSortDescriptor(key: "name", ascending: true)
@@ -31,7 +40,7 @@ struct GiftsList: View {
             name(person),
             name(occasion)
         )
-        request = FetchRequest<GiftEntity>(
+        self.request = FetchRequest<GiftEntity>(
             entity: GiftEntity.entity(),
             sortDescriptors: sortDescriptors,
             predicate: predicate
@@ -68,7 +77,11 @@ struct GiftsList: View {
                 List {
                     ForEach(gifts, id: \.self) { gift in
                         NavigationLink(
-                            destination: GiftUpdate(gift: gift)
+                            destination: GiftUpdate(
+                                personIndex: personIndex,
+                                occasionIndex: occasionIndex,
+                                gift: gift
+                            )
                         ) {
                             HStack {
                                 MyText(name(gift))

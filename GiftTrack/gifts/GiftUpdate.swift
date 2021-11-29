@@ -2,23 +2,43 @@ import SwiftUI
 
 struct GiftUpdate: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
     
-    private enum Mode {
-        case edit, copy, move
-    }
+    @FetchRequest(
+        entity: OccasionEntity.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
+    ) var occasions: FetchedResults<OccasionEntity>
+
+    @FetchRequest(
+        entity: PersonEntity.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
+    ) var people: FetchedResults<PersonEntity>
     
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var location = ""
-    @State private var mode = Mode.edit
+    @State private var showingMoveCopy = false
     @State private var name = ""
+    @State private var occasionIndex = 0
+    @State private var personIndex = 0
     @State private var price = NumbersOnly(0)
     @State private var url = ""
     
-    var gift: GiftEntity
+    // TODO: Why does removing this line cause
+    // TODO: "Failed to produce diagnostic for expression"?
+    private let padding: CGFloat = 15
+    private let pickerHeight: CGFloat = 200
+    private let textHeight: CGFloat = 30
     
-    init(gift: GiftEntity) {
+    private var gift: GiftEntity
+    
+    init(personIndex: Int, occasionIndex: Int, gift: GiftEntity) {
         self.gift = gift
+        
         // Preceding these property names with an underscore causes it
         // to refer to the underlying value of the binding
         // rather than the binding itself.
@@ -26,6 +46,8 @@ struct GiftUpdate: View {
         _desc = State(initialValue: gift.desc ?? "")
         _location = State(initialValue: gift.location ?? "")
         _name = State(initialValue: gift.name ?? "")
+        _occasionIndex = State(initialValue: occasionIndex)
+        _personIndex = State(initialValue: personIndex)
         _price = State(initialValue: NumbersOnly(gift.price))
         _url = State(initialValue: gift.url?.absoluteString ?? "")
     }
@@ -56,18 +78,49 @@ struct GiftUpdate: View {
                     }
                     .prominent()
                     .disabled(name.isEmpty)
-                    Button("Copy") { mode = .copy }
-                    Button("Move") { mode = .move }
                     Button("Cancel") { dismiss() }
                 }.controlGroupStyle(.navigation)
                 
-                if mode == .copy {
-                    Text("in copy mode")
-                    Button("Done") { mode = .edit }
-                }
-                if mode == .move {
-                    Text("in move mode")
-                    Button("Done") { mode = .edit }
+                DisclosureGroup("Move/Copy", isExpanded: $showingMoveCopy) {
+                    HStack(spacing: padding) {
+                        TitledWheelPicker(
+                            title: "Person",
+                            options: people,
+                            property: "name",
+                            selectedIndex: $personIndex
+                        )
+                        TitledWheelPicker(
+                            title: "Occasion",
+                            options: occasions,
+                            property: "name",
+                            selectedIndex: $occasionIndex
+                        )
+                    }
+                    .frame(height: pickerHeight + textHeight)
+                    .padding(.vertical, 10)
+                    
+                    HStack {
+                        Button("Move") {
+                            let newPerson = people[personIndex]
+                            let newOccasion = occasions[occasionIndex]
+                            gift.to = newPerson
+                            gift.reason = newOccasion
+                            PersistenceController.shared.save()
+                            dismiss()
+                        }
+                        Button("Copy") {
+                            let newGift = GiftEntity(context: moc)
+                            newGift.name = gift.name
+                            newGift.desc = gift.desc
+                            newGift.location = gift.location
+                            newGift.price = gift.price
+                            newGift.url = gift.url
+                            newGift.to = people[personIndex]
+                            newGift.reason = occasions[occasionIndex]
+                            PersistenceController.shared.save()
+                            dismiss()
+                        }
+                    }
                 }
             }
         }

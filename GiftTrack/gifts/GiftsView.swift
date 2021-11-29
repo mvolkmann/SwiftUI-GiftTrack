@@ -19,8 +19,8 @@ struct GiftsView: View {
         ]
     ) var people: FetchedResults<PersonEntity>
 
-    @State var occasionIndex = 0
-    @State var personIndex = 0
+    @State private var occasionIndex = 0
+    @State private var personIndex = 0
 
     private let padding: CGFloat = 15
     private let pickerHeight: CGFloat = 200
@@ -43,7 +43,6 @@ struct GiftsView: View {
         NavigationView {
             GeometryReader { _ in
                 Page {
-                    // See MenuPicker.swift which attempts to generalize this.
                     HStack(spacing: padding) {
                         TitledWheelPicker(
                             title: "Person",
@@ -61,7 +60,12 @@ struct GiftsView: View {
                     .frame(height: pickerHeight + textHeight)
                     .padding(.vertical, 10)
 
-                    GiftsList(person: person, occasion: occasion)
+                    GiftsList(
+                        person: person,
+                        personIndex: personIndex,
+                        occasion: occasion,
+                        occasionIndex: occasionIndex
+                    )
                 }
             }
             .toolbar {
