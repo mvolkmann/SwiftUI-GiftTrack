@@ -23,8 +23,7 @@ struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
 
     func pickerWidth(_ geometry: GeometryProxy) -> CGFloat {
         let width = geometry.size.width
-        print("TitledWheelPicker.pickerWidth: width =", width)
-        return width == 0 ? 0 : (width - padding * 3) / 2
+        return width == 0 ? 0 : max(0, (width - padding * 3) / 2)
     }
 
     var body: some View {
