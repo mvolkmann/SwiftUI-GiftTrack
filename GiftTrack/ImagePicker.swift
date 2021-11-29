@@ -1,10 +1,11 @@
+// This code came from https://www.youtube.com/watch?v=tMprUZDgAxo.
 import SwiftUI
 import UIKit // needed?
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) private var presentationMode
 
-    @Binding var selectedImage: UIImage
+    @Binding var selectedImage: UIImage?
 
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
 

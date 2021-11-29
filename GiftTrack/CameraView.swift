@@ -14,7 +14,7 @@ import SwiftUI
  */
 
 extension Image {
-    func custom() -> some View {
+    func circle() -> some View {
         self
             .resizable()
             .frame(width: 120, height: 120)
@@ -23,55 +23,55 @@ extension Image {
 }
 
 struct CameraView: View {
+    @Environment(\.dismiss) var dismiss
+
     typealias SourceType = UIImagePickerController.SourceType
 
-    @State private var changeImage = false
-    // @State private var imageSelected = UIImage()
-    @State private var imageSelected = UIImage()
-    @State private var openCameraRoll = false
-    @State private var sourceType: SourceType = .photoLibrary
+    @State private var needImage = false
+    @State private var selectedImage: UIImage? = nil
+    @State private var sourceType: SourceType? = nil
 
     var body: some View {
         VStack {
-            ZStack(alignment: .bottomTrailing) {
-                Button(
-                    action: {
-                        print("got tap")
-                        // changeImage = true
-                        // openCameraRoll = true
-                    },
-                    label: {
-                        if changeImage {
-                            Image(uiImage: imageSelected).custom()
-                        } else {
-                            Image(systemName: "person.crop.circle").custom()
-                        }
-                    }
-                )
-                Image(systemName: "plus")
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.white)
-                    .background(.gray)
-                    .clipShape(Circle())
+            if let selectedImage = selectedImage {
+                Image(uiImage: selectedImage).circle()
+            } else {
+                Image(systemName: "person.crop.circle").circle()
             }
 
-            Button("Camera") {
-                sourceType = .camera
-                changeImage = true
-                openCameraRoll = true
-            }.buttonStyle(MyButtonStyle())
+            HStack {
+                Button(
+                    action: {
+                        sourceType = .camera
+                        needImage = true
+                    },
+                    label: {
+                        Image(systemName: "camera")
+                    }
+                )
+                .font(.system(size: 60))
 
-            Button("Photo Library") {
-                sourceType = .photoLibrary
-                changeImage = true
-                openCameraRoll = true
-            }.buttonStyle(MyButtonStyle())
+                Button(
+                    action: {
+                        sourceType = .photoLibrary
+                        needImage = true
+                    },
+                    label: {
+                        Image(systemName: "photo.on.rectangle.angled")
+                    }
+                )
+                .font(.system(size: 60))
+            }
         }
-        .sheet(isPresented: $openCameraRoll) {
-            ImagePicker(
-                selectedImage: $imageSelected,
-                sourceType: sourceType
-            )
+        .sheet(isPresented: $needImage) {
+            if let sourceType = sourceType {
+                ImagePicker(
+                    selectedImage: $selectedImage,
+                    sourceType: sourceType
+                )
+            } else {
+                Text("No sourceType is set.")
+            }
         }
     }
 }
