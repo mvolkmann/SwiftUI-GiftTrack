@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PeopleView: View {
     @State private var newColor: Color = .red
-    
+
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var settings: Settings
 
@@ -21,7 +21,6 @@ struct PeopleView: View {
 
     private func delete(indexSet: IndexSet) {
         for index in indexSet {
-            print("deleting person at index \(index)")
             moc.delete(people[index])
         }
         PersistenceController.shared.save()
@@ -35,11 +34,6 @@ struct PeopleView: View {
     var body: some View {
         NavigationView {
             Page {
-                
-                    ColorPicker(
-                        "New Color",
-                        selection: $newColor
-                    )
                 // If the iteration is done with List instead of ForEach,
                 // we can't use onDelete or onMove.
                 // List(vm.people, id: \.self) { person in

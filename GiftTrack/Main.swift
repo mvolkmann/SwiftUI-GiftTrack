@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var settings = Settings()
+    @StateObject var settings = Settings.shared
     @State private var selection = 0
 
     init() {

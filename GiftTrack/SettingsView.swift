@@ -5,24 +5,10 @@ struct SettingsView: View {
 
     @State private var newColor: Color = .red
 
-    // See https://www.kairadiagne.com/2020/01/13/nssecurecoding-and-transformable-properties-in-core-data.html
-    @FetchRequest(
-        entity: SettingsEntity.entity(),
-        sortDescriptors: []
-    ) var persistedSettings: FetchedResults<SettingsEntity>
-
     func save() {
-        print("saving")
-        /*
-         var first = persistedSettings.first
-         first.bgColor = settings.bgColor
-         first.titleColor = settings.titleColor
-         first.textColor = settings.textColor
-         PersistenceController.shared.save()
-         */
-
-        // TODO: Also retrieve colors from Core Data when app starts
-        // TODO: and set the "settings" EnvironmentObject.
+        setData(for: "bgColor", to: settings.bgColor)
+        setData(for: "titleColor", to: settings.titleColor)
+        setData(for: "textColor", to: settings.textColor)
     }
 
     var body: some View {
@@ -48,6 +34,13 @@ struct SettingsView: View {
                         "Text Color",
                         selection: $settings.textColor
                     ).foregroundColor(settings.textColor)
+
+                    Button("Reset") {
+                        deleteData(for: "bgColor")
+                        deleteData(for: "titleColor")
+                        deleteData(for: "textColor")
+                        Settings.reset()
+                    }
                 }
             }
         }

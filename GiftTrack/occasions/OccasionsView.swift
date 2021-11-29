@@ -20,9 +20,7 @@ struct OccasionsView: View {
 
     private func delete(indexSet: IndexSet) {
         for index in indexSet {
-            print("OccasionsView delete: index = \(index)")
             moc.delete(occasions[index])
-            print("OccasionsView delete: success")
         }
         PersistenceController.shared.save()
     }

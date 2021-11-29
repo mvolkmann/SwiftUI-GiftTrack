@@ -46,9 +46,7 @@ struct GiftsList: View {
     }
 
     private func deleteAll() {
-        print("gift count = \(gifts.count)")
         for gift in gifts {
-            print("deleting gift \(name(gift))")
             moc.delete(gift)
         }
         PersistenceController.shared.save()

@@ -1,10 +1,34 @@
 import SwiftUI
 
 class Settings: ObservableObject {
-    // @Published var bgColor = Color(UIColor.systemBlue)
-    @Published var bgColor = Color("custom-background")
+    private static let defaultBgColor = Color("custom-background")
+    private static let defaultTitleColor = Color(UIColor.systemYellow)
+    private static let defaultTextColor = Color.primary
 
-    @Published var textColor = Color.primary
+    @Published var bgColor = Settings.defaultBgColor
+    @Published var titleColor = Settings.defaultTitleColor
+    @Published var textColor = Settings.defaultTextColor
 
-    @Published var titleColor = Color(UIColor.systemYellow)
+    static var shared = Settings()
+
+    private init() {
+        bgColor = getData(
+            for: "bgColor",
+            defaultingTo: Settings.defaultBgColor
+        )
+        titleColor = getData(
+            for: "titleColor",
+            defaultingTo: Settings.defaultTitleColor
+        )
+        textColor = getData(
+            for: "textColor",
+            defaultingTo: Settings.defaultTextColor
+        )
+    }
+
+    static func reset() {
+        shared.bgColor = defaultBgColor
+        shared.titleColor = defaultTitleColor
+        shared.textColor = defaultTextColor
+    }
 }
