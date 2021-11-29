@@ -18,10 +18,14 @@ struct GiftUpdate: View {
         ]
     ) var people: FetchedResults<PersonEntity>
     
+    enum Mode {
+        case copy, move, update
+    }
+    
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var location = ""
-    @State private var showingMoveCopy = false
+    @State private var mode = Mode.update
     @State private var name = ""
     @State private var occasionIndex = 0
     @State private var personIndex = 0
@@ -52,6 +56,24 @@ struct GiftUpdate: View {
         _url = State(initialValue: gift.url?.absoluteString ?? "")
     }
     
+    func copy() {
+        let newGift = GiftEntity(context: moc)
+        newGift.name = gift.name
+        newGift.desc = gift.desc
+        newGift.location = gift.location
+        newGift.price = gift.price
+        newGift.url = gift.url
+        newGift.to = people[personIndex]
+        newGift.reason = occasions[occasionIndex]
+    }
+    
+    func move() {
+        let newPerson = people[personIndex]
+        let newOccasion = occasions[occasionIndex]
+        gift.to = newPerson
+        gift.reason = newOccasion
+    }
+    
     var body: some View {
         Page {
             Form {
@@ -78,10 +100,14 @@ struct GiftUpdate: View {
                     }
                     .prominent()
                     .disabled(name.isEmpty)
+                    
+                    Button("Move") { mode = .move }
+                    Button("Copy") { mode = .copy }
+                    
                     Button("Cancel") { dismiss() }
                 }.controlGroupStyle(.navigation)
                 
-                DisclosureGroup("Move/Copy", isExpanded: $showingMoveCopy) {
+                if mode != .update {
                     HStack(spacing: padding) {
                         TitledWheelPicker(
                             title: "Person",
@@ -97,29 +123,18 @@ struct GiftUpdate: View {
                         )
                     }
                     .frame(height: pickerHeight + textHeight)
-                    .padding(.vertical, 10)
                     
                     HStack {
-                        Button("Move") {
-                            let newPerson = people[personIndex]
-                            let newOccasion = occasions[occasionIndex]
-                            gift.to = newPerson
-                            gift.reason = newOccasion
+                        Button(mode == .move ? "Move" : "Copy") {
+                            if mode == .move {
+                                move()
+                            } else {
+                                copy()
+                            }
                             PersistenceController.shared.save()
                             dismiss()
                         }
-                        Button("Copy") {
-                            let newGift = GiftEntity(context: moc)
-                            newGift.name = gift.name
-                            newGift.desc = gift.desc
-                            newGift.location = gift.location
-                            newGift.price = gift.price
-                            newGift.url = gift.url
-                            newGift.to = people[personIndex]
-                            newGift.reason = occasions[occasionIndex]
-                            PersistenceController.shared.save()
-                            dismiss()
-                        }
+                        Button("Cancel") { mode = .update }
                     }
                 }
             }
