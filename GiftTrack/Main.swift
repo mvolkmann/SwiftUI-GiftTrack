@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var settings = Settings.shared
-    @State private var selection = 0
+    @State private var selection = 5
 
     init() {
         // These lines affect all the views and allow the
@@ -23,6 +23,11 @@ struct MainView: View {
         ZStack {
             settings.bgColor
             TabView(selection: $selection) {
+                CameraView().tabItem {
+                    Image(systemName: "camera")
+                    Text("Camera")
+                }
+                .tag(5)
                 AboutView().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
