@@ -5,6 +5,7 @@
         <attribute name="location" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="purchased" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="reason" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OccasionEntity" inverseName="gifts" inverseEntity="OccasionEntity"/>
         <relationship name="to" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersonEntity" inverseName="gifts" inverseEntity="PersonEntity"/>
@@ -20,7 +21,7 @@
         <relationship name="gifts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GiftEntity" inverseName="to" inverseEntity="GiftEntity"/>
     </entity>
     <elements>
-        <element name="GiftEntity" positionX="207.2249755859375" positionY="264.0116577148438" width="128" height="148"/>
+        <element name="GiftEntity" positionX="207.2249755859375" positionY="264.0116577148438" width="128" height="149"/>
         <element name="OccasionEntity" positionX="414.5986938476562" positionY="107.0009155273438" width="128" height="88"/>
         <element name="PersonEntity" positionX="205.4983215332031" positionY="71.810791015625" width="128" height="74"/>
     </elements>

@@ -27,6 +27,7 @@ struct GiftUpdate: View {
     @State private var location = ""
     @State private var mode = Mode.update
     @State private var name = ""
+    @State private var purchased = false
     @State private var occasionIndex = 0
     @State private var personIndex = 0
     @State private var price = NumbersOnly(0)
@@ -52,6 +53,7 @@ struct GiftUpdate: View {
         _name = State(initialValue: gift.name ?? "")
         _occasionIndex = State(initialValue: occasionIndex)
         _personIndex = State(initialValue: personIndex)
+        _purchased = State(initialValue: gift.purchased)
         _price = State(initialValue: NumbersOnly(gift.price))
         _url = State(initialValue: gift.url?.absoluteString ?? "")
     }
@@ -62,6 +64,7 @@ struct GiftUpdate: View {
         newGift.desc = gift.desc
         newGift.location = gift.location
         newGift.price = gift.price
+        newGift.purchased = gift.purchased
         newGift.url = gift.url
         newGift.to = people[personIndex]
         newGift.reason = occasions[occasionIndex]
@@ -85,6 +88,7 @@ struct GiftUpdate: View {
                     .autocapitalization(.none)
                 TextField("Price", text: $price.value)
                     .keyboardType(.decimalPad)
+                Toggle("Purchased?", isOn: $purchased)
                 TextField("URL", text: $url)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
@@ -94,6 +98,7 @@ struct GiftUpdate: View {
                         gift.location = location.trim()
                         gift.name = name.trim()
                         gift.price = Int64(Int(price.value)!)
+                        gift.purchased = purchased
                         gift.url = URL(string: url.trim())
                         PersistenceController.shared.save()
                         dismiss()

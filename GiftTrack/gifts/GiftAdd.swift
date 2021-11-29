@@ -8,6 +8,7 @@ struct GiftAdd: View {
     @State private var desc = ""
     @State private var location = ""
     @State private var name = ""
+    @State private var purchased = false
     @State private var price = NumbersOnly(0)
     @State private var url = ""
 
@@ -20,6 +21,7 @@ struct GiftAdd: View {
         gift.location = location.trim()
         gift.name = name.trim()
         gift.price = Int64(Int(price.value)!)
+        gift.purchased = purchased
         gift.url = URL(string: url.trim())
 
         gift.to = person
@@ -39,6 +41,7 @@ struct GiftAdd: View {
                     .autocapitalization(.none)
                 TextField("Price", text: $price.value)
                     .keyboardType(.decimalPad)
+                Toggle("Purchased?", isOn: $purchased)
                 TextField("URL", text: $url)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)

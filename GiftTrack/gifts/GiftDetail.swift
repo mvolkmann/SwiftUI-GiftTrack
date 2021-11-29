@@ -24,6 +24,8 @@ struct GiftDetail: View {
                 Text("Location: \(location)")
             }
 
+            Text(gift.purchased ? "already purchased" : "not yet purchased")
+
             if let url = gift.url {
                 Link(destination: url, label: {
                     Text("website")
