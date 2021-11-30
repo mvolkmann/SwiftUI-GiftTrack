@@ -1,48 +1,56 @@
 // This code came from https://www.youtube.com/watch?v=tMprUZDgAxo.
 import SwiftUI
-import UIKit // needed?
 
 struct ImagePicker: UIViewControllerRepresentable {
-    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dismiss) var dismiss
+
+    // Valid values are .camera and .photoLibrary.
+    var sourceType: UIImagePickerController.SourceType
 
     @Binding var selectedImage: UIImage?
-
-    var sourceType: UIImagePickerController.SourceType = .photoLibrary
 
     func makeUIViewController(
         context: UIViewControllerRepresentableContext<ImagePicker>
     ) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = false
         imagePicker.sourceType = sourceType
         imagePicker.delegate = context.coordinator
         return imagePicker
     }
 
+    // This function is required to conform to the
+    // UIViewControllerRepresentable protocol,
+    // but it doesn't need to do anything.
     func updateUIViewController(
         _ uiViewController: UIImagePickerController,
         context: Context
     ) {}
 
-    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    final class Coordinator: NSObject,
+        UIImagePickerControllerDelegate,
+        UINavigationControllerDelegate
+    {
         var parent: ImagePicker
 
         init(_ parent: ImagePicker) {
             self.parent = parent
         }
 
+        typealias InfoKey = UIImagePickerController.InfoKey
+
         func imagePickerController(
             _ picker: UIImagePickerController,
-            didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+            didFinishPickingMediaWithInfo info: [InfoKey: Any]
         ) {
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if let image = info[InfoKey.originalImage] as? UIImage {
                 parent.selectedImage = image
             }
-
-            parent.presentationMode.wrappedValue.dismiss()
+            parent.dismiss()
         }
     }
 
+    // This function is required to conform to the
+    // UIViewControllerRepresentable protocol.
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }

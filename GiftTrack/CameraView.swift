@@ -64,11 +64,13 @@ struct CameraView: View {
                 .font(.system(size: 60))
             }
         }
+        // When this sheet is dismissed,
+        // the needImage binding is set to false.
         .sheet(isPresented: $needImage) {
             if let sourceType = sourceType {
                 ImagePicker(
-                    selectedImage: $selectedImage,
-                    sourceType: sourceType
+                    sourceType: sourceType,
+                    selectedImage: $selectedImage
                 )
             } else {
                 Text("No sourceType is set.")
