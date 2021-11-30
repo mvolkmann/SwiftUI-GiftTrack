@@ -9,9 +9,10 @@ struct GiftAdd: View {
     @State private var image: UIImage? = nil
     @State private var location = ""
     @State private var name = ""
-    @State private var openCamera = false
+    @State private var openImagePicker = false
     @State private var purchased = false
     @State private var price = NumbersOnly(0)
+    @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var url = ""
 
     var person: PersonEntity?
@@ -50,13 +51,27 @@ struct GiftAdd: View {
                     .disableAutocorrection(true)
 
                 HStack {
-                    Button(action: { openCamera = true }) {
+                    Button(action: {
+                        sourceType = .camera
+                        openImagePicker = true
+                    }) {
                         Image(systemName: "camera").size(30)
                     }
+
+                    Button(action: {
+                        sourceType = .photoLibrary
+                        openImagePicker = true
+                    }) {
+                        Image(systemName: "photo.on.rectangle.angled")
+                            .size(30)
+                    }
+
                     if let image = image {
                         Image(uiImage: image).square(size: 100)
                     }
                 }
+                // This fixes the bug with multiple buttons in a Form.
+                .buttonStyle(.borderless)
 
                 ControlGroup {
                     Button("Add") {
@@ -77,9 +92,9 @@ struct GiftAdd: View {
             }
         }
         // When this sheet is dismissed,
-        // the openCamera binding is set to false.
-        .sheet(isPresented: $openCamera) {
-            ImagePicker(sourceType: .camera, image: $image)
+        // the openImagePicker binding is set to false.
+        .sheet(isPresented: $openImagePicker) {
+            ImagePicker(sourceType: sourceType, image: $image)
         }
     }
 }

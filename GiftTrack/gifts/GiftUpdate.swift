@@ -22,8 +22,6 @@ struct GiftUpdate: View {
         case copy, move, update
     }
     
-    typealias SourceType = UIImagePickerController.SourceType
-    
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var image: UIImage? = nil
@@ -35,7 +33,7 @@ struct GiftUpdate: View {
     @State private var occasionIndex = 0
     @State private var personIndex = 0
     @State private var price = NumbersOnly(0)
-    @State private var sourceType: SourceType = .camera
+    @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var url = ""
     
     // TODO: Why does removing this line cause
@@ -126,8 +124,7 @@ struct GiftUpdate: View {
                         }
                     }
                 }
-                // TODO: Without this, tapping any button in the HStack
-                // TODO: runs all the actions. Why?
+                // This fixes the bug with multiple buttons in a Form.
                 .buttonStyle(.borderless)
                     
                 TextField("URL", text: $url)
