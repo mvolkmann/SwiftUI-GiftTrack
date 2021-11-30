@@ -14,10 +14,11 @@ import SwiftUI
  */
 
 extension Image {
-    func circle() -> some View {
+    func circle(diameter: CGFloat) -> some View {
         self
             .resizable()
-            .frame(width: 120, height: 120)
+            .scaledToFill()
+            .frame(width: diameter, height: diameter)
             .clipShape(Circle())
     }
 }
@@ -34,9 +35,9 @@ struct CameraView: View {
     var body: some View {
         VStack {
             if let selectedImage = selectedImage {
-                Image(uiImage: selectedImage).circle()
+                Image(uiImage: selectedImage).circle(diameter: 250)
             } else {
-                Image(systemName: "person.crop.circle").circle()
+                Image(systemName: "person.crop.circle").circle(diameter: 150)
             }
 
             HStack {
