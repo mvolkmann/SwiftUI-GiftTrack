@@ -34,6 +34,10 @@ struct GiftDetail: View {
                 })
                 .buttonStyle(.borderless)
             }
+
+            if let data = gift.image, let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage).square(size: 100)
+            }
         }
         .frame(maxWidth: .infinity)
         .padding(5)

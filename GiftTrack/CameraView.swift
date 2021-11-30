@@ -13,29 +13,19 @@ import SwiftUI
  To test camera access, run the app on a real device.
  */
 
-extension Image {
-    func circle(diameter: CGFloat) -> some View {
-        self
-            .resizable()
-            .scaledToFill()
-            .frame(width: diameter, height: diameter)
-            .clipShape(Circle())
-    }
-}
-
 struct CameraView: View {
     @Environment(\.dismiss) var dismiss
 
     typealias SourceType = UIImagePickerController.SourceType
 
+    @State private var image: UIImage? = nil
     @State private var needImage = false
-    @State private var selectedImage: UIImage? = nil
     @State private var sourceType: SourceType? = nil
 
     var body: some View {
         VStack {
-            if let selectedImage = selectedImage {
-                Image(uiImage: selectedImage).circle(diameter: 250)
+            if let image = image {
+                Image(uiImage: image).circle(diameter: 250)
             } else {
                 Image(systemName: "person.crop.circle").circle(diameter: 150)
             }
@@ -68,10 +58,7 @@ struct CameraView: View {
         // the needImage binding is set to false.
         .sheet(isPresented: $needImage) {
             if let sourceType = sourceType {
-                ImagePicker(
-                    sourceType: sourceType,
-                    selectedImage: $selectedImage
-                )
+                ImagePicker(sourceType: sourceType, image: $image)
             } else {
                 Text("No sourceType is set.")
             }

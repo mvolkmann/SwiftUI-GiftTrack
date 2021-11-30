@@ -7,7 +7,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     // Valid values are .camera and .photoLibrary.
     var sourceType: UIImagePickerController.SourceType
 
-    @Binding var selectedImage: UIImage?
+    @Binding var image: UIImage?
 
     func makeUIViewController(
         context: UIViewControllerRepresentableContext<ImagePicker>
@@ -43,7 +43,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             didFinishPickingMediaWithInfo info: [InfoKey: Any]
         ) {
             if let image = info[InfoKey.originalImage] as? UIImage {
-                parent.selectedImage = image
+                parent.image = image
             }
             parent.dismiss()
         }

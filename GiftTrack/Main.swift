@@ -23,11 +23,6 @@ struct MainView: View {
         ZStack {
             settings.bgColor
             TabView(selection: $selection) {
-                CameraView().tabItem {
-                    Image(systemName: "camera")
-                    Text("Camera")
-                }
-                .tag(5)
                 AboutView().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
@@ -44,6 +39,11 @@ struct MainView: View {
                     Image(systemName: "gift")
                     Text("Gifts")
                 }.tag(3)
+                CameraView().tabItem {
+                    Image(systemName: "camera")
+                    Text("Camera")
+                }
+                .tag(5)
                 SettingsView().tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

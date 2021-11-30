@@ -24,9 +24,11 @@ struct GiftUpdate: View {
     
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
+    @State private var image: UIImage? = nil
     @State private var location = ""
     @State private var mode = Mode.update
     @State private var name = ""
+    @State private var needImage = false
     @State private var purchased = false
     @State private var occasionIndex = 0
     @State private var personIndex = 0
@@ -49,6 +51,7 @@ struct GiftUpdate: View {
         // rather than the binding itself.
         // This is required to set the value of an @State property.
         _desc = State(initialValue: gift.desc ?? "")
+        _image = State(initialValue: gift.image == nil ? nil : UIImage(data: gift.image!))
         _location = State(initialValue: gift.location ?? "")
         _name = State(initialValue: gift.name ?? "")
         _occasionIndex = State(initialValue: occasionIndex)
@@ -62,6 +65,7 @@ struct GiftUpdate: View {
         let newGift = GiftEntity(context: moc)
         newGift.name = gift.name
         newGift.desc = gift.desc
+        newGift.image = gift.image
         newGift.location = gift.location
         newGift.price = gift.price
         newGift.purchased = gift.purchased
@@ -89,12 +93,27 @@ struct GiftUpdate: View {
                 TextField("Price", text: $price.value)
                     .keyboardType(.decimalPad)
                 Toggle("Purchased?", isOn: $purchased)
+                
+                HStack {
+                    Button(
+                        action: { needImage = true },
+                        label: {
+                            Image(systemName: "camera").font(.system(size: 30))
+                        }
+                    )
+                    
+                    if let image = image {
+                        Image(uiImage: image).square(size: 100)
+                    }
+                }
+                    
                 TextField("URL", text: $url)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
                 ControlGroup {
                     Button("Done") {
                         gift.desc = desc.trim()
+                        gift.image = image?.jpegData(compressionQuality: 1.0)
                         gift.location = location.trim()
                         gift.name = name.trim()
                         gift.price = Int64(Int(price.value)!)
@@ -146,6 +165,11 @@ struct GiftUpdate: View {
                     .buttonStyle(MyButtonStyle())
                 }
             }
+        }
+        // When this sheet is dismissed,
+        // the needImage binding is set to false.
+        .sheet(isPresented: $needImage) {
+            ImagePicker(sourceType: .camera, image: $image)
         }
     }
 }

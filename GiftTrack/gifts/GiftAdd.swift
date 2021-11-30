@@ -6,8 +6,10 @@ struct GiftAdd: View {
 
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
+    @State private var image: UIImage? = nil
     @State private var location = ""
     @State private var name = ""
+    @State private var needImage = false
     @State private var purchased = false
     @State private var price = NumbersOnly(0)
     @State private var url = ""
@@ -18,6 +20,7 @@ struct GiftAdd: View {
     func add() {
         let gift = GiftEntity(context: moc)
         gift.desc = desc.trim()
+        gift.image = image?.jpegData(compressionQuality: 1.0)
         gift.location = location.trim()
         gift.name = name.trim()
         gift.price = Int64(Int(price.value)!)
@@ -45,6 +48,19 @@ struct GiftAdd: View {
                 TextField("URL", text: $url)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
+
+                HStack {
+                    Button(
+                        action: { needImage = true },
+                        label: {
+                            Image(systemName: "camera").font(.system(size: 30))
+                        }
+                    )
+                    if let image = image {
+                        Image(uiImage: image).square(size: 100)
+                    }
+                }
+
                 ControlGroup {
                     Button("Add") {
                         add()
@@ -62,6 +78,11 @@ struct GiftAdd: View {
                 .buttonStyle(MyButtonStyle())
                 .controlGroupStyle(.navigation)
             }
+        }
+        // When this sheet is dismissed,
+        // the needImage binding is set to false.
+        .sheet(isPresented: $needImage) {
+            ImagePicker(sourceType: .camera, image: $image)
         }
     }
 }
