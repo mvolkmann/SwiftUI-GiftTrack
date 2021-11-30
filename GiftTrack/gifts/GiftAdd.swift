@@ -9,7 +9,7 @@ struct GiftAdd: View {
     @State private var image: UIImage? = nil
     @State private var location = ""
     @State private var name = ""
-    @State private var needImage = false
+    @State private var openCamera = false
     @State private var purchased = false
     @State private var price = NumbersOnly(0)
     @State private var url = ""
@@ -51,7 +51,7 @@ struct GiftAdd: View {
 
                 HStack {
                     Button(
-                        action: { needImage = true },
+                        action: { openCamera = true },
                         label: {
                             Image(systemName: "camera").font(.system(size: 30))
                         }
@@ -80,8 +80,8 @@ struct GiftAdd: View {
             }
         }
         // When this sheet is dismissed,
-        // the needImage binding is set to false.
-        .sheet(isPresented: $needImage) {
+        // the openCamera binding is set to false.
+        .sheet(isPresented: $openCamera) {
             ImagePicker(sourceType: .camera, image: $image)
         }
     }

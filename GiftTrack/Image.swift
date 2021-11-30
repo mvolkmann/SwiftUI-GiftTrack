@@ -1,4 +1,3 @@
-import CoreData
 import SwiftUI
 
 extension Image {
@@ -18,21 +17,3 @@ extension Image {
         // .clipShape(Rectangle())
     }
 }
-
-/*
- func saveJpeg(image: UIImage, entityName: String, moc: NSManagedObjectContext) {
-     let data = image.jpegData(compressionQuality: 1.0)
-     let entityDesc = NSEntityDescription.entity(
-         forEntityName: entityName,
-         in: moc)!
-     let image = NSManagedObject(entity: entityDesc, insertInto: moc)
-     image.setValue(data, forKeyPath: "Your Attribute Name")
-     return image
- }
- */
-
-/*
- func retrieveJpeg() {
-     return UIImage(data: imageData)
- }
- */

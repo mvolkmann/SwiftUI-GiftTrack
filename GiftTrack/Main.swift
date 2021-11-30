@@ -39,11 +39,13 @@ struct MainView: View {
                     Image(systemName: "gift")
                     Text("Gifts")
                 }.tag(3)
-                CameraView().tabItem {
-                    Image(systemName: "camera")
-                    Text("Camera")
-                }
-                .tag(5)
+                /* For testing image code.
+                 CameraView().tabItem {
+                     Image(systemName: "camera")
+                     Text("Camera")
+                 }
+                 .tag(5)
+                 */
                 SettingsView().tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

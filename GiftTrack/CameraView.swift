@@ -1,25 +1,14 @@
 import SwiftUI
 
-/*
- To enable camera access:
- 1. In the Navigator, select the root group to open the project editor.
- 2. In the project editor, select the target.
- 3. Select the "Info" tab.
- 4. Click the "+" after any existing key to create a new key.
- 5. For the key name enter "Privacy - Camera Usage Description".
- 6. For the key value, enter something like "Please allow camera access."
-
- The Preview and Simulator cannot access the camera.
- To test camera access, run the app on a real device.
- */
-
+// This demonstrates capturing images with the camera
+// and getting images from the photo library.
 struct CameraView: View {
     @Environment(\.dismiss) var dismiss
 
     typealias SourceType = UIImagePickerController.SourceType
 
     @State private var image: UIImage? = nil
-    @State private var needImage = false
+    @State private var openCamera = false
     @State private var sourceType: SourceType? = nil
 
     var body: some View {
@@ -34,7 +23,7 @@ struct CameraView: View {
                 Button(
                     action: {
                         sourceType = .camera
-                        needImage = true
+                        openCamera = true
                     },
                     label: {
                         Image(systemName: "camera")
@@ -45,7 +34,7 @@ struct CameraView: View {
                 Button(
                     action: {
                         sourceType = .photoLibrary
-                        needImage = true
+                        openCamera = true
                     },
                     label: {
                         Image(systemName: "photo.on.rectangle.angled")
@@ -55,8 +44,8 @@ struct CameraView: View {
             }
         }
         // When this sheet is dismissed,
-        // the needImage binding is set to false.
-        .sheet(isPresented: $needImage) {
+        // the openCamera binding is set to false.
+        .sheet(isPresented: $openCamera) {
             if let sourceType = sourceType {
                 ImagePicker(sourceType: sourceType, image: $image)
             } else {

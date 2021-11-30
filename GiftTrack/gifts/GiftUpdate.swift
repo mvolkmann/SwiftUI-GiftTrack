@@ -28,7 +28,7 @@ struct GiftUpdate: View {
     @State private var location = ""
     @State private var mode = Mode.update
     @State private var name = ""
-    @State private var needImage = false
+    @State private var openCamera = false
     @State private var purchased = false
     @State private var occasionIndex = 0
     @State private var personIndex = 0
@@ -51,7 +51,6 @@ struct GiftUpdate: View {
         // rather than the binding itself.
         // This is required to set the value of an @State property.
         _desc = State(initialValue: gift.desc ?? "")
-        _image = State(initialValue: gift.image == nil ? nil : UIImage(data: gift.image!))
         _location = State(initialValue: gift.location ?? "")
         _name = State(initialValue: gift.name ?? "")
         _occasionIndex = State(initialValue: occasionIndex)
@@ -59,6 +58,10 @@ struct GiftUpdate: View {
         _purchased = State(initialValue: gift.purchased)
         _price = State(initialValue: NumbersOnly(gift.price))
         _url = State(initialValue: gift.url?.absoluteString ?? "")
+        
+        if let data = gift.image {
+            _image = State(initialValue: UIImage(data: data))
+        }
     }
     
     func copy() {
@@ -96,7 +99,7 @@ struct GiftUpdate: View {
                 
                 HStack {
                     Button(
-                        action: { needImage = true },
+                        action: { openCamera = true },
                         label: {
                             Image(systemName: "camera").font(.system(size: 30))
                         }
@@ -167,8 +170,8 @@ struct GiftUpdate: View {
             }
         }
         // When this sheet is dismissed,
-        // the needImage binding is set to false.
-        .sheet(isPresented: $needImage) {
+        // the openCamera binding is set to false.
+        .sheet(isPresented: $openCamera) {
             ImagePicker(sourceType: .camera, image: $image)
         }
     }
