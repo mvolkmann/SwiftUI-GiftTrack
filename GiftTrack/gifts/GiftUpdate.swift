@@ -22,17 +22,20 @@ struct GiftUpdate: View {
         case copy, move, update
     }
     
+    typealias SourceType = UIImagePickerController.SourceType
+    
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var image: UIImage? = nil
     @State private var location = ""
     @State private var mode = Mode.update
     @State private var name = ""
-    @State private var openCamera = false
+    @State private var openImagePicker = false
     @State private var purchased = false
     @State private var occasionIndex = 0
     @State private var personIndex = 0
     @State private var price = NumbersOnly(0)
+    @State private var sourceType: SourceType = .camera
     @State private var url = ""
     
     // TODO: Why does removing this line cause
@@ -98,17 +101,34 @@ struct GiftUpdate: View {
                 Toggle("Purchased?", isOn: $purchased)
                 
                 HStack {
-                    Button(
-                        action: { openCamera = true },
-                        label: {
-                            Image(systemName: "camera").font(.system(size: 30))
-                        }
-                    )
+                    Button(action: {
+                        sourceType = .camera
+                        openImagePicker = true
+                    }) {
+                        Image(systemName: "camera").size(30)
+                    }
                     
-                    if let image = image {
-                        Image(uiImage: image).square(size: 100)
+                    Button(action: {
+                        sourceType = .photoLibrary
+                        openImagePicker = true
+                    }) {
+                        Image(systemName: "photo.on.rectangle.angled")
+                            .size(30)
+                    }
+                    
+                    if let unwrappedImage = image {
+                        Image(uiImage: unwrappedImage).square(size: 100)
+                        Button(action: {
+                            image = nil
+                            openImagePicker = false // TODO: Why needed?
+                        }) {
+                            Image(systemName: "xmark.circle").size(30)
+                        }
                     }
                 }
+                // TODO: Without this, tapping any button in the HStack
+                // TODO: runs all the actions. Why?
+                .buttonStyle(.borderless)
                     
                 TextField("URL", text: $url)
                     .autocapitalization(.none)
@@ -170,9 +190,9 @@ struct GiftUpdate: View {
             }
         }
         // When this sheet is dismissed,
-        // the openCamera binding is set to false.
-        .sheet(isPresented: $openCamera) {
-            ImagePicker(sourceType: .camera, image: $image)
+        // the openImagePicker binding is set to false.
+        .sheet(isPresented: $openImagePicker) {
+            ImagePicker(sourceType: sourceType, image: $image)
         }
     }
 }

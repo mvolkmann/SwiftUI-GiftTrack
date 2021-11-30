@@ -20,26 +20,20 @@ struct CameraView: View {
             }
 
             HStack {
-                Button(
-                    action: {
-                        sourceType = .camera
-                        openCamera = true
-                    },
-                    label: {
-                        Image(systemName: "camera")
-                    }
-                )
+                Button(action: {
+                    sourceType = .camera
+                    openCamera = true
+                }) {
+                    Image(systemName: "camera")
+                }
                 .font(.system(size: 60))
 
-                Button(
-                    action: {
-                        sourceType = .photoLibrary
-                        openCamera = true
-                    },
-                    label: {
-                        Image(systemName: "photo.on.rectangle.angled")
-                    }
-                )
+                Button(action: {
+                    sourceType = .photoLibrary
+                    openCamera = true
+                }) {
+                    Image(systemName: "photo.on.rectangle.angled")
+                }
                 .font(.system(size: 60))
             }
         }

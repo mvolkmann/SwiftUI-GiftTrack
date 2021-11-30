@@ -27,11 +27,11 @@ struct GiftDetail: View {
             Text(gift.purchased ? "already purchased" : "not yet purchased")
 
             if let url = gift.url {
-                Link(destination: url, label: {
+                Link(destination: url) {
                     Text("website")
                         .foregroundColor(settings.bgColor)
                         .underline()
-                })
+                }
                 .buttonStyle(.borderless)
             }
 

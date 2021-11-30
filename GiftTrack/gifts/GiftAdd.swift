@@ -50,12 +50,9 @@ struct GiftAdd: View {
                     .disableAutocorrection(true)
 
                 HStack {
-                    Button(
-                        action: { openCamera = true },
-                        label: {
-                            Image(systemName: "camera").font(.system(size: 30))
-                        }
-                    )
+                    Button(action: { openCamera = true }) {
+                        Image(systemName: "camera").size(30)
+                    }
                     if let image = image {
                         Image(uiImage: image).square(size: 100)
                     }
