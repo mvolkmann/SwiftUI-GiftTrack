@@ -26,7 +26,7 @@ struct PersonUpdate: View {
                 TextField("Name", text: $name)
                 Toggle("Include Birthday", isOn: $includeBirthday)
                 if includeBirthday {
-                    MyDatePicker("Birthday", selection: $birthday)
+                    MyDatePicker(selection: $birthday)
                 }
                 ControlGroup {
                     Button("Done") {

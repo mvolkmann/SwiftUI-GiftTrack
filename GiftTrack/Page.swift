@@ -15,7 +15,6 @@ struct Page<Content: View>: View {
                 content()
                 Spacer()
             }
-            .padding(.horizontal)
         }
     }
 }

@@ -53,8 +53,6 @@ struct OccasionsView: View {
                     }
                     .onDelete(perform: delete)
                 }
-                // Expand width of List to eliminate its default padding.
-                .padding(.horizontal, -20)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         EditButton()

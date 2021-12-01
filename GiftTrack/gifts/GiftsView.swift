@@ -58,7 +58,8 @@ struct GiftsView: View {
                         )
                     }
                     .frame(height: pickerHeight + textHeight)
-                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 13)
 
                     GiftsList(
                         person: person,
