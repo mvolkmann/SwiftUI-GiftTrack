@@ -1,4 +1,5 @@
 import CodeScanner
+import CoreLocation
 import SwiftUI
 
 struct GiftForm: View {
@@ -141,8 +142,7 @@ struct GiftForm: View {
                 }
             } catch HTTPError.badStatus(let status) {
                 barScanError = status == 404 ?
-                    "Product not found" :
-                    "Bad status \(status)"
+                    "Product not found" : "Bad status \(status)"
                 showBarScanError = true
             } catch {
                 print("error =", error.localizedDescription)
@@ -168,12 +168,23 @@ struct GiftForm: View {
                     .autocapitalization(.none)
                 TextField("Description", text: $desc)
                     .autocapitalization(.none)
-                TextField("Location", text: $location)
-                    .autocapitalization(.none)
+                
+                HStack {
+                    TextField("Location", text: $location)
+                        .autocapitalization(.none)
+                    if location.isEmpty {
+                        Location() { coordinate in
+                            location = "\(coordinate.latitude), \(coordinate.longitude)"
+                        }
+                    } else {
+                        IconButton(icon: "xmark.circle") { location = "" }
+                    }
+                }
+                
                 TextField("Price", text: $price.value)
                     .keyboardType(.decimalPad)
                 Toggle("Purchased?", isOn: $purchased)
-            
+                
                 HStack {
                     TextField("URL", text: $url)
                         .autocapitalization(.none)
