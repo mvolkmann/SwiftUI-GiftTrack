@@ -60,6 +60,7 @@ struct Location: View {
     var body: some View {
         VStack {
             if let loc = locationManager.location {
+                //TODO: Ask Brian Coyner if there is a better way to do this.
                 Text(getText(loc)) // only for side effect
             } else if gettingLocation {
                 ProgressView()
@@ -68,8 +69,7 @@ struct Location: View {
                     gettingLocation = true
                     locationManager.requestLocation()
                 }
-                //.symbolVariant(.circle)
-                //.labelStyle(.titleAndIcon)
+                .labelStyle(.iconOnly)
                 //.background(.red) How can you change the background color?
                 .foregroundColor(.white)
                 .cornerRadius(7)

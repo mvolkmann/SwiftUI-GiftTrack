@@ -1,5 +1,6 @@
 import CodeScanner
 import CoreLocation
+import MapKit
 import SwiftUI
 
 struct GiftForm: View {
@@ -11,13 +12,16 @@ struct GiftForm: View {
     @State private var desc = ""
     @State private var image: UIImage? = nil
     @State private var imageUrl = ""
+    @State private var latitude = 0.0
     @State private var location = ""
+    @State private var longitude = 0.0
     @State private var name = ""
     @State private var openBarScanner = false
     @State private var openImagePicker = false
     @State private var openQRScanner = false
     @State private var price = NumbersOnly(0)
     @State private var purchased = false
+    @State private var region: MKCoordinateRegion = MKCoordinateRegion()
     @State private var qrScanError = ""
     @State private var showBarScanError = false
     @State private var showQRScanError = false
@@ -27,6 +31,8 @@ struct GiftForm: View {
     private let person: PersonEntity
     private let occasion: OccasionEntity
     private var gift: GiftEntity?
+    
+    private let ZOOM = 0.005
     
     init(
         person: PersonEntity,
@@ -45,7 +51,9 @@ struct GiftForm: View {
             // This is required to set the value of an @State property.
             _desc = State(initialValue: gift.desc ?? "")
             _imageUrl = State(initialValue: gift.imageUrl ?? "")
+            _latitude = State(initialValue: gift.latitude)
             _location = State(initialValue: gift.location ?? "")
+            _longitude = State(initialValue: gift.longitude)
             _name = State(initialValue: gift.name ?? "")
             _purchased = State(initialValue: gift.purchased)
             _price = State(initialValue: NumbersOnly(gift.price))
@@ -54,33 +62,38 @@ struct GiftForm: View {
             if let data = gift.image {
                 _image = State(initialValue: UIImage(data: data))
             }
+            
+            _region = State(initialValue: MKCoordinateRegion(
+                center: CLLocationCoordinate2D(
+                    latitude: gift.latitude,
+                    longitude: gift.longitude
+                ),
+                span: MKCoordinateSpan(
+                    latitudeDelta: ZOOM,
+                    longitudeDelta: ZOOM
+                )
+            ))
         }
     }
     
     func done() {
-        if let gift = gift {
-            // Update an existing gift.
-            gift.desc = desc.trim()
-            gift.image = image?.jpegData(compressionQuality: 1.0)
-            gift.location = location.trim()
-            gift.name = name.trim()
-            gift.price = Int64(Int(price.value)!)
-            gift.purchased = purchased
-            gift.url = URL(string: url.trim())
-        } else {
-            // Add a new gift.
-            let gift = GiftEntity(context: moc)
-            gift.desc = desc.trim()
-            gift.image = image?.jpegData(compressionQuality: 1.0)
-            gift.imageUrl = imageUrl
-            gift.location = location.trim()
-            gift.name = name.trim()
-            gift.price = Int64(Int(price.value)!)
-            gift.purchased = purchased
-            gift.url = URL(string: url.trim())
-            
-            gift.to = person
-            gift.reason = occasion
+        let adding = gift == nil
+        let g = adding ? GiftEntity(context: moc) : gift!
+        
+        g.desc = desc.trim()
+        g.image = image?.jpegData(compressionQuality: 1.0)
+        g.imageUrl = imageUrl
+        g.latitude = latitude
+        g.location = location.trim()
+        g.longitude = longitude
+        g.name = name.trim()
+        g.price = Int64(Int(price.value)!)
+        g.purchased = purchased
+        g.url = URL(string: url.trim())
+    
+        if adding {
+            g.to = person
+            g.reason = occasion
         }
         
         PersistenceController.shared.save()
@@ -150,6 +163,22 @@ struct GiftForm: View {
         }
     }
     
+    func updateLocation(coordinate: CLLocationCoordinate2D) {
+        // Assigning directly doesn't work.
+        // There must be a timing issue with updating @State variables.
+        let lat = coordinate.latitude
+        latitude = lat
+        let long = coordinate.longitude
+        longitude = long
+        let loc = "\(String(format: "%.6f", lat)), \(String(format: "%.6f", long))"
+        location = loc
+        
+        region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: lat, longitude: long),
+            span: MKCoordinateSpan(latitudeDelta: ZOOM, longitudeDelta: ZOOM)
+        )
+    }
+    
     var body: some View {
         Page {
             Form {
@@ -173,12 +202,19 @@ struct GiftForm: View {
                     TextField("Location", text: $location)
                         .autocapitalization(.none)
                     if location.isEmpty {
-                        Location() { coordinate in
-                            location = "\(coordinate.latitude), \(coordinate.longitude)"
-                        }
+                        Location(action: updateLocation)
                     } else {
-                        IconButton(icon: "xmark.circle") { location = "" }
+                        IconButton(icon: "xmark.circle") {
+                            latitude = 0
+                            longitude = 0
+                            location = ""
+                        }
                     }
+                }
+                
+                if latitude != 0 && longitude != 0 {
+                    Map(coordinateRegion: $region)
+                        .frame(maxWidth: .infinity, minHeight: 300)
                 }
                 
                 TextField("Price", text: $price.value)
