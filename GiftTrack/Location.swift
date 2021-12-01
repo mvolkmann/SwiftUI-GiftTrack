@@ -41,8 +41,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 }
 
 struct Location: View {
+    @EnvironmentObject var settings: Settings
     @StateObject var locationManager = LocationManager()
-    
     @State private var gettingLocation = false
     
     typealias Callback = (CLLocationCoordinate2D) -> Void
@@ -68,7 +68,11 @@ struct Location: View {
                     gettingLocation = true
                     locationManager.requestLocation()
                 }
-                .frame(height: 30)
+                //.symbolVariant(.circle)
+                //.labelStyle(.titleAndIcon)
+                //.background(.red) How can you change the background color?
+                .foregroundColor(.white)
+                .cornerRadius(7)
             }
         }
     }
