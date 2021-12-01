@@ -25,6 +25,7 @@ struct GiftUpdate: View {
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var image: UIImage? = nil
+    @State private var imageUrl = ""
     @State private var location = ""
     @State private var mode = Mode.update
     @State private var name = ""
@@ -52,6 +53,7 @@ struct GiftUpdate: View {
         // rather than the binding itself.
         // This is required to set the value of an @State property.
         _desc = State(initialValue: gift.desc ?? "")
+        _imageUrl = State(initialValue: gift.imageUrl ?? "")
         _location = State(initialValue: gift.location ?? "")
         _name = State(initialValue: gift.name ?? "")
         _occasionIndex = State(initialValue: occasionIndex)
@@ -103,7 +105,7 @@ struct GiftUpdate: View {
                         sourceType = .camera
                         openImagePicker = true
                     }) {
-                        Image(systemName: "camera").size(30)
+                        Image(systemName: "camera").size(Settings.iconSize)
                     }
                     
                     Button(action: {
@@ -115,13 +117,30 @@ struct GiftUpdate: View {
                     }
                     
                     if let unwrappedImage = image {
-                        Image(uiImage: unwrappedImage).square(size: 100)
+                        Image(uiImage: unwrappedImage)
+                            .square(size: Settings.imageSize)
                         Button(action: {
                             image = nil
                             openImagePicker = false // TODO: Why needed?
                         }) {
-                            Image(systemName: "xmark.circle").size(30)
+                            Image(systemName: "xmark.circle")
+                                .size(Settings.iconSize)
                         }
+                    }
+                    
+                    if let imageUrl = imageUrl, !imageUrl.isEmpty {
+                        AsyncImage(
+                            url: URL(string: imageUrl),
+                            content: { image in
+                                image
+                                    .resizable()
+                                    .frame(
+                                        width: Settings.imageSize,
+                                        height: Settings.imageSize
+                                    )
+                            },
+                            placeholder: { ProgressView() } // spinner
+                        )
                     }
                 }
                 // This fixes the bug with multiple buttons in a Form.

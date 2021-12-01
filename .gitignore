@@ -1,2 +1,2 @@
-./GiftTrack/Secrets.xcconfig
-./SwiftUI-GiftTrack-Info.plist
+GiftTrack/Secrets.xcconfig
+SwiftUI-GiftTrack-Info.plist

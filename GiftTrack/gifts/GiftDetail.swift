@@ -35,8 +35,23 @@ struct GiftDetail: View {
                 .buttonStyle(.borderless)
             }
 
-            if let data = gift.image, let uiImage = UIImage(data: data) {
-                Image(uiImage: uiImage).square(size: 100)
+            if let imageUrl = gift.imageUrl, !imageUrl.isEmpty {
+                AsyncImage(
+                    url: URL(string: imageUrl),
+                    content: { image in
+                        image
+                            .resizable()
+                            .frame(
+                                width: Settings.imageSize,
+                                height: Settings.imageSize
+                            )
+                    },
+                    placeholder: { ProgressView() } // spinner
+                )
+            }
+    
+        if let data = gift.image, let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage).square(size: Settings.imageSize)
             }
         }
         .frame(maxWidth: .infinity)

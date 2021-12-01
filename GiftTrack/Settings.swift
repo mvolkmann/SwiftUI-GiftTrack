@@ -4,6 +4,9 @@ class Settings: ObservableObject {
     private static let defaultBgColor = Color("custom-background")
     private static let defaultTitleColor = Color(UIColor.systemYellow)
     private static let defaultTextColor = Color.primary
+    
+    static let iconSize: CGFloat = 30
+    static let imageSize: CGFloat = 150
 
     @Published var bgColor = Settings.defaultBgColor
     @Published var titleColor = Settings.defaultTitleColor
