@@ -1,3 +1,4 @@
+import CodeScanner
 import SwiftUI
 
 struct GiftUpdate: View {
@@ -22,6 +23,7 @@ struct GiftUpdate: View {
         case copy, move, update
     }
     
+    @State private var barScanError = ""
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var image: UIImage? = nil
@@ -32,8 +34,13 @@ struct GiftUpdate: View {
     @State private var openImagePicker = false
     @State private var purchased = false
     @State private var occasionIndex = 0
+    @State private var openBarScanner = false
+    @State private var openQRScanner = false
     @State private var personIndex = 0
     @State private var price = NumbersOnly(0)
+    @State private var qrScanError = ""
+    @State private var showBarScanError = false
+    @State private var showQRScanError = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var url = ""
     
@@ -80,6 +87,65 @@ struct GiftUpdate: View {
         newGift.reason = occasions[occasionIndex]
     }
     
+    func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.openBarScanner = false
+        
+        switch result {
+        case .success(let code):
+            print("handleBarScan: code =", code)
+            loadProductData(productCode: code)
+        case .failure(let error):
+            showBarScanError = true
+            qrScanError = "bar code scan failed: \(error)"
+        }
+    }
+    
+    func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.openQRScanner = false
+        
+        switch result {
+        case .success(let code):
+            url = code
+        case .failure(let error):
+            showQRScanError = true
+            qrScanError = "QR code scan failed: \(error)"
+        }
+    }
+    
+    func loadProductData(productCode: String) {
+        let key = Bundle.main.object(
+            forInfoDictionaryKey: "BARCODE_LOOKUP_KEY"
+        ) as? String
+        let url = "https://api.barcodelookup.com/v3/products" +
+            "?barcode=\(productCode)&formatted=y&key=\(key!)"
+        print("url =", url)
+        
+        Task(priority: .medium) {
+            do {
+                let products = try await HttpUtil.get(
+                    from: url,
+                    type: Products.self
+                ) as Products
+                print("products =", products)
+                let product = products.products.first
+
+                DispatchQueue.main.async {
+                    if let title = product?.title {
+                        self.name = title
+                    }
+                    if let category = product?.category {
+                        self.desc = category
+                    }
+                    if let imageUrl = product?.images.first {
+                        self.imageUrl = imageUrl
+                    }
+                }
+            } catch {
+                print("error =", error.localizedDescription)
+            }
+        }
+    }
+    
     func move() {
         let newPerson = people[personIndex]
         let newOccasion = occasions[occasionIndex]
@@ -90,6 +156,22 @@ struct GiftUpdate: View {
     var body: some View {
         Page {
             Form {
+                HStack {
+                    Text("Bar Code Scan")
+                    Button(action: { openBarScanner = true }) {
+                        Image(systemName: "barcode").size(Settings.iconSize)
+                    }
+                    // This fixes the bug with multiple buttons in a Form.
+                    .buttonStyle(.borderless)
+                }
+                .alert(
+                    "Bar Code Scan Failed",
+                    isPresented: $showBarScanError,
+                    actions: {}, // no custom buttons
+                    message: { Text(barScanError) }
+                )
+                
+                Group {
                 TextField("Name", text: $name)
                     .autocapitalization(.none)
                 TextField("Description", text: $desc)
@@ -99,6 +181,25 @@ struct GiftUpdate: View {
                 TextField("Price", text: $price.value)
                     .keyboardType(.decimalPad)
                 Toggle("Purchased?", isOn: $purchased)
+                }
+                
+                HStack {
+                    TextField("URL", text: $url)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                    Spacer()
+                    Button(action: { openQRScanner = true }) {
+                        Image(systemName: "qrcode").size(Settings.iconSize)
+                    }
+                    // This fixes the bug with multiple buttons in a Form.
+                    .buttonStyle(.borderless)
+                }
+                .alert(
+                    "QR Code Scan Failed",
+                    isPresented: $showQRScanError,
+                    actions: {}, // no custom buttons
+                    message: { Text(qrScanError) }
+                )
                 
                 HStack {
                     Button(action: {
@@ -146,9 +247,6 @@ struct GiftUpdate: View {
                 // This fixes the bug with multiple buttons in a Form.
                 .buttonStyle(.borderless)
                     
-                TextField("URL", text: $url)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
                 ControlGroup {
                     Button("Done") {
                         gift.desc = desc.trim()
@@ -209,6 +307,27 @@ struct GiftUpdate: View {
         // the openImagePicker binding is set to false.
         .sheet(isPresented: $openImagePicker) {
             ImagePicker(sourceType: sourceType, image: $image)
+        }
+        
+        .sheet(isPresented: $openBarScanner) {
+            CodeScannerView(
+                codeTypes: [.ean8, .ean13, .upce],
+                simulatedData: "product info goes here",
+                completion: handleBarScan
+            )
+        }
+        
+        .sheet(isPresented: $openQRScanner) {
+            ZStack {
+                CodeScannerView(
+                    codeTypes: [.qr],
+                    simulatedData: "https://apple.com",
+                    completion: handleQRScan
+                )
+                Button("Cancel") {
+                    openQRScanner = false
+                }.buttonStyle(.borderedProminent)
+            }
         }
     }
 }

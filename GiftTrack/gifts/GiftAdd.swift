@@ -18,13 +18,11 @@ struct GiftAdd: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
 
-    // Core Data won't allow an attribute to be named "description".
     @State private var barScanError = ""
+    // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var image: UIImage? = nil
     @State private var imageUrl: String? = nil
-    @State private var showBarScanError = false
-    @State private var showQRScanError = false
     @State private var location = ""
     @State private var name = ""
     @State private var openBarScanner = false
@@ -33,6 +31,8 @@ struct GiftAdd: View {
     @State private var purchased = false
     @State private var price = NumbersOnly(0)
     @State private var qrScanError = ""
+    @State private var showBarScanError = false
+    @State private var showQRScanError = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var url = ""
 
@@ -56,6 +56,31 @@ struct GiftAdd: View {
         PersistenceController.shared.save()
     }
     
+    func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.openBarScanner = false
+        
+        switch result {
+        case .success(let code):
+            print("handleBarScan: code =", code)
+            loadProductData(productCode: code)
+        case .failure(let error):
+            showBarScanError = true
+            qrScanError = "bar code scan failed: \(error)"
+        }
+    }
+    
+    func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.openQRScanner = false
+        
+        switch result {
+        case .success(let code):
+            url = code
+        case .failure(let error):
+            showQRScanError = true
+            qrScanError = "QR code scan failed: \(error)"
+        }
+    }
+
     func loadProductData(productCode: String) {
         let key = Bundle.main.object(
             forInfoDictionaryKey: "BARCODE_LOOKUP_KEY"
@@ -90,31 +115,6 @@ struct GiftAdd: View {
         }
     }
     
-    func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
-        self.openBarScanner = false
-        
-        switch result {
-        case .success(let code):
-            print("handleBarScan: code =", code)
-            loadProductData(productCode: code)
-        case .failure(let error):
-            showBarScanError = true
-            qrScanError = "bar code scan failed: \(error)"
-        }
-    }
-    
-    func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
-        self.openQRScanner = false
-        
-        switch result {
-        case .success(let code):
-            url = code
-        case .failure(let error):
-            showQRScanError = true
-            qrScanError = "QR code scan failed: \(error)"
-        }
-    }
-
     var body: some View {
         Page {
             Form {
