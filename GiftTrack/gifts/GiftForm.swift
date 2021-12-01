@@ -3,6 +3,11 @@ import CoreLocation
 import MapKit
 import SwiftUI
 
+struct MapAnnotation: Identifiable {
+    var coordinate: CLLocationCoordinate2D
+    let id = UUID()
+}
+
 struct GiftForm: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
@@ -15,6 +20,7 @@ struct GiftForm: View {
     @State private var latitude = 0.0
     @State private var location = ""
     @State private var longitude = 0.0
+    @State private var mapAnnotations: [MapAnnotation] = []
     @State private var name = ""
     @State private var openBarScanner = false
     @State private var openImagePicker = false
@@ -67,16 +73,20 @@ struct GiftForm: View {
                 _image = State(initialValue: UIImage(data: data))
             }
             
+            let coordinate = CLLocationCoordinate2D(
+                latitude: gift.latitude,
+                longitude: gift.longitude
+            )
             _region = State(initialValue: MKCoordinateRegion(
-                center: CLLocationCoordinate2D(
-                    latitude: gift.latitude,
-                    longitude: gift.longitude
-                ),
+                center: coordinate,
                 span: MKCoordinateSpan(
                     latitudeDelta: ZOOM,
                     longitudeDelta: ZOOM
                 )
             ))
+            _mapAnnotations = State(
+                initialValue: [MapAnnotation(coordinate: coordinate)]
+            )
         }
     }
     
@@ -177,10 +187,12 @@ struct GiftForm: View {
         let loc = "\(String(format: "%.6f", lat)), \(String(format: "%.6f", long))"
         location = loc
         
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: lat, longitude: long),
+            center: coordinate,
             span: MKCoordinateSpan(latitudeDelta: ZOOM, longitudeDelta: ZOOM)
         )
+        mapAnnotations = [MapAnnotation(coordinate: coordinate)]
     }
     
     var body: some View {
@@ -208,7 +220,7 @@ struct GiftForm: View {
                     if location.isEmpty {
                         Location(action: updateLocation)
                     } else {
-                        IconButton(icon: "xmark.circle") {
+                        IconButton(icon: "xmark.circle", size: 20) {
                             latitude = 0
                             longitude = 0
                             location = ""
@@ -217,7 +229,12 @@ struct GiftForm: View {
                 }
                 
                 if latitude != 0 && longitude != 0 {
-                    Map(coordinateRegion: $region)
+                    Map(
+                        coordinateRegion: $region,
+                        annotationItems: mapAnnotations
+                    ) { annotation in
+                        MapPin(coordinate: annotation.coordinate, tint: .red)
+                    }
                         .frame(maxWidth: .infinity, minHeight: 300)
                 }
                 
