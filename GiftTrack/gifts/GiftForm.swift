@@ -28,6 +28,8 @@ struct GiftForm: View {
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var url = ""
     
+    @Binding var mode: GiftMode
+    
     private let person: PersonEntity
     private let occasion: OccasionEntity
     private var gift: GiftEntity?
@@ -37,12 +39,14 @@ struct GiftForm: View {
     init(
         person: PersonEntity,
         occasion: OccasionEntity,
-        gift: GiftEntity? = nil
+        gift: GiftEntity? = nil,
+        mode: Binding<GiftMode>
     ) {
         //TODO: Why is this called 4 times when an existing gift is tapped?
         self.person = person
         self.occasion = occasion
         self.gift = gift
+        _mode = mode
         
         if let gift = gift {
             // Preceding these property names with an underscore causes it
@@ -277,6 +281,8 @@ struct GiftForm: View {
                     Button("Done", action: done)
                         .prominent()
                         .disabled(name.isEmpty)
+                    Button("Move") { mode = .move }
+                    Button("Copy") { mode = .copy }
                     Button("Cancel") { dismiss() }
                 }
                 .buttonStyle(MyButtonStyle())

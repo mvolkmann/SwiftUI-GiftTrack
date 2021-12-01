@@ -19,11 +19,7 @@ struct GiftUpdate: View {
         ]
     ) var people: FetchedResults<PersonEntity>
     
-    enum Mode {
-        case copy, move, update
-    }
-    
-    @State private var mode = Mode.update
+    @State private var mode = GiftMode.update
     @State private var occasionIndex = 0
     @State private var personIndex = 0
     
@@ -66,15 +62,9 @@ struct GiftUpdate: View {
             GiftForm(
                 person: people[personIndex],
                 occasion: occasions[occasionIndex],
-                gift: gift
+                gift: gift,
+                mode: $mode
             )
-            
-            ControlGroup {
-                Button("Move") { mode = .move }
-                Button("Copy") { mode = .copy }
-            }
-            .buttonStyle(MyButtonStyle())
-            .controlGroupStyle(.navigation)
             
             if mode != .update {
                 HStack(spacing: padding) {

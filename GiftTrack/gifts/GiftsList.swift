@@ -1,6 +1,10 @@
 import CoreData
 import SwiftUI
 
+enum GiftMode {
+    case add, copy, move, update
+}
+    
 struct GiftsList: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var settings: Settings
