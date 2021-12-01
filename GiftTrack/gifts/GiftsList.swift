@@ -73,7 +73,7 @@ struct GiftsList: View {
                     .padding(.top, 20)
             }
         } else {
-            VStack(spacing: 10) {
+            VStack {
                 List {
                     ForEach(gifts, id: \.self) { gift in
                         NavigationLink(
@@ -91,6 +91,8 @@ struct GiftsList: View {
                     }
                     .onDelete(perform: delete)
                 }
+                // Expand width of List to eliminate its default padding.
+                .padding(.horizontal, -20)
 
                 HStack {
                     NavigationLink(

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var settings = Settings.shared
-    @State private var selection = 5
+    @State private var selection = 3
 
     init() {
         // These lines affect all the views and allow the
