@@ -7,7 +7,7 @@ enum HTTPError: Error {
 }
 
 extension HTTPError: LocalizedError {
-    public var errorDescription: String? {
+    public var message: String? {
         switch self {
         case .badStatus(let status):
             return "bad status \(status)"
@@ -50,7 +50,6 @@ struct HttpUtil {
             throw HTTPError.badStatus(status: res.statusCode)
         }
         
-        print("HTTPUtil.get: decoding")
         return try JSONDecoder().decode(type, from: data)
     }
 

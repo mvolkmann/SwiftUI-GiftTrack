@@ -37,12 +37,7 @@ struct GiftForm: View {
         self.occasion = occasion
         self.gift = gift
         
-        print("person name =", person.name ?? "no name")
-        print("occasion name =", occasion.name ?? "no name")
-        
         if let gift = gift {
-            print("gift name =", gift.name ?? "no name")
-            
             // Preceding these property names with an underscore causes it
             // to refer to the underlying value of the binding
             // rather than the binding itself.
@@ -122,7 +117,7 @@ struct GiftForm: View {
         ) as? String
         let url = "https://api.barcodelookup.com/v3/products" +
         "?barcode=\(productCode)&formatted=y&key=\(key!)"
-        print("url =", url)
+        print("product url =", url)
         
         Task(priority: .medium) {
             do {
@@ -144,6 +139,11 @@ struct GiftForm: View {
                         self.imageUrl = imageUrl
                     }
                 }
+            } catch HTTPError.badStatus(let status) {
+                barScanError = status == 404 ?
+                    "Product not found" :
+                    "Bad status \(status)"
+                showBarScanError = true
             } catch {
                 print("error =", error.localizedDescription)
             }

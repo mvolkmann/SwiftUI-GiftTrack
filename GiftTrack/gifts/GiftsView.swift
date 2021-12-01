@@ -76,7 +76,12 @@ struct GiftsView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(
                         "Add",
-                        destination: GiftAdd(person: person!, occasion: occasion!)
+                        destination: GiftAdd(
+                            // A person and occasion are always selected,
+                            // so these force unwraps are safe.
+                            person: person!,
+                            occasion: occasion!
+                        )
                     )
                 }
             }
