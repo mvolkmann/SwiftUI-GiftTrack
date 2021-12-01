@@ -40,7 +40,10 @@ struct GiftForm: View {
     private let occasion: OccasionEntity
     private var gift: GiftEntity?
     
-    private let ZOOM = 0.005
+    private let SPAN = MKCoordinateSpan(
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005
+    )
     
     init(
         person: PersonEntity,
@@ -77,13 +80,9 @@ struct GiftForm: View {
                 latitude: gift.latitude,
                 longitude: gift.longitude
             )
-            _region = State(initialValue: MKCoordinateRegion(
-                center: coordinate,
-                span: MKCoordinateSpan(
-                    latitudeDelta: ZOOM,
-                    longitudeDelta: ZOOM
-                )
-            ))
+            _region = State(
+                initialValue: MKCoordinateRegion(center: coordinate, span: SPAN)
+            )
             _mapAnnotations = State(
                 initialValue: [MapAnnotation(coordinate: coordinate)]
             )
@@ -188,10 +187,7 @@ struct GiftForm: View {
         location = loc
         
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        region = MKCoordinateRegion(
-            center: coordinate,
-            span: MKCoordinateSpan(latitudeDelta: ZOOM, longitudeDelta: ZOOM)
-        )
+        region = MKCoordinateRegion(center: coordinate, span: SPAN)
         mapAnnotations = [MapAnnotation(coordinate: coordinate)]
     }
     
