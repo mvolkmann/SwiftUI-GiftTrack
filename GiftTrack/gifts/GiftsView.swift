@@ -76,7 +76,7 @@ struct GiftsView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(
                         "Add",
-                        destination: GiftAdd(person: person, occasion: occasion)
+                        destination: GiftAdd(person: person!, occasion: occasion!)
                     )
                 }
             }
