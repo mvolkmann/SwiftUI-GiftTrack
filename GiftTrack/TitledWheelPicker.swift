@@ -29,7 +29,7 @@ struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Color.white
+                Color(UIColor.systemBackground)
                 VStack(spacing: 0) {
                     Text(title)
                         .font(.title2)
