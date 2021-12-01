@@ -44,6 +44,8 @@ struct SettingsView: View {
                 }
             }
             .buttonStyle(MyButtonStyle())
+            // Expand width of Form to eliminate its default padding.
+            .padding(.horizontal, -20)
         }
         .onDisappear(perform: save)
     }
