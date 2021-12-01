@@ -36,6 +36,7 @@
 		4D88AFB4274E91C5005A999F /* GiftsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB3274E91C5005A999F /* GiftsDetail.swift */; };
 		4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90AA4627496AA10056FF3B /* PersistenceController.swift */; };
 		4DA8B8362756CC950058688D /* HTTPUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8352756CC950058688D /* HTTPUtil.swift */; };
+		4DA8B8562757D5780058688D /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8552757D5780058688D /* IconButton.swift */; };
 		4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */; };
 		4DB339A1275145CC006ECBFD /* Prominent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB339A0275145CC006ECBFD /* Prominent.swift */; };
 		4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB339A227514A08006ECBFD /* NumbersOnly.swift */; };
@@ -78,6 +79,7 @@
 		4DA8B8352756CC950058688D /* HTTPUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPUtil.swift; sourceTree = "<group>"; };
 		4DA8B8372756CDAB0058688D /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		4DA8B8382756FF7C0058688D /* SwiftUI-GiftTrack-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwiftUI-GiftTrack-Info.plist"; sourceTree = "<group>"; };
+		4DA8B8552757D5780058688D /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButtonStyle.swift; sourceTree = "<group>"; };
 		4DB339A0275145CC006ECBFD /* Prominent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prominent.swift; sourceTree = "<group>"; };
 		4DB339A227514A08006ECBFD /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				4DB339A227514A08006ECBFD /* NumbersOnly.swift */,
 				4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */,
 				4D192941273C09B20056653B /* MyText.swift */,
+				4DA8B8552757D5780058688D /* IconButton.swift */,
 				4D192943273C0B6F0056653B /* Page.swift */,
 				4D90AA4627496AA10056FF3B /* PersistenceController.swift */,
 				4D19292F273BE60F0056653B /* Preview Content */,
@@ -292,6 +295,7 @@
 				4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */,
 				4D1D9CED27501065003555E5 /* GiftDetail.swift in Sources */,
 				4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */,
+				4DA8B8562757D5780058688D /* IconButton.swift in Sources */,
 				4D19293E273BE7390056653B /* GiftsView.swift in Sources */,
 				4D3EA2432753C84B0010FE17 /* Main.swift in Sources */,
 				4D150CB02752766F0026C744 /* SettingsView.swift in Sources */,

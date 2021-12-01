@@ -120,11 +120,7 @@ struct GiftAdd: View {
             Form {
                 HStack {
                     Text("Bar Code Scan")
-                    Button(action: { openBarScanner = true }) {
-                        Image(systemName: "barcode").size(Settings.iconSize)
-                    }
-                    // This fixes the bug with multiple buttons in a Form.
-                    .buttonStyle(.borderless)
+                    IconButton(icon: "barcode") { openBarScanner = true }
                 }
                 .alert(
                     "Bar Code Scan Failed",
@@ -148,11 +144,7 @@ struct GiftAdd: View {
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                     Spacer()
-                    Button(action: { openQRScanner = true }) {
-                        Image(systemName: "qrcode").size(Settings.iconSize)
-                    }
-                    // This fixes the bug with multiple buttons in a Form.
-                    .buttonStyle(.borderless)
+                    IconButton(icon: "qrcode") { openQRScanner = true }
                 }
                 .alert(
                     "QR Code Scan Failed",
@@ -162,19 +154,14 @@ struct GiftAdd: View {
                 )
                 
                 HStack {
-                    Button(action: {
+                    IconButton(icon: "camera") {
                         sourceType = .camera
                         openImagePicker = true
-                    }) {
-                        Image(systemName: "camera").size(Settings.iconSize)
                     }
-
-                    Button(action: {
+                    
+                    IconButton(icon: "photo.on.rectangle.angled") {
                         sourceType = .photoLibrary
                         openImagePicker = true
-                    }) {
-                        Image(systemName: "photo.on.rectangle.angled")
-                            .size(30)
                     }
 
                     if let image = image {

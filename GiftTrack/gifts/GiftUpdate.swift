@@ -158,11 +158,7 @@ struct GiftUpdate: View {
             Form {
                 HStack {
                     Text("Bar Code Scan")
-                    Button(action: { openBarScanner = true }) {
-                        Image(systemName: "barcode").size(Settings.iconSize)
-                    }
-                    // This fixes the bug with multiple buttons in a Form.
-                    .buttonStyle(.borderless)
+                    IconButton(icon: "barcode") { openBarScanner = true }
                 }
                 .alert(
                     "Bar Code Scan Failed",
@@ -188,11 +184,7 @@ struct GiftUpdate: View {
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                     Spacer()
-                    Button(action: { openQRScanner = true }) {
-                        Image(systemName: "qrcode").size(Settings.iconSize)
-                    }
-                    // This fixes the bug with multiple buttons in a Form.
-                    .buttonStyle(.borderless)
+                    IconButton(icon: "qrcode") { openQRScanner = true }
                 }
                 .alert(
                     "QR Code Scan Failed",
@@ -202,30 +194,22 @@ struct GiftUpdate: View {
                 )
                 
                 HStack {
-                    Button(action: {
+                    IconButton(icon: "camera") {
                         sourceType = .camera
                         openImagePicker = true
-                    }) {
-                        Image(systemName: "camera").size(Settings.iconSize)
                     }
-                    
-                    Button(action: {
+                    IconButton(icon: "photo.on.rectangle.angled") {
                         sourceType = .photoLibrary
                         openImagePicker = true
-                    }) {
-                        Image(systemName: "photo.on.rectangle.angled")
-                            .size(30)
                     }
                     
                     if let unwrappedImage = image {
                         Image(uiImage: unwrappedImage)
                             .square(size: Settings.imageSize)
-                        Button(action: {
+                        
+                        IconButton(icon: "xmark.circle") {
                             image = nil
                             openImagePicker = false // TODO: Why needed?
-                        }) {
-                            Image(systemName: "xmark.circle")
-                                .size(Settings.iconSize)
                         }
                     }
                     
