@@ -14,10 +14,6 @@ struct OccasionForm: View {
         self.occasion = occasion
         
         if let occasion = occasion {
-            // Preceding these property names with an underscore causes it
-            // to refer to the underlying value of the binding
-            // rather than the binding itself.
-            // This is required to set the value of an @State property.
             _name = State(initialValue: occasion.name ?? "")
             _date = State(initialValue: occasion.date ?? Date.now)
             _includeDate = State(initialValue: occasion.date != nil)

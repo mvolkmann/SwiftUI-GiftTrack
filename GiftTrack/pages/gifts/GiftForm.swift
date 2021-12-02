@@ -58,10 +58,6 @@ struct GiftForm: View {
         _edit = State(initialValue: mode.wrappedValue == GiftMode.add)
         
         if let gift = gift {
-            // Preceding these property names with an underscore causes it
-            // to refer to the underlying value of the binding
-            // rather than the binding itself.
-            // This is required to set the value of an @State property.
             _desc = State(initialValue: gift.desc ?? "")
             _imageUrl = State(initialValue: gift.imageUrl ?? "")
             _latitude = State(initialValue: gift.latitude)
