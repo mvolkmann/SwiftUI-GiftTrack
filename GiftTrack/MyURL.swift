@@ -10,7 +10,7 @@ struct MyURL: View {
     init(
         _ title: String,
         url: Binding<String>,
-        edit: Bool
+        edit: Bool = true
     ) {
         self.title = title
         _url = url

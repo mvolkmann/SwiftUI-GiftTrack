@@ -10,7 +10,7 @@ struct MyToggle: View {
     init(
         _ title: String,
         isOn: Binding<Bool>,
-        edit: Bool
+        edit: Bool = true
     ) {
         self.title = title
         _isOn = isOn

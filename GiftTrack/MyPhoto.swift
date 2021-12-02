@@ -13,7 +13,7 @@ struct MyPhoto: View {
     init(
         _ title: String,
         image: Binding<UIImage?>,
-        edit: Bool
+        edit: Bool = true
     ) {
         self.title = title
         _image = image

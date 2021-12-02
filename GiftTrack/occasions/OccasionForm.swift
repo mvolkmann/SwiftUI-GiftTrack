@@ -5,7 +5,6 @@ struct OccasionForm: View {
     @Environment(\.managedObjectContext) var moc
     
     @State private var date = Date.now
-    @State private var edit = true
     @State private var includeDate = false
     @State private var name = ""
     
@@ -39,21 +38,14 @@ struct OccasionForm: View {
     var body: some View {
         Page {
             Form {
-                MyTextField("Name", text: $name, edit: edit)
-                MyToggle("Include Date", isOn: $includeDate, edit: edit)
+                MyTextField("Name", text: $name)
+                MyToggle("Include Date", isOn: $includeDate)
                 if includeDate {
-                    if edit {
-                        MyDatePicker(selection: $date)
-                    } else {
-                        MyText(format(date: date))
-                    }
+                    MyDatePicker(selection: $date)
                 }
             }
             .navigationBarItems(
-                trailing: Button(edit ? "Done" : "Edit") {
-                    if edit { save() }
-                    edit = !edit
-                }
+                trailing: Button("Done") { save() }
             )
         }
     }

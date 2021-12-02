@@ -5,7 +5,6 @@ struct PersonForm: View {
     @Environment(\.managedObjectContext) var moc
     
     @State private var birthday = Date.now
-    @State private var edit = true
     @State private var includeBirthday = false
     @State private var name = ""
     
@@ -40,23 +39,16 @@ struct PersonForm: View {
     var body: some View {
         Page {
             Form {
-                MyTextField("Name", text: $name, edit: edit)
-                MyToggle("Include Birthday", isOn: $includeBirthday, edit: edit)
+                MyTextField("Name", text: $name)
+                MyToggle("Include Birthday", isOn: $includeBirthday)
                 if includeBirthday {
-                    if edit {
-                        MyDatePicker(selection: $birthday)
-                    } else {
-                        MyText(format(date: birthday))
-                    }
+                    MyDatePicker(selection: $birthday)
                 }
             }
             .buttonStyle(MyButtonStyle())
         }
         .navigationBarItems(
-            trailing: Button(edit ? "Done" : "Edit") {
-                if edit { save() }
-                edit = !edit
-            }
+            trailing: Button("Done") { save() }
         )
     }
 }

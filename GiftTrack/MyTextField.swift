@@ -11,7 +11,7 @@ struct MyTextField: View {
     init(
         _ title: String,
         text: Binding<String>,
-        edit: Bool,
+        edit: Bool = true,
         autocorrect: Bool = true
     ) {
         self.title = title
