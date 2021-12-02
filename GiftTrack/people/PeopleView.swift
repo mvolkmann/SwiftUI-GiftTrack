@@ -40,7 +40,7 @@ struct PeopleView: View {
                 List {
                     ForEach(people, id: \.self) { person in
                         NavigationLink(
-                            destination: PersonUpdate(person: person)
+                            destination: PersonForm(person: person)
                         ) {
                             HStack {
                                 MyText(person.name ?? "")
@@ -59,7 +59,7 @@ struct PeopleView: View {
                     EditButton()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Add", destination: PersonAdd())
+                    NavigationLink("Add", destination: PersonForm())
                 }
             }
             .navigationTitle("People")
