@@ -20,6 +20,14 @@ func configureNavigationTitle(color: Color) {
     appearance.titleTextAttributes = [.foregroundColor: uiColor]
 }
 
+private var dateFormatter = DateFormatter()
+
+func format(date: Date?) -> String {
+    guard let date = date else { return "" }
+    dateFormatter.dateFormat = "M/d/yyyy"
+    return dateFormatter.string(from: date)
+}
+
 extension String {
     func trim() -> String {
         self.trimmingCharacters(in: .whitespacesAndNewlines)

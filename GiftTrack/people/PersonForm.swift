@@ -11,7 +11,6 @@ struct PersonForm: View {
     
     var person: PersonEntity?
     
-    private var dateFormatter = DateFormatter()
 
     init(person: PersonEntity? = nil) {
         self.person = person
@@ -25,13 +24,6 @@ struct PersonForm: View {
             _birthday = State(initialValue: person.birthday ?? Date.now)
             _includeBirthday = State(initialValue: person.birthday != nil)
         }
-        
-        dateFormatter.dateFormat = "M/d/yyyy"
-    }
-    
-    private func format(date: Date?) -> String {
-        guard let date = date else { return "" }
-        return dateFormatter.string(from: date)
     }
     
     private func save() {

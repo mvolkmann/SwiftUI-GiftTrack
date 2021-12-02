@@ -38,7 +38,7 @@ struct OccasionsView: View {
                 List {
                     ForEach(occasions, id: \.self) { occasion in
                         NavigationLink(
-                            destination: OccasionUpdate(occasion: occasion)
+                            destination: OccasionForm(occasion: occasion)
                         ) {
                             HStack {
                                 MyText(occasion.name ?? "")
@@ -58,7 +58,7 @@ struct OccasionsView: View {
                         EditButton()
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink("Add", destination: OccasionAdd())
+                        NavigationLink("Add", destination: OccasionForm())
                     }
                 }
             }
