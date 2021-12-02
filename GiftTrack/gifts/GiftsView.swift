@@ -79,6 +79,7 @@ struct GiftsView: View {
                         destination: GiftAdd(
                             // A person and occasion are always selected,
                             // so these force unwraps are safe.
+                            //TODO: But this crashes if there are no people or occasions!
                             person: person!,
                             occasion: occasion!
                         )

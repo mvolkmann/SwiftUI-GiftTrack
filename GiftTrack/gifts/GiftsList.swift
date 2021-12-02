@@ -25,6 +25,10 @@ struct GiftsList: View {
         "\(name(person)) has no \(name(occasion)) gifts yet."
     }
 
+    private var total: Int {
+        Int(gifts.reduce(0) { acc, gift in acc + gift.price })
+    }
+    
     init(
         person: PersonEntity?,
         personIndex: Int,
@@ -77,7 +81,7 @@ struct GiftsList: View {
                     .padding(.top, 20)
             }
         } else {
-            VStack {
+            VStack(spacing: 10) {
                 List {
                     ForEach(gifts, id: \.self) { gift in
                         NavigationLink(
@@ -89,12 +93,19 @@ struct GiftsList: View {
                         ) {
                             HStack {
                                 MyText(name(gift))
-                                // TODO: Show more gift properties here?
+                                if gift.price != 0 {
+                                    Spacer()
+                                    MyText("$\(gift.price)")
+                                }
                             }
                         }
                     }
                     .onDelete(perform: delete)
                 }
+                
+                Text("Total: $\(total)")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(settings.textColor)
 
                 HStack {
                     NavigationLink(
