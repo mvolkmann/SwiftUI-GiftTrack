@@ -45,7 +45,7 @@ struct OccasionForm: View {
                 }
             }
             .navigationBarItems(
-                trailing: Button("Done") { save() }
+                trailing: Button("Done") { save() }.disabled(name.isEmpty)
             )
         }
     }

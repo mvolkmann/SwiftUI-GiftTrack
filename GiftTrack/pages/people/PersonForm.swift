@@ -48,7 +48,7 @@ struct PersonForm: View {
             .buttonStyle(MyButtonStyle())
         }
         .navigationBarItems(
-            trailing: Button("Done") { save() }
+            trailing: Button("Done") { save() }.disabled(name.isEmpty)
         )
     }
 }

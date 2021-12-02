@@ -1,6 +1,5 @@
 import SwiftUI
 
-// For prominent buttons, apply the custom .prominent() view modifier.
 struct MyButtonStyle: ButtonStyle {
     @EnvironmentObject var settings: Settings
 
