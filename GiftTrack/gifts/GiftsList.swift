@@ -71,15 +71,18 @@ struct GiftsList: View {
 
     var body: some View {
         if gifts.isEmpty {
-            if person == nil || occasion == nil {
-                Text("No people or occasions have been created yet.")
-                    .foregroundColor(settings.titleColor)
-                    .padding(.top, 20)
-            } else {
-                MyText(noGifts, bold: true)
-                    .foregroundColor(settings.titleColor)
-                    .padding(.top, 20)
+            Group {
+                if person == nil || occasion == nil {
+                    Text("No people or occasions have been created yet.")
+                        .foregroundColor(settings.titleColor)
+                        .padding(.top, 20)
+                } else {
+                    MyText(noGifts, bold: true)
+                        .foregroundColor(settings.titleColor)
+                        .padding(.top, 20)
+                }
             }
+            .padding(.horizontal, 20)
         } else {
             VStack(spacing: 10) {
                 List {
