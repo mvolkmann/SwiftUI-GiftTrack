@@ -107,31 +107,19 @@ struct GiftsList: View {
                     .font(.system(size: 20, weight: .bold))
                     .foregroundColor(settings.textColor)
 
-                HStack {
-                    NavigationLink(
-                        destination: GiftsDetail(
-                            person: person,
-                            occasion: occasion,
-                            gifts: gifts
-                        )
-                    ) {
-                        Text("Detail")
-                    }
-
-                    Button("Delete These Gifts", role: .destructive) {
-                        isConfirming = true
-                    }
-                    .confirmationDialog(
-                        "Are you sure you want to delete these gifts?",
-                        isPresented: $isConfirming,
-                        titleVisibility: .visible
-                    ) {
-                        Button("Yes", role: .destructive) {
-                            deleteAll()
-                        }
+                Button("Delete These Gifts", role: .destructive) {
+                    isConfirming = true
+                }
+                .confirmationDialog(
+                    "Are you sure you want to delete these gifts?",
+                    isPresented: $isConfirming,
+                    titleVisibility: .visible
+                ) {
+                    Button("Yes", role: .destructive) {
+                        deleteAll()
                     }
                 }
-                .buttonStyle(MyButtonStyle())
+            .buttonStyle(MyButtonStyle())
             }
         }
     }

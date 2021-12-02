@@ -9,12 +9,12 @@ struct MapAnnotation: Identifiable {
 }
 
 struct GiftForm: View {
-    @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
     
     @State private var barScanError = ""
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
+    @State private var edit = false
     @State private var image: UIImage? = nil
     @State private var imageUrl = ""
     @State private var latitude = 0.0
@@ -23,7 +23,6 @@ struct GiftForm: View {
     @State private var mapAnnotations: [MapAnnotation] = []
     @State private var name = ""
     @State private var openBarScanner = false
-    @State private var openImagePicker = false
     @State private var openQRScanner = false
     @State private var price = NumbersOnly(0)
     @State private var purchased = false
@@ -56,6 +55,7 @@ struct GiftForm: View {
         self.occasion = occasion
         self.gift = gift
         _mode = mode
+        _edit = State(initialValue: mode.wrappedValue == GiftMode.add)
         
         if let gift = gift {
             // Preceding these property names with an underscore causes it
@@ -89,28 +89,10 @@ struct GiftForm: View {
         }
     }
     
-    func done() {
-        let adding = gift == nil
-        let g = adding ? GiftEntity(context: moc) : gift!
-        
-        g.desc = desc.trim()
-        g.image = image?.jpegData(compressionQuality: 1.0)
-        g.imageUrl = imageUrl
-        g.latitude = latitude
-        g.location = location.trim()
-        g.longitude = longitude
-        g.name = name.trim()
-        g.price = Int64(Int(price.value)!)
-        g.purchased = purchased
-        g.url = URL(string: url.trim())
-    
-        if adding {
-            g.to = person
-            g.reason = occasion
-        }
-        
-        PersistenceController.shared.save()
-        dismiss()
+    func clearLocation() {
+        latitude = 0
+        longitude = 0
+        location = ""
     }
     
     func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
@@ -176,6 +158,29 @@ struct GiftForm: View {
         }
     }
     
+    func save() {
+        let adding = gift == nil
+        let g = adding ? GiftEntity(context: moc) : gift!
+        
+        g.desc = desc.trim()
+        g.image = image?.jpegData(compressionQuality: 1.0)
+        g.imageUrl = imageUrl
+        g.latitude = latitude
+        g.location = location.trim()
+        g.longitude = longitude
+        g.name = name.trim()
+        g.price = Int64(Int(price.value)!)
+        g.purchased = purchased
+        g.url = URL(string: url.trim())
+    
+        if adding {
+            g.to = person
+            g.reason = occasion
+        }
+        
+        PersistenceController.shared.save()
+    }
+    
     func updateLocation(coordinate: CLLocationCoordinate2D) {
         // Assigning directly doesn't work.
         // There must be a timing issue with updating @State variables.
@@ -194,32 +199,33 @@ struct GiftForm: View {
     var body: some View {
         Page {
             Form {
-                HStack {
-                    Text("Bar Code Scan")
-                    IconButton(icon: "barcode") { openBarScanner = true }
+                if edit {
+                    HStack {
+                        Text("Bar Code Scan")
+                        IconButton(icon: "barcode") { openBarScanner = true }
+                    }
+                    .alert(
+                        "Bar Code Scan Failed",
+                        isPresented: $showBarScanError,
+                        actions: {}, // no custom buttons
+                        message: { Text(barScanError) }
+                    )
                 }
-                .alert(
-                    "Bar Code Scan Failed",
-                    isPresented: $showBarScanError,
-                    actions: {}, // no custom buttons
-                    message: { Text(barScanError) }
-                )
                 
-                TextField("Name", text: $name)
-                    .autocapitalization(.none)
-                TextField("Description", text: $desc)
-                    .autocapitalization(.none)
+                MyTextField("Name", text: $name, edit: edit)
+                MyTextField("Description", text: $desc, edit: edit)
                 
                 HStack {
-                    TextField("Location", text: $location)
-                        .autocapitalization(.none)
-                    if location.isEmpty {
-                        Location(action: updateLocation)
-                    } else {
-                        IconButton(icon: "xmark.circle", size: 20) {
-                            latitude = 0
-                            longitude = 0
-                            location = ""
+                    MyTextField("Location", text: $location, edit: edit)
+                    if edit {
+                        if location.isEmpty {
+                            Location(action: updateLocation)
+                        } else {
+                            IconButton(
+                                icon: "xmark.circle",
+                                size: 20,
+                                action: clearLocation
+                            )
                         }
                     }
                 }
@@ -234,78 +240,43 @@ struct GiftForm: View {
                         .frame(maxWidth: .infinity, minHeight: 300)
                 }
                 
-                TextField("Price", text: $price.value)
-                    .keyboardType(.decimalPad)
-                Toggle("Purchased?", isOn: $purchased)
+                MyTextField("Price", text: $price.value, edit: edit)
+                MyToggle("Purchased?", isOn: $purchased, edit: edit)
                 
                 HStack {
-                    TextField("URL", text: $url)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                    Spacer()
-                    IconButton(icon: "qrcode") { openQRScanner = true }
-                }
-                .alert(
-                    "QR Code Scan Failed",
-                    isPresented: $showQRScanError,
-                    actions: {}, // no custom buttons
-                    message: { Text(qrScanError) }
-                )
-                
-                HStack {
-                    IconButton(icon: "camera") {
-                        sourceType = .camera
-                        openImagePicker = true
-                    }
-                    IconButton(icon: "photo.on.rectangle.angled") {
-                        sourceType = .photoLibrary
-                        openImagePicker = true
-                    }
-                    
-                    if let unwrappedImage = image {
-                        Image(uiImage: unwrappedImage)
-                            .square(size: Settings.imageSize)
-                        
-                        IconButton(icon: "xmark.circle") {
-                            image = nil
-                            openImagePicker = false // TODO: Why needed?
-                        }
-                    }
-                    
-                    if let imageUrl = imageUrl, !imageUrl.isEmpty {
-                        AsyncImage(
-                            url: URL(string: imageUrl),
-                            content: { image in
-                                image
-                                    .resizable()
-                                    .frame(
-                                        width: Settings.imageSize,
-                                        height: Settings.imageSize
-                                    )
-                            },
-                            placeholder: { ProgressView() } // spinner
-                        )
+                    MyURL("Website URL", url: $url, edit: edit)
+                    if edit {
+                        Spacer()
+                        IconButton(icon: "qrcode") { openQRScanner = true }
+                            .alert(
+                                "QR Code Scan Failed",
+                                isPresented: $showQRScanError,
+                                actions: {}, // no custom buttons
+                                message: { Text(qrScanError) }
+                            )
                     }
                 }
-                // This fixes the bug with multiple buttons in a Form.
-                .buttonStyle(.borderless)
                 
+                Group {
+                    MyPhoto("Photo", image: $image, edit: edit)
+                    MyImageURL("Image URL", url: $imageUrl, edit: edit)
+                }
+            
                 ControlGroup {
-                    Button("Done", action: done)
-                        .prominent()
-                        .disabled(name.isEmpty)
                     Button("Move") { mode = .move }
                     Button("Copy") { mode = .copy }
-                    Button("Cancel") { dismiss() }
                 }
                 .buttonStyle(MyButtonStyle())
                 .controlGroupStyle(.navigation)
             }
         }
         
-        .sheet(isPresented: $openImagePicker) {
-            ImagePicker(sourceType: sourceType, image: $image)
-        }
+        .navigationBarItems(
+            trailing: Button(edit ? "Done" : "Edit") {
+                if edit { save() }
+                edit = !edit
+            }
+        )
         
         .sheet(isPresented: $openBarScanner) {
             CodeScannerView(
