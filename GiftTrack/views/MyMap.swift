@@ -143,11 +143,7 @@ struct MyMap: View {
                     }
                     .frame(maxWidth: .infinity, minHeight: 200)
                     Spacer()
-                    IconButton(
-                        icon: "xmark.circle",
-                        size: 20,
-                        action: clearLocation
-                    )
+                    DeleteButton(action: clearLocation)
                 }
             } else if latitude == 0 || longitude == 0 {
                 if showEmpty { LabelledText(label: "Map", text: "none") }

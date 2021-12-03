@@ -32,13 +32,7 @@ struct MyTextField: View {
                 
                 if !text.isEmpty {
                     Spacer()
-                    IconButton(
-                        icon: "xmark.circle.fill",
-                        size: 15,
-                        color: .gray
-                    ) {
-                        text = ""
-                    }
+                    DeleteButton() { text = "" }
                 }
             }
         } else if !text.isEmpty || showEmpty {

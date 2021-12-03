@@ -14,7 +14,7 @@ struct LabelledText: View {
         .font(.system(size: 20))
         // The default foreground color is Color.primary.
         // It is set here so it can be overridden in Settings.
-        .foregroundColor(settings.textColor)
+        .foregroundColor(Color.primary)
     }
 }
 

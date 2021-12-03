@@ -26,22 +26,22 @@ struct MyPhoto: View {
     var body: some View {
         if edit {
             HStack {
-                IconButton(icon: "camera") {
-                    sourceType = .camera
-                    openImagePicker = true
+                VStack(spacing: 10) {
+                    IconButton(icon: "camera") {
+                        sourceType = .camera
+                        openImagePicker = true
+                    }
+                    IconButton(icon: "photo.on.rectangle.angled") {
+                        sourceType = .photoLibrary
+                        openImagePicker = true
+                    }
                 }
-                .border(.red)
-                IconButton(icon: "photo.on.rectangle.angled") {
-                    sourceType = .photoLibrary
-                    openImagePicker = true
-                }
-                .border(.green)
                 
                 if let unwrappedImage = image {
                     Image(uiImage: unwrappedImage)
                         .square(size: Settings.imageSize)
-                    
-                    IconButton(icon: "xmark.circle") {
+                    Spacer()
+                    DeleteButton() {
                         image = nil
                         openImagePicker = false // TODO: Why needed?
                     }

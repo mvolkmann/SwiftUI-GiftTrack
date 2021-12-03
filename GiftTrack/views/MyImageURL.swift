@@ -29,7 +29,7 @@ struct MyImageURL: View {
                 
                 if !url.isEmpty {
                     Spacer()
-                    IconButton(icon: "xmark.circle", size: 20) { url = "" }
+                    DeleteButton() { url = "" }
                 }
             }
         } else if url.isEmpty {

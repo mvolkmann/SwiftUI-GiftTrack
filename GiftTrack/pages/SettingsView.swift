@@ -8,7 +8,6 @@ struct SettingsView: View {
     func save() {
         setData(for: "bgColor", to: settings.bgColor)
         setData(for: "titleColor", to: settings.titleColor)
-        setData(for: "textColor", to: settings.textColor)
     }
     
     var body: some View {
@@ -25,22 +24,16 @@ struct SettingsView: View {
                         ColorPicker(
                             "Background Color",
                             selection: $settings.bgColor
-                        ).foregroundColor(settings.textColor)
+                        ).foregroundColor(Color.primary)
                         
                         ColorPicker(
                             "Title Color",
                             selection: $settings.titleColor
-                        ).foregroundColor(settings.textColor)
-                        
-                        ColorPicker(
-                            "Text Color",
-                            selection: $settings.textColor
-                        ).foregroundColor(settings.textColor)
+                        ).foregroundColor(Color.primary)
                         
                         Button("Reset") {
                             deleteData(for: "bgColor")
                             deleteData(for: "titleColor")
-                            deleteData(for: "textColor")
                             Settings.reset()
                         }
                     }
