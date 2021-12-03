@@ -6,15 +6,18 @@ struct MyImageURL: View {
     private let title: String
     @Binding private var url: String
     private let edit: Bool
+    private let showEmpty: Bool
 
     init(
         _ title: String,
         url: Binding<String>,
-        edit: Bool = true
+        edit: Bool = true,
+        showEmpty: Bool = false
     ) {
         self.title = title
         _url = url
         self.edit = edit
+        self.showEmpty = showEmpty
     }
 
     var body: some View {
@@ -30,11 +33,7 @@ struct MyImageURL: View {
                 }
             }
         } else if url.isEmpty {
-            Text("\(title): none")
-                .font(.system(size: 20))
-                // The default foreground color is Color.primary.
-                // It is set here so it can be overridden in Settings.
-                .foregroundColor(settings.textColor)
+            if showEmpty { LabelledText(label: title, text: "none") }
         } else {
             VStack(alignment: .leading) {
                 Text(url)

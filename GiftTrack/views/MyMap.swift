@@ -61,6 +61,7 @@ struct MyMap: View {
     @State private var region: MKCoordinateRegion = MKCoordinateRegion()
     
     private let edit: Bool
+    private let showEmpty: Bool
     
     private let SPAN = MKCoordinateSpan(
         latitudeDelta: 0.005,
@@ -74,11 +75,13 @@ struct MyMap: View {
     init(
         latitude: Binding<Double>,
         longitude: Binding<Double>,
-        edit: Bool = true
+        edit: Bool = true,
+        showEmpty: Bool = false
     ) {
         _latitude = latitude
         _longitude = longitude
         self.edit = edit
+        self.showEmpty = showEmpty
         _region = State(initialValue: MKCoordinateRegion(center: coordinate, span: SPAN))
         _annotations = State(initialValue: [MapAnnotation(coordinate: coordinate)])
     }
@@ -147,7 +150,7 @@ struct MyMap: View {
                     )
                 }
             } else if latitude == 0 || longitude == 0 {
-                MyText("Map: none")
+                if showEmpty { LabelledText(label: "Map", text: "none") }
             } else {
                 Map(
                     coordinateRegion: $region,

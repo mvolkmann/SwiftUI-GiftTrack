@@ -7,17 +7,20 @@ struct MyTextField: View {
     @Binding private var text: String
     private let edit: Bool
     private let autocorrect: Bool
+    private let showEmpty: Bool
     
     init(
         _ title: String,
         text: Binding<String>,
         edit: Bool = true,
-        autocorrect: Bool = true
+        autocorrect: Bool = true,
+        showEmpty: Bool = false
     ) {
         self.title = title
         _text = text
         self.edit = edit
         self.autocorrect = autocorrect
+        self.showEmpty = showEmpty
     }
     
     var body: some View {
@@ -34,12 +37,8 @@ struct MyTextField: View {
                     }
                 }
             }
-        } else {
-            Text("\(title): \(text.isEmpty ? "none" : text)")
-                .font(.system(size: 20))
-                // The default foreground color is Color.primary.
-                // It is set here so it can be overridden in Settings.
-                .foregroundColor(settings.textColor)
+        } else if !text.isEmpty || showEmpty {
+            LabelledText(label: title, text: text)
         }
     }
 }

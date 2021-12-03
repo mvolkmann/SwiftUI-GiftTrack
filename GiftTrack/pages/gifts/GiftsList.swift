@@ -106,9 +106,7 @@ struct GiftsList: View {
                     .onDelete(perform: delete)
                 }
                 
-                Text("Total: $\(total)")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(settings.textColor)
+                LabelledText(label: "Total", text: "\(total)")
 
                 Button("Delete These Gifts", role: .destructive) {
                     isConfirming = true

@@ -34,6 +34,7 @@
 		4D6CE0AE27591D3800039CD6 /* PersonForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0AD27591D3800039CD6 /* PersonForm.swift */; };
 		4D6CE0B02759355200039CD6 /* OccasionForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0AF2759355200039CD6 /* OccasionForm.swift */; };
 		4D6CE0B727593D1200039CD6 /* MyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0B627593D1200039CD6 /* MyMap.swift */; };
+		4D6CE0B9275A620100039CD6 /* LabelledText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0B8275A620100039CD6 /* LabelledText.swift */; };
 		4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AF91274C4F70005A999F /* GiftsList.swift */; };
 		4D88AFB2274E7FB9005A999F /* global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB1274E7FB9005A999F /* global.swift */; };
 		4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90AA4627496AA10056FF3B /* PersistenceController.swift */; };
@@ -76,6 +77,7 @@
 		4D6CE0AD27591D3800039CD6 /* PersonForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonForm.swift; sourceTree = "<group>"; };
 		4D6CE0AF2759355200039CD6 /* OccasionForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccasionForm.swift; sourceTree = "<group>"; };
 		4D6CE0B627593D1200039CD6 /* MyMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMap.swift; sourceTree = "<group>"; };
+		4D6CE0B8275A620100039CD6 /* LabelledText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledText.swift; sourceTree = "<group>"; };
 		4D88AF91274C4F70005A999F /* GiftsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsList.swift; sourceTree = "<group>"; };
 		4D88AFB1274E7FB9005A999F /* global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = global.swift; sourceTree = "<group>"; };
 		4D90AA4627496AA10056FF3B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				4DA8B8552757D5780058688D /* IconButton.swift */,
+				4D6CE0B8275A620100039CD6 /* LabelledText.swift */,
 				4DBCBD61275565BC0024BB0E /* ImagePicker.swift */,
 				4D3EA2442753CFC80010FE17 /* MyDatePicker.swift */,
 				4D6CE0AB275904B900039CD6 /* MyImageURL.swift */,
@@ -334,6 +337,7 @@
 				4D6CE0B727593D1200039CD6 /* MyMap.swift in Sources */,
 				4D336748274BF88000D52F01 /* GiftAdd.swift in Sources */,
 				4D19292A273BE60E0056653B /* SwiftUI_GiftTrack.swift in Sources */,
+				4D6CE0B9275A620100039CD6 /* LabelledText.swift in Sources */,
 				4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */,
 				4D6CE0AA2758FDD600039CD6 /* MyPhoto.swift in Sources */,
 				4D6CE0AC275904B900039CD6 /* MyImageURL.swift in Sources */,

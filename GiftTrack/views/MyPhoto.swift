@@ -9,15 +9,18 @@ struct MyPhoto: View {
     private let title: String
     @Binding private var image: UIImage?
     private let edit: Bool
+    private let showEmpty: Bool
 
     init(
         _ title: String,
         image: Binding<UIImage?>,
-        edit: Bool = true
+        edit: Bool = true,
+        showEmpty: Bool = false
     ) {
         self.title = title
         _image = image
         self.edit = edit
+        self.showEmpty = showEmpty
     }
 
     var body: some View {
@@ -51,12 +54,8 @@ struct MyPhoto: View {
             if let image = image {
                 Image(uiImage: image)
                     .square(size: Settings.imageSize)
-            } else {
-                Text("\(title): none")
-                    .font(.system(size: 20))
-                    // The default foreground color is Color.primary.
-                    // It is set here so it can be overridden in Settings.
-                    .foregroundColor(settings.textColor)
+            } else if showEmpty {
+                LabelledText(label: title, text: "none")
             }
         }
     }

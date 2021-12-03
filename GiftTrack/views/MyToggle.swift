@@ -21,11 +21,7 @@ struct MyToggle: View {
         if edit {
             Toggle(title, isOn: $isOn)
         } else {
-            Text("\(title): \(isOn ? "Yes" : "No")")
-                .font(.system(size: 20))
-                // The default foreground color is Color.primary.
-                // It is set here so it can be overridden in Settings.
-                .foregroundColor(settings.textColor)
+            LabelledText(label: title, text: isOn ? "Yes" : "No")
         }
     }
 }
