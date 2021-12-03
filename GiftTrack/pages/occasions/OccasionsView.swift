@@ -54,9 +54,11 @@ struct OccasionsView: View {
                     .onDelete(perform: delete)
                 }
                 .toolbar {
+                    /*
                     ToolbarItem(placement: .navigationBarLeading) {
                         EditButton()
                     }
+                    */
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink("Add", destination: OccasionForm())
                     }

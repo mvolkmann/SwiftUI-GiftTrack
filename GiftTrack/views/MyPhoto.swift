@@ -30,10 +30,12 @@ struct MyPhoto: View {
                     sourceType = .camera
                     openImagePicker = true
                 }
+                .border(.red)
                 IconButton(icon: "photo.on.rectangle.angled") {
                     sourceType = .photoLibrary
                     openImagePicker = true
                 }
+                .border(.green)
                 
                 if let unwrappedImage = image {
                     Image(uiImage: unwrappedImage)

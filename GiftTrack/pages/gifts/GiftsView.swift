@@ -70,20 +70,23 @@ struct GiftsView: View {
                 }
             }
             .toolbar {
+                /*
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
+                */
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(
-                        "Add",
-                        destination: GiftAdd(
-                            // A person and occasion are always selected,
-                            // so these force unwraps are safe.
-                            //TODO: But this crashes if there are no people or occasions!
-                            person: person!,
-                            occasion: occasion!
+                    if person != nil && occasion != nil {
+                        NavigationLink(
+                            "Add",
+                            destination: GiftAdd(
+                                // A person and occasion are always selected,
+                                // so these force unwraps are safe.
+                                person: person!,
+                                occasion: occasion!
+                            )
                         )
-                    )
+                    }
                 }
             }
             .navigationBarTitle("Gifts")

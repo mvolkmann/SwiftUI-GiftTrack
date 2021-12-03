@@ -55,9 +55,11 @@ struct PeopleView: View {
                 }
             }
             .toolbar {
+                /*
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
                 }
+                */
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink("Add", destination: PersonForm())
                 }
