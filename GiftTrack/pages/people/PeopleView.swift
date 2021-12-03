@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct PeopleView: View {
-    @State private var newColor: Color = .red
+    @State private var confirmDelete = false
+    @State private var deleteSet: IndexSet = IndexSet()
 
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var settings: Settings
@@ -34,10 +35,9 @@ struct PeopleView: View {
     var body: some View {
         NavigationView {
             Page {
-                // If the iteration is done with List instead of ForEach,
-                // we can't use onDelete or onMove.
-                // List(vm.people, id: \.self) { person in
                 List {
+                    // The onDelete method exists on ForEach, but not on List
+                    // because a List can include static rows.
                     ForEach(people, id: \.self) { person in
                         NavigationLink(
                             destination: PersonForm(person: person)
@@ -51,7 +51,20 @@ struct PeopleView: View {
                             }
                         }
                     }
-                    .onDelete(perform: delete)
+                    .onDelete() { indexSet in
+                        confirmDelete = true
+                        deleteSet = indexSet
+                    }
+                }
+                .confirmationDialog(
+                    "Deleting this person will also delete " +
+                    "all their gifts.\nAre you sure?",
+                    isPresented: $confirmDelete,
+                    titleVisibility: .visible
+                ) {
+                    Button("Yes", role: .destructive) {
+                        delete(indexSet: deleteSet)
+                    }
                 }
             }
             .toolbar {

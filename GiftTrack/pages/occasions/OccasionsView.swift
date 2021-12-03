@@ -4,6 +4,9 @@ struct OccasionsView: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var settings: Settings
 
+    @State private var confirmDelete = false
+    @State private var deleteSet: IndexSet = IndexSet()
+    
     @FetchRequest(
         entity: OccasionEntity.entity(),
         sortDescriptors: [
@@ -32,9 +35,6 @@ struct OccasionsView: View {
     var body: some View {
         NavigationView {
             Page {
-                // If the iteration is done with List instead of ForEach,
-                // we can't use onDelete or onMove.
-                // List(vm.occasions, id: \.self) { occasion in
                 List {
                     ForEach(occasions, id: \.self) { occasion in
                         NavigationLink(
@@ -51,20 +51,33 @@ struct OccasionsView: View {
                             }
                         }
                     }
-                    .onDelete(perform: delete)
-                }
-                .toolbar {
-                    /*
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        EditButton()
+                    .onDelete() { indexSet in
+                        confirmDelete = true
+                        deleteSet = indexSet
                     }
-                    */
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink("Add", destination: OccasionForm())
+                }
+                .confirmationDialog(
+                    "Deleting this occasion will also delete " +
+                    "all gifts for it.\nAre you sure?",
+                    isPresented: $confirmDelete,
+                    titleVisibility: .visible
+                ) {
+                    Button("Yes", role: .destructive) {
+                        delete(indexSet: deleteSet)
                     }
                 }
             }
-            .navigationTitle("Occasions")
+            .toolbar {
+                /*
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+                */
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink("Add", destination: OccasionForm())
+                }
+            }
+        .navigationTitle("Occasions")
             .accentColor(settings.titleColor)
         }
         .accentColor(settings.titleColor) // navigation back link color
