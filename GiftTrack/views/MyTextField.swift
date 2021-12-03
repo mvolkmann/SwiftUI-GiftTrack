@@ -32,7 +32,11 @@ struct MyTextField: View {
                 
                 if !text.isEmpty {
                     Spacer()
-                    IconButton(icon: "xmark.circle", size: 20) {
+                    IconButton(
+                        icon: "xmark.circle.fill",
+                        size: 15,
+                        color: .gray
+                    ) {
                         text = ""
                     }
                 }

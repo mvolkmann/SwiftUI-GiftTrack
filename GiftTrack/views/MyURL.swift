@@ -29,7 +29,7 @@ struct MyURL: View {
             if let linkURL = URL(string: url) {
                 Link(destination: linkURL) {
                     Text("website")
-                        .foregroundColor(settings.bgColor)
+                        .foregroundColor(Color("link-color"))
                         .underline()
                 }
                 .buttonStyle(.borderless)
