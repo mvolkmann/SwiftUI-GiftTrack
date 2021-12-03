@@ -36,18 +36,27 @@ struct MyImageURL: View {
                 // It is set here so it can be overridden in Settings.
                 .foregroundColor(settings.textColor)
         } else {
-            AsyncImage(
-                url: URL(string: url),
-                content: { image in
-                    image
-                        .resizable()
-                        .frame(
-                            width: Settings.imageSize,
-                            height: Settings.imageSize
-                        )
-                },
-                placeholder: { ProgressView() } // spinner
-            )
+            VStack(alignment: .leading) {
+                Text(url)
+                AsyncImage(url: URL(string: url)) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView() // spinner
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .frame(
+                                width: Settings.imageSize,
+                                height: Settings.imageSize
+                            )
+                        
+                    case .failure:
+                        Text("Failed to fetch image.").foregroundColor(.red)
+                    @unknown default:
+                        fatalError()
+                    }
+                }
+                }
         }
     }
 }
