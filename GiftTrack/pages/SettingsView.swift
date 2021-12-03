@@ -24,12 +24,12 @@ struct SettingsView: View {
                         ColorPicker(
                             "Background Color",
                             selection: $settings.bgColor
-                        ).foregroundColor(Color.primary)
+                        )
                         
                         ColorPicker(
                             "Title Color",
                             selection: $settings.titleColor
-                        ).foregroundColor(Color.primary)
+                        )
                         
                         Button("Reset") {
                             deleteData(for: "bgColor")

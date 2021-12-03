@@ -12,14 +12,5 @@ struct LabelledText: View {
             Text("\(text.isEmpty ? "none" : text)")
         }
         .font(.system(size: 20))
-        // The default foreground color is Color.primary.
-        // It is set here so it can be overridden in Settings.
-        .foregroundColor(Color.primary)
-    }
-}
-
-struct LabelledText_Previews: PreviewProvider {
-    static var previews: some View {
-        LabelledText(label: "First Name", text: "Mark")
     }
 }
