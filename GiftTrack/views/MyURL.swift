@@ -22,7 +22,9 @@ struct MyURL: View {
 
     var body: some View {
         if edit {
-            TextField(title, text: $url).disableAutocorrection(true)
+            TextField(title, text: $url)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
         } else if url.isEmpty {
             if showEmpty { LabelledText(label: title, text: "none") }
         } else {

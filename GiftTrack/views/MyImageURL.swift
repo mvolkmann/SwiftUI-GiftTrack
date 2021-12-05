@@ -42,20 +42,14 @@ struct MyImageURL: View {
                     case .empty:
                         ProgressView() // spinner
                     case .success(let image):
-                        image
-                            .resizable()
-                            .frame(
-                                width: Settings.imageSize,
-                                height: Settings.imageSize
-                            )
-                        
+                        image.square(size: Settings.imageSize)
                     case .failure:
                         Text("Failed to fetch image.").foregroundColor(.red)
                     @unknown default:
                         fatalError()
                     }
                 }
-                }
+            }
         }
     }
 }

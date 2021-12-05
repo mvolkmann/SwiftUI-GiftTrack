@@ -182,37 +182,46 @@ struct GiftForm: View {
                 MyTextField("Name", text: $name, edit: edit)
                 MyTextField("Description", text: $desc, edit: edit)
                 
-                MyTextField("Price", text: $price.value, edit: edit)
+                if edit || $price.wrappedValue.value != "0" {
+                    MyTextField("Price", text: $price.value, edit: edit)
+                }
                 MyToggle("Purchased?", isOn: $purchased, edit: edit)
                 
-                HStack {
-                    MyURL("Website URL", url: $url, edit: edit)
-                    if edit {
-                        Spacer()
-                        IconButton(icon: "qrcode") { openQRScanner = true }
-                            .alert(
-                                "QR Code Scan Failed",
-                                isPresented: $showQRScanError,
-                                actions: {}, // no custom buttons
-                                message: { Text(qrScanError) }
-                            )
+                if edit || !$url.wrappedValue.isEmpty {
+                    HStack {
+                        MyURL("Website URL", url: $url, edit: edit)
+                        if edit {
+                            Spacer()
+                            IconButton(icon: "qrcode") { openQRScanner = true }
+                                .alert(
+                                    "QR Code Scan Failed",
+                                    isPresented: $showQRScanError,
+                                    actions: {}, // no custom buttons
+                                    message: { Text(qrScanError) }
+                                )
+                        }
                     }
                 }
                 
                 Group {
                     MyPhoto("Photo", image: $image, edit: edit)
-                    MyImageURL("Image URL", url: $imageUrl, edit: edit)
+                    if edit || !$imageUrl.wrappedValue.isEmpty {
+                        MyImageURL("Image URL", url: $imageUrl, edit: edit)
+                    }
                 }
             
-                Group {
+                if edit || !$location.wrappedValue.isEmpty {
                     MyTextField("Location", text: $location, edit: edit)
+                }
+                
+                if edit || ($latitude.wrappedValue != 0.0 || $longitude.wrappedValue != 0.0) {
                     MyMap(
                         latitude: $latitude,
                         longitude: $longitude,
                         edit: edit
                     )
                 }
-                
+
                 ControlGroup {
                     Button("Move") { mode = .move }
                     Button("Copy") { mode = .copy }
