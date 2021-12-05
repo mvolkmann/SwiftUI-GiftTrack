@@ -34,14 +34,15 @@ struct PersonForm: View {
     }
     
     private func save() {
-        if people.contains(where: {
+        let adding = person == nil
+        
+        if adding && people.contains(where: {
             $0.name?.caseInsensitiveCompare(name) == .orderedSame
         }) {
             showAlert = true
             return
         }
         
-        let adding = person == nil
         let p = adding ? PersonEntity(context: moc) : person!
         
         p.name = name.trim()

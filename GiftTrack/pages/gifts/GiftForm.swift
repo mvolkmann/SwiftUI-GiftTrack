@@ -15,6 +15,7 @@ struct GiftForm: View {
     @State private var latitude = 0.0
     @State private var location = ""
     @State private var longitude = 0.0
+    @State private var message = ""
     @State private var name = ""
     @State private var openBarScanner = false
     @State private var openQRScanner = false
@@ -23,6 +24,7 @@ struct GiftForm: View {
     @State private var region: MKCoordinateRegion = MKCoordinateRegion()
     @State private var qrScanError = ""
     @State private var showBarScanError = false
+    @State private var showMessage = false
     @State private var showQRScanError = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var url = ""
@@ -99,39 +101,35 @@ struct GiftForm: View {
     }
     
     func loadProductData(productCode: String) {
+        // This uses the UPC Database API at https://upcdatabase.org/api.
         let key = Bundle.main.object(
-            forInfoDictionaryKey: "BARCODE_LOOKUP_KEY"
+            forInfoDictionaryKey: "UPC_DATABASE_KEY"
         ) as? String
-        let url = "https://api.barcodelookup.com/v3/products" +
-        "?barcode=\(productCode)&formatted=y&key=\(key!)"
-        print("product url =", url)
+        let url = "https://api.upcdatabase.org/product/" +
+            productCode + "?apikey=\(key!)"
         
         Task(priority: .medium) {
             do {
-                let products = try await HttpUtil.get(
+                let product = try await HttpUtil.get(
                     from: url,
-                    type: Products.self
-                ) as Products
-                //print("products =", products)
-                let product = products.products.first
-                
+                    type: Product.self
+                ) as Product
                 DispatchQueue.main.async {
-                    if let title = product?.title {
-                        self.name = title
-                    }
-                    if let category = product?.category {
-                        self.desc = category
-                    }
-                    if let imageUrl = product?.images.first {
-                        self.imageUrl = imageUrl
+                    self.name = product.title
+                    self.desc = product.category
+                    if let images = product.images {
+                        if images.count > 0 {
+                            if let imageUrl = images.first {
+                                self.imageUrl = imageUrl
+                            }
+                        } else {
+                            print("no images")
+                        }
                     }
                 }
-            } catch HTTPError.badStatus(let status) {
-                barScanError = status == 404 ?
-                    "Product not found" : "Bad status \(status)"
-                showBarScanError = true
             } catch {
-                print("error =", error.localizedDescription)
+                message = error.localizedDescription
+                showMessage = true
             }
         }
     }
@@ -172,6 +170,12 @@ struct GiftForm: View {
                         isPresented: $showBarScanError,
                         actions: {}, // no custom buttons
                         message: { Text(barScanError) }
+                    )
+                    .alert(
+                        "Barcode Lookup Failed",
+                        isPresented: $showMessage,
+                        actions: {}, // no custom buttons
+                        message: { Text(message) }
                     )
                 }
                 

@@ -30,14 +30,15 @@ struct OccasionForm: View {
     }
     
     private func save() {
-        if occasions.contains(where: {
+        let adding = occasion == nil
+        
+        if adding && occasions.contains(where: {
             $0.name?.caseInsensitiveCompare(name) == .orderedSame
         }) {
             showAlert = true
             return
         }
         
-        let adding = occasion == nil
         let o = adding ? OccasionEntity(context: moc) : occasion!
         
         o.name = name.trim()

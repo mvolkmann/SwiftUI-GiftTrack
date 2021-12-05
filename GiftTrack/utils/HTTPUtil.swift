@@ -44,7 +44,6 @@ struct HttpUtil {
         }
 
         let (data, res) = try await URLSession.shared.data(from: url)
-        print("HTTPUtil.get: data =", data)
         if let res = res as? HTTPURLResponse, res.statusCode != 200 {
             print("HTTPUtil.get: res.statusCode =", res.statusCode)
             throw HTTPError.badStatus(status: res.statusCode)
