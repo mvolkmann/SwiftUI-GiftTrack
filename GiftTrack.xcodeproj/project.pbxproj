@@ -36,6 +36,7 @@
 		4D6CE0B727593D1200039CD6 /* MyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0B627593D1200039CD6 /* MyMap.swift */; };
 		4D6CE0B9275A620100039CD6 /* LabelledText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0B8275A620100039CD6 /* LabelledText.swift */; };
 		4D6CE0BB275A873E00039CD6 /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0BA275A873E00039CD6 /* DeleteButton.swift */; };
+		4D6CE0BE275BE1B300039CD6 /* StoreKitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */; };
 		4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AF91274C4F70005A999F /* GiftsList.swift */; };
 		4D88AFB2274E7FB9005A999F /* global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB1274E7FB9005A999F /* global.swift */; };
 		4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90AA4627496AA10056FF3B /* PersistenceController.swift */; };
@@ -80,6 +81,8 @@
 		4D6CE0B627593D1200039CD6 /* MyMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMap.swift; sourceTree = "<group>"; };
 		4D6CE0B8275A620100039CD6 /* LabelledText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledText.swift; sourceTree = "<group>"; };
 		4D6CE0BA275A873E00039CD6 /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
+		4D6CE0BC275BD59D00039CD6 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitStore.swift; sourceTree = "<group>"; };
 		4D88AF91274C4F70005A999F /* GiftsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsList.swift; sourceTree = "<group>"; };
 		4D88AFB1274E7FB9005A999F /* global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = global.swift; sourceTree = "<group>"; };
 		4D90AA4627496AA10056FF3B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -167,9 +170,11 @@
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D3EA2422753C84B0010FE17 /* Main.swift */,
 				4DF89BD827432C13007C703E /* Model.xcdatamodeld */,
+				4D6CE0BC275BD59D00039CD6 /* Configuration.storekit */,
 				4D19292F273BE60F0056653B /* Preview Content */,
 				4DA8B8372756CDAB0058688D /* Secrets.xcconfig */,
 				4D3EA23F27530C430010FE17 /* Settings.swift */,
+				4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */,
 				4D192929273BE60E0056653B /* SwiftUI_GiftTrack.swift */,
 			);
 			path = GiftTrack;
@@ -356,6 +361,7 @@
 				4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */,
 				4D6CE0A62758FAB000039CD6 /* MyToggle.swift in Sources */,
 				4D3EA247275451C10010FE17 /* UserDefaults.swift in Sources */,
+				4D6CE0BE275BE1B300039CD6 /* StoreKitStore.swift in Sources */,
 				4D19293A273BE70C0056653B /* PeopleView.swift in Sources */,
 				4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */,
 				4DBCBD662755A7DC0024BB0E /* Image.swift in Sources */,

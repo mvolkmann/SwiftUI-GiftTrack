@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PersonForm: View {
+    @Environment(\.canAdd) var canAdd
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
     
@@ -10,7 +11,6 @@ struct PersonForm: View {
     
     var person: PersonEntity?
     
-
     init(person: PersonEntity? = nil) {
         self.person = person
         
@@ -38,14 +38,22 @@ struct PersonForm: View {
     
     var body: some View {
         Page {
-            Form {
-                MyTextField("Name", text: $name)
-                MyToggle("Include Birthday", isOn: $includeBirthday)
-                if includeBirthday {
-                    MyDatePicker(selection: $birthday)
+            if canAdd {
+                Form {
+                    MyTextField("Name", text: $name)
+                    MyToggle("Include Birthday", isOn: $includeBirthday)
+                    if includeBirthday {
+                        MyDatePicker(selection: $birthday)
+                    }
                 }
+                .buttonStyle(MyButtonStyle())
+            } else {
+                MyText("""
+                An in-app purchase is required to \
+                create more than two people.
+                """, bold: true)
+                    .padding(.horizontal)
             }
-            .buttonStyle(MyButtonStyle())
         }
         .navigationBarItems(
             trailing: Button("Done") { save() }.disabled(name.isEmpty)

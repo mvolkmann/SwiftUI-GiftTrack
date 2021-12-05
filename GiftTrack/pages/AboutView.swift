@@ -1,8 +1,8 @@
-// import FontAwesomeSwiftUI
 import SwiftUI
 
 struct AboutView: View {
-    @EnvironmentObject var settings: Settings
+    @EnvironmentObject private var settings: Settings
+    @EnvironmentObject private var store: StoreKitStore
 
     let intro = """
     This app tracks gift ideas and purchased gifts \
@@ -28,6 +28,18 @@ struct AboutView: View {
                 MyText("1. Tap \"People\" and add people.")
                 MyText("2. Tap \"Occasions\" and add occasions.")
                 MyText("3. Tap \"Gifts\" and add gifts for specific people and occasions.")
+                
+                if !store.appPurchased {
+                     MyText("""
+                     \nYou are using the free version of the app \
+                     which is limited to tracking gifts for \
+                     two people and two occasions. \
+                     If you attempt to add more people or occasions, \
+                     you will be prompted to make an in-app purchase \
+                     which enables tracking gifts for an \
+                     unlimited number of people and occasions.
+                     """)
+                }
             }
             .padding(.horizontal, 15)
         }

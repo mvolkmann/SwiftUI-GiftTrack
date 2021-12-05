@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct PeopleView: View {
+    @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject private var settings: Settings
+    @EnvironmentObject private var store: StoreKitStore
+    
     @State private var confirmDelete = false
     @State private var deleteSet: IndexSet = IndexSet()
 
-    @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var settings: Settings
 
     @FetchRequest(
         entity: PersonEntity.entity(),
@@ -16,6 +18,10 @@ struct PeopleView: View {
 
     private var dateFormatter = DateFormatter()
 
+    private var allowMore: Bool {
+        store.appPurchased || people.count < 2
+    }
+    
     init() {
         dateFormatter.dateFormat = "M/d/yyyy"
     }
@@ -68,14 +74,17 @@ struct PeopleView: View {
                 }
             }
             .toolbar {
-                /*
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-                */
+                //ToolbarItem(placement: .navigationBarLeading) { EditButton() }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Add", destination: PersonForm())
-                }
+                    NavigationLink(
+                        "Add",
+                        destination: PersonForm()
+                            .environment(\.canAdd, allowMore)
+                    )
+                    .simultaneousGesture(TapGesture().onEnded {
+                        if !allowMore { store.purchaseApp() }
+                    })
+            }
             }
             .navigationTitle("People")
             .accentColor(settings.titleColor)

@@ -2,7 +2,8 @@ import SwiftUI
 
 struct OccasionsView: View {
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var settings: Settings
+    @EnvironmentObject private var settings: Settings
+    @EnvironmentObject private var store: StoreKitStore
 
     @State private var confirmDelete = false
     @State private var deleteSet: IndexSet = IndexSet()
@@ -16,6 +17,10 @@ struct OccasionsView: View {
 
     private var dateFormatter = DateFormatter()
 
+    private var allowMore: Bool {
+        store.appPurchased || occasions.count < 2
+    }
+    
     init() {
         // Show dates as month/day without year.
         dateFormatter.setLocalizedDateFormatFromTemplate("M/d")
@@ -68,13 +73,16 @@ struct OccasionsView: View {
                 }
             }
             .toolbar {
-                /*
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-                */
+                //ToolbarItem(placement: .navigationBarLeading) { EditButton() }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Add", destination: OccasionForm())
+                    NavigationLink(
+                        "Add",
+                        destination: OccasionForm()
+                            .environment(\.canAdd, allowMore)
+                        .simultaneousGesture(TapGesture().onEnded {
+                            if !allowMore { store.purchaseApp() }
+                        })
+                    )
                 }
             }
         .navigationTitle("Occasions")

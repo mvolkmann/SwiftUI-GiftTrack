@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct OccasionForm: View {
+    @Environment(\.canAdd) var canAdd
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
     
@@ -33,16 +34,24 @@ struct OccasionForm: View {
     
     var body: some View {
         Page {
-            Form {
-                MyTextField("Name", text: $name)
-                MyToggle("Include Date", isOn: $includeDate)
-                if includeDate {
-                    MyDatePicker(selection: $date)
+            if canAdd {
+                Form {
+                    MyTextField("Name", text: $name)
+                    MyToggle("Include Date", isOn: $includeDate)
+                    if includeDate {
+                        MyDatePicker(selection: $date)
+                    }
                 }
+                .navigationBarItems(
+                    trailing: Button("Done") { save() }.disabled(name.isEmpty)
+                )
+            } else {
+                MyText("""
+                An in-app purchase is required to \
+                create more than two occasions.
+                """, bold: true)
+                    .padding(.horizontal)
             }
-            .navigationBarItems(
-                trailing: Button("Done") { save() }.disabled(name.isEmpty)
-            )
         }
     }
 }

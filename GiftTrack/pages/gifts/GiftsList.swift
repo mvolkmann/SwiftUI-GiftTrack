@@ -106,7 +106,7 @@ struct GiftsList: View {
                     .onDelete(perform: delete)
                 }
                 
-                LabelledText(label: "Total", text: "\(total)")
+                LabelledText(label: "Total", text: "$\(total)")
 
                 Button("Delete These Gifts", role: .destructive) {
                     isConfirming = true
