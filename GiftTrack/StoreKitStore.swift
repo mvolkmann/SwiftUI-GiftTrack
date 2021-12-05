@@ -19,12 +19,8 @@ class StoreKitStore: NSObject, ObservableObject {
 
     override init() {
         super.init()
-        
         startObservingPaymentQueue()
-        
-        fetchProducts { products in
-            print("products =", products)
-        }
+        fetchProducts { _ in } // completion does nothing
     }
     
     private func buy(
@@ -52,13 +48,13 @@ class StoreKitStore: NSObject, ObservableObject {
         if let product = product {
             purchaseProduct(product)
         } else {
-            print("no product to purchase")
+            print("This is no product to purchase.")
         }
     }
     
     private func purchaseProduct(_ product: SKProduct) {
         startObservingPaymentQueue()
-        buy(product) { _ in } // no-op
+        buy(product) { _ in } // completion does nothing
     }
     
     private func startObservingPaymentQueue() {

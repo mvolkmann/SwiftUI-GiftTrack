@@ -8,7 +8,6 @@ struct PeopleView: View {
     @State private var confirmDelete = false
     @State private var deleteSet: IndexSet = IndexSet()
 
-
     @FetchRequest(
         entity: PersonEntity.entity(),
         sortDescriptors: [
@@ -42,8 +41,6 @@ struct PeopleView: View {
         NavigationView {
             Page {
                 List {
-                    // The onDelete method exists on ForEach, but not on List
-                    // because a List can include static rows.
                     ForEach(people, id: \.self) { person in
                         NavigationLink(
                             destination: PersonForm(person: person)
@@ -84,7 +81,7 @@ struct PeopleView: View {
                     .simultaneousGesture(TapGesture().onEnded {
                         if !allowMore { store.purchaseApp() }
                     })
-            }
+                }
             }
             .navigationTitle("People")
             .accentColor(settings.titleColor)

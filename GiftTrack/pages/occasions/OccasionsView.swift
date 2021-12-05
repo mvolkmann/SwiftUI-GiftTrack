@@ -33,8 +33,9 @@ struct OccasionsView: View {
         PersistenceController.shared.save()
     }
 
-    private func format(date: Date) -> String {
-        dateFormatter.string(from: date)
+    private func format(date: Date?) -> String {
+        guard let date = date else { return "" }
+        return dateFormatter.string(from: date)
     }
 
     var body: some View {
@@ -79,13 +80,13 @@ struct OccasionsView: View {
                         "Add",
                         destination: OccasionForm()
                             .environment(\.canAdd, allowMore)
-                        .simultaneousGesture(TapGesture().onEnded {
-                            if !allowMore { store.purchaseApp() }
-                        })
                     )
+                    .simultaneousGesture(TapGesture().onEnded {
+                        if !allowMore { store.purchaseApp() }
+                    })
                 }
             }
-        .navigationTitle("Occasions")
+            .navigationTitle("Occasions")
             .accentColor(settings.titleColor)
         }
         .accentColor(settings.titleColor) // navigation back link color
