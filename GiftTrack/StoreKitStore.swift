@@ -1,6 +1,9 @@
 import StoreKit
 import MapKit
 
+// This was inspired by the YouTube video
+// "SwiftUI 2.0: In-App Purchase - Getting Started From Scratch (2020)"
+// at https://www.youtube.com/watch?v=B_oVUIN7ZJQ&t=2400s
 class StoreKitStore: NSObject, ObservableObject {
     @Published var appPurchased = false
     
