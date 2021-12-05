@@ -12,8 +12,8 @@ extension EnvironmentValues {
 }
 
 struct MainView: View {
-    @StateObject var settings = Settings.shared
-    @State private var selection = 3
+    @EnvironmentObject var settings: Settings
+    @State var pageTag = 0
 
     init() {
         // These lines affect all the views and allow the
@@ -33,7 +33,7 @@ struct MainView: View {
     var body: some View {
         ZStack {
             settings.bgColor
-            TabView(selection: $selection) {
+            TabView(selection: $pageTag) {
                 AboutView().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
@@ -50,13 +50,6 @@ struct MainView: View {
                     Image(systemName: "gift")
                     Text("Gifts")
                 }.tag(3)
-                /* For testing image code.
-                 CameraView().tabItem {
-                     Image(systemName: "camera")
-                     Text("Camera")
-                 }
-                 .tag(5)
-                 */
                 SettingsView().tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
@@ -64,14 +57,15 @@ struct MainView: View {
                 .tag(4)
             }
         }
-        .environmentObject(settings)
-        // .buttonStyle(MyButtonStyle())
         .datePickerStyle(.wheel)
         // This removes the following console warning:
         // [LayoutConstraints] Unable to simultaneously satisfy constraints.
         // Probably at least one of the constraints in the following list
         // is one you don't want.
         .navigationViewStyle(StackNavigationViewStyle())
+        // Cannot set this in init because settings
+        // isn't available until body is evaluated.
+        .onAppear() { pageTag = settings.startPageTag }
     }
 }
 

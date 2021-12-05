@@ -2,6 +2,7 @@ import SwiftUI
 
 @main
 struct SwiftUI_GiftTrack: App {
+    @StateObject var settings = Settings.shared
     @StateObject private var store = StoreKitStore()
     
     @Environment(\.scenePhase) var scenePhase
@@ -12,6 +13,7 @@ struct SwiftUI_GiftTrack: App {
         WindowGroup {
             MainView()
                 .environment(\.managedObjectContext, pc.container.viewContext)
+                .environmentObject(settings)
                 .environmentObject(store)
         }
         // Automatically save when changing apps.

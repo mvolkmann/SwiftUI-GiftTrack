@@ -3,11 +3,12 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var settings: Settings
     
-    @State private var newColor: Color = .red
-    
-    func save() {
-        setData(for: "bgColor", to: settings.bgColor)
-        setData(for: "titleColor", to: settings.titleColor)
+    enum Pages: String, CaseIterable {
+        case about = "About"
+        case people = "People"
+        case occasions = "Occasions"
+        case gifts = "Gifts"
+        case settings = "Settings"
     }
     
     var body: some View {
@@ -21,18 +22,24 @@ struct SettingsView: View {
                 
                 Form {
                     VStack(spacing: 10) {
-                        ColorPicker(
-                            "Background Color",
-                            selection: $settings.bgColor
-                        )
+                        ColorPicker("Background Color", selection: $settings.bgColor)
                         
-                        ColorPicker(
-                            "Title Color",
-                            selection: $settings.titleColor
-                        )
+                        ColorPicker("Title Color", selection: $settings.titleColor)
+                        
+                        HStack {
+                            Text("Start Page")
+                            Spacer()
+                            Picker("Start Page", selection: $settings.startPageTag) {
+                                ForEach(Pages.allCases.indices) { index in
+                                    Text("\(Pages.allCases[index].rawValue)").tag(index)
+                                }
+                            }
+                            .pickerStyle(.menu)
+                        }
                         
                         Button("Reset") {
                             deleteData(for: "bgColor")
+                            deleteData(for: "startPageTag")
                             deleteData(for: "titleColor")
                             Settings.reset()
                         }
@@ -41,6 +48,5 @@ struct SettingsView: View {
                 }
             }
         }
-        .onDisappear(perform: save)
     }
 }
