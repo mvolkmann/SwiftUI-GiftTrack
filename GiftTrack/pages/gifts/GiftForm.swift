@@ -182,12 +182,12 @@ struct GiftForm: View {
                 MyTextField("Name", text: $name, edit: edit)
                 MyTextField("Description", text: $desc, edit: edit)
                 
-                if edit || $price.wrappedValue.value != "0" {
+                if edit || price.value != "0" {
                     MyTextField("Price", text: $price.value, edit: edit)
                 }
                 MyToggle("Purchased?", isOn: $purchased, edit: edit)
                 
-                if edit || !$url.wrappedValue.isEmpty {
+                if edit || !url.isEmpty {
                     HStack {
                         MyURL("Website URL", url: $url, edit: edit)
                         if edit {
@@ -205,16 +205,16 @@ struct GiftForm: View {
                 
                 Group {
                     MyPhoto("Photo", image: $image, edit: edit)
-                    if edit || !$imageUrl.wrappedValue.isEmpty {
+                    if edit || !imageUrl.isEmpty {
                         MyImageURL("Image URL", url: $imageUrl, edit: edit)
                     }
                 }
             
-                if edit || !$location.wrappedValue.isEmpty {
+                if edit || !location.isEmpty {
                     MyTextField("Location", text: $location, edit: edit)
                 }
                 
-                if edit || ($latitude.wrappedValue != 0.0 || $longitude.wrappedValue != 0.0) {
+                if edit || (latitude != 0.0 || longitude != 0.0) {
                     MyMap(
                         latitude: $latitude,
                         longitude: $longitude,
