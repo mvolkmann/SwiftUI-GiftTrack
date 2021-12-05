@@ -8,6 +8,14 @@ struct PersonForm: View {
     @State private var birthday = Date.now
     @State private var includeBirthday = false
     @State private var name = ""
+    @State private var showAlert = false
+    
+    @FetchRequest(
+        entity: PersonEntity.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
+    ) var people: FetchedResults<PersonEntity>
     
     var person: PersonEntity?
     
@@ -26,6 +34,13 @@ struct PersonForm: View {
     }
     
     private func save() {
+        if people.contains(where: {
+            $0.name?.caseInsensitiveCompare(name) == .orderedSame
+        }) {
+            showAlert = true
+            return
+        }
+        
         let adding = person == nil
         let p = adding ? PersonEntity(context: moc) : person!
         
@@ -47,6 +62,9 @@ struct PersonForm: View {
                     }
                 }
                 .buttonStyle(MyButtonStyle())
+                .navigationBarItems(
+                    trailing: Button("Done") { save() }.disabled(name.isEmpty)
+                )
             } else {
                 MyText("""
                 An in-app purchase is required to \
@@ -55,8 +73,13 @@ struct PersonForm: View {
                     .padding(.horizontal)
             }
         }
-        .navigationBarItems(
-            trailing: Button("Done") { save() }.disabled(name.isEmpty)
+        .alert(
+            "Duplicate Person",
+            isPresented: $showAlert,
+            actions: {},
+            message: {
+                Text("A person with the name \"\(name)\" already exists.")
+            }
         )
     }
 }

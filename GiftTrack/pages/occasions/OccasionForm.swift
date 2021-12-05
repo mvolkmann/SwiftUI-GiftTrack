@@ -8,6 +8,14 @@ struct OccasionForm: View {
     @State private var date = Date.now
     @State private var includeDate = false
     @State private var name = ""
+    @State private var showAlert = false
+    
+    @FetchRequest(
+        entity: OccasionEntity.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
+    ) var occasions: FetchedResults<OccasionEntity>
     
     var occasion: OccasionEntity?
     
@@ -22,6 +30,13 @@ struct OccasionForm: View {
     }
     
     private func save() {
+        if occasions.contains(where: {
+            $0.name?.caseInsensitiveCompare(name) == .orderedSame
+        }) {
+            showAlert = true
+            return
+        }
+        
         let adding = occasion == nil
         let o = adding ? OccasionEntity(context: moc) : occasion!
         
@@ -53,5 +68,13 @@ struct OccasionForm: View {
                     .padding(.horizontal)
             }
         }
+        .alert(
+            "Duplicate Occasion",
+            isPresented: $showAlert,
+            actions: {},
+            message: {
+                Text("An occasion with the name \"\(name)\" already exists.")
+            }
+        )
     }
 }
