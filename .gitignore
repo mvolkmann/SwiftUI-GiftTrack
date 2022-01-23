@@ -1,2 +1,4 @@
 GiftTrack/Secrets.xcconfig
 SwiftUI-GiftTrack-Info.plist
+.DS_Store
+
