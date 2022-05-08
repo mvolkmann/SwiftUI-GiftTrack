@@ -1,4 +1,7 @@
-import CodeScanner
+// Everything related to bar code and QR scanning is commented out.
+// It works, but it is not free to use.
+//import CodeScanner
+
 import CoreLocation
 import MapKit
 import SwiftUI
@@ -6,7 +9,7 @@ import SwiftUI
 struct GiftForm: View {
     @Environment(\.managedObjectContext) var moc
     
-    @State private var barScanError = ""
+    //@State private var barScanError = ""
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var edit = false
@@ -17,15 +20,15 @@ struct GiftForm: View {
     @State private var longitude = 0.0
     @State private var message = ""
     @State private var name = ""
-    @State private var openBarScanner = false
-    @State private var openQRScanner = false
+    //@State private var openBarScanner = false
+    //@State private var openQRScanner = false
     @State private var price = NumbersOnly(0)
     @State private var purchased = false
     @State private var region: MKCoordinateRegion = MKCoordinateRegion()
     @State private var qrScanError = ""
-    @State private var showBarScanError = false
+    //@State private var showBarScanError = false
     @State private var showMessage = false
-    @State private var showQRScanError = false
+    //@State private var showQRScanError = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var url = ""
     
@@ -76,6 +79,7 @@ struct GiftForm: View {
         location = ""
     }
     
+    /*
     func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
         self.openBarScanner = false
         
@@ -99,6 +103,7 @@ struct GiftForm: View {
             qrScanError = "QR code scan failed: \(error)"
         }
     }
+    */
     
     func loadProductData(productCode: String) {
         // This uses the UPC Database API at https://upcdatabase.org/api.
@@ -160,6 +165,7 @@ struct GiftForm: View {
     var body: some View {
         Page {
             Form {
+                /*
                 if edit {
                     HStack {
                         Text("Bar Code Scan")
@@ -178,6 +184,7 @@ struct GiftForm: View {
                         message: { Text(message) }
                     )
                 }
+                */
                 
                 MyTextField("Name", text: $name, edit: edit)
                 MyTextField("Description", text: $desc, edit: edit)
@@ -190,6 +197,7 @@ struct GiftForm: View {
                 if edit || !url.isEmpty {
                     HStack {
                         MyURL("Website URL", url: $url, edit: edit)
+                        /*
                         if edit {
                             Spacer()
                             IconButton(icon: "qrcode") { openQRScanner = true }
@@ -200,6 +208,7 @@ struct GiftForm: View {
                                     message: { Text(qrScanError) }
                                 )
                         }
+                        */
                     }
                 }
                 
@@ -238,6 +247,7 @@ struct GiftForm: View {
             }
         )
         
+        /*
         .sheet(isPresented: $openBarScanner) {
             CodeScannerView(
                 codeTypes: [.ean8, .ean13, .upce],
@@ -258,5 +268,6 @@ struct GiftForm: View {
                 }.buttonStyle(.borderedProminent)
             }
         }
+        */
     }
 }

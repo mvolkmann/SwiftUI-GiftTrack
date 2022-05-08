@@ -1,4 +1,3 @@
-import CodeScanner
 import SwiftUI
 
 struct GiftAdd: View {

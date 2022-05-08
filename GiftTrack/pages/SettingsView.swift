@@ -11,6 +11,10 @@ struct SettingsView: View {
         case settings = "Settings"
     }
     
+    init() {
+        print("indices = \(Pages.allCases.indices)")
+    }
+    
     var body: some View {
         Page {
             VStack(alignment: .leading) {
@@ -30,7 +34,7 @@ struct SettingsView: View {
                             Text("Start Page")
                             Spacer()
                             Picker("Start Page", selection: $settings.startPageTag) {
-                                ForEach(Pages.allCases.indices) { index in
+                                ForEach(Pages.allCases.indices, id: \.self) { index in
                                     Text("\(Pages.allCases[index].rawValue)").tag(index)
                                 }
                             }
