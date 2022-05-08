@@ -98,6 +98,8 @@ extension StoreKitStore: SKProductsRequestDelegate {
         didReceive response: SKProductsResponse
     ) {
         let loadedProducts = response.products
+        
+        /* Is this needed?
         let invalidProducts = response.invalidProductIdentifiers
         guard !loadedProducts.isEmpty else {
             print("failed to load products")
@@ -107,6 +109,7 @@ extension StoreKitStore: SKProductsRequestDelegate {
             productsRequest = nil
             return
         }
+        */
 
         // Cache the fetched products.
         fetchedProducts = loadedProducts

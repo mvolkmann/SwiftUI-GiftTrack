@@ -48,7 +48,7 @@
 		4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB339A227514A08006ECBFD /* NumbersOnly.swift */; };
 		4DBCBD62275565BC0024BB0E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBCBD61275565BC0024BB0E /* ImagePicker.swift */; };
 		4DBCBD662755A7DC0024BB0E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBCBD652755A7DC0024BB0E /* Image.swift */; };
-		4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* Model.xcdatamodeld */; };
+		4DF89BDA27432C13007C703E /* Model2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* Model2.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,7 +169,7 @@
 				4D6CE0B1275938FF00039CD6 /* views */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D3EA2422753C84B0010FE17 /* Main.swift */,
-				4DF89BD827432C13007C703E /* Model.xcdatamodeld */,
+				4DF89BD827432C13007C703E /* Model2.xcdatamodeld */,
 				4D6CE0BC275BD59D00039CD6 /* Configuration.storekit */,
 				4D19292F273BE60F0056653B /* Preview Content */,
 				4DA8B8372756CDAB0058688D /* Secrets.xcconfig */,
@@ -363,7 +363,7 @@
 				4D3EA247275451C10010FE17 /* UserDefaults.swift in Sources */,
 				4D6CE0BE275BE1B300039CD6 /* StoreKitStore.swift in Sources */,
 				4D19293A273BE70C0056653B /* PeopleView.swift in Sources */,
-				4DF89BDA27432C13007C703E /* Model.xcdatamodeld in Sources */,
+				4DF89BDA27432C13007C703E /* Model2.xcdatamodeld in Sources */,
 				4DBCBD662755A7DC0024BB0E /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,13 +594,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		4DF89BD827432C13007C703E /* Model.xcdatamodeld */ = {
+		4DF89BD827432C13007C703E /* Model2.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				4DF89BD927432C13007C703E /* Model.xcdatamodel */,
 			);
 			currentVersion = 4DF89BD927432C13007C703E /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			path = Model2.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
