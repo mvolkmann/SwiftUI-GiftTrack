@@ -86,6 +86,8 @@ struct GiftsView: View {
                                 occasion: occasion!
                             )
                         )
+                        // This avoids having PersonForm overlap the navigation bar.
+                        .navigationBarTitleDisplayMode(.inline)
                     }
                 }
             }

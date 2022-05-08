@@ -81,6 +81,8 @@ struct OccasionsView: View {
                         destination: OccasionForm()
                             .environment(\.canAdd, allowMore)
                     )
+                    // This avoids having PersonForm overlap the navigation bar.
+                    .navigationBarTitleDisplayMode(.inline)
                     .simultaneousGesture(TapGesture().onEnded {
                         if !allowMore { store.purchaseApp() }
                     })

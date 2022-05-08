@@ -56,7 +56,6 @@ struct PersonForm: View {
         Page {
             if canAdd {
                 Form {
-                    MyText("Can you see this?")
                     MyTextField("Name", text: $name)
                     MyToggle("Include Birthday", isOn: $includeBirthday)
                     if includeBirthday {
