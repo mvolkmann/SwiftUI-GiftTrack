@@ -11,10 +11,6 @@ struct SettingsView: View {
         case settings = "Settings"
     }
     
-    init() {
-        print("indices = \(Pages.allCases.indices)")
-    }
-    
     var body: some View {
         Page {
             VStack(alignment: .leading) {
