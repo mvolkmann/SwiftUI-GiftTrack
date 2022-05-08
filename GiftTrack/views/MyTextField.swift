@@ -7,35 +7,36 @@ struct MyTextField: View {
     @Binding private var text: String
     private let edit: Bool
     private let autocorrect: Bool
-    private let showEmpty: Bool
+    private let keyboard: UIKeyboardType
     
     init(
         _ title: String,
         text: Binding<String>,
         edit: Bool = true,
         autocorrect: Bool = true,
-        showEmpty: Bool = false
+        keyboard: UIKeyboardType = .default
     ) {
         self.title = title
         _text = text
         self.edit = edit
         self.autocorrect = autocorrect
-        self.showEmpty = showEmpty
+        self.keyboard = keyboard
     }
     
     var body: some View {
         if edit {
             HStack {
                 TextField(title, text: $text)
-                    .autocapitalization(.none)
+                    .textInputAutocapitalization(.words)
                     .disableAutocorrection(!autocorrect)
+                    .keyboardType(keyboard)
                 
                 if !text.isEmpty {
                     Spacer()
                     DeleteButton() { text = "" }
                 }
             }
-        } else if !text.isEmpty || showEmpty {
+        } else if !text.isEmpty {
             LabelledText(label: title, text: text)
         }
     }

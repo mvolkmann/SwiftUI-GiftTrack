@@ -6,18 +6,15 @@ struct MyImageURL: View {
     private let title: String
     @Binding private var url: String
     private let edit: Bool
-    private let showEmpty: Bool
 
     init(
         _ title: String,
         url: Binding<String>,
-        edit: Bool = true,
-        showEmpty: Bool = false
+        edit: Bool = true
     ) {
         self.title = title
         _url = url
         self.edit = edit
-        self.showEmpty = showEmpty
     }
 
     var body: some View {
@@ -26,22 +23,20 @@ struct MyImageURL: View {
                 TextField(title, text: $url)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
-                
+
                 if !url.isEmpty {
                     Spacer()
-                    DeleteButton() { url = "" }
+                    DeleteButton { url = "" }
                 }
             }
-        } else if url.isEmpty {
-            if showEmpty { LabelledText(label: title, text: "none") }
-        } else {
+        } else if !url.isEmpty {
             VStack(alignment: .leading) {
                 Text(url)
                 AsyncImage(url: URL(string: url)) { phase in
                     switch phase {
                     case .empty:
                         ProgressView() // spinner
-                    case .success(let image):
+                    case let .success(image):
                         image.square(size: Settings.imageSize)
                     case .failure:
                         Text("Failed to fetch image.").foregroundColor(.red)

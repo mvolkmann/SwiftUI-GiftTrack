@@ -190,7 +190,13 @@ struct GiftForm: View {
                 MyTextField("Description", text: $desc, edit: edit)
                 
                 if edit || price.value != "0" {
-                    MyTextField("Price", text: $price.value, edit: edit)
+                    MyTextField(
+                        "Price",
+                        text: $price.value,
+                        edit: edit,
+                        autocorrect: false,
+                        keyboard: .decimalPad
+                    )
                 }
                 MyToggle("Purchased?", isOn: $purchased, edit: edit)
                 

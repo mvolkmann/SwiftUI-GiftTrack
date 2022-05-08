@@ -61,7 +61,6 @@ struct MyMap: View {
     @State private var region: MKCoordinateRegion = MKCoordinateRegion()
     
     private let edit: Bool
-    private let showEmpty: Bool
     
     private let SPAN = MKCoordinateSpan(
         latitudeDelta: 0.005,
@@ -75,13 +74,11 @@ struct MyMap: View {
     init(
         latitude: Binding<Double>,
         longitude: Binding<Double>,
-        edit: Bool = true,
-        showEmpty: Bool = false
+        edit: Bool = true
     ) {
         _latitude = latitude
         _longitude = longitude
         self.edit = edit
-        self.showEmpty = showEmpty
         _region = State(initialValue: MKCoordinateRegion(center: coordinate, span: SPAN))
         _annotations = State(initialValue: [MapAnnotation(coordinate: coordinate)])
     }
@@ -145,9 +142,7 @@ struct MyMap: View {
                     Spacer()
                     DeleteButton(action: clearLocation)
                 }
-            } else if latitude == 0 || longitude == 0 {
-                if showEmpty { LabelledText(label: "Map", text: "none") }
-            } else {
+            } else if latitude != 0 || longitude != 0 {
                 Map(
                     coordinateRegion: $region,
                     annotationItems: annotations
@@ -155,7 +150,7 @@ struct MyMap: View {
                     MapPin(coordinate: annotation.coordinate, tint: .red)
                 }
                 .frame(maxWidth: .infinity, minHeight: 200)
-        }
+            }
         }
     }
 }

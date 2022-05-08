@@ -6,18 +6,15 @@ struct MyURL: View {
     private let title: String
     @Binding private var url: String
     private let edit: Bool
-    private let showEmpty: Bool
 
     init(
         _ title: String,
         url: Binding<String>,
-        edit: Bool = true,
-        showEmpty: Bool = false
+        edit: Bool = true
     ) {
         self.title = title
         _url = url
         self.edit = edit
-        self.showEmpty = showEmpty
     }
 
     var body: some View {
@@ -25,9 +22,7 @@ struct MyURL: View {
             TextField(title, text: $url)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
-        } else if url.isEmpty {
-            if showEmpty { LabelledText(label: title, text: "none") }
-        } else {
+        } else if !url.isEmpty {
             if let linkURL = URL(string: url) {
                 Link(destination: linkURL) {
                     Text("website")
