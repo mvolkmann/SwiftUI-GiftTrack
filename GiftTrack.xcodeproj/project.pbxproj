@@ -191,12 +191,13 @@
 		4D6CE0B1275938FF00039CD6 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				4D6CE0BA275A873E00039CD6 /* DeleteButton.swift */,
 				4DA8B8552757D5780058688D /* IconButton.swift */,
-				4D6CE0B8275A620100039CD6 /* LabelledText.swift */,
 				4DBCBD61275565BC0024BB0E /* ImagePicker.swift */,
+				4D6CE0B8275A620100039CD6 /* LabelledText.swift */,
 				4D3EA2442753CFC80010FE17 /* MyDatePicker.swift */,
 				4D6CE0AB275904B900039CD6 /* MyImageURL.swift */,
-				4D6CE0BA275A873E00039CD6 /* DeleteButton.swift */,
+				4D6CE0B627593D1200039CD6 /* MyMap.swift */,
 				4D6CE0A92758FDD600039CD6 /* MyPhoto.swift */,
 				4D192941273C09B20056653B /* MyText.swift */,
 				4D6CE0A32758F2D300039CD6 /* MyTextField.swift */,
@@ -204,7 +205,6 @@
 				4D6CE0A72758FBB400039CD6 /* MyURL.swift */,
 				4D192943273C0B6F0056653B /* Page.swift */,
 				4D336745274BE07600D52F01 /* TitledWheelPicker.swift */,
-				4D6CE0B627593D1200039CD6 /* MyMap.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";

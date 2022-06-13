@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct MyPhoto: View {
-    @EnvironmentObject var settings: Settings
-
     @State private var openImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     
