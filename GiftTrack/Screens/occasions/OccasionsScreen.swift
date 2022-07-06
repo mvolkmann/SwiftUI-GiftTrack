@@ -1,33 +1,34 @@
 import SwiftUI
 
-struct PeopleView: View {
+struct OccasionsScreen: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject private var settings: Settings
     @EnvironmentObject private var store: StoreKitStore
-    
+
     @State private var confirmDelete = false
     @State private var deleteSet: IndexSet = IndexSet()
-
+    
     @FetchRequest(
-        entity: PersonEntity.entity(),
+        entity: OccasionEntity.entity(),
         sortDescriptors: [
             NSSortDescriptor(key: "name", ascending: true)
         ]
-    ) var people: FetchedResults<PersonEntity>
+    ) var occasions: FetchedResults<OccasionEntity>
 
     private var dateFormatter = DateFormatter()
 
     private var allowMore: Bool {
-        store.appPurchased || people.count < 2
+        store.appPurchased || occasions.count < 2
     }
     
     init() {
-        dateFormatter.dateFormat = "M/d/yyyy"
+        // Show dates as month/day without year.
+        dateFormatter.setLocalizedDateFormatFromTemplate("M/d")
     }
 
     private func delete(indexSet: IndexSet) {
         for index in indexSet {
-            moc.delete(people[index])
+            moc.delete(occasions[index])
         }
         PersistenceController.shared.save()
     }
@@ -41,15 +42,17 @@ struct PeopleView: View {
         NavigationView {
             Page {
                 List {
-                    ForEach(people, id: \.self) { person in
+                    ForEach(occasions, id: \.self) { occasion in
                         NavigationLink(
-                            destination: PersonForm(person: person)
+                            destination: OccasionForm(occasion: occasion)
                         ) {
                             HStack {
-                                MyText(person.name ?? "")
-                                if let birthday = person.birthday {
+                                MyText(occasion.name ?? "")
+                                // TODO: See the unhelpful error messages you get
+                                // TODO: if you change occasion.date to occasion.x!
+                                if let date = occasion.date {
                                     Spacer()
-                                    MyText(format(date: birthday))
+                                    MyText(format(date: date))
                                 }
                             }
                         }
@@ -60,8 +63,8 @@ struct PeopleView: View {
                     }
                 }
                 .confirmationDialog(
-                    "Deleting this person will also delete " +
-                    "all their gifts.\nAre you sure?",
+                    "Deleting this occasion will also delete " +
+                    "all gifts for it.\nAre you sure?",
                     isPresented: $confirmDelete,
                     titleVisibility: .visible
                 ) {
@@ -75,7 +78,7 @@ struct PeopleView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(
                         "Add",
-                        destination: PersonForm()
+                        destination: OccasionForm()
                             .environment(\.canAdd, allowMore)
                     )
                     // This avoids having PersonForm overlap the navigation bar.
@@ -85,7 +88,7 @@ struct PeopleView: View {
                     })
                 }
             }
-            .navigationTitle("People")
+            .navigationTitle("Occasions")
             .accentColor(settings.titleColor)
         }
         .accentColor(settings.titleColor) // navigation back link color

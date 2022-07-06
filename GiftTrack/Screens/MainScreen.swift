@@ -12,7 +12,7 @@ extension EnvironmentValues {
     }
 }
 
-struct MainView: View {
+struct MainScreen: View {
     @EnvironmentObject var settings: Settings
     @State var pageTag = 0
 
@@ -35,23 +35,23 @@ struct MainView: View {
         ZStack {
             settings.bgColor
             TabView(selection: $pageTag) {
-                AboutView().tabItem {
+                AboutScreen().tabItem {
                     Image(systemName: "info.circle")
                     Text("About")
                 }.tag(0)
-                PeopleView().tabItem {
+                PeopleScreen().tabItem {
                     Image(systemName: "person.3.fill")
                     Text("People")
                 }.tag(1)
-                OccasionsView().tabItem {
+                OccasionsScreen().tabItem {
                     Image("christmas-tree")
                     Text("Occasions")
                 }.tag(2)
-                GiftsView().tabItem {
+                GiftsScreen().tabItem {
                     Image(systemName: "gift")
                     Text("Gifts")
                 }.tag(3)
-                SettingsView().tabItem {
+                SettingsScreen().tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
@@ -67,11 +67,5 @@ struct MainView: View {
         // Cannot set this in init because settings
         // isn't available until body is evaluated.
         .onAppear() { pageTag = settings.startPageTag }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
     }
 }

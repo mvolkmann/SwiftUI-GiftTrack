@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AboutView: View {
+struct AboutScreen: View {
     @EnvironmentObject private var settings: Settings
     @EnvironmentObject private var store: StoreKitStore
 

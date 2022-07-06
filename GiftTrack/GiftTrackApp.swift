@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct SwiftUI_GiftTrack: App {
+struct GiftTrackApp: App {
     @StateObject var settings = Settings.shared
     @StateObject private var store = StoreKitStore()
     
@@ -11,7 +11,7 @@ struct SwiftUI_GiftTrack: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainScreen()
                 .environment(\.managedObjectContext, pc.container.viewContext)
                 .environmentObject(settings)
                 .environmentObject(store)

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SettingsView: View {
+struct SettingsScreen: View {
     @EnvironmentObject var settings: Settings
     
     enum Pages: String, CaseIterable {

@@ -1,7 +1,7 @@
 import CoreData
 import SwiftUI
 
-struct GiftsView: View {
+struct GiftsScreen: View {
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var settings: Settings
 
