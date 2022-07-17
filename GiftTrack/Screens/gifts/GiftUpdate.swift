@@ -81,7 +81,7 @@ struct GiftUpdate: View {
                     )
                 }
                 .frame(height: pickerHeight + textHeight)
-                
+
                 HStack {
                     Button(mode == .move ? "Move" : "Copy") {
                         if mode == .move {

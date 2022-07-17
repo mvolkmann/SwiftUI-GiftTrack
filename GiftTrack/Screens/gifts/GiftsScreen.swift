@@ -3,7 +3,6 @@ import SwiftUI
 
 struct GiftsScreen: View {
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var settings: Settings
 
     @FetchRequest(
         entity: OccasionEntity.entity(),
@@ -42,7 +41,7 @@ struct GiftsScreen: View {
     var body: some View {
         NavigationView {
             GeometryReader { _ in
-                Page {
+                Screen {
                     HStack(spacing: padding) {
                         TitledWheelPicker(
                             title: "Person",
@@ -58,8 +57,7 @@ struct GiftsScreen: View {
                         )
                     }
                     .frame(height: pickerHeight + textHeight)
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 13)
+                    .padding(.top)
 
                     GiftsList(
                         person: person,
@@ -86,17 +84,11 @@ struct GiftsScreen: View {
                                 occasion: occasion!
                             )
                         )
-                        // This avoids having PersonForm overlap the navigation bar.
                         .navigationBarTitleDisplayMode(.inline)
                     }
                 }
             }
             .navigationBarTitle("Gifts")
-            .accentColor(settings.titleColor) // navigation links color
-        }
-        .accentColor(settings.titleColor) // navigation back link color
-        .onAppear {
-            configureNavigationTitle(color: settings.titleColor)
         }
     }
 }

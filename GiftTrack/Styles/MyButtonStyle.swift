@@ -1,17 +1,16 @@
 import SwiftUI
 
 struct MyButtonStyle: ButtonStyle {
-    @EnvironmentObject var settings: Settings
+    @AppStorage("backgroundColor") var backgroundColor: String = "Background"
+    @AppStorage("titleColor") var titleColor: String = "Title"
 
     func makeBody(configuration: Configuration) -> some View {
-        var fgColor = settings.bgColor
-        if let role = configuration.role, role == .destructive {
-            fgColor = .red
-        }
         return configuration.label
             .padding(7)
-            .background(settings.titleColor)
-            .foregroundColor(fgColor)
+            .background(
+                configuration.role == .destructive ? .red : Color(titleColor)
+            )
+            .foregroundColor(Color(UIColor.systemBackground))
             .cornerRadius(7)
     }
 }

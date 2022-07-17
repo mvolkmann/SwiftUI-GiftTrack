@@ -6,8 +6,8 @@ enum GiftMode {
 }
     
 struct GiftsList: View {
+    @AppStorage("titleColor") var titleColor: String = "Title"
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var settings: Settings
 
     @State private var isConfirming = false
 
@@ -74,11 +74,10 @@ struct GiftsList: View {
             Group {
                 if person == nil || occasion == nil {
                     Text("No people or occasions have been created yet.")
-                        .foregroundColor(settings.titleColor)
+                        .foregroundColor(Color(titleColor))
                         .padding(.top, 20)
                 } else {
                     MyText(noGifts, bold: true)
-                        .foregroundColor(settings.titleColor)
                         .padding(.top, 20)
                 }
             }
@@ -105,7 +104,9 @@ struct GiftsList: View {
                     }
                     .onDelete(perform: delete)
                 }
-                
+                .padding(.top)
+                .padding(.horizontal, -20) // removes excess space
+
                 LabelledText(label: "Total", text: "$\(total)")
 
                 Button("Delete These Gifts", role: .destructive) {
@@ -120,8 +121,8 @@ struct GiftsList: View {
                         deleteAll()
                     }
                 }
-            .buttonStyle(MyButtonStyle())
             }
+            .buttonStyle(MyButtonStyle())
         }
     }
 }

@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct MyPhoto: View {
+    // MARK: - State
+
     @State private var openImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
-    
-    private let title: String
-    @Binding private var image: UIImage?
-    private let edit: Bool
+
+    // MARK: Initializer
 
     init(
         _ title: String,
@@ -17,6 +17,16 @@ struct MyPhoto: View {
         _image = image
         self.edit = edit
     }
+
+    // MARK: - Constants
+
+    private let imageSize = 150.0
+
+    // MARK: - Properties
+
+    private let title: String
+    @Binding private var image: UIImage?
+    private let edit: Bool
 
     var body: some View {
         if edit {
@@ -34,9 +44,9 @@ struct MyPhoto: View {
                 
                 if let unwrappedImage = image {
                     Image(uiImage: unwrappedImage)
-                        .square(size: Settings.imageSize)
+                        .square(size: imageSize)
                     Spacer()
-                    DeleteButton() {
+                    DeleteButton {
                         image = nil
                         openImagePicker = false // TODO: Why needed?
                     }
@@ -49,8 +59,7 @@ struct MyPhoto: View {
             }
         } else {
             if let image = image {
-                Image(uiImage: image)
-                    .square(size: Settings.imageSize)
+                Image(uiImage: image).square(size: imageSize)
             }
         }
     }

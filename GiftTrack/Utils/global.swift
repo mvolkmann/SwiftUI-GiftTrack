@@ -9,17 +9,6 @@ func name(_ object: NSObject?) -> String {
     }
 }
 
-func configureNavigationTitle(color: Color) {
-    let uiColor = UIColor(color)
-
-    // Change color of the navigation title
-    // when displayMode is not .inline.
-    let appearance = UINavigationBar.appearance()
-    appearance.largeTitleTextAttributes = [.foregroundColor: uiColor]
-    // when displayMode is .inline.
-    appearance.titleTextAttributes = [.foregroundColor: uiColor]
-}
-
 private var dateFormatter = DateFormatter()
 
 func format(date: Date?) -> String {
@@ -28,8 +17,17 @@ func format(date: Date?) -> String {
     return dateFormatter.string(from: date)
 }
 
-extension String {
-    func trim() -> String {
-        self.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
+func navigationBarColors(foreground: Color, background: Color) {
+    let uiForeground = UIColor(foreground)
+    let appearance = UINavigationBarAppearance()
+    appearance.configureWithOpaqueBackground()
+    appearance.backgroundColor = UIColor(background)
+    appearance.titleTextAttributes = [.foregroundColor: uiForeground]
+    appearance.largeTitleTextAttributes = [.foregroundColor: uiForeground]
+
+    let target = UINavigationBar.appearance()
+    target.standardAppearance = appearance
+    target.compactAppearance = appearance
+    target.scrollEdgeAppearance = appearance
+    target.tintColor = uiForeground
 }

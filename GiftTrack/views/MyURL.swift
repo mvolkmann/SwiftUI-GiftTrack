@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct MyURL: View {
-    @EnvironmentObject var settings: Settings
-
     private let title: String
     @Binding private var url: String
     private let edit: Bool
@@ -26,7 +24,7 @@ struct MyURL: View {
             if let linkURL = URL(string: url) {
                 Link(destination: linkURL) {
                     Text("website")
-                        .foregroundColor(Color("link-color"))
+                        .foregroundColor(Color("Link"))
                         .underline()
                 }
                 .buttonStyle(.borderless)

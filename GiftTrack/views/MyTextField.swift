@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct MyTextField: View {
-    @EnvironmentObject var settings: Settings
-    
     private let title: String
     @Binding private var text: String
     private let edit: Bool
@@ -27,13 +25,14 @@ struct MyTextField: View {
         if edit {
             HStack {
                 TextField(title, text: $text)
-                    .textInputAutocapitalization(.words)
+                    //.textInputAutocapitalization(.words)
+                    .autocapitalization(.none)
                     .disableAutocorrection(!autocorrect)
                     .keyboardType(keyboard)
                 
                 if !text.isEmpty {
                     Spacer()
-                    DeleteButton() { text = "" }
+                    DeleteButton { text = "" }
                 }
             }
         } else if !text.isEmpty {

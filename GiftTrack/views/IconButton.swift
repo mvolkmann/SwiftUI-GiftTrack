@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct IconButton: View {
-    @EnvironmentObject var settings: Settings
+    @AppStorage("titleColor") var titleColor: String = "Title"
 
     private let action: () -> Void
     private let color: Color?
@@ -10,7 +10,7 @@ struct IconButton: View {
 
     init(
         icon: String,
-        size: CGFloat = Settings.iconSize,
+        size: CGFloat = 40,
         color: Color? = nil,
         action: @escaping () -> Void
     ) {
@@ -24,7 +24,7 @@ struct IconButton: View {
         Button(action: action) {
             Image(systemName: icon)
                 .size(size)
-                .foregroundColor(color ?? settings.bgColor)
+                .foregroundColor(color ?? Color(titleColor))
         }
         .buttonStyle(.borderless)
     }

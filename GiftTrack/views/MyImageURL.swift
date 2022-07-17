@@ -1,11 +1,7 @@
 import SwiftUI
 
 struct MyImageURL: View {
-    @EnvironmentObject var settings: Settings
-
-    private let title: String
-    @Binding private var url: String
-    private let edit: Bool
+    // MARK: - Initializer
 
     init(
         _ title: String,
@@ -16,6 +12,16 @@ struct MyImageURL: View {
         _url = url
         self.edit = edit
     }
+
+    // MARK: - Constants
+
+    private let imageSize = 150.0
+
+    // MARK: - Properties
+
+    private let title: String
+    @Binding private var url: String
+    private let edit: Bool
 
     var body: some View {
         if edit {
@@ -37,7 +43,7 @@ struct MyImageURL: View {
                     case .empty:
                         ProgressView() // spinner
                     case let .success(image):
-                        image.square(size: Settings.imageSize)
+                        image.square(size: imageSize)
                     case .failure:
                         Text("Failed to fetch image.").foregroundColor(.red)
                     @unknown default:

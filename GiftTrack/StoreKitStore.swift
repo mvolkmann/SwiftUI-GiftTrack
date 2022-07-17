@@ -63,7 +63,10 @@ class StoreKitStore: NSObject, ObservableObject {
 }
 
 extension StoreKitStore: SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    func paymentQueue(
+        _ queue: SKPaymentQueue,
+        updatedTransactions transactions: [SKPaymentTransaction]
+    ) {
         for transaction in transactions {
             var shouldFinishTransactions = false
             

@@ -2,7 +2,7 @@ import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
-    let container = NSPersistentContainer(name: "Model2") // cannot be private
+    let container = NSPersistentContainer(name: "CoreDataModel") // cannot be private
     //let description = persistentContainer.persistentStoreDescriptions.first
     //description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 

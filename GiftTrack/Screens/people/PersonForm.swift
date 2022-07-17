@@ -53,7 +53,7 @@ struct PersonForm: View {
     }
     
     var body: some View {
-        Page {
+        Screen {
             if canAdd {
                 Form {
                     MyTextField("Name", text: $name)
@@ -62,6 +62,8 @@ struct PersonForm: View {
                         MyDatePicker(selection: $birthday)
                     }
                 }
+                .padding(.top)
+                .padding(.horizontal, -20) // removes excess space
                 .buttonStyle(MyButtonStyle())
                 .navigationBarItems(
                     trailing: Button("Done") { save() }.disabled(name.isEmpty)
@@ -71,7 +73,7 @@ struct PersonForm: View {
                 An in-app purchase is required to \
                 create more than two people.
                 """, bold: true)
-                    .padding(.horizontal)
+                    .padding(.top)
             }
         }
         .alert(

@@ -1,20 +1,20 @@
 import SwiftUI
 
-struct Page<Content: View>: View {
-    @EnvironmentObject var settings: Settings
+struct Screen<Content: View>: View {
+    //TODO: CANNOT STORE ADAPTIVE COLORS IN AppStorage!
+    @AppStorage("backgroundColor") var backgroundColor: String = "Background"
 
     let spacing: CGFloat = 0
     @ViewBuilder let content: () -> Content
 
-    // let spacing: CGFloat = 0
-
     var body: some View {
         ZStack {
-            settings.bgColor.ignoresSafeArea()
+            Color(backgroundColor).ignoresSafeArea()
             VStack(alignment: .leading, spacing: spacing) {
                 content()
                 Spacer()
             }
+            .padding(.horizontal)
         }
     }
 }

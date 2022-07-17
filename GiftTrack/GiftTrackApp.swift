@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct GiftTrackApp: App {
-    @StateObject var settings = Settings.shared
+    // for in-app purchases
     @StateObject private var store = StoreKitStore()
     
     @Environment(\.scenePhase) var scenePhase
@@ -12,11 +12,14 @@ struct GiftTrackApp: App {
     var body: some Scene {
         WindowGroup {
             MainScreen()
+                // for Core Data
                 .environment(\.managedObjectContext, pc.container.viewContext)
-                .environmentObject(settings)
+
+                // for in-app purchases
                 .environmentObject(store)
         }
-        // Automatically save when changing apps.
-        .onChange(of: scenePhase) { _ in pc.save() }
+        .onChange(of: scenePhase) { phase in
+            if phase == .background { pc.save() }
+        }
     }
 }

@@ -49,15 +49,17 @@ struct OccasionForm: View {
     }
     
     var body: some View {
-        Page {
+        Screen {
             if canAdd {
                 Form {
                     MyTextField("Name", text: $name)
                     MyToggle("Include Date", isOn: $includeDate)
                     if includeDate {
-                        MyDatePicker(selection: $date)
+                        MyDatePicker(selection: $date, hideYear: true)
                     }
                 }
+                .padding(.top)
+                .padding(.horizontal, -20) // removes excess space
                 .navigationBarItems(
                     trailing: Button("Done") { save() }.disabled(name.isEmpty)
                 )
@@ -66,7 +68,7 @@ struct OccasionForm: View {
                 An in-app purchase is required to \
                 create more than two occasions.
                 """, bold: true)
-                    .padding(.horizontal)
+                    .padding(.top)
             }
         }
         .alert(

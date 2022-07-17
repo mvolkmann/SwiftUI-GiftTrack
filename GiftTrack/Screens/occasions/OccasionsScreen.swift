@@ -2,7 +2,6 @@ import SwiftUI
 
 struct OccasionsScreen: View {
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject private var settings: Settings
     @EnvironmentObject private var store: StoreKitStore
 
     @State private var confirmDelete = false
@@ -15,12 +14,14 @@ struct OccasionsScreen: View {
         ]
     ) var occasions: FetchedResults<OccasionEntity>
 
-    private var dateFormatter = DateFormatter()
-
     private var allowMore: Bool {
-        store.appPurchased || occasions.count < 2
+        //TODO: This temporarily makes in-app purchase unnecessary for debugging.
+        //store.appPurchased || occasions.count < 2
+        true
     }
     
+    private var dateFormatter = DateFormatter()
+
     init() {
         // Show dates as month/day without year.
         dateFormatter.setLocalizedDateFormatFromTemplate("M/d")
@@ -40,7 +41,7 @@ struct OccasionsScreen: View {
 
     var body: some View {
         NavigationView {
-            Page {
+            Screen {
                 List {
                     ForEach(occasions, id: \.self) { occasion in
                         NavigationLink(
@@ -62,6 +63,8 @@ struct OccasionsScreen: View {
                         deleteSet = indexSet
                     }
                 }
+                .padding(.top)
+                .padding(.horizontal, -20) // removes excess space
                 .confirmationDialog(
                     "Deleting this occasion will also delete " +
                     "all gifts for it.\nAre you sure?",
@@ -81,7 +84,6 @@ struct OccasionsScreen: View {
                         destination: OccasionForm()
                             .environment(\.canAdd, allowMore)
                     )
-                    // This avoids having PersonForm overlap the navigation bar.
                     .navigationBarTitleDisplayMode(.inline)
                     .simultaneousGesture(TapGesture().onEnded {
                         if !allowMore { store.purchaseApp() }
@@ -89,11 +91,6 @@ struct OccasionsScreen: View {
                 }
             }
             .navigationTitle("Occasions")
-            .accentColor(settings.titleColor)
-        }
-        .accentColor(settings.titleColor) // navigation back link color
-        .onAppear {
-            configureNavigationTitle(color: settings.titleColor)
         }
     }
 }

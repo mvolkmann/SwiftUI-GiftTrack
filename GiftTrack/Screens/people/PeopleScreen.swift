@@ -2,7 +2,6 @@ import SwiftUI
 
 struct PeopleScreen: View {
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject private var settings: Settings
     @EnvironmentObject private var store: StoreKitStore
     
     @State private var confirmDelete = false
@@ -15,12 +14,14 @@ struct PeopleScreen: View {
         ]
     ) var people: FetchedResults<PersonEntity>
 
-    private var dateFormatter = DateFormatter()
-
     private var allowMore: Bool {
-        store.appPurchased || people.count < 2
+        //TODO: This temporarily makes in-app purchase unnecessary for debugging.
+        //store.appPurchased || people.count < 2
+        true
     }
     
+    private var dateFormatter = DateFormatter()
+
     init() {
         dateFormatter.dateFormat = "M/d/yyyy"
     }
@@ -39,7 +40,7 @@ struct PeopleScreen: View {
 
     var body: some View {
         NavigationView {
-            Page {
+            Screen {
                 List {
                     ForEach(people, id: \.self) { person in
                         NavigationLink(
@@ -58,10 +59,13 @@ struct PeopleScreen: View {
                         confirmDelete = true
                         deleteSet = indexSet
                     }
+                    //.listRowBackground(.yellow)
                 }
+                .padding(.top)
+                .padding(.horizontal, -20) // removes excess space
                 .confirmationDialog(
                     "Deleting this person will also delete " +
-                    "all their gifts.\nAre you sure?",
+                    "all of their gifts.\nAre you sure?",
                     isPresented: $confirmDelete,
                     titleVisibility: .visible
                 ) {
@@ -78,7 +82,6 @@ struct PeopleScreen: View {
                         destination: PersonForm()
                             .environment(\.canAdd, allowMore)
                     )
-                    // This avoids having PersonForm overlap the navigation bar.
                     .navigationBarTitleDisplayMode(.inline)
                     .simultaneousGesture(TapGesture().onEnded {
                         if !allowMore { store.purchaseApp() }
@@ -86,11 +89,7 @@ struct PeopleScreen: View {
                 }
             }
             .navigationTitle("People")
-            .accentColor(settings.titleColor)
-        }
-        .accentColor(settings.titleColor) // navigation back link color
-        .onAppear {
-            configureNavigationTitle(color: settings.titleColor)
+            .accentColor(Color("Title"))
         }
     }
 }

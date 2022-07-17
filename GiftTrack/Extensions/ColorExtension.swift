@@ -1,10 +1,19 @@
 import SwiftUI
 
-extension Color: Codable {
+// Conforming to RawRepresentable enables storing Color values in AppStorage.
+extension Color: Codable, RawRepresentable {
     enum CodingKeys: String, CodingKey {
         case red, green, blue
     }
-        
+
+    typealias ColorTuple = (
+        red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat
+    )
+
+    public typealias RawValue = String
+
+    // MARK: - Initializers
+
     // Adds an initializer for creating a color from a single hex number
     // and an optional alpha value.
     init(_ hex: UInt, alpha: Double = 1) {
@@ -16,9 +25,9 @@ extension Color: Codable {
             opacity: alpha
         )
     }
-    
+
+    //TODO: Are you using this?
     // Decodes a color.
-    // This is used to retrieve a color from UserDefaults.
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let r = try container.decode(Double.self, forKey: .red)
@@ -27,7 +36,19 @@ extension Color: Codable {
         self.init(red: r, green: g, blue: b)
     }
 
-    var colorComponents: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+    //TODO: Do you need this?
+    public init?(rawValue: RawValue) {
+        guard let hex = UInt(rawValue[0...5]) else {
+            return nil
+        }
+        let alpha = Double(rawValue[6...7]) ?? 1
+        self.init(hex, alpha: alpha)
+    }
+
+    // MARK: - Properties
+
+    //TODO: Do you need this?
+    var colorComponents: ColorTuple {
         guard let components = UIColor(self).cgColor.components else {
             return (0, 0, 0, 0)
         }
@@ -39,8 +60,19 @@ extension Color: Codable {
         return (r, g, b, a)
     }
     
+    //TODO: Do you need this?
+    public var rawValue: String {
+        let r = String(format: "%02X", colorComponents.red)
+        let g = String(format: "%02X", colorComponents.green)
+        let b = String(format: "%02X", colorComponents.blue)
+        let a = String(format: "%02X", colorComponents.alpha)
+        return r + g + b + a
+    }
+
+    // MARK: - Methods
+
+    //TODO: Are you using this?
     // Encodes a color.
-    // This is used to save a color in UserDefaults.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(colorComponents.red, forKey: .red)

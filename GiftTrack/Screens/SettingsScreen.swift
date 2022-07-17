@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct SettingsScreen: View {
-    @EnvironmentObject var settings: Settings
-    
-    enum Pages: String, CaseIterable {
+    @AppStorage("backgroundColor") var backgroundColor: String = "Background"
+    @AppStorage("titleColor") var titleColor: String = "Title"
+    @AppStorage("startScreen") var startScreen: String = "About"
+
+    enum Screens: String, CaseIterable {
         case about = "About"
         case people = "People"
         case occasions = "Occasions"
@@ -12,40 +14,36 @@ struct SettingsScreen: View {
     }
     
     var body: some View {
-        Page {
-            VStack(alignment: .leading) {
-                Text("Settings")
-                    .font(.largeTitle)
-                    .foregroundColor(settings.titleColor)
-                    .padding(.horizontal)
-                    .padding(.bottom, 20)
-                
-                Form {
-                    VStack(spacing: 10) {
-                        ColorPicker("Background Color", selection: $settings.bgColor)
-                        
-                        ColorPicker("Title Color", selection: $settings.titleColor)
-                        
-                        HStack {
-                            Text("Start Page")
-                            Spacer()
-                            Picker("Start Page", selection: $settings.startPageTag) {
-                                ForEach(Pages.allCases.indices, id: \.self) { index in
-                                    Text("\(Pages.allCases[index].rawValue)").tag(index)
-                                }
+        Screen {
+            MyTitle("Settings")
+
+            Form {
+                VStack(spacing: 10) {
+                    //ColorPicker("Background Color", selection: $backgroundColor)
+
+                    //ColorPicker("Title Color", selection: $titleColor)
+
+                    HStack {
+                        Text("Start Page")
+                        Spacer()
+                        Picker("Start Screen", selection: $startScreen) {
+                            ForEach(Screens.allCases.indices, id: \.self) { index in
+                                let rawValue = Screens.allCases[index].rawValue
+                                Text(rawValue).tag(rawValue)
+                                    .foregroundColor(Color("Background"))
                             }
-                            .pickerStyle(.menu)
                         }
-                        
-                        Button("Reset") {
-                            deleteData(for: "bgColor")
-                            deleteData(for: "startPageTag")
-                            deleteData(for: "titleColor")
-                            Settings.reset()
-                        }
+                        .pickerStyle(.menu)
+                        .accentColor(Color("Title"))
                     }
-                    .buttonStyle(MyButtonStyle())
+
+                    Button("Reset") {
+                        backgroundColor = "Background"
+                        titleColor = "Title"
+                        startScreen = "About"
+                    }
                 }
+                .buttonStyle(MyButtonStyle())
             }
         }
     }

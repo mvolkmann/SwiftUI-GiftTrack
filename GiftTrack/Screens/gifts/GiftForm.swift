@@ -7,6 +7,7 @@ import MapKit
 import SwiftUI
 
 struct GiftForm: View {
+    // MARK: - State
     @Environment(\.managedObjectContext) var moc
     
     //@State private var barScanError = ""
@@ -34,15 +35,15 @@ struct GiftForm: View {
     
     @Binding var mode: GiftMode
     
-    private let person: PersonEntity
-    private let occasion: OccasionEntity
-    private var gift: GiftEntity?
-    
+    // MARK: - Constants
+
     private let SPAN = MKCoordinateSpan(
         latitudeDelta: 0.005,
         longitudeDelta: 0.005
     )
-    
+
+    // MARK: - Initializer
+
     init(
         person: PersonEntity,
         occasion: OccasionEntity,
@@ -55,7 +56,7 @@ struct GiftForm: View {
         self.gift = gift
         _mode = mode
         _edit = State(initialValue: mode.wrappedValue == GiftMode.add)
-        
+
         if let gift = gift {
             _desc = State(initialValue: gift.desc ?? "")
             _imageUrl = State(initialValue: gift.imageUrl ?? "")
@@ -66,13 +67,145 @@ struct GiftForm: View {
             _purchased = State(initialValue: gift.purchased)
             _price = State(initialValue: NumbersOnly(gift.price))
             _url = State(initialValue: gift.url?.absoluteString ?? "")
-            
+
             if let data = gift.image {
                 _image = State(initialValue: UIImage(data: data))
             }
         }
     }
+
+    // MARK: - Properties
+
+    private let person: PersonEntity
+    private let occasion: OccasionEntity
+    private var gift: GiftEntity?
+
+    private var barCodeView: some View {
+        /*
+        HStack {
+            Text("Bar Code Scan")
+            IconButton(icon: "barcode") { openBarScanner = true }
+        }
+        .alert(
+            "Bar Code Scan Failed",
+            isPresented: $showBarScanError,
+            actions: {}, // no custom buttons
+            message: { Text(barScanError) }
+        )
+        .alert(
+            "Barcode Lookup Failed",
+            isPresented: $showMessage,
+            actions: {}, // no custom buttons
+            message: { Text(message) }
+        )
+        */
+        EmptyView()
+    }
+
+    private var qrCodeView: some View {
+        /*
+        IconButton(icon: "qrcode") { openQRScanner = true }
+            .alert(
+                "QR Code Scan Failed",
+                isPresented: $showQRScanError,
+                actions: {}, // no custom buttons
+                message: { Text(qrScanError) }
+            )
+        */
+        EmptyView()
+    }
     
+    var body: some View {
+        Screen {
+            Form {
+                //if edit { barCodeView }
+
+                MyTextField("Name", text: $name, edit: edit)
+                MyTextField("Description", text: $desc, edit: edit)
+
+                if edit || price.value != "0" {
+                    MyTextField(
+                        "Price",
+                        text: $price.value,
+                        edit: edit,
+                        autocorrect: false,
+                        keyboard: .decimalPad
+                    )
+                }
+                MyToggle("Purchased?", isOn: $purchased, edit: edit)
+
+                if edit || !url.isEmpty {
+                    HStack {
+                        MyURL("Website URL", url: $url, edit: edit)
+                        if edit {
+                            Spacer()
+                            qrCodeView
+                        }
+                    }
+                }
+
+                Group {
+                    MyPhoto("Photo", image: $image, edit: edit)
+                    if edit || !imageUrl.isEmpty {
+                        MyImageURL("Image URL", url: $imageUrl, edit: edit)
+                    }
+                }
+
+                if edit || !location.isEmpty {
+                    MyTextField("Location", text: $location, edit: edit)
+                }
+
+                if edit || (latitude != 0.0 || longitude != 0.0) {
+                    MyMap(
+                        latitude: $latitude,
+                        longitude: $longitude,
+                        edit: edit
+                    )
+                }
+
+                ControlGroup {
+                    Button("Move") { mode = .move }
+                    Button("Copy") { mode = .copy }
+                }
+                .buttonStyle(MyButtonStyle())
+                .controlGroupStyle(.navigation)
+            }
+            .padding(.top)
+            .padding(.horizontal, -20) // removes excess space
+        }
+
+        .navigationBarItems(
+            trailing: Button(edit ? "Done" : "Edit") {
+                if edit { save() }
+                edit = !edit
+            }
+        )
+
+        /*
+        .sheet(isPresented: $openBarScanner) {
+            CodeScannerView(
+                codeTypes: [.ean8, .ean13, .upce],
+                simulatedData: "product info goes here",
+                completion: handleBarScan
+            )
+        }
+
+        .sheet(isPresented: $openQRScanner) {
+            ZStack {
+                CodeScannerView(
+                    codeTypes: [.qr],
+                    simulatedData: "https://apple.com",
+                    completion: handleQRScan
+                )
+                Button("Cancel") {
+                    openQRScanner = false
+                }.buttonStyle(.borderedProminent)
+            }
+        }
+        */
+    }
+    // MARK: - Methods
+
     func clearLocation() {
         latitude = 0
         longitude = 0
@@ -162,118 +295,4 @@ struct GiftForm: View {
         PersistenceController.shared.save()
     }
     
-    var body: some View {
-        Page {
-            Form {
-                /*
-                if edit {
-                    HStack {
-                        Text("Bar Code Scan")
-                        IconButton(icon: "barcode") { openBarScanner = true }
-                    }
-                    .alert(
-                        "Bar Code Scan Failed",
-                        isPresented: $showBarScanError,
-                        actions: {}, // no custom buttons
-                        message: { Text(barScanError) }
-                    )
-                    .alert(
-                        "Barcode Lookup Failed",
-                        isPresented: $showMessage,
-                        actions: {}, // no custom buttons
-                        message: { Text(message) }
-                    )
-                }
-                */
-                
-                MyTextField("Name", text: $name, edit: edit)
-                MyTextField("Description", text: $desc, edit: edit)
-                
-                if edit || price.value != "0" {
-                    MyTextField(
-                        "Price",
-                        text: $price.value,
-                        edit: edit,
-                        autocorrect: false,
-                        keyboard: .decimalPad
-                    )
-                }
-                MyToggle("Purchased?", isOn: $purchased, edit: edit)
-                
-                if edit || !url.isEmpty {
-                    HStack {
-                        MyURL("Website URL", url: $url, edit: edit)
-                        /*
-                        if edit {
-                            Spacer()
-                            IconButton(icon: "qrcode") { openQRScanner = true }
-                                .alert(
-                                    "QR Code Scan Failed",
-                                    isPresented: $showQRScanError,
-                                    actions: {}, // no custom buttons
-                                    message: { Text(qrScanError) }
-                                )
-                        }
-                        */
-                    }
-                }
-                
-                Group {
-                    MyPhoto("Photo", image: $image, edit: edit)
-                    if edit || !imageUrl.isEmpty {
-                        MyImageURL("Image URL", url: $imageUrl, edit: edit)
-                    }
-                }
-            
-                if edit || !location.isEmpty {
-                    MyTextField("Location", text: $location, edit: edit)
-                }
-                
-                if edit || (latitude != 0.0 || longitude != 0.0) {
-                    MyMap(
-                        latitude: $latitude,
-                        longitude: $longitude,
-                        edit: edit
-                    )
-                }
-
-                ControlGroup {
-                    Button("Move") { mode = .move }
-                    Button("Copy") { mode = .copy }
-                }
-                .buttonStyle(MyButtonStyle())
-                .controlGroupStyle(.navigation)
-            }
-        }
-        
-        .navigationBarItems(
-            trailing: Button(edit ? "Done" : "Edit") {
-                if edit { save() }
-                edit = !edit
-            }
-        )
-        
-        /*
-        .sheet(isPresented: $openBarScanner) {
-            CodeScannerView(
-                codeTypes: [.ean8, .ean13, .upce],
-                simulatedData: "product info goes here",
-                completion: handleBarScan
-            )
-        }
-        
-        .sheet(isPresented: $openQRScanner) {
-            ZStack {
-                CodeScannerView(
-                    codeTypes: [.qr],
-                    simulatedData: "https://apple.com",
-                    completion: handleQRScan
-                )
-                Button("Cancel") {
-                    openQRScanner = false
-                }.buttonStyle(.borderedProminent)
-            }
-        }
-        */
-    }
 }

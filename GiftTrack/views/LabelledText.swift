@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct LabelledText: View {
-    @EnvironmentObject var settings: Settings
-    
     let label: String
     let text: String
     
@@ -12,5 +10,6 @@ struct LabelledText: View {
             Text("\(text.isEmpty ? "none" : text)")
         }
         .font(.system(size: 20))
+        .foregroundColor(Color("Text"))
     }
 }
