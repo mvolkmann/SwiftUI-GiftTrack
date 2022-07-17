@@ -19,6 +19,7 @@ struct SettingsScreen: View {
 
             Form {
                 VStack(spacing: 10) {
+                    //TODO: Previously you were storing JSON-encoded colors in UserDefaults.
                     //ColorPicker("Background Color", selection: $backgroundColor)
 
                     //ColorPicker("Title Color", selection: $titleColor)
@@ -45,6 +46,7 @@ struct SettingsScreen: View {
                 }
                 .buttonStyle(MyButtonStyle())
             }
+            .padding(.horizontal, -20) // removes excess space
         }
     }
 }

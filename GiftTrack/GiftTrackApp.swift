@@ -2,11 +2,11 @@ import SwiftUI
 
 @main
 struct GiftTrackApp: App {
+    @Environment(\.scenePhase) var scenePhase
+
     // for in-app purchases
     @StateObject private var store = StoreKitStore()
-    
-    @Environment(\.scenePhase) var scenePhase
-    
+
     let pc = PersistenceController.shared
 
     var body: some Scene {

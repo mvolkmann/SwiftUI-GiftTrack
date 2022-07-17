@@ -5,24 +5,32 @@ import MapKit
 // "SwiftUI 2.0: In-App Purchase - Getting Started From Scratch (2020)"
 // at https://www.youtube.com/watch?v=B_oVUIN7ZJQ&t=2400s
 class StoreKitStore: NSObject, ObservableObject {
-    @Published var appPurchased = false
-    
-    var productId = "r.mark.volkmann-gmail.com.gift-track"
-
     typealias FetchCompletionHandler = ([SKProduct]) -> Void
     typealias PurchaseCompletionHandler = (SKPaymentTransaction?) -> Void
-    
-    private var fetchCompletionHandler: FetchCompletionHandler?
-    private var fetchedProducts: [SKProduct] = []
-    private var productsRequest: SKProductsRequest?
-    private var purchaseCompletionHandler: PurchaseCompletionHandler?
+
+    // MARK: - Constants
+
+    var productId = "r.mark.volkmann-gmail.com.gift-track"
+
+    // MARK: - Initializer
 
     override init() {
         super.init()
         startObservingPaymentQueue()
         fetchProducts { _ in } // completion does nothing
     }
-    
+
+    // MARK: - Properties
+
+    @Published var appPurchased = false
+
+    private var fetchCompletionHandler: FetchCompletionHandler?
+    private var fetchedProducts: [SKProduct] = []
+    private var productsRequest: SKProductsRequest?
+    private var purchaseCompletionHandler: PurchaseCompletionHandler?
+
+    // MARK: - Methods
+
     private func buy(
         _ product: SKProduct,
         completion: @escaping PurchaseCompletionHandler

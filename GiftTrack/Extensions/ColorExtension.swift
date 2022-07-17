@@ -1,6 +1,7 @@
 import SwiftUI
 
 // Conforming to RawRepresentable enables storing Color values in AppStorage.
+//TODO: Maybe conforming to RawRepresentable is no longer needed.
 extension Color: Codable, RawRepresentable {
     enum CodingKeys: String, CodingKey {
         case red, green, blue
