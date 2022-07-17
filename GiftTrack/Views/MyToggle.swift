@@ -1,8 +1,6 @@
 import SwiftUI
 
 struct MyToggle: View {
-    @EnvironmentObject var settings: Settings
-
     private let title: String
     @Binding private var isOn: Bool
     private let edit: Bool
