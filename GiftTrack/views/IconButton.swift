@@ -24,7 +24,7 @@ struct IconButton: View {
         Button(action: action) {
             Image(systemName: icon)
                 .size(size)
-                .foregroundColor(color ?? Color(titleColor))
+                .foregroundColor(color ?? Color.fromJSON(titleColor))
         }
         .buttonStyle(.borderless)
     }

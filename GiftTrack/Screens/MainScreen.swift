@@ -27,7 +27,7 @@ struct MainScreen: View {
 
     var body: some View {
         ZStack {
-            Color(backgroundColor)
+            Color.fromJSON(backgroundColor)
             TabView(selection: $screenTag) {
                 AboutScreen().tabItem {
                     Label("About", systemImage: "info.circle")

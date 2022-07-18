@@ -1,9 +1,17 @@
 import SwiftUI
 
 struct SettingsScreen: View {
+    // MARK: - State
+
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
     @AppStorage("titleColor") var titleColor: String = "Title"
     @AppStorage("startScreen") var startScreen: String = "About"
+
+    // These are both modified in the initializer.
+    @State private var selectedBackgroundColor: Color = .clear
+    @State private var selectedTitleColor: Color = .clear
+
+    // MARK: - Nested Types
 
     enum Screens: String, CaseIterable {
         case about = "About"
@@ -12,17 +20,41 @@ struct SettingsScreen: View {
         case gifts = "Gifts"
         case settings = "Settings"
     }
-    
+
+    // MARK: - Initializer
+
+    init() {
+        _selectedBackgroundColor =
+            State(initialValue: Color.fromJSON(backgroundColor))
+        _selectedTitleColor =
+            State(initialValue: Color.fromJSON(titleColor))
+    }
+
+    // MARK: - Properties
+
     var body: some View {
         Screen {
             MyTitle("Settings")
 
             Form {
                 VStack(spacing: 10) {
-                    //TODO: Previously you were storing JSON-encoded colors in UserDefaults.
-                    //ColorPicker("Background Color", selection: $backgroundColor)
+                    ColorPicker(
+                        "Background Color",
+                        selection: $selectedBackgroundColor,
+                        supportsOpacity: false
+                    )
+                        .onChange(of: selectedBackgroundColor) { _ in
+                            backgroundColor = selectedBackgroundColor.toJSON()
+                        }
 
-                    //ColorPicker("Title Color", selection: $titleColor)
+                    ColorPicker(
+                        "Title Color",
+                        selection: $selectedTitleColor,
+                        supportsOpacity: false
+                    )
+                        .onChange(of: selectedTitleColor) { _ in
+                            titleColor = selectedTitleColor.toJSON()
+                        }
 
                     HStack {
                         Text("Start Page")

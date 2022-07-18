@@ -74,7 +74,7 @@ struct GiftsList: View {
             Group {
                 if person == nil || occasion == nil {
                     Text("No people or occasions have been created yet.")
-                        .foregroundColor(Color(titleColor))
+                        .foregroundColor(Color.fromJSON(titleColor))
                         .padding(.top, 20)
                 } else {
                     MyText(noGifts, bold: true)

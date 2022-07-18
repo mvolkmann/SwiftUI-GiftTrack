@@ -33,7 +33,7 @@ struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
                 VStack(spacing: 0) {
                     Text(title)
                         .font(.title2)
-                        .foregroundColor(Color(titleColor))
+                        .foregroundColor(Color.fromJSON(titleColor))
                     Picker(title, selection: selectedIndex) {
                         ForEach(options.indices, id: \.self) { index in
                             MyText(value(options[index] as! NSObject)).tag(index)

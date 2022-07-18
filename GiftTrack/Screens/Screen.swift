@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct Screen<Content: View>: View {
-    //TODO: CANNOT STORE ADAPTIVE COLORS IN AppStorage!
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
 
     let spacing: CGFloat = 0
@@ -9,7 +8,7 @@ struct Screen<Content: View>: View {
 
     var body: some View {
         ZStack {
-            Color(backgroundColor).ignoresSafeArea()
+            Color.fromJSON(backgroundColor).ignoresSafeArea()
             VStack(alignment: .leading, spacing: spacing) {
                 content()
                 Spacer()

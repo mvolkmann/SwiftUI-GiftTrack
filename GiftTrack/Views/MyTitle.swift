@@ -13,7 +13,7 @@ struct MyTitle: View {
         Text(title)
             .font(.largeTitle)
             .fontWeight(.bold)
-            .foregroundColor(Color(titleColor))
+            .foregroundColor(Color.fromJSON(titleColor))
             .padding(.bottom, 20)
     }
 }
