@@ -1,4 +1,3 @@
-//change
 // This code came from https://www.youtube.com/watch?v=tMprUZDgAxo.
 import SwiftUI
 
