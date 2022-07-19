@@ -19,7 +19,9 @@ extension HTTPError: LocalizedError {
     }
 }
 
-struct HttpUtil {
+// This defines static methods for sending HTTP requests.
+// It is used by GiftForm.swift to load product data based on a product code.
+struct HTTPUtil {
     
     static func delete(from url: String, id: Int) async throws {
         guard let url = URL(string: "\(url)/\(id)") else {

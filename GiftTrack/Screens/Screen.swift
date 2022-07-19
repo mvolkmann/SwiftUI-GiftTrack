@@ -1,15 +1,18 @@
 import SwiftUI
 
 struct Screen<Content: View>: View {
+    // MARK: - State
+
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
 
-    let spacing: CGFloat = 0
+    // MARK: - Properties
+
     @ViewBuilder let content: () -> Content
 
     var body: some View {
         ZStack {
             Color.fromJSON(backgroundColor).ignoresSafeArea()
-            VStack(alignment: .leading, spacing: spacing) {
+            VStack(alignment: .leading) {
                 content()
                 Spacer()
             }

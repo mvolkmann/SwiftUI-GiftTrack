@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct OccasionsScreen: View {
+    // MARK: - State
+
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject private var store: StoreKitStore
 
@@ -14,31 +16,16 @@ struct OccasionsScreen: View {
         ]
     ) var occasions: FetchedResults<OccasionEntity>
 
+    // MARK: - Initializer
+
+    // MARK: - Properties
+
     private var allowMore: Bool {
         //TODO: This temporarily makes in-app purchase unnecessary for debugging.
         //store.appPurchased || occasions.count < 2
         true
     }
     
-    private var dateFormatter = DateFormatter()
-
-    init() {
-        // Show dates as month/day without year.
-        dateFormatter.setLocalizedDateFormatFromTemplate("M/d")
-    }
-
-    private func delete(indexSet: IndexSet) {
-        for index in indexSet {
-            moc.delete(occasions[index])
-        }
-        PersistenceController.shared.save()
-    }
-
-    private func format(date: Date?) -> String {
-        guard let date = date else { return "" }
-        return dateFormatter.string(from: date)
-    }
-
     var body: some View {
         NavigationView {
             Screen {
@@ -53,7 +40,7 @@ struct OccasionsScreen: View {
                                 // TODO: if you change occasion.date to occasion.x!
                                 if let date = occasion.date {
                                     Spacer()
-                                    MyText(format(date: date))
+                                    MyText(date.md)
                                 }
                             }
                         }
@@ -92,5 +79,14 @@ struct OccasionsScreen: View {
             }
             .navigationTitle("Occasions")
         }
+    }
+
+    // MARK: - Methods
+
+    private func delete(indexSet: IndexSet) {
+        for index in indexSet {
+            moc.delete(occasions[index])
+        }
+        PersistenceController.shared.save()
     }
 }

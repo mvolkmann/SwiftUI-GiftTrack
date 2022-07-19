@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct OccasionForm: View {
+    // MARK: - State
+
     @Environment(\.canAdd) var canAdd
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
@@ -17,8 +19,8 @@ struct OccasionForm: View {
         ]
     ) var occasions: FetchedResults<OccasionEntity>
     
-    var occasion: OccasionEntity?
-    
+    // MARK: - Initializer
+
     init(occasion: OccasionEntity? = nil) {
         self.occasion = occasion
         
@@ -29,25 +31,10 @@ struct OccasionForm: View {
         }
     }
     
-    private func save() {
-        let adding = occasion == nil
-        
-        if adding && occasions.contains(where: {
-            $0.name?.caseInsensitiveCompare(name) == .orderedSame
-        }) {
-            showAlert = true
-            return
-        }
-        
-        let o = adding ? OccasionEntity(context: moc) : occasion!
-        
-        o.name = name.trim()
-        o.date = includeDate ? date : nil
-        
-        PersistenceController.shared.save()
-        dismiss()
-    }
-    
+    // MARK: - Properties
+
+    var occasion: OccasionEntity?
+
     var body: some View {
         Screen {
             if canAdd {
@@ -79,5 +66,26 @@ struct OccasionForm: View {
                 Text("An occasion with the name \"\(name)\" already exists.")
             }
         )
+    }
+
+    // MARK: - Methods
+
+    private func save() {
+        let adding = occasion == nil
+
+        if adding && occasions.contains(where: {
+            $0.name?.caseInsensitiveCompare(name) == .orderedSame
+        }) {
+            showAlert = true
+            return
+        }
+
+        let o = adding ? OccasionEntity(context: moc) : occasion!
+
+        o.name = name.trim()
+        o.date = includeDate ? date : nil
+
+        PersistenceController.shared.save()
+        dismiss()
     }
 }

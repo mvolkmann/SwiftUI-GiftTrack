@@ -1,20 +1,10 @@
 import SwiftUI
 
+// Returns the value of the "name" property of a given object.
 func name(_ object: NSObject?) -> String {
-    if let object = object {
-        let v = object.value(forKey: "name") as? String
-        return v ?? "unknown"
-    } else {
-        return "nil"
-    }
-}
-
-private var dateFormatter = DateFormatter()
-
-func format(date: Date?) -> String {
-    guard let date = date else { return "" }
-    dateFormatter.dateFormat = "M/d/yyyy"
-    return dateFormatter.string(from: date)
+    guard let object = object else { return "unknown"}
+    let value = object.value(forKey: "name") as? String
+    return value ?? "unknown"
 }
 
 func navigationBarColors(foreground: Color, background: Color) {

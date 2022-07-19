@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MainScreen: View {
+    // MAIN: - State
+
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
     @AppStorage("startScreen") var startScreen: String = "About"
 
@@ -8,6 +10,8 @@ struct MainScreen: View {
 
     @State private var broughtToForeground = false
     @State private var screenTag: String = "About"
+
+    // MAIN: - Initializer
 
     init() {
         // These lines affect all the views and allow the
@@ -24,6 +28,8 @@ struct MainScreen: View {
         tva.contentInset.top = -35
         tva.contentInset.bottom = -35
     }
+
+    // MAIN: - Properties
 
     var body: some View {
         ZStack {
@@ -62,7 +68,9 @@ struct MainScreen: View {
 
             // This is triggered when the app moves to the background
             // and then returns to the foreground.
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            .onReceive(NotificationCenter.default.publisher(
+                for: UIApplication.willEnterForegroundNotification
+            )) { _ in
                 // If the color scheme changed, we need to call updateColors.
                 // But colorScheme won't be set until onAppear is called.
                 // That is why we need the broughtToForeground flag.
@@ -80,6 +88,8 @@ struct MainScreen: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
 
+    // MAIN: - Methods
+
     private func updateColors() {
         navigationBarColors(
             foreground: Color("Title"),
@@ -87,8 +97,6 @@ struct MainScreen: View {
         )
 
         // Set background color for the TabView.
-        // Calling this a second time after LoginScreen is rendered doesn't work.
-        // This is why we need "tabViewCover" when viewing LoginScreen.
         UITabBar.appearance().backgroundColor =
             UIColor(Color("Background"))
 

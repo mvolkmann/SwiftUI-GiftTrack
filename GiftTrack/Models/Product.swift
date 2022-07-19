@@ -6,7 +6,3 @@ struct Product: Codable {
     var manufacturer: String
     var title: String
 }
-
-struct Products: Codable {
-    var products: [Product]
-}

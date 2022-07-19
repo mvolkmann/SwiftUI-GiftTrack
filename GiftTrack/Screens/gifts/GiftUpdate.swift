@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct GiftUpdate: View {
+    // MARK: - State
+
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
     
@@ -22,40 +24,23 @@ struct GiftUpdate: View {
     @State private var occasionIndex = 0
     @State private var personIndex = 0
     
-    // TODO: Why does removing this line cause
-    // TODO: "Failed to produce diagnostic for expression"?
-    private let padding: CGFloat = 15
-    private let pickerHeight: CGFloat = 200
-    private let textHeight: CGFloat = 30
-    
-    var gift: GiftEntity
-    
+    // MARK: - Initializer
+
     init(personIndex: Int, occasionIndex: Int, gift: GiftEntity) {
         _personIndex = State(initialValue: personIndex)
         _occasionIndex = State(initialValue: occasionIndex)
         self.gift = gift
     }
     
-    func copy() {
-        let newGift = GiftEntity(context: moc)
-        newGift.name = gift.name
-        newGift.desc = gift.desc
-        newGift.image = gift.image
-        newGift.location = gift.location
-        newGift.price = gift.price
-        newGift.purchased = gift.purchased
-        newGift.url = gift.url
-        newGift.to = people[personIndex]
-        newGift.reason = occasions[occasionIndex]
-    }
-    
-    func move() {
-        let newPerson = people[personIndex]
-        let newOccasion = occasions[occasionIndex]
-        gift.to = newPerson
-        gift.reason = newOccasion
-    }
-    
+    // MARK: - Constants
+
+    private let pickerHeight = 200.0
+    private let textHeight = 30.0
+
+    // MARK: - Properties
+
+    private var gift: GiftEntity
+
     var body: some View {
         VStack {
             GiftForm(
@@ -64,9 +49,9 @@ struct GiftUpdate: View {
                 gift: gift,
                 mode: $mode
             )
-            
+
             if mode != .update {
-                HStack(spacing: padding) {
+                HStack(spacing: 15) {
                     TitledWheelPicker(
                         title: "Person",
                         options: people,
@@ -97,5 +82,27 @@ struct GiftUpdate: View {
                 .buttonStyle(MyButtonStyle())
             }
         }
+    }
+
+    // MARK: - Methods
+
+    func copy() {
+        let newGift = GiftEntity(context: moc)
+        newGift.name = gift.name
+        newGift.desc = gift.desc
+        newGift.image = gift.image
+        newGift.location = gift.location
+        newGift.price = gift.price
+        newGift.purchased = gift.purchased
+        newGift.url = gift.url
+        newGift.to = people[personIndex]
+        newGift.reason = occasions[occasionIndex]
+    }
+    
+    func move() {
+        let newPerson = people[personIndex]
+        let newOccasion = occasions[occasionIndex]
+        gift.to = newPerson
+        gift.reason = newOccasion
     }
 }

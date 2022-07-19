@@ -21,6 +21,7 @@ struct PersistenceController {
             do {
                 try moc.save()
             } catch {
+                //TODO: This probably should not be a fatal error.
                 fatalError("Error saving: \(error.localizedDescription)")
             }
         }

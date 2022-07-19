@@ -2,6 +2,8 @@ import CoreData
 import SwiftUI
 
 struct GiftsScreen: View {
+    // MARK: - State
+
     @Environment(\.managedObjectContext) var moc
 
     @FetchRequest(
@@ -21,9 +23,13 @@ struct GiftsScreen: View {
     @State private var occasionIndex = 0
     @State private var personIndex = 0
 
+    // MARK: - Constants
+
     private let padding: CGFloat = 15
     private let pickerHeight: CGFloat = 200
     private let textHeight: CGFloat = 30
+
+    // MARK: - Properties
 
     private var occasion: OccasionEntity? {
         occasions.isEmpty ? nil : occasions[occasionIndex]
@@ -31,11 +37,6 @@ struct GiftsScreen: View {
 
     private var person: PersonEntity? {
         people.isEmpty ? nil : people[personIndex]
-    }
-
-    func pickerWidth(_ geometry: GeometryProxy) -> CGFloat {
-        let width = geometry.size.width
-        return width == 0 ? 0 : (width - padding * 3) / 2
     }
 
     var body: some View {
@@ -90,5 +91,12 @@ struct GiftsScreen: View {
             }
             .navigationBarTitle("Gifts")
         }
+    }
+
+    // MARK: - Methods
+
+    func pickerWidth(_ geometry: GeometryProxy) -> CGFloat {
+        let width = geometry.size.width
+        return width == 0 ? 0 : (width - padding * 3) / 2
     }
 }

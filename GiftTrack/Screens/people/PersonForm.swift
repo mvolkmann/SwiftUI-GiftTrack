@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct PersonForm: View {
+    // MARK: - State
+
     @Environment(\.canAdd) var canAdd
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
@@ -17,8 +19,8 @@ struct PersonForm: View {
         ]
     ) var people: FetchedResults<PersonEntity>
     
-    var person: PersonEntity?
-    
+    // MARK: - Initializer
+
     init(person: PersonEntity? = nil) {
         self.person = person
         
@@ -33,25 +35,10 @@ struct PersonForm: View {
         }
     }
     
-    private func save() {
-        let adding = person == nil
-        
-        if adding && people.contains(where: {
-            $0.name?.caseInsensitiveCompare(name) == .orderedSame
-        }) {
-            showAlert = true
-            return
-        }
-        
-        let p = adding ? PersonEntity(context: moc) : person!
-        
-        p.name = name.trim()
-        p.birthday = includeBirthday ? birthday : nil
-        
-        PersistenceController.shared.save()
-        dismiss()
-    }
-    
+    // MARK: - Properties
+
+    var person: PersonEntity?
+
     var body: some View {
         Screen {
             if canAdd {
@@ -84,5 +71,26 @@ struct PersonForm: View {
                 Text("A person with the name \"\(name)\" already exists.")
             }
         )
+    }
+
+    // MARK: - Methods
+
+    private func save() {
+        let adding = person == nil
+
+        if adding && people.contains(where: {
+            $0.name?.caseInsensitiveCompare(name) == .orderedSame
+        }) {
+            showAlert = true
+            return
+        }
+
+        let p = adding ? PersonEntity(context: moc) : person!
+
+        p.name = name.trim()
+        p.birthday = includeBirthday ? birthday : nil
+
+        PersistenceController.shared.save()
+        dismiss()
     }
 }

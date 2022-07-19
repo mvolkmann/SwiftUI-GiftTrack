@@ -8,6 +8,7 @@ import SwiftUI
 
 struct GiftForm: View {
     // MARK: - State
+
     @Environment(\.managedObjectContext) var moc
     
     //@State private var barScanError = ""
@@ -23,6 +24,7 @@ struct GiftForm: View {
     @State private var name = ""
     //@State private var openBarScanner = false
     //@State private var openQRScanner = false
+    //TODO: Get this to remove non-digts from a TextField while typing.
     @State private var price = NumbersOnly(0)
     @State private var purchased = false
     @State private var region: MKCoordinateRegion = MKCoordinateRegion()
@@ -204,6 +206,7 @@ struct GiftForm: View {
         }
         */
     }
+
     // MARK: - Methods
 
     func clearLocation() {
@@ -248,7 +251,7 @@ struct GiftForm: View {
         
         Task(priority: .medium) {
             do {
-                let product = try await HttpUtil.get(
+                let product = try await HTTPUtil.get(
                     from: url,
                     type: Product.self
                 ) as Product
@@ -294,5 +297,4 @@ struct GiftForm: View {
         
         PersistenceController.shared.save()
     }
-    
 }

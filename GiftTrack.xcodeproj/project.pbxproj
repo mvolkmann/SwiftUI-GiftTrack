@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A11EE4D28862C2600CAD52B /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A11EE4C28862C2600CAD52B /* DateExtension.swift */; };
 		1A79034628837A940006702E /* MyTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79034528837A940006702E /* MyTitle.swift */; };
 		1AA7F63A2883832B00763FF8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F6392883832B00763FF8 /* StringExtension.swift */; };
 		1AA7F63C28838E8500763FF8 /* EnvironmentValuesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */; };
+		1AEE7138288624FD00876C7F /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE7137288624FD00876C7F /* ViewExtension.swift */; };
 		4D150CB02752766F0026C744 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D150CAF2752766F0026C744 /* SettingsScreen.swift */; };
 		4D19292A273BE60E0056653B /* GiftTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192929273BE60E0056653B /* GiftTrackApp.swift */; };
 		4D19292E273BE60F0056653B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D19292D273BE60F0056653B /* Assets.xcassets */; };
@@ -53,9 +55,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A11EE4C28862C2600CAD52B /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		1A79034528837A940006702E /* MyTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTitle.swift; sourceTree = "<group>"; };
 		1AA7F6392883832B00763FF8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtension.swift; sourceTree = "<group>"; };
+		1AEE7137288624FD00876C7F /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		4D150CAF2752766F0026C744 /* SettingsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		4D192926273BE60E0056653B /* GiftTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiftTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D192929273BE60E0056653B /* GiftTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftTrackApp.swift; sourceTree = "<group>"; };
@@ -113,12 +117,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A11EE49288627B300CAD52B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4DA8B8592757DE3A0058688D /* Product.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		4D150CAC275270780026C744 /* gifts */ = {
 			isa = PBXGroup;
 			children = (
 				4D336747274BF88000D52F01 /* GiftAdd.swift */,
 				4D88AF91274C4F70005A999F /* GiftsList.swift */,
-				4DA8B8592757DE3A0058688D /* Product.swift */,
 				4D33674B274C04D600D52F01 /* GiftUpdate.swift */,
 				4DA8B8572757D9700058688D /* GiftForm.swift */,
 				4D19293D273BE7390056653B /* GiftsScreen.swift */,
@@ -170,6 +181,7 @@
 				4DA8B8372756CDAB0058688D /* Secrets.xcconfig */,
 				4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */,
 				4D6CE0B3275939F000039CD6 /* Extensions */,
+				1A11EE49288627B300CAD52B /* Models */,
 				4D6CE0B22759391800039CD6 /* Screens */,
 				4D6CE0B527593B1F00039CD6 /* Styles */,
 				4D6CE0B427593A1F00039CD6 /* Utils */,
@@ -227,9 +239,11 @@
 			isa = PBXGroup;
 			children = (
 				4D192947273C196F0056653B /* ColorExtension.swift */,
+				1A11EE4C28862C2600CAD52B /* DateExtension.swift */,
+				1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */,
 				4DBCBD652755A7DC0024BB0E /* ImageExtension.swift */,
 				1AA7F6392883832B00763FF8 /* StringExtension.swift */,
-				1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */,
+				1AEE7137288624FD00876C7F /* ViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -330,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A79034628837A940006702E /* MyTitle.swift in Sources */,
+				1A11EE4D28862C2600CAD52B /* DateExtension.swift in Sources */,
 				4D19293C273BE72C0056653B /* OccasionsScreen.swift in Sources */,
 				4D6CE0A42758F2D300039CD6 /* MyTextField.swift in Sources */,
 				4D6CE0A82758FBB400039CD6 /* MyURL.swift in Sources */,
@@ -342,6 +357,7 @@
 				4D3EA2452753CFC80010FE17 /* MyDatePicker.swift in Sources */,
 				4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */,
 				4DA8B8362756CC950058688D /* HTTPUtil.swift in Sources */,
+				1AEE7138288624FD00876C7F /* ViewExtension.swift in Sources */,
 				4DBCBD62275565BC0024BB0E /* ImagePicker.swift in Sources */,
 				4D192938273BE6BC0056653B /* AboutScreen.swift in Sources */,
 				4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */,

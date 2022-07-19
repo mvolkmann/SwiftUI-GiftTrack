@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct PeopleScreen: View {
+    // MARK: - State
+
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject private var store: StoreKitStore
     
@@ -14,30 +16,16 @@ struct PeopleScreen: View {
         ]
     ) var people: FetchedResults<PersonEntity>
 
+    // MARK: - Initializer
+
+    // MARK: - Properties
+
     private var allowMore: Bool {
         //TODO: This temporarily makes in-app purchase unnecessary for debugging.
         //store.appPurchased || people.count < 2
         true
     }
     
-    private var dateFormatter = DateFormatter()
-
-    init() {
-        dateFormatter.dateFormat = "M/d/yyyy"
-    }
-
-    private func delete(indexSet: IndexSet) {
-        for index in indexSet {
-            moc.delete(people[index])
-        }
-        PersistenceController.shared.save()
-    }
-
-    private func format(date: Date?) -> String {
-        guard let date = date else { return "" }
-        return dateFormatter.string(from: date)
-    }
-
     var body: some View {
         NavigationView {
             Screen {
@@ -50,7 +38,7 @@ struct PeopleScreen: View {
                                 MyText(person.name ?? "")
                                 if let birthday = person.birthday {
                                     Spacer()
-                                    MyText(format(date: birthday))
+                                    MyText(birthday.mdy)
                                 }
                             }
                         }
@@ -59,7 +47,6 @@ struct PeopleScreen: View {
                         confirmDelete = true
                         deleteSet = indexSet
                     }
-                    //.listRowBackground(.yellow)
                 }
                 .padding(.top)
                 .padding(.horizontal, -20) // removes excess space
@@ -91,5 +78,14 @@ struct PeopleScreen: View {
             .navigationTitle("People")
             .accentColor(Color("Title"))
         }
+    }
+
+    // MARK: - Methods
+
+    private func delete(indexSet: IndexSet) {
+        for index in indexSet {
+            moc.delete(people[index])
+        }
+        PersistenceController.shared.save()
     }
 }

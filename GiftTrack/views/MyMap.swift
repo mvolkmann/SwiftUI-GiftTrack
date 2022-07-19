@@ -3,15 +3,23 @@ import MapKit
 import SwiftUI
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    // MARK: - Constants
+
     private var manager = CLLocationManager()
-    
+
+    // MARK: - Properties
+
     @Published var location: CLLocationCoordinate2D?
-    
+
+    // MARK: - Initializer
+
     override init() {
         super.init()
         manager.delegate = self
     }
-    
+
+    // MARK: - Methods
+
     func locationManager(
         _ manager: CLLocationManager,
         didChangeAuthorization status: CLAuthorizationStatus
@@ -47,30 +55,16 @@ struct MapAnnotation: Identifiable {
 }
 
 struct MyMap: View {
-    @StateObject var locationManager = LocationManager()
-    
-    @Binding private var latitude: Double {
-        didSet { updateMap() }
-    }
-    @Binding private var longitude: Double {
-        didSet { updateMap() }
-    }
-    
+    // MARK: - State
+
     @State private var annotations: [MapAnnotation] = []
     @State private var gettingLocation = false
     @State private var region: MKCoordinateRegion = MKCoordinateRegion()
-    
-    private let edit: Bool
-    
-    private let SPAN = MKCoordinateSpan(
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005
-    )
-    
-    private var coordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-    
+
+    @StateObject var locationManager = LocationManager()
+
+    // MARK: - Initializer
+
     init(
         latitude: Binding<Double>,
         longitude: Binding<Double>,
@@ -82,31 +76,29 @@ struct MyMap: View {
         _region = State(initialValue: MKCoordinateRegion(center: coordinate, span: SPAN))
         _annotations = State(initialValue: [MapAnnotation(coordinate: coordinate)])
     }
-    
-    func clearLocation() {
-        latitude = 0
-        longitude = 0
-        gettingLocation = false
-        //TODO: How can I force LocationManager to get the location again?
+
+    // MARK: - Constants
+
+    private let SPAN = MKCoordinateSpan(
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005
+    )
+
+    // MARK: - Properties
+
+    @Binding private var latitude: Double {
+        didSet { updateMap() }
     }
-    
-    func getText(_ location: CLLocationCoordinate2D) -> String {
-        if gettingLocation {
-            // This avoids updating state during view rendering.
-            DispatchQueue.main.async {
-                latitude = location.latitude
-                longitude = location.longitude
-            }
-        }
-        return ""
+    @Binding private var longitude: Double {
+        didSet { updateMap() }
     }
+
+    private let edit: Bool
     
-    func updateMap() {
-        if latitude == 0 || longitude == 0 { return }
-        region = MKCoordinateRegion(center: coordinate, span: SPAN)
-        annotations = [MapAnnotation(coordinate: coordinate)]
+    private var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-    
+
     var body: some View {
         HStack {
             if edit {
@@ -152,5 +144,31 @@ struct MyMap: View {
                 .frame(maxWidth: .infinity, minHeight: 200)
             }
         }
+    }
+
+    // MARK: - Methods
+    
+    func clearLocation() {
+        latitude = 0
+        longitude = 0
+        gettingLocation = false
+        //TODO: How can I force LocationManager to get the location again?
+    }
+    
+    func getText(_ location: CLLocationCoordinate2D) -> String {
+        if gettingLocation {
+            // This avoids updating state during view rendering.
+            DispatchQueue.main.async {
+                latitude = location.latitude
+                longitude = location.longitude
+            }
+        }
+        return ""
+    }
+    
+    func updateMap() {
+        if latitude == 0 || longitude == 0 { return }
+        region = MKCoordinateRegion(center: coordinate, span: SPAN)
+        annotations = [MapAnnotation(coordinate: coordinate)]
     }
 }

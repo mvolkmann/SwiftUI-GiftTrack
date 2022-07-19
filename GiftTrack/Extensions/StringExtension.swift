@@ -2,7 +2,7 @@ import Foundation
 
 extension String {
     // Handles negative indexes by counting from end of string.
-    func getOffset(_ i: Int) -> Int {
+    private func getOffset(_ i: Int) -> Int {
         let count = self.count
         var offset = i >= 0 ? i : i + count
         offset = offset < 0 ? 0 : offset > count ? count : offset
@@ -96,6 +96,7 @@ extension String {
     func substring(_ start: Int, _ end: Int) -> String {
         return self[start...end]
     }
+
     func trim() -> String {
         self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
