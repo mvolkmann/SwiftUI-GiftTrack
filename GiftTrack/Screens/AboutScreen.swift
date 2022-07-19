@@ -12,6 +12,7 @@ struct AboutScreen: View {
     var body: some View {
         Screen {
             MyTitle("Gift Track")
+                .padding(.top)
             MyText(intro, bold: true).padding(.bottom)
             MyText(
                 "To use it, follow the steps below:",
