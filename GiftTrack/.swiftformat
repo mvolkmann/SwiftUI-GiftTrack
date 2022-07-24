@@ -1,2 +1,3 @@
 --commas inline
 --disable spaceInsideComments
+--hexgrouping 2
