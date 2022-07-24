@@ -10,8 +10,8 @@ struct ImagePicker {
 
     final class Coordinator: NSObject,
         UIImagePickerControllerDelegate,
-        UINavigationControllerDelegate
-    {
+        UINavigationControllerDelegate {
+        
         var parent: ImagePicker
 
         init(_ parent: ImagePicker) {
