@@ -10,7 +10,8 @@ struct ImagePicker {
 
     final class Coordinator: NSObject,
         UIImagePickerControllerDelegate,
-        UINavigationControllerDelegate {
+        UINavigationControllerDelegate
+    {
         var parent: ImagePicker
 
         init(_ parent: ImagePicker) {
@@ -18,7 +19,7 @@ struct ImagePicker {
         }
 
         func imagePickerController(
-            _ picker: UIImagePickerController,
+            _: UIImagePickerController,
             didFinishPickingMediaWithInfo info: [InfoKey: Any]
         ) {
             if let image = info[InfoKey.originalImage] as? UIImage {
@@ -54,7 +55,7 @@ extension ImagePicker: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(
-        _ uiViewController: UIImagePickerController,
-        context: Context
+        _: UIImagePickerController,
+        context _: Context
     ) {}
 }

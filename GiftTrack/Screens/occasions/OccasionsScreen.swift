@@ -7,7 +7,7 @@ struct OccasionsScreen: View {
     @EnvironmentObject private var store: StoreKitStore
 
     @State private var confirmDelete = false
-    @State private var deleteSet: IndexSet = IndexSet()
+    @State private var deleteSet: IndexSet = .init()
 
     @FetchRequest(
         entity: OccasionEntity.entity(),
@@ -54,7 +54,7 @@ struct OccasionsScreen: View {
                 .padding(.horizontal, -20) // removes excess space
                 .confirmationDialog(
                     "Deleting this occasion will also delete " +
-                    "all gifts for it.\nAre you sure?",
+                        "all gifts for it.\nAre you sure?",
                     isPresented: $confirmDelete,
                     titleVisibility: .visible
                 ) {

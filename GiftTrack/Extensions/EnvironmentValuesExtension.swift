@@ -7,7 +7,7 @@ private struct CanAddKey: EnvironmentKey {
 
 extension EnvironmentValues {
     var canAdd: Bool {
-        get { self[CanAddKey.self]}
+        get { self[CanAddKey.self] }
         set { self[CanAddKey.self] = newValue }
     }
 }

@@ -7,7 +7,7 @@ import Foundation
 class NumbersOnly: ObservableObject {
     @Published var value = "" {
         didSet {
-            let filtered = value.filter { $0.isNumber }
+            let filtered = value.filter(\.isNumber)
             if value != filtered { value = filtered }
         }
     }

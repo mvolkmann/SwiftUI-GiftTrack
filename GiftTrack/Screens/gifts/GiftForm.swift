@@ -29,7 +29,7 @@ struct GiftForm: View {
     // TODO: Get this to remove non-digts from a TextField while typing.
     @State private var price = NumbersOnly(0)
     @State private var purchased = false
-    @State private var region: MKCoordinateRegion = MKCoordinateRegion()
+    @State private var region: MKCoordinateRegion = .init()
     @State private var qrScanError = ""
     // @State private var showBarScanError = false
     @State private var showMessage = false
@@ -86,36 +86,36 @@ struct GiftForm: View {
 
     private var barCodeView: some View {
         /*
-        HStack {
-            Text("Bar Code Scan")
-            IconButton(icon: "barcode") { openBarScanner = true }
-        }
-        .alert(
-            "Bar Code Scan Failed",
-            isPresented: $showBarScanError,
-            actions: {}, // no custom buttons
-            message: { Text(barScanError) }
-        )
-        .alert(
-            "Barcode Lookup Failed",
-            isPresented: $showMessage,
-            actions: {}, // no custom buttons
-            message: { Text(message) }
-        )
-        */
+         HStack {
+             Text("Bar Code Scan")
+             IconButton(icon: "barcode") { openBarScanner = true }
+         }
+         .alert(
+             "Bar Code Scan Failed",
+             isPresented: $showBarScanError,
+             actions: {}, // no custom buttons
+             message: { Text(barScanError) }
+         )
+         .alert(
+             "Barcode Lookup Failed",
+             isPresented: $showMessage,
+             actions: {}, // no custom buttons
+             message: { Text(message) }
+         )
+         */
         EmptyView()
     }
 
     private var qrCodeView: some View {
         /*
-        IconButton(icon: "qrcode") { openQRScanner = true }
-            .alert(
-                "QR Code Scan Failed",
-                isPresented: $showQRScanError,
-                actions: {}, // no custom buttons
-                message: { Text(qrScanError) }
-            )
-        */
+         IconButton(icon: "qrcode") { openQRScanner = true }
+             .alert(
+                 "QR Code Scan Failed",
+                 isPresented: $showQRScanError,
+                 actions: {}, // no custom buttons
+                 message: { Text(qrScanError) }
+             )
+         */
         EmptyView()
     }
 
@@ -195,27 +195,27 @@ struct GiftForm: View {
         )
 
         /*
-        .sheet(isPresented: $openBarScanner) {
-            CodeScannerView(
-                codeTypes: [.ean8, .ean13, .upce],
-                simulatedData: "product info goes here",
-                completion: handleBarScan
-            )
-        }
+         .sheet(isPresented: $openBarScanner) {
+             CodeScannerView(
+                 codeTypes: [.ean8, .ean13, .upce],
+                 simulatedData: "product info goes here",
+                 completion: handleBarScan
+             )
+         }
 
-        .sheet(isPresented: $openQRScanner) {
-            ZStack {
-                CodeScannerView(
-                    codeTypes: [.qr],
-                    simulatedData: "https://apple.com",
-                    completion: handleQRScan
-                )
-                Button("Cancel") {
-                    openQRScanner = false
-                }.buttonStyle(.borderedProminent)
-            }
-        }
-        */
+         .sheet(isPresented: $openQRScanner) {
+             ZStack {
+                 CodeScannerView(
+                     codeTypes: [.qr],
+                     simulatedData: "https://apple.com",
+                     completion: handleQRScan
+                 )
+                 Button("Cancel") {
+                     openQRScanner = false
+                 }.buttonStyle(.borderedProminent)
+             }
+         }
+         */
     }
 
     // MARK: - Methods
@@ -227,30 +227,30 @@ struct GiftForm: View {
     }
 
     /*
-    func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
-        self.openBarScanner = false
-        
-        switch result {
-        case .success(let code):
-            loadProductData(productCode: code)
-        case .failure(let error):
-            showBarScanError = true
-            qrScanError = "bar code scan failed: \(error)"
-        }
-    }
-    
-    func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
-        self.openQRScanner = false
-        
-        switch result {
-        case .success(let code):
-            url = code
-        case .failure(let error):
-            showQRScanError = true
-            qrScanError = "QR code scan failed: \(error)"
-        }
-    }
-    */
+     func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
+         self.openBarScanner = false
+
+         switch result {
+         case .success(let code):
+             loadProductData(productCode: code)
+         case .failure(let error):
+             showBarScanError = true
+             qrScanError = "bar code scan failed: \(error)"
+         }
+     }
+
+     func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
+         self.openQRScanner = false
+
+         switch result {
+         case .success(let code):
+             url = code
+         case .failure(let error):
+             showQRScanError = true
+             qrScanError = "QR code scan failed: \(error)"
+         }
+     }
+     */
 
     func loadProductData(productCode: String) {
         // This uses the UPC Database API at https://upcdatabase.org/api.

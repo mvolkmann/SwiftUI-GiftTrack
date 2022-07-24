@@ -43,18 +43,18 @@ struct SettingsScreen: View {
                         selection: $selectedBackgroundColor,
                         supportsOpacity: false
                     )
-                        .onChange(of: selectedBackgroundColor) { _ in
-                            backgroundColor = selectedBackgroundColor.toJSON()
-                        }
+                    .onChange(of: selectedBackgroundColor) { _ in
+                        backgroundColor = selectedBackgroundColor.toJSON()
+                    }
 
                     ColorPicker(
                         "Title Color",
                         selection: $selectedTitleColor,
                         supportsOpacity: false
                     )
-                        .onChange(of: selectedTitleColor) { _ in
-                            titleColor = selectedTitleColor.toJSON()
-                        }
+                    .onChange(of: selectedTitleColor) { _ in
+                        titleColor = selectedTitleColor.toJSON()
+                    }
 
                     HStack {
                         Text("Start Page")

@@ -70,12 +70,12 @@ struct GiftsScreen: View {
             }
             .toolbar {
                 /*
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                }
-                */
+                 ToolbarItem(placement: .navigationBarLeading) {
+                     EditButton()
+                 }
+                 */
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if person != nil && occasion != nil {
+                    if person != nil, occasion != nil {
                         NavigationLink(
                             "Add",
                             destination: GiftAdd(

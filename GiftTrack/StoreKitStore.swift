@@ -1,5 +1,5 @@
-import StoreKit
 import MapKit
+import StoreKit
 
 // This was inspired by the YouTube video
 // "SwiftUI 2.0: In-App Purchase - Getting Started From Scratch (2020)"
@@ -72,7 +72,7 @@ class StoreKitStore: NSObject, ObservableObject {
 
 extension StoreKitStore: SKPaymentTransactionObserver {
     func paymentQueue(
-        _ queue: SKPaymentQueue,
+        _: SKPaymentQueue,
         updatedTransactions transactions: [SKPaymentTransaction]
     ) {
         for transaction in transactions {
@@ -99,27 +99,26 @@ extension StoreKitStore: SKPaymentTransactionObserver {
             }
         }
     }
-
 }
 
 extension StoreKitStore: SKProductsRequestDelegate {
     func productsRequest(
-        _ request: SKProductsRequest,
+        _: SKProductsRequest,
         didReceive response: SKProductsResponse
     ) {
         let loadedProducts = response.products
 
         /* Is this needed?
-        let invalidProducts = response.invalidProductIdentifiers
-        guard !loadedProducts.isEmpty else {
-            print("failed to load products")
-            if !invalidProducts.isEmpty {
-                print("invalid products found: \(invalidProducts)")
-            }
-            productsRequest = nil
-            return
-        }
-        */
+         let invalidProducts = response.invalidProductIdentifiers
+         guard !loadedProducts.isEmpty else {
+             print("failed to load products")
+             if !invalidProducts.isEmpty {
+                 print("invalid products found: \(invalidProducts)")
+             }
+             productsRequest = nil
+             return
+         }
+         */
 
         // Cache the fetched products.
         fetchedProducts = loadedProducts

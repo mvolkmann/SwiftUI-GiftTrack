@@ -78,7 +78,7 @@ struct PersonForm: View {
     private func save() {
         let adding = person == nil
 
-        if adding && people.contains(where: {
+        if adding, people.contains(where: {
             $0.name?.caseInsensitiveCompare(name) == .orderedSame
         }) {
             showAlert = true

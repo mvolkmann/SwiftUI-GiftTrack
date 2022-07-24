@@ -25,14 +25,14 @@ struct AboutScreen: View {
 
             if !store.appPurchased {
                 MyText("""
-                     \nYou are using the free version of the app \
-                     which is limited to tracking gifts for \
-                     two people and two occasions. \
-                     If you attempt to add more people or occasions, \
-                     you will be prompted to make an in-app purchase \
-                     which enables tracking gifts for an \
-                     unlimited number of people and occasions.
-                     """)
+                \nYou are using the free version of the app \
+                which is limited to tracking gifts for \
+                two people and two occasions. \
+                If you attempt to add more people or occasions, \
+                you will be prompted to make an in-app purchase \
+                which enables tracking gifts for an \
+                unlimited number of people and occasions.
+                """)
             }
         }
     }

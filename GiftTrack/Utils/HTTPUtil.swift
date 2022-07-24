@@ -9,7 +9,7 @@ enum HTTPError: Error {
 extension HTTPError: LocalizedError {
     public var message: String? {
         switch self {
-        case .badStatus(let status):
+        case let .badStatus(status):
             return "bad status \(status)"
         case .badUrl:
             return "bad URL"
@@ -21,8 +21,7 @@ extension HTTPError: LocalizedError {
 
 // This defines static methods for sending HTTP requests.
 // It is used by GiftForm.swift to load product data based on a product code.
-struct HTTPUtil {
-
+enum HTTPUtil {
     static func delete(from url: String, id: Int) async throws {
         guard let url = URL(string: "\(url)/\(id)") else {
             throw HTTPError.badUrl
@@ -59,7 +58,7 @@ struct HTTPUtil {
         with data: T,
         type: U.Type
     ) async throws -> U where T: Encodable, U: Decodable {
-        return try await httpWithBody(to: url, method: "POST", with: data, type: type)
+        try await httpWithBody(to: url, method: "POST", with: data, type: type)
     }
 
     static func put<T, U>(
@@ -67,7 +66,7 @@ struct HTTPUtil {
         with data: T,
         type: U.Type
     ) async throws -> U where T: Encodable, U: Decodable {
-        return try await httpWithBody(to: url, method: "PUT", with: data, type: type)
+        try await httpWithBody(to: url, method: "PUT", with: data, type: type)
     }
 
     private static func httpWithBody<T, U>(

@@ -34,7 +34,7 @@ struct GiftsList: View {
             name(person),
             name(occasion)
         )
-        self.request = FetchRequest<GiftEntity>(
+        request = FetchRequest<GiftEntity>(
             entity: GiftEntity.entity(),
             sortDescriptors: sortDescriptors,
             predicate: predicate

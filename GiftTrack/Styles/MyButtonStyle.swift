@@ -4,7 +4,7 @@ struct MyButtonStyle: ButtonStyle {
     @AppStorage("titleColor") var titleColor: String = "Title"
 
     func makeBody(configuration: Configuration) -> some View {
-        return configuration.label
+        configuration.label
             .padding(7)
             .background(
                 configuration.role == .destructive ?

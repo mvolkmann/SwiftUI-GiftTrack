@@ -7,7 +7,7 @@ struct PeopleScreen: View {
     @EnvironmentObject private var store: StoreKitStore
 
     @State private var confirmDelete = false
-    @State private var deleteSet: IndexSet = IndexSet()
+    @State private var deleteSet: IndexSet = .init()
 
     @FetchRequest(
         entity: PersonEntity.entity(),
@@ -52,7 +52,7 @@ struct PeopleScreen: View {
                 .padding(.horizontal, -20) // removes excess space
                 .confirmationDialog(
                     "Deleting this person will also delete " +
-                    "all of their gifts.\nAre you sure?",
+                        "all of their gifts.\nAre you sure?",
                     isPresented: $confirmDelete,
                     titleVisibility: .visible
                 ) {

@@ -73,7 +73,7 @@ struct OccasionForm: View {
     private func save() {
         let adding = occasion == nil
 
-        if adding && occasions.contains(where: {
+        if adding, occasions.contains(where: {
             $0.name?.caseInsensitiveCompare(name) == .orderedSame
         }) {
             showAlert = true

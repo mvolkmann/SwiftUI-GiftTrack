@@ -30,14 +30,14 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func locationManager(
-        _ manager: CLLocationManager,
+        _: CLLocationManager,
         didFailWithError error: Swift.Error
     ) {
         print("LocationManager error: \(error.localizedDescription)")
     }
 
     func locationManager(
-        _ manager: CLLocationManager,
+        _: CLLocationManager,
         didUpdateLocations locations: [CLLocation]
     ) {
         // This triggers the @Publish above.
@@ -59,7 +59,7 @@ struct MyMap: View {
 
     @State private var annotations: [MapAnnotation] = []
     @State private var gettingLocation = false
-    @State private var region: MKCoordinateRegion = MKCoordinateRegion()
+    @State private var region: MKCoordinateRegion = .init()
 
     @StateObject var locationManager = LocationManager()
 
@@ -89,6 +89,7 @@ struct MyMap: View {
     @Binding private var latitude: Double {
         didSet { updateMap() }
     }
+
     @Binding private var longitude: Double {
         didSet { updateMap() }
     }
