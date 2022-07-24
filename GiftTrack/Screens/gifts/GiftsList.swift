@@ -4,7 +4,7 @@ import SwiftUI
 enum GiftMode {
     case add, copy, move, update
 }
-    
+
 struct GiftsList: View {
     // MARK: - State
 

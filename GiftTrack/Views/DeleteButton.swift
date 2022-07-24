@@ -2,7 +2,7 @@ import SwiftUI
 
 struct DeleteButton: View {
     let action: () -> Void
-    
+
     var body: some View {
         IconButton(
             icon: "xmark.circle.fill",

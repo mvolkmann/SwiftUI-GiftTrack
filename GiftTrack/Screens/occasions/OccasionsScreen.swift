@@ -8,7 +8,7 @@ struct OccasionsScreen: View {
 
     @State private var confirmDelete = false
     @State private var deleteSet: IndexSet = IndexSet()
-    
+
     @FetchRequest(
         entity: OccasionEntity.entity(),
         sortDescriptors: [
@@ -21,11 +21,11 @@ struct OccasionsScreen: View {
     // MARK: - Properties
 
     private var allowMore: Bool {
-        //TODO: This temporarily makes in-app purchase unnecessary for debugging.
-        //store.appPurchased || occasions.count < 2
+        // TODO: This temporarily makes in-app purchase unnecessary for debugging.
+        // store.appPurchased || occasions.count < 2
         true
     }
-    
+
     var body: some View {
         NavigationView {
             Screen {
@@ -40,12 +40,12 @@ struct OccasionsScreen: View {
                                 // TODO: if you change occasion.date to occasion.x!
                                 if let date = occasion.date {
                                     Spacer()
-                                    MyText(date.md)
+                                    MyText(date.monthDay)
                                 }
                             }
                         }
                     }
-                    .onDelete() { indexSet in
+                    .onDelete { indexSet in
                         confirmDelete = true
                         deleteSet = indexSet
                     }
@@ -64,7 +64,7 @@ struct OccasionsScreen: View {
                 }
             }
             .toolbar {
-                //ToolbarItem(placement: .navigationBarLeading) { EditButton() }
+                // ToolbarItem(placement: .navigationBarLeading) { EditButton() }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(
                         "Add",

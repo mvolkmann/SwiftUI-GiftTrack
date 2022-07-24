@@ -41,7 +41,7 @@ struct MyPhoto: View {
                         openImagePicker = true
                     }
                 }
-                
+
                 if let unwrappedImage = image {
                     Image(uiImage: unwrappedImage)
                         .square(size: imageSize)

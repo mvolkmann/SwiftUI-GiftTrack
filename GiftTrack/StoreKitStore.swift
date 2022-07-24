@@ -50,7 +50,7 @@ class StoreKitStore: NSObject, ObservableObject {
         productsRequest?.delegate = self
         productsRequest?.start()
     }
-    
+
     func purchaseApp() {
         let product = fetchedProducts.first
         if let product = product {
@@ -59,12 +59,12 @@ class StoreKitStore: NSObject, ObservableObject {
             print("This is no product to purchase.")
         }
     }
-    
+
     private func purchaseProduct(_ product: SKProduct) {
         startObservingPaymentQueue()
         buy(product) { _ in } // completion does nothing
     }
-    
+
     private func startObservingPaymentQueue() {
         SKPaymentQueue.default().add(self)
     }
@@ -77,7 +77,7 @@ extension StoreKitStore: SKPaymentTransactionObserver {
     ) {
         for transaction in transactions {
             var shouldFinishTransactions = false
-            
+
             switch transaction.transactionState {
             case .failed:
                 shouldFinishTransactions = true
@@ -89,7 +89,7 @@ extension StoreKitStore: SKPaymentTransactionObserver {
             default:
                 break
             }
-            
+
             if shouldFinishTransactions {
                 SKPaymentQueue.default().finishTransaction(transaction)
                 DispatchQueue.main.async {
@@ -99,8 +99,7 @@ extension StoreKitStore: SKPaymentTransactionObserver {
             }
         }
     }
-    
-    
+
 }
 
 extension StoreKitStore: SKProductsRequestDelegate {
@@ -109,7 +108,7 @@ extension StoreKitStore: SKProductsRequestDelegate {
         didReceive response: SKProductsResponse
     ) {
         let loadedProducts = response.products
-        
+
         /* Is this needed?
         let invalidProducts = response.invalidProductIdentifiers
         guard !loadedProducts.isEmpty else {

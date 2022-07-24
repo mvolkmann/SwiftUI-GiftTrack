@@ -4,7 +4,7 @@ extension Image {
     func circle(diameter: CGFloat) -> some View {
         self
             .resizable()
-            .scaledToFill() //TODO: needed?
+            .scaledToFill() // TODO: needed?
             .frame(width: diameter, height: diameter)
             .clipShape(Circle())
     }

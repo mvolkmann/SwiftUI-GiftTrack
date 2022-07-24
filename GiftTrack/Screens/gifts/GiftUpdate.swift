@@ -5,25 +5,25 @@ struct GiftUpdate: View {
 
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
-    
+
     @FetchRequest(
         entity: OccasionEntity.entity(),
         sortDescriptors: [
             NSSortDescriptor(key: "name", ascending: true)
         ]
     ) var occasions: FetchedResults<OccasionEntity>
-    
+
     @FetchRequest(
         entity: PersonEntity.entity(),
         sortDescriptors: [
             NSSortDescriptor(key: "name", ascending: true)
         ]
     ) var people: FetchedResults<PersonEntity>
-    
+
     @State private var mode = GiftMode.update
     @State private var occasionIndex = 0
     @State private var personIndex = 0
-    
+
     // MARK: - Initializer
 
     init(personIndex: Int, occasionIndex: Int, gift: GiftEntity) {
@@ -31,7 +31,7 @@ struct GiftUpdate: View {
         _occasionIndex = State(initialValue: occasionIndex)
         self.gift = gift
     }
-    
+
     // MARK: - Constants
 
     private let pickerHeight = 200.0
@@ -98,7 +98,7 @@ struct GiftUpdate: View {
         newGift.to = people[personIndex]
         newGift.reason = occasions[occasionIndex]
     }
-    
+
     func move() {
         let newPerson = people[personIndex]
         let newOccasion = occasions[occasionIndex]

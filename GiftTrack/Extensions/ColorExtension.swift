@@ -14,10 +14,10 @@ extension Color: Codable {
     // Decodes a color.
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let r = try container.decode(Double.self, forKey: .red)
-        let g = try container.decode(Double.self, forKey: .green)
-        let b = try container.decode(Double.self, forKey: .blue)
-        self.init(red: r, green: g, blue: b)
+        let red = try container.decode(Double.self, forKey: .red)
+        let green = try container.decode(Double.self, forKey: .green)
+        let blue = try container.decode(Double.self, forKey: .blue)
+        self.init(red: red, green: green, blue: blue)
     }
 
     // MARK: - Properties
@@ -26,12 +26,12 @@ extension Color: Codable {
         guard let components = UIColor(self).cgColor.components else {
             return (0, 0, 0, 0)
         }
-        
-        let r = components[0]
-        let g = components[1]
-        let b = components[2]
-        let a = components[3]
-        return (r, g, b, a)
+
+        let red = components[0]
+        let green = components[1]
+        let blue = components[2]
+        let alpha = components[3]
+        return (red, green, blue, alpha)
     }
 
     // MARK: - Methods
@@ -50,12 +50,22 @@ extension Color: Codable {
         }
 
         let data = json.data(using: .utf8)!
-        return try! JSONDecoder().decode(Color.self, from: data)
+        do {
+            return try JSONDecoder().decode(Color.self, from: data)
+        } catch {
+            print("Color.fromJSON failed: \(error)")
+            return .clear
+        }
     }
 
     func toJSON() -> String {
         let encoder = JSONEncoder()
-        let data = try! encoder.encode(self)
-        return String(data: data, encoding: .utf8)!
+        do {
+            let data = try encoder.encode(self)
+            return String(data: data, encoding: .utf8)!
+        } catch {
+            print("Color.toJSON failed: \(error)")
+            return ""
+        }
     }
 }

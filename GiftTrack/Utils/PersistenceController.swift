@@ -3,8 +3,8 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
     let container = NSPersistentContainer(name: "CoreDataModel") // cannot be private
-    //let description = persistentContainer.persistentStoreDescriptions.first
-    //description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+    // let description = persistentContainer.persistentStoreDescriptions.first
+    // description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
 
     init() {
         // Load from Core Data.
@@ -21,7 +21,7 @@ struct PersistenceController {
             do {
                 try moc.save()
             } catch {
-                //TODO: This probably should not be a fatal error.
+                // TODO: This probably should not be a fatal error.
                 fatalError("Error saving: \(error.localizedDescription)")
             }
         }

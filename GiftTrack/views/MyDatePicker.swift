@@ -16,7 +16,7 @@ struct MyDatePicker: View {
                 selection: selection,
                 displayedComponents: .date
             ).padding(.leading, -30)
-            
+
             if hideYear {
                 HStack {
                     Spacer()

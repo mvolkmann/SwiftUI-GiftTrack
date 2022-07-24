@@ -17,7 +17,6 @@ struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
     // MARK: - Properties
 
     let title: String
-    // let options: [T]
     let options: FetchedResults<T>
     let property: String
     let selectedIndex: Binding<Int>
@@ -32,7 +31,9 @@ struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
                         .foregroundColor(Color.fromJSON(titleColor))
                     Picker(title, selection: selectedIndex) {
                         ForEach(options.indices, id: \.self) { index in
-                            MyText(value(options[index] as! NSObject)).tag(index)
+                            if let option = options[index] as? NSObject {
+                                MyText(value(option)).tag(index)
+                            }
                         }
                     }
                     .frame(width: pickerWidth(geometry), height: pickerHeight)
@@ -52,7 +53,7 @@ struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
     }
 
     func value(_ object: NSObject) -> String {
-        let v = object.value(forKey: property) as? String
-        return v ?? ""
+        let val = object.value(forKey: property) as? String
+        return val ?? ""
     }
 }

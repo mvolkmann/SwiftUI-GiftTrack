@@ -5,7 +5,7 @@ struct PeopleScreen: View {
 
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject private var store: StoreKitStore
-    
+
     @State private var confirmDelete = false
     @State private var deleteSet: IndexSet = IndexSet()
 
@@ -21,11 +21,11 @@ struct PeopleScreen: View {
     // MARK: - Properties
 
     private var allowMore: Bool {
-        //TODO: This temporarily makes in-app purchase unnecessary for debugging.
-        //store.appPurchased || people.count < 2
+        // TODO: This temporarily makes in-app purchase unnecessary for debugging.
+        // store.appPurchased || people.count < 2
         true
     }
-    
+
     var body: some View {
         NavigationView {
             Screen {
@@ -38,12 +38,12 @@ struct PeopleScreen: View {
                                 MyText(person.name ?? "")
                                 if let birthday = person.birthday {
                                     Spacer()
-                                    MyText(birthday.mdy)
+                                    MyText(birthday.monthDayYear)
                                 }
                             }
                         }
                     }
-                    .onDelete() { indexSet in
+                    .onDelete { indexSet in
                         confirmDelete = true
                         deleteSet = indexSet
                     }
@@ -62,7 +62,7 @@ struct PeopleScreen: View {
                 }
             }
             .toolbar {
-                //ToolbarItem(placement: .navigationBarLeading) { EditButton() }
+                // ToolbarItem(placement: .navigationBarLeading) { EditButton() }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(
                         "Add",

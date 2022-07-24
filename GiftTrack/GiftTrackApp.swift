@@ -7,19 +7,22 @@ struct GiftTrackApp: App {
     // for in-app purchases
     @StateObject private var store = StoreKitStore()
 
-    let pc = PersistenceController.shared
+    let pCtrl = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
             MainScreen()
                 // for Core Data
-                .environment(\.managedObjectContext, pc.container.viewContext)
+                .environment(
+                    \.managedObjectContext,
+                    pCtrl.container.viewContext
+                )
 
                 // for in-app purchases
                 .environmentObject(store)
         }
         .onChange(of: scenePhase) { phase in
-            if phase == .background { pc.save() }
+            if phase == .background { pCtrl.save() }
         }
     }
 }

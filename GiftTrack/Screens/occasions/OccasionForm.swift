@@ -6,31 +6,31 @@ struct OccasionForm: View {
     @Environment(\.canAdd) var canAdd
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
-    
+
     @State private var date = Date.now
     @State private var includeDate = false
     @State private var name = ""
     @State private var showAlert = false
-    
+
     @FetchRequest(
         entity: OccasionEntity.entity(),
         sortDescriptors: [
             NSSortDescriptor(key: "name", ascending: true)
         ]
     ) var occasions: FetchedResults<OccasionEntity>
-    
+
     // MARK: - Initializer
 
     init(occasion: OccasionEntity? = nil) {
         self.occasion = occasion
-        
+
         if let occasion = occasion {
             _name = State(initialValue: occasion.name ?? "")
             _date = State(initialValue: occasion.date ?? Date.now)
             _includeDate = State(initialValue: occasion.date != nil)
         }
     }
-    
+
     // MARK: - Properties
 
     var occasion: OccasionEntity?
@@ -39,7 +39,7 @@ struct OccasionForm: View {
         Screen {
             if canAdd {
                 Form {
-                    MyTextField("Name", text: $name)
+                    MyTextField("Name", text: $name, capitalizationType: .words)
                     MyToggle("Include Date", isOn: $includeDate)
                     if includeDate {
                         MyDatePicker(selection: $date, hideYear: true)
@@ -80,10 +80,10 @@ struct OccasionForm: View {
             return
         }
 
-        let o = adding ? OccasionEntity(context: moc) : occasion!
+        let toSave = adding ? OccasionEntity(context: moc) : occasion!
 
-        o.name = name.trim()
-        o.date = includeDate ? date : nil
+        toSave.name = name.trim()
+        toSave.date = includeDate ? date : nil
 
         PersistenceController.shared.save()
         dismiss()

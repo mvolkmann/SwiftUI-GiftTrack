@@ -6,17 +6,16 @@ struct ImagePicker {
 
     // MARK: - Nested Types
 
+    typealias InfoKey = UIImagePickerController.InfoKey
+
     final class Coordinator: NSObject,
         UIImagePickerControllerDelegate,
-        UINavigationControllerDelegate
-    {
+        UINavigationControllerDelegate {
         var parent: ImagePicker
 
         init(_ parent: ImagePicker) {
             self.parent = parent
         }
-
-        typealias InfoKey = UIImagePickerController.InfoKey
 
         func imagePickerController(
             _ picker: UIImagePickerController,

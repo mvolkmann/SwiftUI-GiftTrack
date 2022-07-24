@@ -22,7 +22,7 @@ extension HTTPError: LocalizedError {
 // This defines static methods for sending HTTP requests.
 // It is used by GiftForm.swift to load product data based on a product code.
 struct HTTPUtil {
-    
+
     static func delete(from url: String, id: Int) async throws {
         guard let url = URL(string: "\(url)/\(id)") else {
             throw HTTPError.badUrl
@@ -31,12 +31,12 @@ struct HTTPUtil {
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         let (_, res) = try await URLSession.shared.data(for: request)
-        
+
         if let res = res as? HTTPURLResponse, res.statusCode != 200 {
             throw HTTPError.badStatus(status: res.statusCode)
         }
     }
-    
+
     static func get<T>(
         from url: String,
         type: T.Type
@@ -50,7 +50,7 @@ struct HTTPUtil {
             print("HTTPUtil.get: res.statusCode =", res.statusCode)
             throw HTTPError.badStatus(status: res.statusCode)
         }
-        
+
         return try JSONDecoder().decode(type, from: data)
     }
 
@@ -87,13 +87,13 @@ struct HTTPUtil {
         var request = URLRequest(url: url)
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+
         let (data, res) = try await URLSession.shared.upload(for: request, from: json)
-        
+
         if let res = res as? HTTPURLResponse, res.statusCode != 200 {
             throw HTTPError.badStatus(status: res.statusCode)
         }
-        
+
         return try JSONDecoder().decode(type, from: data)
     }
 }

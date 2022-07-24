@@ -1,6 +1,6 @@
 // Everything related to bar code and QR scanning is commented out.
 // It works, but it is not free to use.
-//import CodeScanner
+// import CodeScanner
 
 import CoreLocation
 import MapKit
@@ -10,33 +10,35 @@ struct GiftForm: View {
     // MARK: - State
 
     @Environment(\.managedObjectContext) var moc
-    
-    //@State private var barScanError = ""
+
+    @FocusState private var showKeyboard: Bool
+
+    // @State private var barScanError = ""
     // Core Data won't allow an attribute to be named "description".
     @State private var desc = ""
     @State private var edit = false
-    @State private var image: UIImage? = nil
+    @State private var image: UIImage?
     @State private var imageUrl = ""
     @State private var latitude = 0.0
     @State private var location = ""
     @State private var longitude = 0.0
     @State private var message = ""
     @State private var name = ""
-    //@State private var openBarScanner = false
-    //@State private var openQRScanner = false
-    //TODO: Get this to remove non-digts from a TextField while typing.
+    // @State private var openBarScanner = false
+    // @State private var openQRScanner = false
+    // TODO: Get this to remove non-digts from a TextField while typing.
     @State private var price = NumbersOnly(0)
     @State private var purchased = false
     @State private var region: MKCoordinateRegion = MKCoordinateRegion()
     @State private var qrScanError = ""
-    //@State private var showBarScanError = false
+    // @State private var showBarScanError = false
     @State private var showMessage = false
-    //@State private var showQRScanError = false
+    // @State private var showQRScanError = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var url = ""
-    
+
     @Binding var mode: GiftMode
-    
+
     // MARK: - Constants
 
     private let SPAN = MKCoordinateSpan(
@@ -52,7 +54,7 @@ struct GiftForm: View {
         gift: GiftEntity? = nil,
         mode: Binding<GiftMode>
     ) {
-        //TODO: Why is this called 4 times when an existing gift is tapped?
+        // TODO: Why is this called 4 times when an existing gift is tapped?
         self.person = person
         self.occasion = occasion
         self.gift = gift
@@ -116,14 +118,16 @@ struct GiftForm: View {
         */
         EmptyView()
     }
-    
+
     var body: some View {
         Screen {
             Form {
-                //if edit { barCodeView }
+                // if edit { barCodeView }
 
                 MyTextField("Name", text: $name, edit: edit)
+                    .focused($showKeyboard)
                 MyTextField("Description", text: $desc, edit: edit)
+                    .focused($showKeyboard)
 
                 if edit || price.value != "0" {
                     MyTextField(
@@ -133,6 +137,7 @@ struct GiftForm: View {
                         autocorrect: false,
                         keyboard: .decimalPad
                     )
+                    .focused($showKeyboard)
                 }
                 MyToggle("Purchased?", isOn: $purchased, edit: edit)
 
@@ -155,6 +160,7 @@ struct GiftForm: View {
 
                 if edit || !location.isEmpty {
                     MyTextField("Location", text: $location, edit: edit)
+                        .focused($showKeyboard)
                 }
 
                 if edit || (latitude != 0.0 || longitude != 0.0) {
@@ -163,6 +169,7 @@ struct GiftForm: View {
                         longitude: $longitude,
                         edit: edit
                     )
+                    .onTapGesture { hideKeyboard() }
                 }
 
                 ControlGroup {
@@ -174,6 +181,10 @@ struct GiftForm: View {
             }
             .padding(.top)
             .padding(.horizontal, -20) // removes excess space
+            .onChange(of: showKeyboard) { _ in
+                print("showKeyboard = \(String(describing: showKeyboard))")
+                if !showKeyboard { hideKeyboard() }
+            }
         }
 
         .navigationBarItems(
@@ -214,7 +225,7 @@ struct GiftForm: View {
         longitude = 0
         location = ""
     }
-    
+
     /*
     func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
         self.openBarScanner = false
@@ -240,7 +251,7 @@ struct GiftForm: View {
         }
     }
     */
-    
+
     func loadProductData(productCode: String) {
         // This uses the UPC Database API at https://upcdatabase.org/api.
         let key = Bundle.main.object(
@@ -248,7 +259,7 @@ struct GiftForm: View {
         ) as? String
         let url = "https://api.upcdatabase.org/product/" +
             productCode + "?apikey=\(key!)"
-        
+
         Task(priority: .medium) {
             do {
                 let product = try await HTTPUtil.get(
@@ -274,27 +285,27 @@ struct GiftForm: View {
             }
         }
     }
-    
+
     func save() {
         let adding = gift == nil
-        let g = adding ? GiftEntity(context: moc) : gift!
-        
-        g.desc = desc.trim()
-        g.image = image?.jpegData(compressionQuality: 1.0)
-        g.imageUrl = imageUrl
-        g.latitude = latitude
-        g.location = location.trim()
-        g.longitude = longitude
-        g.name = name.trim()
-        g.price = Int64(Int(price.value)!)
-        g.purchased = purchased
-        g.url = URL(string: url.trim())
-    
+        let toSave = adding ? GiftEntity(context: moc) : gift!
+
+        toSave.desc = desc.trim()
+        toSave.image = image?.jpegData(compressionQuality: 1.0)
+        toSave.imageUrl = imageUrl
+        toSave.latitude = latitude
+        toSave.location = location.trim()
+        toSave.longitude = longitude
+        toSave.name = name.trim()
+        toSave.price = Int64(Int(price.value)!)
+        toSave.purchased = purchased
+        toSave.url = URL(string: url.trim())
+
         if adding {
-            g.to = person
-            g.reason = occasion
+            toSave.to = person
+            toSave.reason = occasion
         }
-        
+
         PersistenceController.shared.save()
     }
 }

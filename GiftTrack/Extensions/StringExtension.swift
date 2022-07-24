@@ -2,93 +2,93 @@ import Foundation
 
 extension String {
     // Handles negative indexes by counting from end of string.
-    private func getOffset(_ i: Int) -> Int {
+    private func getOffset(_ index: Int) -> Int {
         let count = self.count
-        var offset = i >= 0 ? i : i + count
+        var offset = index >= 0 ? index : index + count
         offset = offset < 0 ? 0 : offset > count ? count : offset
         return offset
     }
 
     // Get substring starting at an index.
-    subscript (_ i: Int) -> String {
+    subscript (_ indexP: Int) -> String {
         get {
-            let offset = getOffset(i)
+            let offset = getOffset(indexP)
             if offset >= self.count { return "" }
-            let idx = index(self.startIndex, offsetBy: offset)
-            return String(self[idx])
+            let selfIndex = index(self.startIndex, offsetBy: offset)
+            return String(self[selfIndex])
         }
         set {
-            let offset = getOffset(i)
-            let idx = index(self.startIndex, offsetBy: offset)
-            replaceSubrange(idx...idx, with: newValue)
+            let offset = getOffset(indexP)
+            let selfIndex = index(self.startIndex, offsetBy: offset)
+            replaceSubrange(selfIndex...selfIndex, with: newValue)
         }
     }
 
     // Get substring from a Range of the form start..<end.
-    subscript (_ r: Range<Int>) -> String {
+    subscript (_ range: Range<Int>) -> String {
         get {
-            let startOffset = getOffset(r.lowerBound)
-            let endOffset = getOffset(r.upperBound)
-            let si = index(self.startIndex, offsetBy: startOffset)
-            let ei = index(si, offsetBy: endOffset - startOffset)
-            return String(self[si..<ei])
+            let startOffset = getOffset(range.lowerBound)
+            let endOffset = getOffset(range.upperBound)
+            let startIndex = index(self.startIndex, offsetBy: startOffset)
+            let endIndex = index(startIndex, offsetBy: endOffset - startOffset)
+            return String(self[startIndex..<endIndex])
         }
         set {
-            let startOffset = getOffset(r.lowerBound)
-            let endOffset = getOffset(r.upperBound)
-            let si = index(self.startIndex, offsetBy: startOffset)
-            let ei = index(si, offsetBy: endOffset - startOffset)
-            replaceSubrange(si..<ei, with: newValue)
+            let startOffset = getOffset(range.lowerBound)
+            let endOffset = getOffset(range.upperBound)
+            let startIndex = index(self.startIndex, offsetBy: startOffset)
+            let endIndex = index(startIndex, offsetBy: endOffset - startOffset)
+            replaceSubrange(startIndex..<endIndex, with: newValue)
         }
     }
 
     // Get substring from a Range of the form start...end.
-    subscript (_ r: ClosedRange<Int>) -> String {
+    subscript (_ range: ClosedRange<Int>) -> String {
         get {
-            let startOffset = getOffset(r.lowerBound)
-            var endOffset = getOffset(r.upperBound)
+            let startOffset = getOffset(range.lowerBound)
+            var endOffset = getOffset(range.upperBound)
             if endOffset >= self.count { endOffset -= 1 }
-            let si = index(self.startIndex, offsetBy: startOffset)
-            let ei = index(si, offsetBy: endOffset - startOffset)
-            return String(self[si...ei])
+            let startIndex = index(self.startIndex, offsetBy: startOffset)
+            let endIndex = index(startIndex, offsetBy: endOffset - startOffset)
+            return String(self[startIndex...endIndex])
         }
         set {
-            let startOffset = getOffset(r.lowerBound)
-            var endOffset = getOffset(r.upperBound)
+            let startOffset = getOffset(range.lowerBound)
+            var endOffset = getOffset(range.upperBound)
             if endOffset >= self.count { endOffset -= 1 }
-            let si = index(self.startIndex, offsetBy: startOffset)
-            let ei = index(si, offsetBy: endOffset - startOffset)
-            replaceSubrange(si...ei, with: newValue)
+            let startIndex = index(self.startIndex, offsetBy: startOffset)
+            let endIndex = index(startIndex, offsetBy: endOffset - startOffset)
+            replaceSubrange(startIndex...endIndex, with: newValue)
         }
     }
 
     // Get substring from a Range of the form start....
-    subscript (_ r: PartialRangeFrom<Int>) -> String {
+    subscript (_ range: PartialRangeFrom<Int>) -> String {
         get {
-            let startOffset = getOffset(r.lowerBound)
-            let idx = index(self.startIndex, offsetBy: startOffset)
-            return String(self[idx...])
+            let startOffset = getOffset(range.lowerBound)
+            let selfIndex = index(self.startIndex, offsetBy: startOffset)
+            return String(self[selfIndex...])
         }
         set {
-            let startOffset = getOffset(r.lowerBound)
-            let idx = index(self.startIndex, offsetBy: startOffset)
-            replaceSubrange(idx..., with: newValue)
+            let startOffset = getOffset(range.lowerBound)
+            let selfIndex = index(self.startIndex, offsetBy: startOffset)
+            replaceSubrange(selfIndex..., with: newValue)
         }
     }
 
     // Get substring from a Range of the form ..<end.
-    subscript (_ r: PartialRangeUpTo<Int>) -> String {
+    subscript (_ range: PartialRangeUpTo<Int>) -> String {
         get {
-            var endOffset = getOffset(r.upperBound)
+            var endOffset = getOffset(range.upperBound)
             if endOffset >= self.count { endOffset -= 1 }
             let idx = index(self.startIndex, offsetBy: endOffset)
             return String(self[...idx])
         }
         set {
-            var endOffset = getOffset(r.upperBound)
+            var endOffset = getOffset(range.upperBound)
             if endOffset >= self.count { endOffset -= 1 }
-            let idx = index(self.startIndex, offsetBy: endOffset)
-            replaceSubrange(...idx, with: newValue)
+            let selfIndex = index(self.startIndex, offsetBy: endOffset)
+            replaceSubrange(...selfIndex, with: newValue)
         }
     }
 

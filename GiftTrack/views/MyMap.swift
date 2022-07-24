@@ -28,14 +28,14 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             manager.requestLocation()
         }
     }
-    
+
     func locationManager(
         _ manager: CLLocationManager,
         didFailWithError error: Swift.Error
     ) {
         print("LocationManager error: \(error.localizedDescription)")
     }
-    
+
     func locationManager(
         _ manager: CLLocationManager,
         didUpdateLocations locations: [CLLocation]
@@ -43,7 +43,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         // This triggers the @Publish above.
         location = locations.first?.coordinate
     }
-    
+
     func requestLocation() {
         manager.requestLocation()
     }
@@ -94,7 +94,7 @@ struct MyMap: View {
     }
 
     private let edit: Bool
-    
+
     private var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
@@ -105,7 +105,7 @@ struct MyMap: View {
                 if latitude == 0 || longitude == 0 {
                     if gettingLocation {
                         if let loc = locationManager.location {
-                            //TODO: Ask Brian Coyner if there is a better way to do this.
+                            // TODO: Ask Brian Coyner if there is a better way to do this.
                             Text(getText(loc)) // only for side effect
                         } else if gettingLocation {
                             MyText("Getting map ...")
@@ -118,7 +118,7 @@ struct MyMap: View {
                             locationManager.requestLocation()
                         }
                         .labelStyle(.titleAndIcon)
-                        //.background(.red) How can you change the background color?
+                        // .background(.red) How can you change the background color?
                         .foregroundColor(.white)
                         .cornerRadius(7)
                         Text("Tap for map")
@@ -147,14 +147,14 @@ struct MyMap: View {
     }
 
     // MARK: - Methods
-    
+
     func clearLocation() {
         latitude = 0
         longitude = 0
         gettingLocation = false
-        //TODO: How can I force LocationManager to get the location again?
+        // TODO: How can I force LocationManager to get the location again?
     }
-    
+
     func getText(_ location: CLLocationCoordinate2D) -> String {
         if gettingLocation {
             // This avoids updating state during view rendering.
@@ -165,7 +165,7 @@ struct MyMap: View {
         }
         return ""
     }
-    
+
     func updateMap() {
         if latitude == 0 || longitude == 0 { return }
         region = MKCoordinateRegion(center: coordinate, span: SPAN)

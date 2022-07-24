@@ -6,24 +6,24 @@ struct PersonForm: View {
     @Environment(\.canAdd) var canAdd
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var moc
-    
+
     @State private var birthday = Date.now
     @State private var includeBirthday = false
     @State private var name = ""
     @State private var showAlert = false
-    
+
     @FetchRequest(
         entity: PersonEntity.entity(),
         sortDescriptors: [
             NSSortDescriptor(key: "name", ascending: true)
         ]
     ) var people: FetchedResults<PersonEntity>
-    
+
     // MARK: - Initializer
 
     init(person: PersonEntity? = nil) {
         self.person = person
-        
+
         if let person = person {
             // Preceding these property names with an underscore causes it
             // to refer to the underlying value of the binding
@@ -34,7 +34,7 @@ struct PersonForm: View {
             _includeBirthday = State(initialValue: person.birthday != nil)
         }
     }
-    
+
     // MARK: - Properties
 
     var person: PersonEntity?
@@ -43,7 +43,7 @@ struct PersonForm: View {
         Screen {
             if canAdd {
                 Form {
-                    MyTextField("Name", text: $name)
+                    MyTextField("Name", text: $name, capitalizationType: .words)
                     MyToggle("Include Birthday", isOn: $includeBirthday)
                     if includeBirthday {
                         MyDatePicker(selection: $birthday)
@@ -85,10 +85,10 @@ struct PersonForm: View {
             return
         }
 
-        let p = adding ? PersonEntity(context: moc) : person!
+        let toSave = adding ? PersonEntity(context: moc) : person!
 
-        p.name = name.trim()
-        p.birthday = includeBirthday ? birthday : nil
+        toSave.name = name.trim()
+        toSave.birthday = includeBirthday ? birthday : nil
 
         PersistenceController.shared.save()
         dismiss()
