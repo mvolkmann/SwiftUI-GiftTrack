@@ -32,9 +32,13 @@ func updateColors(backgroundColor: String) {
 
     // TODO: Why does this only work the first time it is run?
     // Set background color for the TabView.
-    UITabBar.appearance().backgroundColor = UIColor(bgColor)
+    let appearance = UITabBarAppearance()
+    appearance.backgroundColor = UIColor(bgColor)
+    let appearance2 = UITabBar.appearance()
+    appearance2.scrollEdgeAppearance = appearance
+    appearance2.standardAppearance = appearance
 
     // Set image and text color for unselected tab items.
-    UITabBar.appearance().unselectedItemTintColor =
+    appearance2.unselectedItemTintColor =
         UIColor(Color("UnselectedTab"))
 }

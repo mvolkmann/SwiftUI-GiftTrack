@@ -56,6 +56,7 @@ struct MainScreen: View {
                 Label("Settings", systemImage: "gear")
             }.tag("Settings")
         }
+
         // Set image and text color for the selected tab item.
         .accentColor(Color("Title"))
 

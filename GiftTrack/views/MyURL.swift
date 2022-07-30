@@ -38,13 +38,13 @@ struct MyURL: View {
     }
 
     private func editingChanged(hasFocus: Bool) {
+        // TODO: This is not called if only "Done" is tapped.
         print("MyURL.editingChanged: hasFocus = \(hasFocus)")
         guard !hasFocus else { return }
 
         if !tempUrl.starts(with: "https://"), !tempUrl.starts(with: "http://") {
             tempUrl = "https://" + tempUrl
         }
-        print("MyURL.editingChanged: tempUrl = \(tempUrl)")
         url = tempUrl // TODO: THIS LINE IS WRONG!
     }
 }
