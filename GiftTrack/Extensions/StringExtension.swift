@@ -1,9 +1,11 @@
 import Foundation
 
-extension String {
+extension String: LocalizedError {
+    // Allows String values to be thrown.
+    public var errorDescription: String? { self }
+
     // Handles negative indexes by counting from end of string.
     private func getOffset(_ index: Int) -> Int {
-        let count = count
         var offset = index >= 0 ? index : index + count
         offset = offset < 0 ? 0 : offset > count ? count : offset
         return offset

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A11EE4D28862C2600CAD52B /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A11EE4C28862C2600CAD52B /* DateExtension.swift */; };
+		1A4F14A52894B0B200FF3810 /* MyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4F14A42894B0B200FF3810 /* MyList.swift */; };
 		1A79034628837A940006702E /* MyTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79034528837A940006702E /* MyTitle.swift */; };
 		1AA7F63A2883832B00763FF8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F6392883832B00763FF8 /* StringExtension.swift */; };
 		1AA7F63C28838E8500763FF8 /* EnvironmentValuesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */; };
@@ -56,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		1A11EE4C28862C2600CAD52B /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		1A4F14A42894B0B200FF3810 /* MyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyList.swift; sourceTree = "<group>"; };
 		1A79034528837A940006702E /* MyTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTitle.swift; sourceTree = "<group>"; };
 		1AA7F6392883832B00763FF8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtension.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				4DBCBD61275565BC0024BB0E /* ImagePicker.swift */,
 				4D6CE0B8275A620100039CD6 /* LabelledText.swift */,
 				1A79034528837A940006702E /* MyTitle.swift */,
+				1A4F14A42894B0B200FF3810 /* MyList.swift */,
 				4D3EA2442753CFC80010FE17 /* MyDatePicker.swift */,
 				4D6CE0AB275904B900039CD6 /* MyImageURL.swift */,
 				4D6CE0B627593D1200039CD6 /* MyMap.swift */,
@@ -353,6 +356,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		1AE95FDC288CDB0B005B5A9F /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -411,6 +415,7 @@
 				4D3EA2432753C84B0010FE17 /* MainScreen.swift in Sources */,
 				4DA8B85A2757DE3A0058688D /* Product.swift in Sources */,
 				4D150CB02752766F0026C744 /* SettingsScreen.swift in Sources */,
+				1A4F14A52894B0B200FF3810 /* MyList.swift in Sources */,
 				4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */,
 				4D6CE0A62758FAB000039CD6 /* MyToggle.swift in Sources */,
 				4D6CE0BE275BE1B300039CD6 /* StoreKitStore.swift in Sources */,
@@ -476,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -532,7 +537,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

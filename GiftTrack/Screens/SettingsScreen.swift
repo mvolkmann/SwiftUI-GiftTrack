@@ -78,7 +78,6 @@ struct SettingsScreen: View {
                 }
                 .buttonStyle(MyButtonStyle())
             }
-            .padding(.horizontal, -20) // removes excess space
         }
     }
 }

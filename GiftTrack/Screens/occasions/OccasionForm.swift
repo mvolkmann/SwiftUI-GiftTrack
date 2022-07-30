@@ -45,8 +45,6 @@ struct OccasionForm: View {
                         MyDatePicker(selection: $date, hideYear: true)
                     }
                 }
-                .padding(.top)
-                .padding(.horizontal, -20) // removes excess space
                 .navigationBarItems(
                     trailing: Button("Done") { save() }.disabled(name.isEmpty)
                 )

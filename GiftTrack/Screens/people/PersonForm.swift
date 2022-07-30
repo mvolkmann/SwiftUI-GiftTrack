@@ -49,8 +49,6 @@ struct PersonForm: View {
                         MyDatePicker(selection: $birthday)
                     }
                 }
-                .padding(.top)
-                .padding(.horizontal, -20) // removes excess space
                 .buttonStyle(MyButtonStyle())
                 .navigationBarItems(
                     trailing: Button("Done") { save() }.disabled(name.isEmpty)

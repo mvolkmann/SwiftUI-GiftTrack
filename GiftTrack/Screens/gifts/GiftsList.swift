@@ -65,7 +65,7 @@ struct GiftsList: View {
 
     private var giftList: some View {
         VStack(spacing: 10) {
-            List {
+            MyList {
                 ForEach(gifts, id: \.self) { gift in
                     NavigationLink(
                         destination: GiftUpdate(
@@ -85,8 +85,6 @@ struct GiftsList: View {
                 }
                 .onDelete(perform: delete)
             }
-            .padding(.top)
-            .padding(.horizontal, -20) // removes excess space
 
             LabelledText(label: "Total", text: "$\(total)")
 

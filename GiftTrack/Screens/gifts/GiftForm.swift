@@ -30,7 +30,7 @@ struct GiftForm: View {
     @State private var price = NumbersOnly(0)
     @State private var purchased = false
     @State private var region: MKCoordinateRegion = .init()
-    @State private var qrScanError = ""
+    // @State private var qrScanError = ""
     // @State private var showBarScanError = false
     @State private var showMessage = false
     // @State private var showQRScanError = false
@@ -106,18 +106,17 @@ struct GiftForm: View {
         EmptyView()
     }
 
-    private var qrCodeView: some View {
-        /*
-         IconButton(icon: "qrcode") { openQRScanner = true }
-             .alert(
-                 "QR Code Scan Failed",
-                 isPresented: $showQRScanError,
-                 actions: {}, // no custom buttons
-                 message: { Text(qrScanError) }
-             )
-         */
-        EmptyView()
-    }
+    /*
+     private var qrCodeView: some View {
+          IconButton(icon: "qrcode") { openQRScanner = true }
+              .alert(
+                  "QR Code Scan Failed",
+                  isPresented: $showQRScanError,
+                  actions: {}, // no custom buttons
+                  message: { Text(qrScanError) }
+              )
+     }
+     */
 
     var body: some View {
         Screen {
@@ -144,10 +143,12 @@ struct GiftForm: View {
                 if edit || !url.isEmpty {
                     HStack {
                         MyURL("Website URL", url: $url, edit: edit)
-                        if edit {
-                            Spacer()
-                            qrCodeView
-                        }
+                        /*
+                         if edit {
+                             Spacer()
+                             qrCodeView
+                         }
+                         */
                     }
                 }
 
@@ -179,8 +180,6 @@ struct GiftForm: View {
                 .buttonStyle(MyButtonStyle())
                 .controlGroupStyle(.navigation)
             }
-            .padding(.top)
-            .padding(.horizontal, -20) // removes excess space
             .onChange(of: showKeyboard) { _ in
                 print("showKeyboard = \(String(describing: showKeyboard))")
                 if !showKeyboard { hideKeyboard() }

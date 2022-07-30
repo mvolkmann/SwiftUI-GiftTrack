@@ -29,7 +29,7 @@ struct OccasionsScreen: View {
     var body: some View {
         NavigationView {
             Screen {
-                List {
+                MyList {
                     ForEach(occasions, id: \.self) { occasion in
                         NavigationLink(
                             destination: OccasionForm(occasion: occasion)
@@ -51,7 +51,6 @@ struct OccasionsScreen: View {
                     }
                 }
                 .padding(.top)
-                .padding(.horizontal, -20) // removes excess space
                 .confirmationDialog(
                     "Deleting this occasion will also delete " +
                         "all gifts for it.\nAre you sure?",

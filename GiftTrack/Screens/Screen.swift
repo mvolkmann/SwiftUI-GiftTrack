@@ -11,12 +11,12 @@ struct Screen<Content: View>: View {
 
     var body: some View {
         ZStack {
-            Color.fromJSON(backgroundColor).ignoresSafeArea()
+            Color.fromJSON(backgroundColor)
             VStack(alignment: .leading) {
                 content()
-                Spacer()
+                    .padding(.horizontal)
+                Spacer() // pushes content to top
             }
-            .padding(.horizontal)
         }
     }
 }

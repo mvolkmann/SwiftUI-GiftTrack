@@ -16,9 +16,19 @@ struct PeopleScreen: View {
         ]
     ) var people: FetchedResults<PersonEntity>
 
-    // MARK: - Initializer
-
     // MARK: - Properties
+
+    private var addItem: some View {
+        NavigationLink(
+            "Add",
+            destination: PersonForm()
+                .environment(\.canAdd, allowMore)
+        )
+        .navigationBarTitleDisplayMode(.inline)
+        .simultaneousGesture(TapGesture().onEnded {
+            if !allowMore { store.purchaseApp() }
+        })
+    }
 
     private var allowMore: Bool {
         // TODO: This temporarily makes in-app purchase unnecessary for debugging.
@@ -29,19 +39,9 @@ struct PeopleScreen: View {
     var body: some View {
         NavigationView {
             Screen {
-                List {
+                MyList {
                     ForEach(people, id: \.self) { person in
-                        NavigationLink(
-                            destination: PersonForm(person: person)
-                        ) {
-                            HStack {
-                                MyText(person.name ?? "")
-                                if let birthday = person.birthday {
-                                    Spacer()
-                                    MyText(birthday.monthDayYear)
-                                }
-                            }
-                        }
+                        link(person: person)
                     }
                     .onDelete { indexSet in
                         confirmDelete = true
@@ -49,7 +49,6 @@ struct PeopleScreen: View {
                     }
                 }
                 .padding(.top)
-                .padding(.horizontal, -20) // removes excess space
                 .confirmationDialog(
                     "Deleting this person will also delete " +
                         "all of their gifts.\nAre you sure?",
@@ -64,15 +63,7 @@ struct PeopleScreen: View {
             .toolbar {
                 // ToolbarItem(placement: .navigationBarLeading) { EditButton() }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(
-                        "Add",
-                        destination: PersonForm()
-                            .environment(\.canAdd, allowMore)
-                    )
-                    .navigationBarTitleDisplayMode(.inline)
-                    .simultaneousGesture(TapGesture().onEnded {
-                        if !allowMore { store.purchaseApp() }
-                    })
+                    addItem
                 }
             }
             .navigationTitle("People")
@@ -87,5 +78,19 @@ struct PeopleScreen: View {
             moc.delete(people[index])
         }
         PersistenceController.shared.save()
+    }
+
+    private func link(person: PersonEntity) -> some View {
+        NavigationLink(
+            destination: PersonForm(person: person)
+        ) {
+            HStack {
+                MyText(person.name ?? "")
+                if let birthday = person.birthday {
+                    Spacer()
+                    MyText(birthday.monthDayYear)
+                }
+            }
+        }
     }
 }
