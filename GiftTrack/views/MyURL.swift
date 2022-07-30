@@ -45,6 +45,6 @@ struct MyURL: View {
         if !tempUrl.starts(with: "https://"), !tempUrl.starts(with: "http://") {
             tempUrl = "https://" + tempUrl
         }
-        url = tempUrl // TODO: THIS LINE IS WRONG!
+        url = tempUrl
     }
 }
