@@ -11,7 +11,7 @@ struct Screen<Content: View>: View {
 
     var body: some View {
         ZStack {
-            Color.fromJSON(backgroundColor)
+            Color.fromJSON(backgroundColor).ignoresSafeArea()
             VStack(alignment: .leading) {
                 content()
                     .padding(.horizontal)

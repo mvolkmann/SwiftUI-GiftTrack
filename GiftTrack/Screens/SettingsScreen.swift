@@ -45,6 +45,7 @@ struct SettingsScreen: View {
                     )
                     .onChange(of: selectedBackgroundColor) { _ in
                         backgroundColor = selectedBackgroundColor.toJSON()
+                        updateColors(backgroundColor: backgroundColor)
                     }
 
                     ColorPicker(

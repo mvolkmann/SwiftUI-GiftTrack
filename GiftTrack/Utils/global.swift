@@ -21,3 +21,20 @@ func navigationBarColors(foreground: Color, background: Color) {
     target.scrollEdgeAppearance = appearance
     target.tintColor = uiForeground
 }
+
+func updateColors(backgroundColor: String) {
+    print("updateColors: entered")
+    let bgColor = Color.fromJSON(backgroundColor)
+    navigationBarColors(
+        foreground: Color("Title"),
+        background: bgColor
+    )
+
+    // TODO: Why does this only work the first time it is run?
+    // Set background color for the TabView.
+    UITabBar.appearance().backgroundColor = UIColor(bgColor)
+
+    // Set image and text color for unselected tab items.
+    UITabBar.appearance().unselectedItemTintColor =
+        UIColor(Color("UnselectedTab"))
+}
