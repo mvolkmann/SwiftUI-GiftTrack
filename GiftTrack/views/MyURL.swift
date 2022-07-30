@@ -2,8 +2,10 @@ import SwiftUI
 
 struct MyURL: View {
     private let title: String
-    @Binding private var url: String
+    @Binding var url: String
     private let edit: Bool
+
+    @State private var tempUrl: String
 
     init(
         _ title: String,
@@ -13,11 +15,12 @@ struct MyURL: View {
         self.title = title
         _url = url
         self.edit = edit
+        _tempUrl = State(initialValue: url.wrappedValue)
     }
 
     var body: some View {
         if edit {
-            TextField(title, text: $url)
+            TextField(title, text: $tempUrl, onEditingChanged: editingChanged)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
         } else if !url.isEmpty {
@@ -32,5 +35,16 @@ struct MyURL: View {
                 LabelledText(label: title, text: "invalid URL")
             }
         }
+    }
+
+    private func editingChanged(hasFocus: Bool) {
+        print("MyURL.editingChanged: hasFocus = \(hasFocus)")
+        guard !hasFocus else { return }
+
+        if !tempUrl.starts(with: "https://"), !tempUrl.starts(with: "http://") {
+            tempUrl = "https://" + tempUrl
+        }
+        print("MyURL.editingChanged: tempUrl = \(tempUrl)")
+        url = tempUrl // TODO: THIS LINE IS WRONG!
     }
 }
