@@ -1,6 +1,14 @@
 import SwiftUI
 
 extension View {
+    @ViewBuilder
+    func fixListHeight() -> some View {
+        if #available(iOS 16, *) {
+            scrollContentBackground(.hidden)
+        }
+    }
+
+    // TODO: Does this work? It is used in GiftForm.swift.
     func hideKeyboard() {
         UIApplication.shared.sendAction(
             #selector(UIResponder.resignFirstResponder),
@@ -8,6 +16,23 @@ extension View {
             from: nil,
             for: nil
         )
+    }
+
+    /// Supports conditional view modifiers.
+    /// For example, .if(price > 100) { view in view.background(.orange) }
+    /// The concrete type of Content can be any type
+    /// that conforms to the View protocol.
+    @ViewBuilder
+    func `if`<Content: View>(
+        _ condition: Bool,
+        transform: (Self) -> Content
+    ) -> some View {
+        // This cannot be replaced by a ternary expression.
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
     }
 
     func sysFont(_ size: Int, weight: Font.Weight = .regular) -> some View {

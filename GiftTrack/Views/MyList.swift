@@ -16,12 +16,6 @@ struct MyList<Content: View>: View {
         }
         .listStyle(PlainListStyle())
         .cornerRadius(10)
-        // This makes it so only occupied rows take up vertical space.
-        .scrollContentBackground(.hidden) // requires iOS 16
-        /*
-         if #available(iOS 16.0, *) {
-             .scrollContentBackground(.hidden) // requires iOS 16
-         }
-         */
+        .fixListHeight() // defined in ViewExtension.swift
     }
 }
