@@ -4,6 +4,8 @@ import SwiftUI
 struct GiftsScreen: View {
     // MARK: - State
 
+    @AppStorage("titleColor") var titleColor: String = "Title"
+
     @Environment(\.managedObjectContext) var moc
 
     @FetchRequest(
@@ -92,6 +94,7 @@ struct GiftsScreen: View {
                 }
             }
             .navigationBarTitle("Gifts")
+            .accentColor(Color.fromJSON(titleColor))
         }
     }
 

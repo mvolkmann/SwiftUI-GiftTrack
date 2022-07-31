@@ -3,6 +3,8 @@ import SwiftUI
 struct OccasionsScreen: View {
     // MARK: - State
 
+    @AppStorage("titleColor") var titleColor: String = "Title"
+
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject private var store: StoreKitStore
 
@@ -62,6 +64,8 @@ struct OccasionsScreen: View {
                         delete(indexSet: deleteSet)
                     }
                 }
+
+                Spacer()
             }
             .toolbar {
                 // ToolbarItem(placement: .navigationBarLeading) { EditButton() }
@@ -78,6 +82,7 @@ struct OccasionsScreen: View {
                 }
             }
             .navigationTitle("Occasions")
+            .accentColor(Color.fromJSON(titleColor))
         }
     }
 

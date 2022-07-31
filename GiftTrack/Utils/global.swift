@@ -22,11 +22,11 @@ func navigationBarColors(foreground: Color, background: Color) {
     target.tintColor = uiForeground
 }
 
-func updateColors(backgroundColor: String) {
+func updateColors(foregroundColor: String, backgroundColor: String) {
     print("updateColors: entered")
     let bgColor = Color.fromJSON(backgroundColor)
     navigationBarColors(
-        foreground: Color("Title"),
+        foreground: Color.fromJSON(foregroundColor),
         background: bgColor
     )
 

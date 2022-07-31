@@ -3,6 +3,8 @@ import SwiftUI
 struct PeopleScreen: View {
     // MARK: - State
 
+    @AppStorage("titleColor") var titleColor: String = "Title"
+
     @Environment(\.managedObjectContext) var moc
     @EnvironmentObject private var store: StoreKitStore
 
@@ -60,6 +62,8 @@ struct PeopleScreen: View {
                         delete(indexSet: deleteSet)
                     }
                 }
+
+                Spacer()
             }
             .toolbar {
                 // ToolbarItem(placement: .navigationBarLeading) { EditButton() }
@@ -68,7 +72,7 @@ struct PeopleScreen: View {
                 }
             }
             .navigationTitle("People")
-            .accentColor(Color("Title"))
+            .accentColor(Color.fromJSON(titleColor))
         }
     }
 

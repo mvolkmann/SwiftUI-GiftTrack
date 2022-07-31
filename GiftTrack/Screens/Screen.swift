@@ -4,6 +4,7 @@ struct Screen<Content: View>: View {
     // MARK: - State
 
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
+    @AppStorage("titleColor") var titleColor: String = "Title"
 
     // MARK: - Properties
 
@@ -17,6 +18,13 @@ struct Screen<Content: View>: View {
                     .padding(.horizontal)
                 Spacer() // pushes content to top
             }
+        }
+        .accentColor(Color.fromJSON(titleColor))
+        .onAppear {
+            updateColors(
+                foregroundColor: titleColor,
+                backgroundColor: backgroundColor
+            )
         }
     }
 }

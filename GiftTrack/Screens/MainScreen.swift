@@ -5,10 +5,11 @@ struct MainScreen: View {
 
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
     @AppStorage("startScreen") var startScreen: String = "About"
+    @AppStorage("titleColor") var titleColor: String = "Title"
 
     @Environment(\.colorScheme) var colorScheme
 
-    @State private var broughtToForeground = false
+    // @State private var broughtToForeground = false
     @State private var screenTag: String = "About"
 
     // MAIN: - Initializer
@@ -64,22 +65,30 @@ struct MainScreen: View {
 
         .onAppear {
             screenTag = startScreen
-            updateColors(backgroundColor: backgroundColor)
+            updateColors(
+                foregroundColor: titleColor,
+                backgroundColor: backgroundColor
+            )
         }
 
-        // This is triggered when the app moves to the background
-        // and then returns to the foreground.
-        .onReceive(NotificationCenter.default.publisher(
-            for: UIApplication.willEnterForegroundNotification
-        )) { _ in
-            // If the color scheme changed, we need to call updateColors.
-            // But colorScheme won't be set until onAppear is called.
-            // That is why we need the broughtToForeground flag.
-            broughtToForeground = true
-        }
+        /*
+         // This is triggered when the app moves to the background
+         // and then returns to the foreground.
+         .onReceive(NotificationCenter.default.publisher(
+             for: UIApplication.willEnterForegroundNotification
+         )) { _ in
+             // If the color scheme changed, we need to call updateColors.
+             // But colorScheme won't be set until onAppear is called.
+             // That is why we need the broughtToForeground flag.
+             broughtToForeground = true
+         }
+         */
 
         .onChange(of: colorScheme) { _ in
-            updateColors(backgroundColor: backgroundColor)
+            updateColors(
+                foregroundColor: titleColor,
+                backgroundColor: backgroundColor
+            )
         }
 
         // This removes the following console warning:
