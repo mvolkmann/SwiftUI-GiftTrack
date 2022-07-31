@@ -5,8 +5,6 @@ struct MyURL: View {
     @Binding var url: String
     private let edit: Bool
 
-    @State private var tempUrl: String
-
     init(
         _ title: String,
         url: Binding<String>,
@@ -15,12 +13,11 @@ struct MyURL: View {
         self.title = title
         _url = url
         self.edit = edit
-        _tempUrl = State(initialValue: url.wrappedValue)
     }
 
     var body: some View {
         if edit {
-            TextField(title, text: $tempUrl)
+            TextField(title, text: $url)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 .onDisappear(perform: requireHTTP)
@@ -39,8 +36,8 @@ struct MyURL: View {
     }
 
     private func requireHTTP() {
-        if tempUrl.starts(with: "https://") { return }
-        if tempUrl.starts(with: "http://") { return }
-        url = "https://" + tempUrl
+        if url.starts(with: "https://") { return }
+        if url.starts(with: "http://") { return }
+        url = "https://" + url
     }
 }
