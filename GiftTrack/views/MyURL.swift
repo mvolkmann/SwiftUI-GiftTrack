@@ -20,9 +20,10 @@ struct MyURL: View {
 
     var body: some View {
         if edit {
-            TextField(title, text: $tempUrl, onEditingChanged: editingChanged)
+            TextField(title, text: $tempUrl)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
+                .onDisappear(perform: requireHTTP)
         } else if !url.isEmpty {
             if let linkURL = URL(string: url) {
                 Link(destination: linkURL) {
@@ -37,14 +38,9 @@ struct MyURL: View {
         }
     }
 
-    private func editingChanged(hasFocus: Bool) {
-        // TODO: This is not called if only "Done" is tapped.
-        print("MyURL.editingChanged: hasFocus = \(hasFocus)")
-        guard !hasFocus else { return }
-
-        if !tempUrl.starts(with: "https://"), !tempUrl.starts(with: "http://") {
-            tempUrl = "https://" + tempUrl
-        }
-        url = tempUrl
+    private func requireHTTP() {
+        if tempUrl.starts(with: "https://") { return }
+        if tempUrl.starts(with: "http://") { return }
+        url = "https://" + tempUrl
     }
 }
