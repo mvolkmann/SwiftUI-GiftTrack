@@ -29,6 +29,7 @@ struct MyImageURL: View {
                 TextField(title, text: $url)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
+                    .onDisappear { url = addHTTP(url) }
 
                 if !url.isEmpty {
                     Spacer()

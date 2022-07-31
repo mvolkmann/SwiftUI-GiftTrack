@@ -173,12 +173,14 @@ struct GiftForm: View {
                     .onTapGesture { hideKeyboard() }
                 }
 
-                ControlGroup {
-                    Button("Move") { mode = .move }
-                    Button("Copy") { mode = .copy }
+                if mode == .update {
+                    ControlGroup {
+                        Button("Move") { mode = .move }
+                        Button("Copy") { mode = .copy }
+                    }
+                    .buttonStyle(MyButtonStyle())
+                    .controlGroupStyle(.navigation)
                 }
-                .buttonStyle(MyButtonStyle())
-                .controlGroupStyle(.navigation)
             }
             .onChange(of: showKeyboard) { _ in
                 print("showKeyboard = \(String(describing: showKeyboard))")

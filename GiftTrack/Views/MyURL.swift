@@ -20,7 +20,7 @@ struct MyURL: View {
             TextField(title, text: $url)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
-                .onDisappear(perform: requireHTTP)
+                .onDisappear { url = addHTTP(url) }
         } else if !url.isEmpty {
             if let linkURL = URL(string: url) {
                 Link(destination: linkURL) {
@@ -33,11 +33,5 @@ struct MyURL: View {
                 LabelledText(label: title, text: "invalid URL")
             }
         }
-    }
-
-    private func requireHTTP() {
-        if url.starts(with: "https://") { return }
-        if url.starts(with: "http://") { return }
-        url = "https://" + url
     }
 }

@@ -1,5 +1,11 @@
 import SwiftUI
 
+func addHTTP(_ url: String) -> String {
+    if url.starts(with: "https://") { return url }
+    if url.starts(with: "http://") { return url }
+    return "https://" + url
+}
+
 // Returns the value of the "name" property of a given object.
 func name(_ object: NSObject?) -> String {
     guard let object = object else { return "unknown" }
