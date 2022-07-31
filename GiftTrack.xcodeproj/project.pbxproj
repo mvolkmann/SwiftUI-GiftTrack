@@ -33,7 +33,6 @@
 		4D6CE0A42758F2D300039CD6 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0A32758F2D300039CD6 /* MyTextField.swift */; };
 		4D6CE0A62758FAB000039CD6 /* MyToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0A52758FAB000039CD6 /* MyToggle.swift */; };
 		4D6CE0AA2758FDD600039CD6 /* MyPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0A92758FDD600039CD6 /* MyPhoto.swift */; };
-		4D6CE0AC275904B900039CD6 /* MyImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0AB275904B900039CD6 /* MyImageURL.swift */; };
 		4D6CE0AE27591D3800039CD6 /* PersonForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0AD27591D3800039CD6 /* PersonForm.swift */; };
 		4D6CE0B02759355200039CD6 /* OccasionForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0AF2759355200039CD6 /* OccasionForm.swift */; };
 		4D6CE0B727593D1200039CD6 /* MyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0B627593D1200039CD6 /* MyMap.swift */; };
@@ -80,7 +79,6 @@
 		4D6CE0A32758F2D300039CD6 /* MyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
 		4D6CE0A52758FAB000039CD6 /* MyToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToggle.swift; sourceTree = "<group>"; };
 		4D6CE0A92758FDD600039CD6 /* MyPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPhoto.swift; sourceTree = "<group>"; };
-		4D6CE0AB275904B900039CD6 /* MyImageURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImageURL.swift; sourceTree = "<group>"; };
 		4D6CE0AD27591D3800039CD6 /* PersonForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonForm.swift; sourceTree = "<group>"; };
 		4D6CE0AF2759355200039CD6 /* OccasionForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OccasionForm.swift; sourceTree = "<group>"; };
 		4D6CE0B627593D1200039CD6 /* MyMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMap.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 				1A79034528837A940006702E /* MyTitle.swift */,
 				1A4F14A42894B0B200FF3810 /* MyList.swift */,
 				4D3EA2442753CFC80010FE17 /* MyDatePicker.swift */,
-				4D6CE0AB275904B900039CD6 /* MyImageURL.swift */,
 				4D6CE0B627593D1200039CD6 /* MyMap.swift */,
 				4D6CE0A92758FDD600039CD6 /* MyPhoto.swift */,
 				4D192941273C09B20056653B /* MyText.swift */,
@@ -396,7 +393,6 @@
 				4D6CE0B9275A620100039CD6 /* LabelledText.swift in Sources */,
 				4D33674C274C04D600D52F01 /* GiftUpdate.swift in Sources */,
 				4D6CE0AA2758FDD600039CD6 /* MyPhoto.swift in Sources */,
-				4D6CE0AC275904B900039CD6 /* MyImageURL.swift in Sources */,
 				1AA7F63C28838E8500763FF8 /* EnvironmentValuesExtension.swift in Sources */,
 				4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */,
 				4DA8B8582757D9700058688D /* GiftForm.swift in Sources */,
