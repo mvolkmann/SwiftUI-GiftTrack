@@ -32,7 +32,6 @@
 		4D454A4B2756ADCA006F00AC /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 4D454A4A2756ADCA006F00AC /* CodeScanner */; };
 		4D6CE0A42758F2D300039CD6 /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0A32758F2D300039CD6 /* MyTextField.swift */; };
 		4D6CE0A62758FAB000039CD6 /* MyToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0A52758FAB000039CD6 /* MyToggle.swift */; };
-		4D6CE0A82758FBB400039CD6 /* MyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0A72758FBB400039CD6 /* MyURL.swift */; };
 		4D6CE0AA2758FDD600039CD6 /* MyPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0A92758FDD600039CD6 /* MyPhoto.swift */; };
 		4D6CE0AC275904B900039CD6 /* MyImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0AB275904B900039CD6 /* MyImageURL.swift */; };
 		4D6CE0AE27591D3800039CD6 /* PersonForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0AD27591D3800039CD6 /* PersonForm.swift */; };
@@ -50,7 +49,6 @@
 		4DA8B85A2757DE3A0058688D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8592757DE3A0058688D /* Product.swift */; };
 		4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */; };
 		4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB339A227514A08006ECBFD /* NumbersOnly.swift */; };
-		4DBCBD62275565BC0024BB0E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBCBD61275565BC0024BB0E /* ImagePicker.swift */; };
 		4DBCBD662755A7DC0024BB0E /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBCBD652755A7DC0024BB0E /* ImageExtension.swift */; };
 		4DF89BDA27432C13007C703E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -81,7 +79,6 @@
 		4D3EA2442753CFC80010FE17 /* MyDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDatePicker.swift; sourceTree = "<group>"; };
 		4D6CE0A32758F2D300039CD6 /* MyTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTextField.swift; sourceTree = "<group>"; };
 		4D6CE0A52758FAB000039CD6 /* MyToggle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToggle.swift; sourceTree = "<group>"; };
-		4D6CE0A72758FBB400039CD6 /* MyURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyURL.swift; sourceTree = "<group>"; };
 		4D6CE0A92758FDD600039CD6 /* MyPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPhoto.swift; sourceTree = "<group>"; };
 		4D6CE0AB275904B900039CD6 /* MyImageURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImageURL.swift; sourceTree = "<group>"; };
 		4D6CE0AD27591D3800039CD6 /* PersonForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonForm.swift; sourceTree = "<group>"; };
@@ -102,7 +99,6 @@
 		4DA8B8592757DE3A0058688D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButtonStyle.swift; sourceTree = "<group>"; };
 		4DB339A227514A08006ECBFD /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
-		4DBCBD61275565BC0024BB0E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4DBCBD652755A7DC0024BB0E /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,7 +203,6 @@
 			children = (
 				4D6CE0BA275A873E00039CD6 /* DeleteButton.swift */,
 				4DA8B8552757D5780058688D /* IconButton.swift */,
-				4DBCBD61275565BC0024BB0E /* ImagePicker.swift */,
 				4D6CE0B8275A620100039CD6 /* LabelledText.swift */,
 				1A79034528837A940006702E /* MyTitle.swift */,
 				1A4F14A42894B0B200FF3810 /* MyList.swift */,
@@ -218,7 +213,6 @@
 				4D192941273C09B20056653B /* MyText.swift */,
 				4D6CE0A32758F2D300039CD6 /* MyTextField.swift */,
 				4D6CE0A52758FAB000039CD6 /* MyToggle.swift */,
-				4D6CE0A72758FBB400039CD6 /* MyURL.swift */,
 				4D336745274BE07600D52F01 /* TitledWheelPicker.swift */,
 			);
 			path = Views;
@@ -384,7 +378,6 @@
 				1A11EE4D28862C2600CAD52B /* DateExtension.swift in Sources */,
 				4D19293C273BE72C0056653B /* OccasionsScreen.swift in Sources */,
 				4D6CE0A42758F2D300039CD6 /* MyTextField.swift in Sources */,
-				4D6CE0A82758FBB400039CD6 /* MyURL.swift in Sources */,
 				4D336746274BE07700D52F01 /* TitledWheelPicker.swift in Sources */,
 				4D192948273C196F0056653B /* ColorExtension.swift in Sources */,
 				4D88AFB2274E7FB9005A999F /* global.swift in Sources */,
@@ -395,7 +388,6 @@
 				4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */,
 				4DA8B8362756CC950058688D /* HTTPUtil.swift in Sources */,
 				1AEE7138288624FD00876C7F /* ViewExtension.swift in Sources */,
-				4DBCBD62275565BC0024BB0E /* ImagePicker.swift in Sources */,
 				4D192938273BE6BC0056653B /* AboutScreen.swift in Sources */,
 				4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */,
 				4D6CE0B727593D1200039CD6 /* MyMap.swift in Sources */,
