@@ -170,7 +170,6 @@ struct GiftForm: View {
                         longitude: $longitude,
                         edit: edit
                     )
-                    .onTapGesture { hideKeyboard() }
                 }
 
                 if mode == .update {
@@ -181,10 +180,6 @@ struct GiftForm: View {
                     .buttonStyle(MyButtonStyle())
                     .controlGroupStyle(.navigation)
                 }
-            }
-            .onChange(of: showKeyboard) { _ in
-                print("showKeyboard = \(String(describing: showKeyboard))")
-                if !showKeyboard { hideKeyboard() }
             }
         }
 

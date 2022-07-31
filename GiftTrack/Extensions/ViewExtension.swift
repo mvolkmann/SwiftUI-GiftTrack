@@ -8,16 +8,6 @@ extension View {
         }
     }
 
-    // TODO: Does this work? It is used in GiftForm.swift.
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(
-            #selector(UIResponder.resignFirstResponder),
-            to: nil,
-            from: nil,
-            for: nil
-        )
-    }
-
     /// Supports conditional view modifiers.
     /// For example, .if(price > 100) { view in view.background(.orange) }
     /// The concrete type of Content can be any type
