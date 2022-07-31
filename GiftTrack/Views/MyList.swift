@@ -14,8 +14,13 @@ struct MyList<Content: View>: View {
         List {
             content
         }
-        .padding(.horizontal, -20) // removes excess padding
-        .padding(.top, -35) // removes excess padding
-        .scrollContentBackground(.hidden) // requires iOS 16
+        .listStyle(PlainListStyle())
+        .cornerRadius(10)
+        // .scrollContentBackground(.hidden) // requires iOS 16
+        /*
+         if #available(iOS 16.0, *) {
+             .scrollContentBackground(.hidden) // requires iOS 16
+         }
+         */
     }
 }

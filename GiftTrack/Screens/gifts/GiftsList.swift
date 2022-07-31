@@ -64,7 +64,7 @@ struct GiftsList: View {
     }
 
     private var giftList: some View {
-        VStack(spacing: 10) {
+        VStack {
             MyList {
                 ForEach(gifts, id: \.self) { gift in
                     NavigationLink(

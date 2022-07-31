@@ -6,11 +6,11 @@ struct IconButton: View {
     private let action: () -> Void
     private let color: Color?
     private let icon: String
-    private let size: CGFloat
+    private let size: Int
 
     init(
         icon: String,
-        size: CGFloat = 40,
+        size: Int = 40,
         color: Color? = nil,
         action: @escaping () -> Void
     ) {
@@ -23,7 +23,7 @@ struct IconButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: icon)
-                .size(size)
+                .sysFont(size)
                 .foregroundColor(color ?? Color.fromJSON(titleColor))
         }
         .buttonStyle(.borderless)

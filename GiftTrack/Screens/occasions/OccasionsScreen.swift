@@ -51,6 +51,7 @@ struct OccasionsScreen: View {
                     }
                 }
                 .padding(.top)
+                .padding(.bottom, 10)
                 .confirmationDialog(
                     "Deleting this occasion will also delete " +
                         "all gifts for it.\nAre you sure?",

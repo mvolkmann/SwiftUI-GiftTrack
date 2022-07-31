@@ -49,6 +49,7 @@ struct PeopleScreen: View {
                     }
                 }
                 .padding(.top)
+                .padding(.bottom, 10)
                 .confirmationDialog(
                     "Deleting this person will also delete " +
                         "all of their gifts.\nAre you sure?",

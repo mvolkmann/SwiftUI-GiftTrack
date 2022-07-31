@@ -66,6 +66,8 @@ struct GiftsScreen: View {
                         occasion: occasion,
                         occasionIndex: occasionIndex
                     )
+                    .padding(.top, 5)
+                    .padding(.bottom)
                 }
             }
             .toolbar {

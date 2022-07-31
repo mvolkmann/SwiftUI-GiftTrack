@@ -11,7 +11,7 @@ struct MyText: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: 20, weight: bold ? .bold : .regular))
+            .sysFont(20, weight: bold ? .bold : .regular)
             .foregroundColor(Color("Text"))
     }
 }

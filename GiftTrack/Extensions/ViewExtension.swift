@@ -10,7 +10,7 @@ extension View {
         )
     }
 
-    func size(_ size: CGFloat) -> some View {
-        font(.system(size: size))
+    func sysFont(_ size: Int, weight: Font.Weight = .regular) -> some View {
+        font(.system(size: CGFloat(size)).weight(weight))
     }
 }

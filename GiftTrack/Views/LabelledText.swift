@@ -9,7 +9,7 @@ struct LabelledText: View {
             Text("\(label):").fontWeight(.bold)
             Text("\(text.isEmpty ? "none" : text)")
         }
-        .font(.system(size: 20))
+        .sysFont(20)
         .foregroundColor(Color("Text"))
     }
 }

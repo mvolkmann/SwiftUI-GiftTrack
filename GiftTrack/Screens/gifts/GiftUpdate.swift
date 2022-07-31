@@ -80,6 +80,8 @@ struct GiftUpdate: View {
                     Button("Close") { mode = .update }
                 }
                 .buttonStyle(MyButtonStyle())
+
+                Spacer()
             }
         }
     }
