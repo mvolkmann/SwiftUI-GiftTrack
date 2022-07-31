@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MyList<Content: View>: View {
+    @AppStorage("backgroundColor") var backgroundColor: String = "Background"
+
     let content: Content
 
     // This is needed to use @ViewBuilder.
@@ -11,11 +13,14 @@ struct MyList<Content: View>: View {
     }
 
     var body: some View {
-        List {
-            content
+        ZStack {
+            Color.fromJSON(backgroundColor)
+            List {
+                content
+            }
+            .listStyle(PlainListStyle())
+            .cornerRadius(10)
+            .hideListBackground() // defined in ViewExtension.swift
         }
-        .listStyle(PlainListStyle())
-        .cornerRadius(10)
-        .fixListHeight() // defined in ViewExtension.swift
     }
 }
