@@ -59,32 +59,12 @@ struct MainScreen: View {
         }
 
         // Set image and text color for the selected tab item.
-        .accentColor(Color("Title"))
+        .accentColor(Color.fromJSON(titleColor))
 
         .datePickerStyle(.wheel)
 
         .onAppear {
             screenTag = startScreen
-            updateColors(
-                foregroundColor: titleColor,
-                backgroundColor: backgroundColor
-            )
-        }
-
-        /*
-         // This is triggered when the app moves to the background
-         // and then returns to the foreground.
-         .onReceive(NotificationCenter.default.publisher(
-             for: UIApplication.willEnterForegroundNotification
-         )) { _ in
-             // If the color scheme changed, we need to call updateColors.
-             // But colorScheme won't be set until onAppear is called.
-             // That is why we need the broughtToForeground flag.
-             broughtToForeground = true
-         }
-         */
-
-        .onChange(of: colorScheme) { _ in
             updateColors(
                 foregroundColor: titleColor,
                 backgroundColor: backgroundColor

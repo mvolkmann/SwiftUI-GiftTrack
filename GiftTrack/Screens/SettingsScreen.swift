@@ -45,6 +45,7 @@ struct SettingsScreen: View {
                     )
                     .onChange(of: selectedBackgroundColor) { _ in
                         backgroundColor = selectedBackgroundColor.toJSON()
+                        update()
                     }
 
                     ColorPicker(
@@ -54,6 +55,7 @@ struct SettingsScreen: View {
                     )
                     .onChange(of: selectedTitleColor) { _ in
                         titleColor = selectedTitleColor.toJSON()
+                        update()
                     }
 
                     HStack {
@@ -74,10 +76,18 @@ struct SettingsScreen: View {
                         backgroundColor = "Background"
                         titleColor = "Title"
                         startScreen = "About"
+                        update()
                     }
                 }
                 .buttonStyle(MyButtonStyle())
             }
         }
+    }
+
+    private func update() {
+        updateColors(
+            foregroundColor: titleColor,
+            backgroundColor: backgroundColor
+        )
     }
 }

@@ -20,11 +20,5 @@ struct Screen<Content: View>: View {
             }
         }
         .accentColor(Color.fromJSON(titleColor))
-        .onAppear {
-            updateColors(
-                foregroundColor: titleColor,
-                backgroundColor: backgroundColor
-            )
-        }
     }
 }
