@@ -181,6 +181,7 @@ struct GiftForm: View {
                     .controlGroupStyle(.navigation)
                 }
             }
+            .hideBackground() // defined in ViewExtension.swift
         }
 
         .navigationBarItems(

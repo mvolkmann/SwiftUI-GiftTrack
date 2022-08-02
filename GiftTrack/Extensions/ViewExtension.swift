@@ -2,7 +2,7 @@ import SwiftUI
 
 extension View {
     @ViewBuilder
-    func hideListBackground() -> some View {
+    func hideBackground() -> some View {
         if #available(iOS 16, *) {
             scrollContentBackground(.hidden)
         }

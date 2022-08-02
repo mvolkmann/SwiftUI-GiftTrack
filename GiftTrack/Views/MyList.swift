@@ -20,7 +20,7 @@ struct MyList<Content: View>: View {
             }
             .listStyle(PlainListStyle())
             .cornerRadius(10)
-            .hideListBackground() // defined in ViewExtension.swift
+            .hideBackground() // defined in ViewExtension.swift
         }
     }
 }

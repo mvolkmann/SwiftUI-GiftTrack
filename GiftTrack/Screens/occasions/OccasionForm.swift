@@ -45,6 +45,7 @@ struct OccasionForm: View {
                         MyDatePicker(selection: $date, hideYear: true)
                     }
                 }
+                .hideBackground() // defined in ViewExtension.swift
                 .navigationBarItems(
                     trailing: Button("Done") { save() }.disabled(name.isEmpty)
                 )
