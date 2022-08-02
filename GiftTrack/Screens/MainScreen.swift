@@ -21,13 +21,14 @@ struct MainScreen: View {
         tva.backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
 
-        // Without the next line the TabView background is clear
-        // and the page background color shows through.
-        UITabBar.appearance().backgroundColor = .systemGray5
-
         // This removes excess space at the top and bottom of List views.
         tva.contentInset.top = -35
         tva.contentInset.bottom = -35
+
+        // Set background color for the TabView.
+        // This only work the first time it is run.
+        // It is set to clear so the background color can show through.
+        UITabBar.appearance().backgroundColor = .clear
     }
 
     // MAIN: - Properties
