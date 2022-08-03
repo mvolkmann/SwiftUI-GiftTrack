@@ -50,8 +50,6 @@ struct PeopleScreen: View {
                         deleteSet = indexSet
                     }
                 }
-                .padding(.top)
-                .padding(.bottom, 10)
                 .confirmationDialog(
                     "Deleting this person will also delete " +
                         "all of their gifts.\nAre you sure?",
@@ -62,8 +60,6 @@ struct PeopleScreen: View {
                         delete(indexSet: deleteSet)
                     }
                 }
-
-                Spacer()
             }
             .toolbar {
                 // ToolbarItem(placement: .navigationBarLeading) { EditButton() }

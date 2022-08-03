@@ -52,8 +52,6 @@ struct OccasionsScreen: View {
                         deleteSet = indexSet
                     }
                 }
-                .padding(.top)
-                .padding(.bottom, 10)
                 .confirmationDialog(
                     "Deleting this occasion will also delete " +
                         "all gifts for it.\nAre you sure?",
@@ -64,8 +62,6 @@ struct OccasionsScreen: View {
                         delete(indexSet: deleteSet)
                     }
                 }
-
-                Spacer()
             }
             .toolbar {
                 // ToolbarItem(placement: .navigationBarLeading) { EditButton() }

@@ -1,6 +1,7 @@
 import SwiftUI
 
 func addHTTP(_ url: String) -> String {
+    if url.isEmpty { return url }
     if url.starts(with: "https://") { return url }
     if url.starts(with: "http://") { return url }
     return "https://" + url

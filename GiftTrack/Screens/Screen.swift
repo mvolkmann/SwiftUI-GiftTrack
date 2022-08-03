@@ -14,6 +14,7 @@ struct Screen<Content: View>: View {
         ZStack {
             Color.fromJSON(backgroundColor).ignoresSafeArea()
             VStack(alignment: .leading) {
+                Spacer().frame(height: 20)
                 content()
                     .padding(.horizontal)
                 Spacer() // pushes content to top

@@ -74,8 +74,6 @@ struct MainScreen: View {
 
         // This removes the following console warning:
         // [LayoutConstraints] Unable to simultaneously satisfy constraints.
-        // Probably at least one of the constraints in the following list
-        // is one you don't want.
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }

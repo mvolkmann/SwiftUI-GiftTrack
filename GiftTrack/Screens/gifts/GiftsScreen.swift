@@ -60,7 +60,6 @@ struct GiftsScreen: View {
                         )
                     }
                     .frame(height: pickerHeight + textHeight)
-                    .padding(.top)
 
                     GiftsList(
                         person: person,

@@ -69,7 +69,7 @@ struct SettingsScreen: View {
                             }
                         }
                         .pickerStyle(.menu)
-                        .accentColor(Color("Title"))
+                        .accentColor(Color.fromJSON(titleColor))
                     }
 
                     Button("Reset") {
