@@ -18,10 +18,10 @@ struct MyList<Content: View>: View {
             List {
                 content
             }
-            .listStyle(PlainListStyle())
+            // TODO: This cuts off top list item in iOS 15.
+            // .listStyle(PlainListStyle())
             .cornerRadius(10)
-            .border(.red)
-            //.hideBackground() // defined in ViewExtension.swift
+            .hideBackground() // defined in ViewExtension.swift
         }
     }
 }
