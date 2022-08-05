@@ -6,6 +6,7 @@ struct MyTextField: View {
     init(
         _ title: String,
         text: Binding<String>,
+        valuePrefix: String = "",
         edit: Bool = true,
         autocorrect: Bool = true,
         capitalizationType: UITextAutocapitalizationType = .none,
@@ -13,6 +14,7 @@ struct MyTextField: View {
     ) {
         self.title = title
         _text = text
+        self.valuePrefix = valuePrefix
         self.edit = edit
         self.autocorrect = autocorrect
         self.capitalizationType = capitalizationType
@@ -27,10 +29,12 @@ struct MyTextField: View {
     private let autocorrect: Bool
     private let capitalizationType: UITextAutocapitalizationType
     private let keyboard: UIKeyboardType
+    private let valuePrefix: String
 
     var body: some View {
         if edit {
             HStack {
+                Text(valuePrefix)
                 TextField(title, text: $text)
                     .autocapitalization(capitalizationType)
                     .disableAutocorrection(!autocorrect)
@@ -42,7 +46,7 @@ struct MyTextField: View {
                 }
             }
         } else if !text.isEmpty {
-            LabelledText(label: title, text: text)
+            LabelledText(label: title, text: valuePrefix + text)
         }
     }
 }

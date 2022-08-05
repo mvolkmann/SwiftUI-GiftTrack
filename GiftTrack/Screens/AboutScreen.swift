@@ -10,7 +10,7 @@ struct AboutScreen: View {
     """
 
     var body: some View {
-        Screen {
+        Screen(pad: true) {
             MyTitle("Gift Track")
             MyText(intro, bold: true).padding(.bottom)
             MyText(

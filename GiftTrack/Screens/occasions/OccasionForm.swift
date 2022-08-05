@@ -46,6 +46,7 @@ struct OccasionForm: View {
                     }
                 }
                 .hideBackground() // defined in ViewExtension.swift
+                .trimTop()
                 .navigationBarItems(
                     trailing: Button("Done") { save() }.disabled(name.isEmpty)
                 )

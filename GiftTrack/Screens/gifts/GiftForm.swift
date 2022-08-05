@@ -130,10 +130,10 @@ struct GiftForm: View {
 
                 if edit || price.value != "0" {
                     HStack {
-                        Text("$")
                         MyTextField(
                             "Price",
                             text: $price.value,
+                            valuePrefix: "$",
                             edit: edit,
                             autocorrect: false,
                             keyboard: .decimalPad
@@ -185,6 +185,7 @@ struct GiftForm: View {
                 }
             }
             .hideBackground() // defined in ViewExtension.swift
+            .trimTop()
         }
 
         .navigationBarItems(

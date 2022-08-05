@@ -5,7 +5,6 @@ struct MyList<Content: View>: View {
 
     let content: Content
 
-    // This is needed to use @ViewBuilder.
     init(
         @ViewBuilder content: () -> Content
     ) {
@@ -24,7 +23,6 @@ struct MyList<Content: View>: View {
 
             .cornerRadius(10)
             .hideBackground() // defined in ViewExtension.swift
-            .padding(.horizontal, -20)
             .trimTop()
         }
     }

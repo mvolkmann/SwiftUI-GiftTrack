@@ -34,7 +34,7 @@ struct SettingsScreen: View {
 
     var body: some View {
         Screen {
-            MyTitle("Settings")
+            MyTitle("Settings", pad: true)
 
             Form {
                 VStack(spacing: 10) {
@@ -82,6 +82,7 @@ struct SettingsScreen: View {
                 .buttonStyle(MyButtonStyle())
             }
             .hideBackground() // defined in ViewExtension.swift
+            .trimTop()
         }
     }
 

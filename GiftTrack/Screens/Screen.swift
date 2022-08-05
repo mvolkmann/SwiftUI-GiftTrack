@@ -8,15 +8,27 @@ struct Screen<Content: View>: View {
 
     // MARK: - Properties
 
-    @ViewBuilder let content: () -> Content
+    let pad: Bool
+    let content: Content
+
+    init(
+        pad: Bool = false,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.pad = pad
+        self.content = content()
+    }
+
 
     var body: some View {
         ZStack {
             Color.fromJSON(backgroundColor).ignoresSafeArea()
             VStack(alignment: .leading) {
                 Spacer().frame(height: 20)
-                content()
-                    .padding(.horizontal)
+                content
+                    .if(pad) { view in
+                        view.padding(.horizontal)
+                    }
                 Spacer() // pushes content to top
             }
         }

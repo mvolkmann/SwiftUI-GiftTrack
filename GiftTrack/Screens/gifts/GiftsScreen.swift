@@ -44,7 +44,7 @@ struct GiftsScreen: View {
     var body: some View {
         NavigationView {
             GeometryReader { _ in
-                Screen {
+                Screen(pad: true) {
                     HStack(spacing: padding) {
                         TitledWheelPicker(
                             title: "Person",
@@ -69,6 +69,7 @@ struct GiftsScreen: View {
                     )
                     .padding(.top, 5)
                     .padding(.bottom)
+                    .padding(.horizontal, -20)
                 }
             }
             .toolbar {

@@ -3,18 +3,26 @@ import SwiftUI
 struct MyTitle: View {
     @AppStorage("titleColor") var titleColor: String = "Title"
 
-    let title: String
-
-    init(_ title: String) {
+    init(
+        _ title: String,
+        pad: Bool = false
+    ) {
+        if pad { edgeSet.insert(.leading)}
+        self.pad = pad
         self.title = title
     }
+
+    let pad: Bool
+    let title: String
+
+    var edgeSet: Edge.Set = [.bottom]
 
     var body: some View {
         Text(title)
             .font(.largeTitle)
             .fontWeight(.bold)
             .foregroundColor(Color.fromJSON(titleColor))
-            .padding(.bottom, 20)
+            .padding(edgeSet, 20)
     }
 }
 
