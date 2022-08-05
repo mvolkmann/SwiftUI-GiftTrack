@@ -23,7 +23,6 @@ struct MyList<Content: View>: View {
 
             .cornerRadius(10)
             .hideBackground() // defined in ViewExtension.swift
-            .trimTop()
         }
     }
 }

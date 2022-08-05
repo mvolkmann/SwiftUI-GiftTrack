@@ -82,7 +82,6 @@ struct SettingsScreen: View {
                 .buttonStyle(MyButtonStyle())
             }
             .hideBackground() // defined in ViewExtension.swift
-            .trimTop()
         }
     }
 

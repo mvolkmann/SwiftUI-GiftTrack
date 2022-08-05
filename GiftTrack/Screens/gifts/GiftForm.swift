@@ -185,7 +185,6 @@ struct GiftForm: View {
                 }
             }
             .hideBackground() // defined in ViewExtension.swift
-            .trimTop()
         }
 
         .navigationBarItems(

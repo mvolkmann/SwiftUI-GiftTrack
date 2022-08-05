@@ -6,6 +6,7 @@ extension View {
         if #available(iOS 16, *) {
             // Definitely need this in iOS 16!
             scrollContentBackground(.hidden)
+                .padding(.top, -35)
         } else {
             self
         }
@@ -32,6 +33,7 @@ extension View {
         font(.system(size: CGFloat(size)).weight(weight))
     }
 
+    /*
     @ViewBuilder
     func trimTop() -> some View {
         if #available(iOS 16, *) {
@@ -40,5 +42,5 @@ extension View {
             self
         }
     }
-
+    */
 }

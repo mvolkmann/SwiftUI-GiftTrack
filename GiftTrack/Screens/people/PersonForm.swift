@@ -51,7 +51,6 @@ struct PersonForm: View {
                 }
                 .buttonStyle(MyButtonStyle())
                 .hideBackground() // defined in ViewExtension.swift
-                .trimTop()
                 .navigationBarItems(
                     trailing: Button("Done") { save() }.disabled(name.isEmpty)
                 )
