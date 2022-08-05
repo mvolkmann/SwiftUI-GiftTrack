@@ -26,8 +26,7 @@ struct GiftForm: View {
     @State private var name = ""
     // @State private var openBarScanner = false
     // @State private var openQRScanner = false
-    // TODO: Get this to remove non-digts from a TextField while typing.
-    @State private var price = NumbersOnly(0)
+    @State private var price = ""
     @State private var purchased = false
     @State private var region: MKCoordinateRegion = .init()
     // @State private var qrScanError = ""
@@ -69,7 +68,8 @@ struct GiftForm: View {
             _longitude = State(initialValue: gift.longitude)
             _name = State(initialValue: gift.name ?? "")
             _purchased = State(initialValue: gift.purchased)
-            _price = State(initialValue: NumbersOnly(gift.price))
+            //_price = State(initialValue: NumbersOnly(gift.price))
+            _price = State(initialValue: "\(gift.price)")
             _url = State(initialValue: gift.url?.absoluteString ?? "")
 
             if let data = gift.image {
@@ -128,19 +128,22 @@ struct GiftForm: View {
                 MyTextField("Description", text: $desc, edit: edit)
                     .focused($showKeyboard)
 
-                if edit || price.value != "0" {
-                    HStack {
-                        MyTextField(
-                            "Price",
-                            text: $price.value,
-                            valuePrefix: "$",
-                            edit: edit,
-                            autocorrect: false,
-                            keyboard: .decimalPad
-                        )
-                        .focused($showKeyboard)
-                    }
+                // The clear button doesn't appear when the price is deleted
+                // because it is 
+                MyTextField(
+                    "Price",
+                    text: $price,
+                    valuePrefix: "$",
+                    edit: edit,
+                    autocorrect: false,
+                    keyboard: .decimalPad
+                )
+                .focused($showKeyboard)
+                .onChange(of: price) { _ in
+                    // This removes all non-digit characters.
+                    price = price.filter(\.isNumber)
                 }
+
                 MyToggle("Purchased?", isOn: $purchased, edit: edit)
 
                 if edit || !url.isEmpty {
@@ -297,7 +300,7 @@ struct GiftForm: View {
         toSave.location = location.trim()
         toSave.longitude = longitude
         toSave.name = name.trim()
-        toSave.price = Int64(Int(price.value)!)
+        toSave.price = Int64(Int(price) ?? 0)
         toSave.purchased = purchased
         toSave.url = URL(string: url.trim())
 

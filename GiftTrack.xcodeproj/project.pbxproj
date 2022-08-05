@@ -50,7 +50,6 @@
 		4DA8B8582757D9700058688D /* GiftForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8572757D9700058688D /* GiftForm.swift */; };
 		4DA8B85A2757DE3A0058688D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8592757DE3A0058688D /* Product.swift */; };
 		4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */; };
-		4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB339A227514A08006ECBFD /* NumbersOnly.swift */; };
 		4DBCBD662755A7DC0024BB0E /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBCBD652755A7DC0024BB0E /* ImageExtension.swift */; };
 		4DF89BDA27432C13007C703E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
@@ -102,7 +101,6 @@
 		4DA8B8572757D9700058688D /* GiftForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftForm.swift; sourceTree = "<group>"; };
 		4DA8B8592757DE3A0058688D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButtonStyle.swift; sourceTree = "<group>"; };
-		4DB339A227514A08006ECBFD /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
 		4DBCBD652755A7DC0024BB0E /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,7 +254,6 @@
 			children = (
 				4D88AFB1274E7FB9005A999F /* global.swift */,
 				4DA8B8352756CC950058688D /* HTTPUtil.swift */,
-				4DB339A227514A08006ECBFD /* NumbersOnly.swift */,
 				4D90AA4627496AA10056FF3B /* PersistenceController.swift */,
 			);
 			path = Utils;
@@ -406,7 +403,6 @@
 				4D6CE0AA2758FDD600039CD6 /* MyPhoto.swift in Sources */,
 				1AA7F63C28838E8500763FF8 /* EnvironmentValuesExtension.swift in Sources */,
 				1A4F14AD2896A35900FF3810 /* MyImageURL.swift in Sources */,
-				4DB339A327514A08006ECBFD /* NumbersOnly.swift in Sources */,
 				4DA8B8582757D9700058688D /* GiftForm.swift in Sources */,
 				4DA8B8562757D5780058688D /* IconButton.swift in Sources */,
 				4D6CE0BB275A873E00039CD6 /* DeleteButton.swift in Sources */,

@@ -29,6 +29,12 @@ func navigationBarColors(foreground: Color, background: Color) {
     target.tintColor = uiForeground
 }
 
+// This simplifies print statements that use string interpolation
+// to print values with types like Bool.
+func sd(_ css: CustomStringConvertible) -> String {
+    String(describing: css)
+}
+
 func updateColors(foregroundColor: String, backgroundColor: String) {
     let bgColor = Color.fromJSON(backgroundColor)
     navigationBarColors(
