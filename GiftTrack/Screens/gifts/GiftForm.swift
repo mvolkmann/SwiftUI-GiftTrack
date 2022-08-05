@@ -68,8 +68,7 @@ struct GiftForm: View {
             _longitude = State(initialValue: gift.longitude)
             _name = State(initialValue: gift.name ?? "")
             _purchased = State(initialValue: gift.purchased)
-            //_price = State(initialValue: NumbersOnly(gift.price))
-            _price = State(initialValue: "\(gift.price)")
+            _price = State(initialValue: gift.price == 0 ? "" : "\(gift.price)")
             _url = State(initialValue: gift.url?.absoluteString ?? "")
 
             if let data = gift.image {
