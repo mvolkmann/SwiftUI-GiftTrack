@@ -123,20 +123,23 @@ struct GiftForm: View {
             Form {
                 // if edit { barCodeView }
 
-                MyTextField("Name", text: $name, edit: edit)
+                MyTextField("Gift Name", text: $name, edit: edit)
                     .focused($showKeyboard)
                 MyTextField("Description", text: $desc, edit: edit)
                     .focused($showKeyboard)
 
                 if edit || price.value != "0" {
-                    MyTextField(
-                        "Price",
-                        text: $price.value,
-                        edit: edit,
-                        autocorrect: false,
-                        keyboard: .decimalPad
-                    )
-                    .focused($showKeyboard)
+                    HStack {
+                        Text("$")
+                        MyTextField(
+                            "Price",
+                            text: $price.value,
+                            edit: edit,
+                            autocorrect: false,
+                            keyboard: .decimalPad
+                        )
+                        .focused($showKeyboard)
+                    }
                 }
                 MyToggle("Purchased?", isOn: $purchased, edit: edit)
 

@@ -13,10 +13,10 @@ class NumbersOnly: ObservableObject {
     }
 
     init(_ value: Int) {
-        self.value = String(value)
+        self.value = value == 0 ? "" : String(value)
     }
 
     init(_ value: Int64) {
-        self.value = String(value)
+        self.value = value == 0 ? "" : String(value)
     }
 }
