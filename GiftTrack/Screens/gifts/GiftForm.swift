@@ -119,6 +119,12 @@ struct GiftForm: View {
 
     var body: some View {
         Screen {
+            MyTitle(
+                "\(occasion.name!) gift for \(person.name!)",
+                font: .system(size: 20).weight(.bold),
+                pad: true
+            )
+
             Form {
                 // if edit { barCodeView }
 

@@ -5,21 +5,24 @@ struct MyTitle: View {
 
     init(
         _ title: String,
+        font: Font = .largeTitle,
         pad: Bool = false
     ) {
-        if pad { edgeSet.insert(.leading)}
+        self.font = font
+        if pad { edgeSet.insert(.leading) }
         self.pad = pad
         self.title = title
     }
 
+    let font: Font
     let pad: Bool
     let title: String
 
-    var edgeSet: Edge.Set = [.bottom]
+    var edgeSet: Edge.Set = []
 
     var body: some View {
         Text(title)
-            .font(.largeTitle)
+            .font(font)
             .fontWeight(.bold)
             .foregroundColor(Color.fromJSON(titleColor))
             .padding(edgeSet, 20)
