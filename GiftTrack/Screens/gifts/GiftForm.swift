@@ -121,7 +121,7 @@ struct GiftForm: View {
         Screen {
             MyTitle(
                 "\(occasion.name!) gift for \(person.name!)",
-                font: .system(size: 20).weight(.bold),
+                small: true,
                 pad: true
             )
 

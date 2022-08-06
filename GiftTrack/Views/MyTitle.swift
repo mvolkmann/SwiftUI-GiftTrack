@@ -3,26 +3,29 @@ import SwiftUI
 struct MyTitle: View {
     @AppStorage("titleColor") var titleColor: String = "Title"
 
+    private let smallTitle: Font = .system(size: 20).weight(.bold)
+
     init(
         _ title: String,
-        font: Font = .largeTitle,
+        small: Bool = false,
         pad: Bool = false
     ) {
-        self.font = font
-        if pad { edgeSet.insert(.leading) }
+        self.small = small
         self.pad = pad
         self.title = title
+
+        if pad { edgeSet.insert(.leading) }
     }
 
-    let font: Font
     let pad: Bool
+    let small: Bool
     let title: String
 
     var edgeSet: Edge.Set = []
 
     var body: some View {
         Text(title)
-            .font(font)
+            .font(small ? smallTitle : .largeTitle)
             .fontWeight(.bold)
             .foregroundColor(Color.fromJSON(titleColor))
             .padding(edgeSet, 20)

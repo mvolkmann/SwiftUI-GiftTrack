@@ -42,6 +42,12 @@ struct PersonForm: View {
     var body: some View {
         Screen {
             if canAdd {
+                MyTitle(
+                    (person == nil ? "Add" : "Edit") + " person",
+                    small: true,
+                    pad: true
+                )
+
                 Form {
                     MyTextField("Name", text: $name, capitalizationType: .words)
                     MyToggle("Include Birthday", isOn: $includeBirthday)

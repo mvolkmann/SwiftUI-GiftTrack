@@ -38,6 +38,12 @@ struct OccasionForm: View {
     var body: some View {
         Screen {
             if canAdd {
+                MyTitle(
+                    (occasion == nil ? "Add" : "Edit") + " Occasion",
+                    small: true,
+                    pad: true
+                )
+
                 Form {
                     MyTextField("Name", text: $name, capitalizationType: .words)
                     MyToggle("Include Date", isOn: $includeDate)
