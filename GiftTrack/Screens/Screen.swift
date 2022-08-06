@@ -19,7 +19,6 @@ struct Screen<Content: View>: View {
         self.content = content()
     }
 
-
     var body: some View {
         ZStack {
             Color.fromJSON(backgroundColor).ignoresSafeArea()

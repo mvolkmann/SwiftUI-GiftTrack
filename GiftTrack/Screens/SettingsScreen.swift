@@ -32,6 +32,10 @@ struct SettingsScreen: View {
 
     // MARK: - Properties
 
+    private var contrast: Double {
+        selectedTitleColor.contrastRatio(against: selectedBackgroundColor)
+    }
+
     var body: some View {
         Screen {
             MyTitle("Settings", pad: true)
@@ -56,6 +60,12 @@ struct SettingsScreen: View {
                     .onChange(of: selectedTitleColor) { _ in
                         titleColor = selectedTitleColor.toJSON()
                         update()
+                    }
+
+                    if contrast < 4.5 {
+                        Text("Choose colors with more contrast.")
+                            .foregroundColor(.red)
+                            .fontWeight(.bold)
                     }
 
                     HStack {

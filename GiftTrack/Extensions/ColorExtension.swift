@@ -22,7 +22,7 @@ extension Color: Codable {
 
     // MARK: - Properties
 
-    var colorComponents: ColorTuple {
+    var components: ColorTuple {
         guard let components = UIColor(self).cgColor.components else {
             return (0, 0, 0, 0)
         }
@@ -36,12 +36,20 @@ extension Color: Codable {
 
     // MARK: - Methods
 
+    func contrastRatio(against color: Color) -> Double {
+        let luminance1 = self.luminance()
+        let luminance2 = color.luminance()
+        let luminanceDarker = min(luminance1, luminance2)
+        let luminanceLighter = max(luminance1, luminance2)
+        return (luminanceLighter + 0.05) / (luminanceDarker + 0.05)
+    }
+
     // Encodes a color.
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(colorComponents.red, forKey: .red)
-        try container.encode(colorComponents.green, forKey: .green)
-        try container.encode(colorComponents.blue, forKey: .blue)
+        try container.encode(components.red, forKey: .red)
+        try container.encode(components.green, forKey: .green)
+        try container.encode(components.blue, forKey: .blue)
     }
 
     static func fromJSON(_ json: String) -> Color {
@@ -56,6 +64,18 @@ extension Color: Codable {
             print("Color.fromJSON failed: \(error)")
             return .clear
         }
+    }
+
+    func luminance() -> Double {
+        func adjust(colorComponent: CGFloat) -> CGFloat {
+            colorComponent < 0.04045 ?
+                (colorComponent / 12.92) :
+                pow((colorComponent + 0.055) / 1.055, 2.4)
+        }
+
+        return 0.2126 * adjust(colorComponent: self.components.red) +
+            0.7152 * adjust(colorComponent: self.components.green) +
+            0.0722 * adjust(colorComponent: self.components.blue)
     }
 
     func toJSON() -> String {
