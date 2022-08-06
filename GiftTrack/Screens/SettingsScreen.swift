@@ -82,17 +82,23 @@ struct SettingsScreen: View {
                         .accentColor(Color.fromJSON(titleColor))
                     }
 
-                    Button("Reset") {
-                        backgroundColor = "Background"
-                        titleColor = "Title"
-                        startScreen = "About"
-                        update()
-                    }
+                    Button("Reset", action: reset)
                 }
                 .buttonStyle(MyButtonStyle())
             }
             .hideBackground() // defined in ViewExtension.swift
         }
+    }
+
+    private func reset() {
+        backgroundColor = "Background"
+        selectedBackgroundColor = Color(backgroundColor)
+
+        titleColor = "Title"
+        selectedTitleColor = Color(titleColor)
+
+        startScreen = "About"
+        update()
     }
 
     private func update() {
