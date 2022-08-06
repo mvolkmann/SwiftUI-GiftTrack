@@ -69,9 +69,9 @@ struct SettingsScreen: View {
                     }
 
                     HStack {
-                        Text("Start Page")
+                        Text("Start Screen")
                         Spacer()
-                        Picker("Start Screen", selection: $startScreen) {
+                        Picker("", selection: $startScreen) {
                             ForEach(Screens.allCases.indices, id: \.self) { index in
                                 let rawValue = Screens.allCases[index].rawValue
                                 Text(rawValue).tag(rawValue)
