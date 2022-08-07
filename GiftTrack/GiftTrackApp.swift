@@ -7,6 +7,8 @@ struct GiftTrackApp: App {
     // for in-app purchases
     @StateObject private var store = StoreKitStore()
 
+    @StateObject var csManager = ColorSchemeManager()
+
     let pCtrl = PersistenceController.shared
 
     var body: some Scene {
@@ -20,6 +22,10 @@ struct GiftTrackApp: App {
 
                 // for in-app purchases
                 .environmentObject(store)
+
+                // for managing color schemes
+                .environmentObject(csManager)
+                .onAppear { csManager.applyColorScheme() }
         }
         .onChange(of: scenePhase) { phase in
             if phase == .background { pCtrl.save() }

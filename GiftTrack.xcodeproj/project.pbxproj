@@ -16,6 +16,7 @@
 		1AA7F63A2883832B00763FF8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F6392883832B00763FF8 /* StringExtension.swift */; };
 		1AA7F63C28838E8500763FF8 /* EnvironmentValuesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */; };
 		1AEE7138288624FD00876C7F /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE7137288624FD00876C7F /* ViewExtension.swift */; };
+		1AFDA19C28A06C2E00A5E637 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */; };
 		4D150CB02752766F0026C744 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D150CAF2752766F0026C744 /* SettingsScreen.swift */; };
 		4D19292A273BE60E0056653B /* GiftTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D192929273BE60E0056653B /* GiftTrackApp.swift */; };
 		4D19292E273BE60F0056653B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D19292D273BE60F0056653B /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		1AA7F6392883832B00763FF8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtension.swift; sourceTree = "<group>"; };
 		1AEE7137288624FD00876C7F /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
 		4D150CAF2752766F0026C744 /* SettingsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		4D192926273BE60E0056653B /* GiftTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiftTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D192929273BE60E0056653B /* GiftTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftTrackApp.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */,
 				4DA8B8372756CDAB0058688D /* Secrets.xcconfig */,
+				1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */,
 				4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */,
 				4D6CE0B3275939F000039CD6 /* Extensions */,
 				1A11EE49288627B300CAD52B /* Models */,
@@ -418,6 +421,7 @@
 				1AA7F63A2883832B00763FF8 /* StringExtension.swift in Sources */,
 				4D19293A273BE70C0056653B /* PeopleScreen.swift in Sources */,
 				4DF89BDA27432C13007C703E /* CoreDataModel.xcdatamodeld in Sources */,
+				1AFDA19C28A06C2E00A5E637 /* ColorSchemeManager.swift in Sources */,
 				4DBCBD662755A7DC0024BB0E /* ImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
