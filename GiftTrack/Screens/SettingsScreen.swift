@@ -4,6 +4,7 @@ struct SettingsScreen: View {
     // MARK: - State
 
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
+    @AppStorage("colorsCustomized") var colorsCustomized: Bool = false
     @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("titleColor") var titleColor: String = "Title"
     @AppStorage("startScreen") var startScreen: String = "About"
@@ -49,12 +50,13 @@ struct SettingsScreen: View {
                         supportsOpacity: false
                     )
                     .onChange(of: selectedBackgroundColor) { _ in
+                        colorsCustomized = backgroundColor != "Background"
                         backgroundColor = selectedBackgroundColor.json
                         update()
                     }
 
                     // For color debugging ...`
-                    // Text("background luminence: \(selectedBackgroundColor.luminance)")
+                    // Text("background luminance: \(selectedBackgroundColor.luminance)")
                     // Text("isDarkMode = \(sd(isDarkMode))")
 
                     ColorPicker(
@@ -63,6 +65,7 @@ struct SettingsScreen: View {
                         supportsOpacity: false
                     )
                     .onChange(of: selectedTitleColor) { _ in
+                        colorsCustomized = backgroundColor != "Title"
                         titleColor = selectedTitleColor.json
                         update()
                     }
@@ -102,6 +105,8 @@ struct SettingsScreen: View {
         titleColor = "Title"
         selectedTitleColor = Color(titleColor)
 
+        colorsCustomized = false
+        
         startScreen = "About"
         update()
     }

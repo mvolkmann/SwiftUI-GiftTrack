@@ -7,8 +7,6 @@ struct MainScreen: View {
     @AppStorage("startScreen") var startScreen: String = "About"
     @AppStorage("titleColor") var titleColor: String = "Title"
 
-    @Environment(\.colorScheme) var colorScheme
-
     // @State private var broughtToForeground = false
     @State private var screenTag: String = "About"
 
