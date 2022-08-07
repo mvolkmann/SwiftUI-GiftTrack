@@ -2,6 +2,8 @@ import SwiftUI
 
 @main
 struct GiftTrackApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
     @Environment(\.scenePhase) var scenePhase
 
     // for in-app purchases
@@ -20,6 +22,8 @@ struct GiftTrackApp: App {
 
                 // for in-app purchases
                 .environmentObject(store)
+
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
         .onChange(of: scenePhase) { phase in
             if phase == .background { pCtrl.save() }

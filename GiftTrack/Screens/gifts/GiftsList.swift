@@ -87,6 +87,7 @@ struct GiftsList: View {
             }
 
             LabelledText(label: "Total", text: "$\(total)")
+                .padding(.top, 5)
 
             Button("Delete These Gifts", role: .destructive) {
                 isConfirming = true

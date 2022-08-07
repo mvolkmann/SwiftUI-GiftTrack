@@ -67,7 +67,7 @@ struct GiftsScreen: View {
                         occasion: occasion,
                         occasionIndex: occasionIndex
                     )
-                    .padding(.top, 5)
+                    .padding(.top, 10)
                     .padding(.bottom)
                     .padding(.horizontal, -20)
                 }
