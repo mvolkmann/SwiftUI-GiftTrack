@@ -4,11 +4,16 @@ struct MainScreen: View {
     // MAIN: - State
 
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
+    @AppStorage("colorsCustomized") var colorsCustomized: Bool = false
     @AppStorage("startScreen") var startScreen: String = "About"
     @AppStorage("titleColor") var titleColor: String = "Title"
 
-    // @State private var broughtToForeground = false
+    @Environment(\.colorScheme) var colorScheme
+
+    @State private var osScheme: ColorScheme = .light
     @State private var screenTag: String = "About"
+    @State private var updatingScheme: Bool = false
+    @State private var useScheme: ColorScheme = .light
 
     // MAIN: - Initializer
 
@@ -70,8 +75,38 @@ struct MainScreen: View {
             )
         }
 
+        .onChange(of: backgroundColor) { _ in
+            updatingScheme = true
+            updateColorScheme()
+        }
+
+        .onChange(of: colorScheme) { newColorScheme in
+            print("MainScreen: colorScheme = \(colorScheme)")
+            print("MainScreen: newColorScheme = \(newColorScheme)")
+            print("MainScreen: updatingScheme = \(sd(updatingScheme))")
+            if updatingScheme {
+                updatingScheme = false
+            } else {
+                osScheme = newColorScheme
+                print("MainScreen: osScheme = \(osScheme)")
+                updateColorScheme()
+            }
+        }
+
+        // TODO: Calling this seems to prevent
+        // TODO: onChange(of: colorScheme) from being called!
+        .preferredColorScheme(useScheme)
+
         // This removes the following console warning:
         // [LayoutConstraints] Unable to simultaneously satisfy constraints.
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    func updateColorScheme() {
+        useScheme =
+           !colorsCustomized ? osScheme :
+           Color.fromJSON(backgroundColor).isDark ? .dark :
+           .light
+        print("MainScreen.updateColorScheme: useScheme = \(useScheme)")
     }
 }

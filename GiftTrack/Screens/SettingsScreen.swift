@@ -5,7 +5,6 @@ struct SettingsScreen: View {
 
     @AppStorage("backgroundColor") var backgroundColor: String = "Background"
     @AppStorage("colorsCustomized") var colorsCustomized: Bool = false
-    @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("titleColor") var titleColor: String = "Title"
     @AppStorage("startScreen") var startScreen: String = "About"
 
@@ -57,7 +56,6 @@ struct SettingsScreen: View {
 
                     // For color debugging ...`
                     // Text("background luminance: \(selectedBackgroundColor.luminance)")
-                    // Text("isDarkMode = \(sd(isDarkMode))")
 
                     ColorPicker(
                         "Title Color",
@@ -106,13 +104,12 @@ struct SettingsScreen: View {
         selectedTitleColor = Color(titleColor)
 
         colorsCustomized = false
-        
+
         startScreen = "About"
         update()
     }
 
     private func update() {
-        isDarkMode = selectedBackgroundColor.isDark
         updateColors(
             foregroundColor: titleColor,
             backgroundColor: backgroundColor

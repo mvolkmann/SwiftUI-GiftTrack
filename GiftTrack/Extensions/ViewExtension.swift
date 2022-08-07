@@ -32,15 +32,4 @@ extension View {
     func sysFont(_ size: Int, weight: Font.Weight = .regular) -> some View {
         font(.system(size: CGFloat(size)).weight(weight))
     }
-
-    /*
-    @ViewBuilder
-    func trimTop() -> some View {
-        if #available(iOS 16, *) {
-            padding(.top, -35)
-        } else {
-            self
-        }
-    }
-    */
 }
