@@ -63,10 +63,7 @@ struct MainScreen: View {
 
         .onAppear {
             screenTag = startScreen
-            updateColors(
-                foregroundColor: titleColor,
-                backgroundColor: backgroundColor
-            )
+            updateForegroundColor(titleColor)
         }
 
         // This removes the following console warning:

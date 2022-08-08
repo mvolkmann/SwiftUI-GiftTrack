@@ -126,9 +126,6 @@ struct SettingsScreen: View {
     }
 
     private func update() {
-        updateColors(
-            foregroundColor: titleColor,
-            backgroundColor: backgroundColor
-        )
+        updateForegroundColor(titleColor)
     }
 }

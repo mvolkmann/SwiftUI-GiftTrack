@@ -15,18 +15,6 @@ func name(_ object: NSObject?) -> String {
 }
 
 func navigationBarColors(foreground: Color, background: Color) {
-    let uiForeground = UIColor(foreground)
-    let appearance = UINavigationBarAppearance()
-    appearance.configureWithOpaqueBackground()
-    appearance.backgroundColor = UIColor(background)
-    appearance.titleTextAttributes = [.foregroundColor: uiForeground]
-    appearance.largeTitleTextAttributes = [.foregroundColor: uiForeground]
-
-    let target = UINavigationBar.appearance()
-    target.standardAppearance = appearance
-    target.compactAppearance = appearance
-    target.scrollEdgeAppearance = appearance
-    target.tintColor = uiForeground
 }
 
 // This simplifies print statements that use string interpolation
@@ -35,12 +23,12 @@ func sd(_ css: CustomStringConvertible) -> String {
     String(describing: css)
 }
 
-func updateColors(foregroundColor: String, backgroundColor: String) {
-    let bgColor = Color.fromJSON(backgroundColor)
-    navigationBarColors(
-        foreground: Color.fromJSON(foregroundColor),
-        background: bgColor
-    )
+func updateForegroundColor(_ foregroundColor: String) {
+    // Set navigation bar title color.
+    let appearance = UINavigationBarAppearance()
+    let fgColor = Color.fromJSON(foregroundColor)
+    appearance.titleTextAttributes = [.foregroundColor: UIColor(fgColor)]
+    UINavigationBar.appearance().standardAppearance = appearance
 
     // Set image and text color for unselected tab items.
     UITabBar.appearance().unselectedItemTintColor =
