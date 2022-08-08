@@ -8,7 +8,7 @@ struct MainScreen: View {
     @AppStorage("titleColor") var titleColor: String = "Title"
 
     @Environment(\.colorScheme) var colorScheme
-    
+
     @EnvironmentObject var csManager: ColorSchemeManager
 
     @State private var screenTag: String = "About"
@@ -67,23 +67,27 @@ struct MainScreen: View {
 
         .onAppear {
             screenTag = startScreen
-            updateColors(
-                foregroundColor: titleColor,
-                backgroundColor: backgroundColor
-            )
+            update()
         }
 
-        .onChange(of: colorScheme) { _ in
-            print("MainScreen: detected colorScheme change")
-            updateColors(
-                foregroundColor: titleColor,
-                backgroundColor: backgroundColor
-            )
-            csManager.applyColorScheme()
+        // THIS DOESN'T GET TRIGGERED WHEN OS COLOR SCHEME IS CHANGED.
+        .onChange(of: colorScheme) { newScheme in
+            print("MainScreen: old scheme = \(String(describing: colorScheme))")
+            print("MainScreen: new scheme = \(String(describing: newScheme))")
+            //csManager.myColorScheme =
+            //    newScheme == ColorScheme.dark ? .dark : .light
+            update()
         }
 
         // This removes the following console warning:
         // [LayoutConstraints] Unable to simultaneously satisfy constraints.
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    private func update() {
+        updateColors(
+            foregroundColor: titleColor,
+            backgroundColor: backgroundColor
+        )
     }
 }

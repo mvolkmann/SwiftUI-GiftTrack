@@ -3,24 +3,24 @@
 
 import SwiftUI
 
-enum ColorScheme: Int {
+enum MyColorScheme: Int {
     case unspecified, light, dark
 }
 
 class ColorSchemeManager: ObservableObject {
-    @AppStorage("colorScheme") var colorScheme: ColorScheme = .unspecified {
+    @AppStorage("myColorScheme") var myColorScheme: MyColorScheme = .unspecified {
         didSet {
             applyColorScheme()
         }
     }
 
     func applyColorScheme() {
-        print("ColorSchemeManager.applyColorScheme: colorScheme = \(String(describing: colorScheme))")
-        keyWindow?.overrideUserInterfaceStyle =
-            UIUserInterfaceStyle(rawValue: colorScheme.rawValue)!
+        print("ColorSchemeManager.applyColorScheme: myColorScheme = \(String(describing: myColorScheme))")
+        firstWindow?.overrideUserInterfaceStyle =
+            UIUserInterfaceStyle(rawValue: myColorScheme.rawValue)!
     }
 
-    var keyWindow: UIWindow? {
+    var firstWindow: UIWindow? {
         guard let scene = UIApplication.shared.connectedScenes.first,
               let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
               let window = windowSceneDelegate.window else {

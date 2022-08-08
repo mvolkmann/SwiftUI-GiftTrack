@@ -9,6 +9,8 @@ struct SettingsScreen: View {
 
     @EnvironmentObject var csManager: ColorSchemeManager
 
+    @State private var wasReset = false
+
     // These are both modified in the initializer.
     @State private var selectedBackgroundColor: Color = .clear
     @State private var selectedTitleColor: Color = .clear
@@ -51,17 +53,21 @@ struct SettingsScreen: View {
                     )
                     .onChange(of: selectedBackgroundColor) { _ in
                         print("SettingsScreen: backgroundColor = \(backgroundColor)")
-                        if backgroundColor != "Background" {
-                            csManager.colorScheme =
-                            selectedBackgroundColor.isDark ? .dark : .light
-                            print("SettingsScreen: colorScheme = \(String(describing: csManager.colorScheme))")
+                        if wasReset {
+                            wasReset = false
+                        } else {
+                            print("SettingsScreen: isDark = \(selectedBackgroundColor.isDark)")
+                            backgroundColor = selectedBackgroundColor.json
+                            csManager.myColorScheme =
+                                selectedBackgroundColor.isDark ? .dark : .light
+                            print("SettingsScreen: colorScheme = \(String(describing: csManager.myColorScheme))")
                         }
-                        backgroundColor = selectedBackgroundColor.json
                         update()
                     }
 
                     // For color debugging ...`
                     Text("background luminance: \(selectedBackgroundColor.luminance)")
+                    Text("color scheme: \(String(describing: csManager.myColorScheme))")
 
                     ColorPicker(
                         "Title Color",
@@ -70,6 +76,7 @@ struct SettingsScreen: View {
                     )
                     .onChange(of: selectedTitleColor) { _ in
                         titleColor = selectedTitleColor.json
+                        wasReset = false
                         update()
                     }
 
@@ -105,6 +112,8 @@ struct SettingsScreen: View {
     // TODO: to really reset the color scheme?
     // TODO: Is it a timing issue?
     private func reset() {
+        wasReset = true
+
         backgroundColor = "Background"
         selectedBackgroundColor = Color(backgroundColor)
 
@@ -112,11 +121,15 @@ struct SettingsScreen: View {
         selectedTitleColor = Color(titleColor)
 
         startScreen = "About"
-        update()
 
         // This allows the system color scheme to affect colors.
-        csManager.colorScheme = .unspecified
+        // TRY SETTING TO WHATEVER THE OS COLOR SCHEME IS!
+        csManager.myColorScheme = .unspecified
         print("SettingsScreen.reset: changed colorScheme to unspecified")
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            update()
+        }
     }
 
     private func update() {
