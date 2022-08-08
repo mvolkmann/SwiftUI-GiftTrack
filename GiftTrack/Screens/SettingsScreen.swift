@@ -52,21 +52,21 @@ struct SettingsScreen: View {
                         supportsOpacity: false
                     )
                     .onChange(of: selectedBackgroundColor) { _ in
-                        print("SettingsScreen: backgroundColor = \(backgroundColor)")
+                        print("SettingsScreen: got background color change")
+                        print("SettingsScreen: wasReset = \(wasReset)")
                         if wasReset {
                             wasReset = false
                         } else {
-                            print("SettingsScreen: isDark = \(selectedBackgroundColor.isDark)")
                             backgroundColor = selectedBackgroundColor.json
                             csManager.myColorScheme =
                                 selectedBackgroundColor.isDark ? .dark : .light
-                            print("SettingsScreen: colorScheme = \(String(describing: csManager.myColorScheme))")
+                            print("SettingsScreen: new color scheme is \(String(describing: csManager.myColorScheme))")
                         }
                         update()
                     }
 
-                    // For color debugging ...`
-                    Text("background luminance: \(selectedBackgroundColor.luminance)")
+                    // For color debugging ...
+                    //Text("background luminance: \(selectedBackgroundColor.luminance)")
                     Text("color scheme: \(String(describing: csManager.myColorScheme))")
 
                     ColorPicker(
@@ -76,7 +76,6 @@ struct SettingsScreen: View {
                     )
                     .onChange(of: selectedTitleColor) { _ in
                         titleColor = selectedTitleColor.json
-                        wasReset = false
                         update()
                     }
 
@@ -108,11 +107,11 @@ struct SettingsScreen: View {
         }
     }
 
-    // TODO: Why does reset need to be called twice
-    // TODO: to really reset the color scheme?
-    // TODO: Is it a timing issue?
     private func reset() {
         wasReset = true
+
+        // This allows the system color scheme to affect colors.
+        csManager.myColorScheme = .unspecified
 
         backgroundColor = "Background"
         selectedBackgroundColor = Color(backgroundColor)
@@ -121,15 +120,6 @@ struct SettingsScreen: View {
         selectedTitleColor = Color(titleColor)
 
         startScreen = "About"
-
-        // This allows the system color scheme to affect colors.
-        // TRY SETTING TO WHATEVER THE OS COLOR SCHEME IS!
-        csManager.myColorScheme = .unspecified
-        print("SettingsScreen.reset: changed colorScheme to unspecified")
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            update()
-        }
     }
 
     private func update() {

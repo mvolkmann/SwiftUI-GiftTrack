@@ -36,7 +36,6 @@ func sd(_ css: CustomStringConvertible) -> String {
 }
 
 func updateColors(foregroundColor: String, backgroundColor: String) {
-    print("updateColors: entered")
     let bgColor = Color.fromJSON(backgroundColor)
     navigationBarColors(
         foreground: Color.fromJSON(foregroundColor),

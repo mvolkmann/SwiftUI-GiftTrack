@@ -15,7 +15,6 @@ class ColorSchemeManager: ObservableObject {
     }
 
     func applyColorScheme() {
-        print("ColorSchemeManager.applyColorScheme: myColorScheme = \(String(describing: myColorScheme))")
         firstWindow?.overrideUserInterfaceStyle =
             UIUserInterfaceStyle(rawValue: myColorScheme.rawValue)!
     }
