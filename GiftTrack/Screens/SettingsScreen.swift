@@ -75,6 +75,7 @@ struct SettingsScreen: View {
                         supportsOpacity: false
                     )
                     .onChange(of: selectedTitleColor) { _ in
+                        print("SettingsScreen: got title color change")
                         titleColor = selectedTitleColor.json
                         update()
                     }
@@ -118,11 +119,14 @@ struct SettingsScreen: View {
 
         titleColor = "Title"
         selectedTitleColor = Color(titleColor)
+        print("SettingsScreen.reset: selectedTitleColor = \(selectedTitleColor)")
 
         startScreen = "About"
     }
 
     private func update() {
+        print("SettingsScreen.update: titleColor = \(titleColor)")
+        print("SettingsScreen.update: backgroundColor = \(backgroundColor)")
         updateColors(
             foregroundColor: titleColor,
             backgroundColor: backgroundColor
