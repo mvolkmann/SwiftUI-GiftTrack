@@ -9,7 +9,7 @@ struct SettingsScreen: View {
 
     @EnvironmentObject var csManager: ColorSchemeManager
 
-    @State private var wasReset = false
+    @State private var resetCount = 0
 
     // These are both modified in the initializer.
     @State private var selectedBackgroundColor: Color = .clear
@@ -52,22 +52,19 @@ struct SettingsScreen: View {
                         supportsOpacity: false
                     )
                     .onChange(of: selectedBackgroundColor) { _ in
-                        print("SettingsScreen: got background color change")
-                        print("SettingsScreen: wasReset = \(wasReset)")
-                        if wasReset {
-                            wasReset = false
+                        if resetCount > 0 {
+                            resetCount -= 1
                         } else {
                             backgroundColor = selectedBackgroundColor.json
                             csManager.myColorScheme =
                                 selectedBackgroundColor.isDark ? .dark : .light
-                            print("SettingsScreen: new color scheme is \(String(describing: csManager.myColorScheme))")
+                            update()
                         }
-                        update()
                     }
 
                     // For color debugging ...
                     //Text("background luminance: \(selectedBackgroundColor.luminance)")
-                    Text("color scheme: \(String(describing: csManager.myColorScheme))")
+                    //Text("color scheme: \(String(describing: csManager.myColorScheme))")
 
                     ColorPicker(
                         "Title Color",
@@ -75,9 +72,12 @@ struct SettingsScreen: View {
                         supportsOpacity: false
                     )
                     .onChange(of: selectedTitleColor) { _ in
-                        print("SettingsScreen: got title color change")
-                        titleColor = selectedTitleColor.json
-                        update()
+                        if resetCount > 0 {
+                            resetCount -= 1
+                        } else {
+                            titleColor = selectedTitleColor.json
+                            update()
+                        }
                     }
 
                     if contrast < 4.5 {
@@ -109,24 +109,23 @@ struct SettingsScreen: View {
     }
 
     private func reset() {
-        wasReset = true
-
         // This allows the system color scheme to affect colors.
         csManager.myColorScheme = .unspecified
 
         backgroundColor = "Background"
+        resetCount += 1
         selectedBackgroundColor = Color(backgroundColor)
 
         titleColor = "Title"
+        resetCount += 1
         selectedTitleColor = Color(titleColor)
-        print("SettingsScreen.reset: selectedTitleColor = \(selectedTitleColor)")
 
         startScreen = "About"
+
+        update()
     }
 
     private func update() {
-        print("SettingsScreen.update: titleColor = \(titleColor)")
-        print("SettingsScreen.update: backgroundColor = \(backgroundColor)")
         updateColors(
             foregroundColor: titleColor,
             backgroundColor: backgroundColor
