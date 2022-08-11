@@ -63,8 +63,8 @@ struct SettingsScreen: View {
                     }
 
                     // For color debugging ...
-                    //Text("background luminance: \(selectedBackgroundColor.luminance)")
-                    //Text("color scheme: \(String(describing: csManager.myColorScheme))")
+                    // Text("background luminance: \(selectedBackgroundColor.luminance)")
+                    // Text("color scheme: \(String(describing: csManager.myColorScheme))")
 
                     ColorPicker(
                         "Title Color",

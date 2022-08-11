@@ -76,9 +76,9 @@ struct GiftsList: View {
                     ) {
                         HStack {
                             MyText(name(gift))
-                            if gift.price != 0 {
+                            if isValidPrice(gift.price) {
                                 Spacer()
-                                MyText("$\(gift.price)")
+                                MyText("$\(gift.price!)")
                             }
                         }
                     }
@@ -113,8 +113,16 @@ struct GiftsList: View {
         "\(name(person)) has no \(name(occasion)) gifts yet."
     }
 
-    private var total: Int {
-        Int(gifts.reduce(0) { acc, gift in acc + gift.price })
+    private var total: String {
+        let number = gifts.reduce(0.0) { acc, gift in
+            if let price = gift.price, let value = Double(price) {
+                return acc + value
+            } else {
+                return acc
+            }
+        }
+        let text = String(format: "%.2f", number)
+        return text.hasSuffix(".00") ? String(text.dropLast(3)) : text
     }
 
     var body: some View {
@@ -139,5 +147,10 @@ struct GiftsList: View {
             moc.delete(gift)
         }
         PersistenceController.shared.save()
+    }
+
+    private func isValidPrice(_ price: String?) -> Bool {
+        guard let price = price else { return false }
+        return !price.isEmpty && Double(price) != 0
     }
 }

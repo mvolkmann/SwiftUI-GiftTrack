@@ -68,7 +68,7 @@ struct GiftForm: View {
             _longitude = State(initialValue: gift.longitude)
             _name = State(initialValue: gift.name ?? "")
             _purchased = State(initialValue: gift.purchased)
-            _price = State(initialValue: gift.price == 0 ? "" : "\(gift.price)")
+            _price = State(initialValue: gift.price ?? "")
             _url = State(initialValue: gift.url?.absoluteString ?? "")
 
             if let data = gift.image {
@@ -133,8 +133,6 @@ struct GiftForm: View {
                 MyTextField("Description", text: $desc, edit: edit)
                     .focused($showKeyboard)
 
-                // The clear button doesn't appear when the price is deleted
-                // because it is 
                 MyTextField(
                     "Price",
                     text: $price,
@@ -145,8 +143,7 @@ struct GiftForm: View {
                 )
                 .focused($showKeyboard)
                 .onChange(of: price) { _ in
-                    // This removes all non-digit characters.
-                    price = price.filter(\.isNumber)
+                    price = formatPrice(price)
                 }
 
                 MyToggle("Purchased?", isOn: $purchased, edit: edit)
@@ -197,6 +194,7 @@ struct GiftForm: View {
 
         .navigationBarItems(
             trailing: Button(edit ? "Done" : "Edit") {
+                price = fixDecimalPlaces(price)
                 if edit { save() }
                 edit = !edit
             }
@@ -228,10 +226,55 @@ struct GiftForm: View {
 
     // MARK: - Methods
 
-    func clearLocation() {
+    private func clearLocation() {
         latitude = 0
         longitude = 0
         location = ""
+    }
+
+    private func fixDecimalPlaces(_ price: String) -> String {
+        var text = price
+
+        // If price ends with a period, remove it.
+        if text.hasSuffix(".") {
+            text = String(text.dropLast())
+        }
+
+        // If price ends with one decimal place,
+        // add a zero so there are two decimal places.
+        let parts = text.split(separator: ".")
+        if parts.count == 2, parts[1].count == 1 {
+            text += "0"
+        }
+
+        return text
+    }
+
+    private func formatPrice(_ price: String) -> String {
+        // Remove all characters that are not a period or digit.
+        var text = price.filter { char in char == "." || char.isNumber }
+
+        // If begins with a period, add leading zero.
+        if text.hasPrefix(".") { text = "0" + text }
+
+        var parts = text.split(
+            separator: ".",
+            omittingEmptySubsequences: false
+        )
+
+        // If there is no decimal point, return.
+        if parts.count < 2 { return text }
+
+        // If the last character is a decimal point
+        // and it is not the only decimal point,
+        // remove the last part.
+        if text.last == "." && parts.count > 2 {
+            parts.removeLast()
+        }
+
+        // Re-form the price String
+        // with a limit of two decimal places.
+        return parts[0] + "." + parts[1].prefix(2)
     }
 
     /*
@@ -260,7 +303,7 @@ struct GiftForm: View {
      }
      */
 
-    func loadProductData(productCode: String) {
+    private func loadProductData(productCode: String) {
         // This uses the UPC Database API at https://upcdatabase.org/api.
         let key = Bundle.main.object(
             forInfoDictionaryKey: "UPC_DATABASE_KEY"
@@ -294,7 +337,7 @@ struct GiftForm: View {
         }
     }
 
-    func save() {
+    private func save() {
         let adding = gift == nil
         let toSave = adding ? GiftEntity(context: moc) : gift!
 
@@ -305,7 +348,7 @@ struct GiftForm: View {
         toSave.location = location.trim()
         toSave.longitude = longitude
         toSave.name = name.trim()
-        toSave.price = Int64(Int(price) ?? 0)
+        toSave.price = price
         toSave.purchased = purchased
         toSave.url = URL(string: url.trim())
 
