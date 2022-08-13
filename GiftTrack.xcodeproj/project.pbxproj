@@ -179,9 +179,9 @@
 			children = (
 				4D192929273BE60E0056653B /* GiftTrackApp.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
+				1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */,
 				4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */,
 				4DA8B8372756CDAB0058688D /* Secrets.xcconfig */,
-				1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */,
 				4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */,
 				4D6CE0B3275939F000039CD6 /* Extensions */,
 				1A11EE49288627B300CAD52B /* Models */,
