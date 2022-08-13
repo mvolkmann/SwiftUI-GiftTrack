@@ -63,9 +63,9 @@ struct PersonForm: View {
             } else {
                 MyText("""
                 An in-app purchase is required to \
-                create more than two people.
+                add more than two people.
                 """, bold: true)
-                    .padding(.top)
+                    .padding()
             }
         }
         .alert(

@@ -58,9 +58,9 @@ struct OccasionForm: View {
             } else {
                 MyText("""
                 An in-app purchase is required to \
-                create more than two occasions.
+                add more than two occasions.
                 """, bold: true)
-                    .padding(.top)
+                    .padding()
             }
         }
         .alert(

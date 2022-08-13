@@ -24,8 +24,9 @@ struct OccasionsScreen: View {
 
     private var allowMore: Bool {
         // TODO: This temporarily makes in-app purchase unnecessary for debugging.
-        // store.appPurchased || occasions.count < 2
-        true
+        // true
+
+        store.appPurchased || occasions.count < 2
     }
 
     var body: some View {

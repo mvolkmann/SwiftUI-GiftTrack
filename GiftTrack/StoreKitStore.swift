@@ -10,7 +10,7 @@ class StoreKitStore: NSObject, ObservableObject {
 
     // MARK: - Constants
 
-    var productId = "r.mark.volkmann-gmail.com.gift-track"
+    var productId = "r.mark.volkmann.gmail.com.GiftTrack"
 
     // MARK: - Initializer
 
@@ -56,7 +56,7 @@ class StoreKitStore: NSObject, ObservableObject {
         if let product = product {
             purchaseProduct(product)
         } else {
-            print("This is no product to purchase.")
+            print("There are no products to purchase.")
         }
     }
 
@@ -108,17 +108,16 @@ extension StoreKitStore: SKProductsRequestDelegate {
     ) {
         let loadedProducts = response.products
 
-        /* Is this needed?
-         let invalidProducts = response.invalidProductIdentifiers
-         guard !loadedProducts.isEmpty else {
-             print("failed to load products")
-             if !invalidProducts.isEmpty {
-                 print("invalid products found: \(invalidProducts)")
-             }
-             productsRequest = nil
-             return
-         }
-         */
+        // Is this needed?
+        let invalidProducts = response.invalidProductIdentifiers
+        guard !loadedProducts.isEmpty else {
+            print("failed to load products")
+            if !invalidProducts.isEmpty {
+                print("invalid products found: \(invalidProducts)")
+            }
+            productsRequest = nil
+            return
+        }
 
         // Cache the fetched products.
         fetchedProducts = loadedProducts

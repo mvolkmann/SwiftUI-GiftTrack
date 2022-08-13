@@ -5,7 +5,7 @@
   ],
   "products" : [
     {
-      "displayPrice" : "1.99",
+      "displayPrice" : "4.99",
       "familyShareable" : true,
       "internalID" : "312FEC9C",
       "localizations" : [
@@ -15,7 +15,7 @@
           "locale" : "en_US"
         }
       ],
-      "productID" : "r.mark.volkmann-gmail.com.gift-track",
+      "productID" : "r.mark.volkmann.gmail.com.GiftTrack",
       "referenceName" : "GiftTrack",
       "type" : "NonConsumable"
     }
@@ -27,7 +27,7 @@
 
   ],
   "version" : {
-    "major" : 1,
-    "minor" : 1
+    "major" : 2,
+    "minor" : 0
   }
 }
