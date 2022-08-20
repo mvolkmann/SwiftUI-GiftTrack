@@ -33,6 +33,15 @@ struct AboutScreen: View {
                 unlimited number of people and occasions.
                 """)
             }
+
+            HStack {
+                Spacer()
+                Button("Restore previous in-app purchase") {
+                    store.restore()
+                }
+                Spacer()
+            }
+            .buttonStyle(MyButtonStyle())
         }
     }
 }

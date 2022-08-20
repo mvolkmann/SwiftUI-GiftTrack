@@ -65,6 +65,10 @@ class StoreKitStore: NSObject, ObservableObject {
         buy(product) { _ in } // completion does nothing
     }
 
+    func restore() {
+        SKPaymentQueue.default().restoreCompletedTransactions()
+    }
+
     private func startObservingPaymentQueue() {
         SKPaymentQueue.default().add(self)
     }
