@@ -122,7 +122,8 @@ struct GiftForm: View {
             MyTitle(
                 "\(occasion.name!) gift for \(person.name!)",
                 small: true,
-                pad: true
+                pad: true,
+                usesKeyboard: true
             )
 
             Form {

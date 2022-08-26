@@ -45,7 +45,8 @@ struct PersonForm: View {
                 MyTitle(
                     (person == nil ? "Add" : "Edit") + " person",
                     small: true,
-                    pad: true
+                    pad: true,
+                    usesKeyboard: true
                 )
 
                 Form {
