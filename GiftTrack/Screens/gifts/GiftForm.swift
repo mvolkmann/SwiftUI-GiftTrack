@@ -122,8 +122,7 @@ struct GiftForm: View {
             MyTitle(
                 "\(occasion.name!) gift for \(person.name!)",
                 small: true,
-                pad: true,
-                usesKeyboard: true
+                pad: true
             )
 
             Form {
@@ -279,30 +278,29 @@ struct GiftForm: View {
     }
 
     /*
-     func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
-         self.openBarScanner = false
+    func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.openBarScanner = false
 
-         switch result {
-         case .success(let code):
-             loadProductData(productCode: code)
-         case .failure(let error):
-             showBarScanError = true
-             qrScanError = "bar code scan failed: \(error)"
-         }
+        switch result {
+        case .success(let code):
+            loadProductData(productCode: code)
+        case .failure(let error):
+            showBarScanError = true
+            qrScanError = "bar code scan failed: \(error)"
+        }
+    }
+
+    func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.openQRScanner = false
+
+        switch result {
+        case .success(let code):
+            url = code
+        case .failure(let error):
+            showQRScanError = true
+            qrScanError = "QR code scan failed: \(error)"
+        }
      }
-
-     func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
-         self.openQRScanner = false
-
-         switch result {
-         case .success(let code):
-             url = code
-         case .failure(let error):
-             showQRScanError = true
-             qrScanError = "QR code scan failed: \(error)"
-         }
-     }
-     */
 
     private func loadProductData(productCode: String) {
         // This uses the UPC Database API at https://upcdatabase.org/api.
@@ -316,8 +314,8 @@ struct GiftForm: View {
             do {
                 let product = try await HTTPUtil.get(
                     from: url,
-                    type: Product.self
-                ) as Product
+                    type: UPCProduct.self
+                ) as UPCProduct
                 DispatchQueue.main.async {
                     self.name = product.title
                     self.desc = product.category
@@ -337,6 +335,7 @@ struct GiftForm: View {
             }
         }
     }
+    */
 
     private func save() {
         let adding = gift == nil

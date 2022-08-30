@@ -26,6 +26,12 @@ struct GiftTrackApp: App {
                 // for managing color schemes
                 .environmentObject(csManager)
                 .onAppear { csManager.applyColorScheme() }
+                .alert(
+                    "In-App Purchase Failed",
+                    isPresented: $store.purchaseFailed,
+                    actions: {},
+                    message: { Text("The app could not be purchased.") }
+                )
         }
         .onChange(of: scenePhase) { phase in
             if phase == .background { pCtrl.save() }

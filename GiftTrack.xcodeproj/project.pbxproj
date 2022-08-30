@@ -16,6 +16,7 @@
 		1AA7F63A2883832B00763FF8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F6392883832B00763FF8 /* StringExtension.swift */; };
 		1AA7F63C28838E8500763FF8 /* EnvironmentValuesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */; };
 		1AB3714A28B9544D00B34C26 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3714928B9544D00B34C26 /* LocationManager.swift */; };
+		1AE2831528BCF80700FCDD08 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2831428BCF80700FCDD08 /* ViewModel.swift */; };
 		1AEE7138288624FD00876C7F /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE7137288624FD00876C7F /* ViewExtension.swift */; };
 		1AFDA19C28A06C2E00A5E637 /* ColorSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */; };
 		4D150CB02752766F0026C744 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D150CAF2752766F0026C744 /* SettingsScreen.swift */; };
@@ -50,7 +51,7 @@
 		4DA8B8362756CC950058688D /* HTTPUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8352756CC950058688D /* HTTPUtil.swift */; };
 		4DA8B8562757D5780058688D /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8552757D5780058688D /* IconButton.swift */; };
 		4DA8B8582757D9700058688D /* GiftForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8572757D9700058688D /* GiftForm.swift */; };
-		4DA8B85A2757DE3A0058688D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8592757DE3A0058688D /* Product.swift */; };
+		4DA8B85A2757DE3A0058688D /* UPCProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA8B8592757DE3A0058688D /* UPCProduct.swift */; };
 		4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */; };
 		4DBCBD662755A7DC0024BB0E /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBCBD652755A7DC0024BB0E /* ImageExtension.swift */; };
 		4DF89BDA27432C13007C703E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */; };
@@ -66,6 +67,7 @@
 		1AA7F6392883832B00763FF8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtension.swift; sourceTree = "<group>"; };
 		1AB3714928B9544D00B34C26 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		1AE2831428BCF80700FCDD08 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1AEE7137288624FD00876C7F /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeManager.swift; sourceTree = "<group>"; };
 		4D150CAF2752766F0026C744 /* SettingsScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
@@ -103,7 +105,7 @@
 		4DA8B8382756FF7C0058688D /* SwiftUI-GiftTrack-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "SwiftUI-GiftTrack-Info.plist"; sourceTree = "<group>"; };
 		4DA8B8552757D5780058688D /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		4DA8B8572757D9700058688D /* GiftForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftForm.swift; sourceTree = "<group>"; };
-		4DA8B8592757DE3A0058688D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		4DA8B8592757DE3A0058688D /* UPCProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCProduct.swift; sourceTree = "<group>"; };
 		4DB3399E27513E6B006ECBFD /* MyButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButtonStyle.swift; sourceTree = "<group>"; };
 		4DBCBD652755A7DC0024BB0E /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		4DF89BD927432C13007C703E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -124,9 +126,17 @@
 		1A11EE49288627B300CAD52B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4DA8B8592757DE3A0058688D /* Product.swift */,
+				4DA8B8592757DE3A0058688D /* UPCProduct.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1AE2831328BCF7F100FCDD08 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1AE2831428BCF80700FCDD08 /* ViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		4D150CAC275270780026C744 /* gifts */ = {
@@ -181,6 +191,7 @@
 			children = (
 				4D192929273BE60E0056653B /* GiftTrackApp.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
+				4D6CE0BC275BD59D00039CD6 /* Configuration.storekit */,
 				1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */,
 				4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */,
 				1AB3714928B9544D00B34C26 /* LocationManager.swift */,
@@ -192,7 +203,7 @@
 				4D6CE0B527593B1F00039CD6 /* Styles */,
 				4D6CE0B427593A1F00039CD6 /* Utils */,
 				4D6CE0B1275938FF00039CD6 /* Views */,
-				4D6CE0BC275BD59D00039CD6 /* Configuration.storekit */,
+				1AE2831328BCF7F100FCDD08 /* ViewModels */,
 				4D19292F273BE60F0056653B /* Preview Content */,
 			);
 			path = GiftTrack;
@@ -393,6 +404,7 @@
 				4D6CE0B02759355200039CD6 /* OccasionForm.swift in Sources */,
 				4D192942273C09B20056653B /* MyText.swift in Sources */,
 				4D192944273C0B6F0056653B /* Screen.swift in Sources */,
+				1AE2831528BCF80700FCDD08 /* ViewModel.swift in Sources */,
 				4D3EA2452753CFC80010FE17 /* MyDatePicker.swift in Sources */,
 				4DB3399F27513E6B006ECBFD /* MyButtonStyle.swift in Sources */,
 				4DA8B8362756CC950058688D /* HTTPUtil.swift in Sources */,
@@ -415,7 +427,7 @@
 				4D19293E273BE7390056653B /* GiftsScreen.swift in Sources */,
 				4D6CE0AE27591D3800039CD6 /* PersonForm.swift in Sources */,
 				4D3EA2432753C84B0010FE17 /* MainScreen.swift in Sources */,
-				4DA8B85A2757DE3A0058688D /* Product.swift in Sources */,
+				4DA8B85A2757DE3A0058688D /* UPCProduct.swift in Sources */,
 				4D150CB02752766F0026C744 /* SettingsScreen.swift in Sources */,
 				1A4F14A52894B0B200FF3810 /* MyList.swift in Sources */,
 				4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */,
@@ -558,7 +570,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"GiftTrack/Preview Content\"";
 				DEVELOPMENT_TEAM = 4BG3523GAZ;
 				ENABLE_PREVIEWS = YES;
@@ -593,7 +605,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"GiftTrack/Preview Content\"";
 				DEVELOPMENT_TEAM = 4BG3523GAZ;
 				ENABLE_PREVIEWS = YES;

@@ -2,7 +2,10 @@ import CoreLocation
 
 // Make this class Equatable so it can be used in .onChange(of:) in MyMap.swift.
 extension CLLocationCoordinate2D: Equatable {}
-public func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+public func == (
+    lhs: CLLocationCoordinate2D,
+    rhs: CLLocationCoordinate2D
+) -> Bool {
     return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
 }
 

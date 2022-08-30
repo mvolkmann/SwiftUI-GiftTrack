@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct MyTextField: View {
+    @FocusState private var isFocused: Bool
+    @StateObject private var viewModel = ViewModel.shared
+
     // MARK: - Initializer
 
     init(
@@ -39,6 +42,10 @@ struct MyTextField: View {
                     .autocapitalization(capitalizationType)
                     .disableAutocorrection(!autocorrect)
                     .keyboardType(keyboard)
+                    .focused($isFocused)
+                    .onChange(of: isFocused) { _ in
+                        viewModel.isKeyboardShown = isFocused
+                    }
 
                 if !text.isEmpty {
                     Spacer()

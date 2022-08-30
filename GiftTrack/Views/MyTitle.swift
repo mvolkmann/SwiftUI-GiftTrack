@@ -2,18 +2,17 @@ import SwiftUI
 
 struct MyTitle: View {
     @AppStorage("titleColor") var titleColor: String = "Title"
+    @StateObject private var viewModel = ViewModel.shared
 
     private let smallTitle: Font = .system(size: 20).weight(.bold)
 
     init(
         _ title: String,
         small: Bool = false,
-        pad: Bool = false,
-        usesKeyboard: Bool = false
+        pad: Bool = false
     ) {
         self.small = small
         self.pad = pad
-        self.usesKeyboard = usesKeyboard
         self.title = title
 
         if pad { edgeSet.insert(.leading) }
@@ -22,7 +21,6 @@ struct MyTitle: View {
     let pad: Bool
     let small: Bool
     let title: String
-    let usesKeyboard: Bool
 
     var edgeSet: Edge.Set = []
 
@@ -33,7 +31,7 @@ struct MyTitle: View {
                 .fontWeight(.bold)
                 .foregroundColor(Color.fromJSON(titleColor))
                 .padding(edgeSet, 20)
-            if usesKeyboard {
+            if viewModel.isKeyboardShown {
                 Spacer()
                 Button(action: dismissKeyboard) {
                     Image(systemName: "keyboard.chevron.compact.down")

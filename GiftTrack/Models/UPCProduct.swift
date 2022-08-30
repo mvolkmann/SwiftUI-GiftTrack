@@ -1,4 +1,4 @@
-struct Product: Codable {
+struct UPCProduct: Codable {
     var brand: String
     var category: String
     var description: String

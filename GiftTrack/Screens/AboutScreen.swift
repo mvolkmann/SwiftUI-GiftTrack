@@ -34,14 +34,25 @@ struct AboutScreen: View {
                 """)
             }
 
+            /*
+            // We should be able to restore a previous purchase automatically.
             HStack {
                 Spacer()
                 Button("Restore previous in-app purchase") {
-                    store.restore()
+                    store.restorePurchase()
                 }
+                .alert(
+                    "In-App Purchase Restored",
+                    isPresented: $store.purchaseFailed,
+                    actions: {},
+                    message: {
+                        Text("Your previous in-app purchase has been restored.")
+                    }
+                )
                 Spacer()
             }
             .buttonStyle(MyButtonStyle())
+            */
         }
     }
 }

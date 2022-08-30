@@ -1,136 +1,90 @@
-import MapKit
 import StoreKit
 
-// This was inspired by the YouTube video
-// "SwiftUI 2.0: In-App Purchase - Getting Started From Scratch (2020)"
-// at https://www.youtube.com/watch?v=B_oVUIN7ZJQ&t=2400s
 class StoreKitStore: NSObject, ObservableObject {
-    typealias FetchCompletionHandler = ([SKProduct]) -> Void
-    typealias PurchaseCompletionHandler = (SKPaymentTransaction?) -> Void
 
     // MARK: - Constants
 
+    // This must match the value in the file Configuration.storekit.
     var productId = "r.mark.volkmann.gmail.com.GiftTrack"
 
     // MARK: - Initializer
 
     override init() {
         super.init()
-        startObservingPaymentQueue()
-        fetchProducts { _ in } // completion does nothing
+        Task {
+            do {
+                try await getProduct()
+                await checkEntitlement()
+                await listenForUpdates()
+            } catch {
+                print("error while loading products: \(error.localizedDescription)")
+            }
+        }
     }
 
     // MARK: - Properties
 
     @Published var appPurchased = false
+    // @Published var appPurchaseRestored = false
+    @Published var purchaseFailed = false
 
-    private var fetchCompletionHandler: FetchCompletionHandler?
-    private var fetchedProducts: [SKProduct] = []
-    private var productsRequest: SKProductsRequest?
-    private var purchaseCompletionHandler: PurchaseCompletionHandler?
+    // We only offer one product and it is non-consumable
+    // meaning that once purchased it is owned forever.
+    private var product: Product!
 
     // MARK: - Methods
 
-    private func buy(
-        _ product: SKProduct,
-        completion: @escaping PurchaseCompletionHandler
-    ) {
-        purchaseCompletionHandler = completion
-        let payment = SKPayment(product: product)
-        SKPaymentQueue.default().add(payment)
+    func checkEntitlement() async {
+        let entitlement = await product.currentEntitlement
+        switch entitlement {
+        case .none:
+            break
+        case .some:
+            DispatchQueue.main.async { self.appPurchased = true }
+        }
     }
 
-    private func fetchProducts(
-        _ completion: @escaping FetchCompletionHandler
-    ) {
-        guard productsRequest == nil else { return }
-        fetchCompletionHandler = completion
-        productsRequest =
-            SKProductsRequest(productIdentifiers: [productId])
-        productsRequest?.delegate = self
-        productsRequest?.start()
+    func getProduct() async throws {
+        let products = try await Product.products(for: [productId])
+        product = products.first!
+    }
+
+    func listenForUpdates() async {
+        for await result in Transaction.updates {
+            if case .verified(let transaction) = result {
+                // TODO: Does this alone restore previous in-app purchases?
+                await transaction.finish()
+            }
+        }
     }
 
     func purchaseApp() {
-        let product = fetchedProducts.first
-        if let product = product {
-            purchaseProduct(product)
-        } else {
-            print("There are no products to purchase.")
+        Task {
+            do {
+                let result = try await product.purchase()
+                switch result {
+                case .success(let verification):
+                    switch verification {
+                    case .unverified:
+                        print("purchase unverified")
+                    case .verified:
+                        print("purchase verified")
+                        DispatchQueue.main.async { self.appPurchased = true }
+                    }
+                case .userCancelled:
+                    break
+                default:
+                    print("purchase failed: result =", result)
+                    DispatchQueue.main.async { self.purchaseFailed = true }
+                }
+            } catch {
+                print("purchase failed: error =", error)
+                DispatchQueue.main.async { self.purchaseFailed = true }
+            }
         }
     }
 
-    private func purchaseProduct(_ product: SKProduct) {
-        startObservingPaymentQueue()
-        buy(product) { _ in } // completion does nothing
-    }
-
-    func restore() {
+    func restorePurchase() {
         SKPaymentQueue.default().restoreCompletedTransactions()
-    }
-
-    private func startObservingPaymentQueue() {
-        SKPaymentQueue.default().add(self)
-    }
-}
-
-extension StoreKitStore: SKPaymentTransactionObserver {
-    func paymentQueue(
-        _: SKPaymentQueue,
-        updatedTransactions transactions: [SKPaymentTransaction]
-    ) {
-        for transaction in transactions {
-            var shouldFinishTransactions = false
-
-            switch transaction.transactionState {
-            case .failed:
-                shouldFinishTransactions = true
-            case .purchased, .restored:
-                if transaction.payment.productIdentifier == productId {
-                    appPurchased = true
-                }
-                shouldFinishTransactions = true
-            default:
-                break
-            }
-
-            if shouldFinishTransactions {
-                SKPaymentQueue.default().finishTransaction(transaction)
-                DispatchQueue.main.async {
-                    self.purchaseCompletionHandler?(transaction)
-                    self.purchaseCompletionHandler = nil
-                }
-            }
-        }
-    }
-}
-
-extension StoreKitStore: SKProductsRequestDelegate {
-    func productsRequest(
-        _: SKProductsRequest,
-        didReceive response: SKProductsResponse
-    ) {
-        let loadedProducts = response.products
-
-        // Is this needed?
-        let invalidProducts = response.invalidProductIdentifiers
-        guard !loadedProducts.isEmpty else {
-            print("failed to load products")
-            if !invalidProducts.isEmpty {
-                print("invalid products found: \(invalidProducts)")
-            }
-            productsRequest = nil
-            return
-        }
-
-        // Cache the fetched products.
-        fetchedProducts = loadedProducts
-
-        // Notify listeners of fetched products.
-        DispatchQueue.main.async {
-            self.fetchCompletionHandler?(loadedProducts)
-            self.fetchCompletionHandler = nil
-            self.productsRequest = nil
-        }
     }
 }

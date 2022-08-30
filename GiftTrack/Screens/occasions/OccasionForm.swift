@@ -41,8 +41,7 @@ struct OccasionForm: View {
                 MyTitle(
                     (occasion == nil ? "Add" : "Edit") + " Occasion",
                     small: true,
-                    pad: true,
-                    usesKeyboard: true
+                    pad: true
                 )
 
                 Form {
