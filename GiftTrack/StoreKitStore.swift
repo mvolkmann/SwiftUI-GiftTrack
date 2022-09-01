@@ -14,8 +14,9 @@ class StoreKitStore: NSObject, ObservableObject {
         Task {
             do {
                 try await getProduct()
+                // print("product =", product)
                 await checkEntitlement()
-                await listenForUpdates()
+                await listenForTransactions()
             } catch {
                 print("error while loading products: \(error.localizedDescription)")
             }
@@ -35,7 +36,10 @@ class StoreKitStore: NSObject, ObservableObject {
     // MARK: - Methods
 
     func checkEntitlement() async {
+        // This app only has one entitlement corresponding
+        // to the one and only in-app purchase option.
         let entitlement = await product.currentEntitlement
+        // print("checkEntitlement: entitlement =", entitlement)
         switch entitlement {
         case .none:
             break
@@ -49,9 +53,16 @@ class StoreKitStore: NSObject, ObservableObject {
         product = products.first!
     }
 
-    func listenForUpdates() async {
+    func listenForTransactions() async {
+        // print("listenForTransactions: entered")
+        // TODO: Why don't we get transactions on a new device?
+        // TODO: Try with your iPhone and iPad where the app
+        // TODO: is purchased on one and not on the other.
         for await result in Transaction.updates {
+            // print("listenForTransactions: result =", result)
             if case .verified(let transaction) = result {
+                // print("listenForTransactions: transaction =", transaction)
+                DispatchQueue.main.async { self.appPurchased = true }
                 // TODO: Does this alone restore previous in-app purchases?
                 await transaction.finish()
             }
@@ -74,7 +85,7 @@ class StoreKitStore: NSObject, ObservableObject {
                 case .userCancelled:
                     break
                 default:
-                    print("purchase failed: result =", result)
+                    // print("StoreKitStore.purchaseApp: failed, result =", result)
                     DispatchQueue.main.async { self.purchaseFailed = true }
                 }
             } catch {
