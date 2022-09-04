@@ -1,7 +1,6 @@
 import SwiftUI
 
 extension View {
-
     func dismissKeyboard() {
         UIApplication.shared.sendAction(
             #selector(UIResponder.resignFirstResponder),

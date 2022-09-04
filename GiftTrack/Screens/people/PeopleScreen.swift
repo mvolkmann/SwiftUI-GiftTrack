@@ -26,7 +26,6 @@ struct PeopleScreen: View {
             destination: PersonForm()
                 .environment(\.canAdd, allowMore)
         )
-        .navigationBarTitleDisplayMode(.inline)
         .simultaneousGesture(TapGesture().onEnded {
             if !allowMore { store.purchaseApp() }
         })
@@ -63,12 +62,15 @@ struct PeopleScreen: View {
                 }
             }
             .toolbar {
-                // ToolbarItem(placement: .navigationBarLeading) { EditButton() }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     addItem
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
                 }
             }
             .navigationTitle("People")
+            .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.fromJSON(titleColor))
         }
     }

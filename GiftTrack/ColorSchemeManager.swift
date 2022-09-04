@@ -22,7 +22,8 @@ class ColorSchemeManager: ObservableObject {
     var firstWindow: UIWindow? {
         guard let scene = UIApplication.shared.connectedScenes.first,
               let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
-              let window = windowSceneDelegate.window else {
+              let window = windowSceneDelegate.window
+        else {
             return nil
         }
 

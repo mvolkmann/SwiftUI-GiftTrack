@@ -1,7 +1,6 @@
 import StoreKit
 
 class StoreKitStore: NSObject, ObservableObject {
-
     // MARK: - Constants
 
     // This must match the value in the file Configuration.storekit.
@@ -60,7 +59,7 @@ class StoreKitStore: NSObject, ObservableObject {
         // TODO: is purchased on one and not on the other.
         for await result in Transaction.updates {
             // print("listenForTransactions: result =", result)
-            if case .verified(let transaction) = result {
+            if case let .verified(transaction) = result {
                 // print("listenForTransactions: transaction =", transaction)
                 DispatchQueue.main.async { self.appPurchased = true }
                 // TODO: Does this alone restore previous in-app purchases?
@@ -74,7 +73,7 @@ class StoreKitStore: NSObject, ObservableObject {
             do {
                 let result = try await product.purchase()
                 switch result {
-                case .success(let verification):
+                case let .success(verification):
                     switch verification {
                     case .unverified:
                         print("purchase unverified")

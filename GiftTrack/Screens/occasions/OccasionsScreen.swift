@@ -18,9 +18,18 @@ struct OccasionsScreen: View {
         ]
     ) var occasions: FetchedResults<OccasionEntity>
 
-    // MARK: - Initializer
-
     // MARK: - Properties
+
+    private var addItem: some View {
+        NavigationLink(
+            "Add",
+            destination: OccasionForm()
+                .environment(\.canAdd, allowMore)
+        )
+        .simultaneousGesture(TapGesture().onEnded {
+            if !allowMore { store.purchaseApp() }
+        })
+    }
 
     private var allowMore: Bool {
         // TODO: This temporarily makes in-app purchase unnecessary for debugging.
@@ -65,20 +74,15 @@ struct OccasionsScreen: View {
                 }
             }
             .toolbar {
-                // ToolbarItem(placement: .navigationBarLeading) { EditButton() }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    addItem
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(
-                        "Add",
-                        destination: OccasionForm()
-                            .environment(\.canAdd, allowMore)
-                    )
-                    .navigationBarTitleDisplayMode(.inline)
-                    .simultaneousGesture(TapGesture().onEnded {
-                        if !allowMore { store.purchaseApp() }
-                    })
+                    EditButton()
                 }
             }
             .navigationTitle("Occasions")
+            .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.fromJSON(titleColor))
         }
     }

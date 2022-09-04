@@ -14,14 +14,7 @@ func name(_ object: NSObject?) -> String {
     return value ?? "unknown"
 }
 
-func navigationBarColors(foreground: Color, background: Color) {
-}
-
-// This simplifies print statements that use string interpolation
-// to print values with types like Bool.
-func sd(_ css: CustomStringConvertible) -> String {
-    String(describing: css)
-}
+func navigationBarColors(foreground _: Color, background _: Color) {}
 
 func updateForegroundColor(_ foregroundColor: String) {
     // Set navigation bar title color.

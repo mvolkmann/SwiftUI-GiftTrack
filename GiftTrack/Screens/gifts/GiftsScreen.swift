@@ -33,6 +33,18 @@ struct GiftsScreen: View {
 
     // MARK: - Properties
 
+    private var addItem: some View {
+        NavigationLink(
+            "Add",
+            destination: GiftAdd(
+                // A person and occasion are always selected,
+                // so these force unwraps are safe.
+                person: person!,
+                occasion: occasion!
+            )
+        )
+    }
+
     private var occasion: OccasionEntity? {
         occasions.isEmpty ? nil : occasions[occasionIndex]
     }
@@ -73,27 +85,17 @@ struct GiftsScreen: View {
                 }
             }
             .toolbar {
-                /*
-                 ToolbarItem(placement: .navigationBarLeading) {
-                     EditButton()
-                 }
-                 */
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     if person != nil, occasion != nil {
-                        NavigationLink(
-                            "Add",
-                            destination: GiftAdd(
-                                // A person and occasion are always selected,
-                                // so these force unwraps are safe.
-                                person: person!,
-                                occasion: occasion!
-                            )
-                        )
-                        .navigationBarTitleDisplayMode(.inline)
+                        addItem
                     }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
                 }
             }
             .navigationBarTitle("Gifts")
+            .navigationBarTitleDisplayMode(.inline)
             .accentColor(Color.fromJSON(titleColor))
         }
     }

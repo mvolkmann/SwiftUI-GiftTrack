@@ -54,15 +54,15 @@ extension Color: Codable {
                 pow((colorComponent + 0.055) / 1.055, 2.4)
         }
 
-        return 0.2126 * adjust(colorComponent: self.components.red) +
-            0.7152 * adjust(colorComponent: self.components.green) +
-            0.0722 * adjust(colorComponent: self.components.blue)
+        return 0.2126 * adjust(colorComponent: components.red) +
+            0.7152 * adjust(colorComponent: components.green) +
+            0.0722 * adjust(colorComponent: components.blue)
     }
 
     // MARK: - Methods
 
     func contrastRatio(against color: Color) -> Double {
-        let luminance1 = self.luminance
+        let luminance1 = luminance
         let luminance2 = color.luminance
         let luminanceDarker = min(luminance1, luminance2)
         let luminanceLighter = max(luminance1, luminance2)

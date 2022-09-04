@@ -268,7 +268,7 @@ struct GiftForm: View {
         // If the last character is a decimal point
         // and it is not the only decimal point,
         // remove the last part.
-        if text.last == "." && parts.count > 2 {
+        if text.last == ".", parts.count > 2 {
             parts.removeLast()
         }
 
@@ -278,64 +278,64 @@ struct GiftForm: View {
     }
 
     /*
-    func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
-        self.openBarScanner = false
+     func handleBarScan(result: Result<String, CodeScannerView.ScanError>) {
+         self.openBarScanner = false
 
-        switch result {
-        case .success(let code):
-            loadProductData(productCode: code)
-        case .failure(let error):
-            showBarScanError = true
-            qrScanError = "bar code scan failed: \(error)"
-        }
-    }
-
-    func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
-        self.openQRScanner = false
-
-        switch result {
-        case .success(let code):
-            url = code
-        case .failure(let error):
-            showQRScanError = true
-            qrScanError = "QR code scan failed: \(error)"
-        }
+         switch result {
+         case .success(let code):
+             loadProductData(productCode: code)
+         case .failure(let error):
+             showBarScanError = true
+             qrScanError = "bar code scan failed: \(error)"
+         }
      }
 
-    private func loadProductData(productCode: String) {
-        // This uses the UPC Database API at https://upcdatabase.org/api.
-        let key = Bundle.main.object(
-            forInfoDictionaryKey: "UPC_DATABASE_KEY"
-        ) as? String
-        let url = "https://api.upcdatabase.org/product/" +
-            productCode + "?apikey=\(key!)"
+     func handleQRScan(result: Result<String, CodeScannerView.ScanError>) {
+         self.openQRScanner = false
 
-        Task(priority: .medium) {
-            do {
-                let product = try await HTTPUtil.get(
-                    from: url,
-                    type: UPCProduct.self
-                ) as UPCProduct
-                DispatchQueue.main.async {
-                    self.name = product.title
-                    self.desc = product.category
-                    if let images = product.images {
-                        if images.count > 0 {
-                            if let imageUrl = images.first {
-                                self.imageUrl = imageUrl
-                            }
-                        } else {
-                            print("no images")
-                        }
-                    }
-                }
-            } catch {
-                message = error.localizedDescription
-                showMessage = true
-            }
-        }
-    }
-    */
+         switch result {
+         case .success(let code):
+             url = code
+         case .failure(let error):
+             showQRScanError = true
+             qrScanError = "QR code scan failed: \(error)"
+         }
+      }
+
+     private func loadProductData(productCode: String) {
+         // This uses the UPC Database API at https://upcdatabase.org/api.
+         let key = Bundle.main.object(
+             forInfoDictionaryKey: "UPC_DATABASE_KEY"
+         ) as? String
+         let url = "https://api.upcdatabase.org/product/" +
+             productCode + "?apikey=\(key!)"
+
+         Task(priority: .medium) {
+             do {
+                 let product = try await HTTPUtil.get(
+                     from: url,
+                     type: UPCProduct.self
+                 ) as UPCProduct
+                 DispatchQueue.main.async {
+                     self.name = product.title
+                     self.desc = product.category
+                     if let images = product.images {
+                         if images.count > 0 {
+                             if let imageUrl = images.first {
+                                 self.imageUrl = imageUrl
+                             }
+                         } else {
+                             print("no images")
+                         }
+                     }
+                 }
+             } catch {
+                 message = error.localizedDescription
+                 showMessage = true
+             }
+         }
+     }
+     */
 
     private func save() {
         let adding = gift == nil
