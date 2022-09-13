@@ -6,7 +6,7 @@ struct OccasionsScreen: View {
     @AppStorage("titleColor") var titleColor: String = "Title"
 
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject private var store: StoreKitStore
+    @EnvironmentObject private var storeViewModel: StoreViewModel
 
     @State private var confirmDelete = false
     @State private var deleteSet: IndexSet = .init()
@@ -27,15 +27,12 @@ struct OccasionsScreen: View {
                 .environment(\.canAdd, allowMore)
         )
         .simultaneousGesture(TapGesture().onEnded {
-            if !allowMore { store.purchaseApp() }
+            if !allowMore { storeViewModel.purchaseApp() }
         })
     }
 
     private var allowMore: Bool {
-        // TODO: This temporarily makes in-app purchase unnecessary for debugging.
-        // true
-
-        store.appPurchased || occasions.count < 2
+        storeViewModel.appPurchased || occasions.count < 2
     }
 
     var body: some View {

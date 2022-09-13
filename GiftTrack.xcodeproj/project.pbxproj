@@ -45,7 +45,7 @@
 		4D6CE0B727593D1200039CD6 /* MyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0B627593D1200039CD6 /* MyMap.swift */; };
 		4D6CE0B9275A620100039CD6 /* LabelledText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0B8275A620100039CD6 /* LabelledText.swift */; };
 		4D6CE0BB275A873E00039CD6 /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0BA275A873E00039CD6 /* DeleteButton.swift */; };
-		4D6CE0BE275BE1B300039CD6 /* StoreKitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */; };
+		4D6CE0BE275BE1B300039CD6 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6CE0BD275BE1B300039CD6 /* StoreViewModel.swift */; };
 		4D88AF92274C4F70005A999F /* GiftsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AF91274C4F70005A999F /* GiftsList.swift */; };
 		4D88AFB2274E7FB9005A999F /* global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88AFB1274E7FB9005A999F /* global.swift */; };
 		4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D90AA4627496AA10056FF3B /* PersistenceController.swift */; };
@@ -98,7 +98,7 @@
 		4D6CE0B8275A620100039CD6 /* LabelledText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledText.swift; sourceTree = "<group>"; };
 		4D6CE0BA275A873E00039CD6 /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 		4D6CE0BC275BD59D00039CD6 /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
-		4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitStore.swift; sourceTree = "<group>"; };
+		4D6CE0BD275BE1B300039CD6 /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		4D88AF91274C4F70005A999F /* GiftsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftsList.swift; sourceTree = "<group>"; };
 		4D88AFB1274E7FB9005A999F /* global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = global.swift; sourceTree = "<group>"; };
 		4D90AA4627496AA10056FF3B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -136,6 +136,7 @@
 		1AE2831328BCF7F100FCDD08 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4D6CE0BD275BE1B300039CD6 /* StoreViewModel.swift */,
 				1AE2831428BCF80700FCDD08 /* ViewModel.swift */,
 			);
 			path = ViewModels;
@@ -198,7 +199,6 @@
 				4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */,
 				1AB3714928B9544D00B34C26 /* LocationManager.swift */,
 				4DA8B8372756CDAB0058688D /* Secrets.xcconfig */,
-				4D6CE0BD275BE1B300039CD6 /* StoreKitStore.swift */,
 				4D6CE0B3275939F000039CD6 /* Extensions */,
 				1A11EE49288627B300CAD52B /* Models */,
 				4D6CE0B22759391800039CD6 /* Screens */,
@@ -437,7 +437,7 @@
 				4D90AA4727496AA10056FF3B /* PersistenceController.swift in Sources */,
 				1AB3714A28B9544D00B34C26 /* LocationManager.swift in Sources */,
 				4D6CE0A62758FAB000039CD6 /* MyToggle.swift in Sources */,
-				4D6CE0BE275BE1B300039CD6 /* StoreKitStore.swift in Sources */,
+				4D6CE0BE275BE1B300039CD6 /* StoreViewModel.swift in Sources */,
 				1AA7F63A2883832B00763FF8 /* StringExtension.swift in Sources */,
 				4D19293A273BE70C0056653B /* PeopleScreen.swift in Sources */,
 				4DF89BDA27432C13007C703E /* CoreDataModel.xcdatamodeld in Sources */,

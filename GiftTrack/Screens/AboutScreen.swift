@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AboutScreen: View {
-    @EnvironmentObject private var store: StoreKitStore
+    @EnvironmentObject private var storeViewModel: StoreViewModel
 
     let intro = """
     This app tracks gift ideas and purchased gifts \
@@ -22,7 +22,7 @@ struct AboutScreen: View {
             MyText("2. Tap \"Occasions\" and add occasions.")
             MyText("3. Tap \"Gifts\" and add gifts for specific people and occasions.")
 
-            if !store.appPurchased {
+            if !storeViewModel.appPurchased {
                 MyText("""
                 \nYou are using the free version of the app \
                 which is limited to tracking gifts for \

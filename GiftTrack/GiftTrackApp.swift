@@ -5,7 +5,7 @@ struct GiftTrackApp: App {
     @Environment(\.scenePhase) var scenePhase
 
     // for in-app purchases
-    @StateObject private var store = StoreKitStore()
+    @StateObject private var storeViewModel = StoreViewModel()
 
     @StateObject var csManager = ColorSchemeManager()
 
@@ -21,14 +21,14 @@ struct GiftTrackApp: App {
                 )
 
                 // for in-app purchases
-                .environmentObject(store)
+                .environmentObject(storeViewModel)
 
                 // for managing color schemes
                 .environmentObject(csManager)
                 .onAppear { csManager.applyColorScheme() }
                 .alert(
                     "In-App Purchase Failed",
-                    isPresented: $store.purchaseFailed,
+                    isPresented: $storeViewModel.purchaseFailed,
                     actions: {},
                     message: { Text("The app could not be purchased.") }
                 )

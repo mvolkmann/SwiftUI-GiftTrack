@@ -1,6 +1,6 @@
 import StoreKit
 
-class StoreKitStore: NSObject, ObservableObject {
+class StoreViewModel: NSObject, ObservableObject {
     // MARK: - Constants
 
     // This must match the value in the file Configuration.storekit.
@@ -13,11 +13,10 @@ class StoreKitStore: NSObject, ObservableObject {
         Task {
             do {
                 try await getProduct()
-                // print("product =", product)
                 await checkEntitlement()
-                await listenForTransactions()
+                try await listenForTransactions()
             } catch {
-                print("error while loading products: \(error.localizedDescription)")
+                print("StoreViewModel.init: error =", error)
             }
         }
     }
@@ -25,7 +24,6 @@ class StoreKitStore: NSObject, ObservableObject {
     // MARK: - Properties
 
     @Published var appPurchased = false
-    // @Published var appPurchaseRestored = false
     @Published var purchaseFailed = false
 
     // We only offer one product and it is non-consumable
@@ -38,7 +36,6 @@ class StoreKitStore: NSObject, ObservableObject {
         // This app only has one entitlement corresponding
         // to the one and only in-app purchase option.
         let entitlement = await product.currentEntitlement
-        // print("checkEntitlement: entitlement =", entitlement)
         switch entitlement {
         case .none:
             break
@@ -47,24 +44,34 @@ class StoreKitStore: NSObject, ObservableObject {
         }
     }
 
+    private func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
+        switch result {
+        case let .unverified(_, error):
+            throw error
+        case .verified(let safe):
+            return safe
+        }
+    }
+
     func getProduct() async throws {
         let products = try await Product.products(for: [productId])
         product = products.first!
     }
 
-    func listenForTransactions() async {
-        // print("listenForTransactions: entered")
+    private func listenForTransactions() async throws {
         // TODO: Why don't we get transactions on a new device?
         // TODO: Try with your iPhone and iPad where the app
         // TODO: is purchased on one and not on the other.
         for await result in Transaction.updates {
-            // print("listenForTransactions: result =", result)
-            if case let .verified(transaction) = result {
-                // print("listenForTransactions: transaction =", transaction)
-                DispatchQueue.main.async { self.appPurchased = true }
-                // TODO: Does this alone restore previous in-app purchases?
-                await transaction.finish()
-            }
+            let transaction = try self.checkVerified(result)
+            try await self.updateCustomerProductStatus()
+
+            print("StoreKitViewModel: listenForTransacgtions: transaction =", transaction)
+
+            DispatchQueue.main.async { self.appPurchased = true }
+
+            // TODO: Does this restore previous in-app purchases?
+            await transaction.finish()
         }
     }
 
@@ -76,19 +83,18 @@ class StoreKitStore: NSObject, ObservableObject {
                 case let .success(verification):
                     switch verification {
                     case .unverified:
-                        print("purchase unverified")
+                        print("StoreViewModel.purchaseApp: purchase unverified")
                     case .verified:
-                        print("purchase verified")
                         DispatchQueue.main.async { self.appPurchased = true }
                     }
                 case .userCancelled:
                     break
                 default:
-                    // print("StoreKitStore.purchaseApp: failed, result =", result)
+                    print("StoreViewModel.purchaseApp: failed, result =", result)
                     DispatchQueue.main.async { self.purchaseFailed = true }
                 }
             } catch {
-                print("purchase failed: error =", error)
+                print("StoreViewModel.purchaseApp: error =", error)
                 DispatchQueue.main.async { self.purchaseFailed = true }
             }
         }
@@ -96,5 +102,16 @@ class StoreKitStore: NSObject, ObservableObject {
 
     func restorePurchase() {
         SKPaymentQueue.default().restoreCompletedTransactions()
+    }
+
+    private func updateCustomerProductStatus() async throws {
+        for await result in Transaction.currentEntitlements {
+            let transaction = try self.checkVerified(result)
+            try await self.updateCustomerProductStatus()
+            print("StoreKitViewModel: updateCustomerProductStatus: transaction =", transaction)
+            if transaction.productType == .nonConsumable {
+                DispatchQueue.main.async { self.appPurchased = true }
+            }
+        }
     }
 }
