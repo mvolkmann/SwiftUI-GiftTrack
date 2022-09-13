@@ -59,14 +59,16 @@ class StoreViewModel: NSObject, ObservableObject {
     }
 
     private func listenForTransactions() async throws {
+        // print("StoreKitViewModel: listenForTransactions: entered")
         // TODO: Why don't we get transactions on a new device?
         // TODO: Try with your iPhone and iPad where the app
         // TODO: is purchased on one and not on the other.
         for await result in Transaction.updates {
+            // print("StoreKitViewModel: listenForTransactions: result =", result)
             let transaction = try self.checkVerified(result)
             try await self.updateCustomerProductStatus()
 
-            print("StoreKitViewModel: listenForTransacgtions: transaction =", transaction)
+            // print("StoreKitViewModel: listenForTransactions: transaction =", transaction)
 
             DispatchQueue.main.async { self.appPurchased = true }
 
