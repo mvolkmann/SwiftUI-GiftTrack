@@ -14,6 +14,7 @@ class StoreViewModel: NSObject, ObservableObject {
             do {
                 try await getProduct()
                 await checkEntitlement()
+                restorePurchase()
                 try await listenForTransactions()
             } catch {
                 print("StoreViewModel.init: error =", error)
@@ -48,7 +49,7 @@ class StoreViewModel: NSObject, ObservableObject {
         switch result {
         case let .unverified(_, error):
             throw error
-        case .verified(let safe):
+        case let .verified(safe):
             return safe
         }
     }
@@ -65,8 +66,8 @@ class StoreViewModel: NSObject, ObservableObject {
         // TODO: is purchased on one and not on the other.
         for await result in Transaction.updates {
             // print("StoreKitViewModel: listenForTransactions: result =", result)
-            let transaction = try self.checkVerified(result)
-            try await self.updateCustomerProductStatus()
+            let transaction = try checkVerified(result)
+            try await updateCustomerProductStatus()
 
             // print("StoreKitViewModel: listenForTransactions: transaction =", transaction)
 
@@ -92,7 +93,10 @@ class StoreViewModel: NSObject, ObservableObject {
                 case .userCancelled:
                     break
                 default:
-                    print("StoreViewModel.purchaseApp: failed, result =", result)
+                    print(
+                        "StoreViewModel.purchaseApp: failed, result =",
+                        result
+                    )
                     DispatchQueue.main.async { self.purchaseFailed = true }
                 }
             } catch {
@@ -103,14 +107,18 @@ class StoreViewModel: NSObject, ObservableObject {
     }
 
     func restorePurchase() {
-        SKPaymentQueue.default().restoreCompletedTransactions()
+        let queue = SKPaymentQueue.default()
+        queue.restoreCompletedTransactions()
     }
 
     private func updateCustomerProductStatus() async throws {
         for await result in Transaction.currentEntitlements {
-            let transaction = try self.checkVerified(result)
-            try await self.updateCustomerProductStatus()
-            print("StoreKitViewModel: updateCustomerProductStatus: transaction =", transaction)
+            let transaction = try checkVerified(result)
+            try await updateCustomerProductStatus()
+            print(
+                "StoreKitViewModel: updateCustomerProductStatus: transaction =",
+                transaction
+            )
             if transaction.productType == .nonConsumable {
                 DispatchQueue.main.async { self.appPurchased = true }
             }

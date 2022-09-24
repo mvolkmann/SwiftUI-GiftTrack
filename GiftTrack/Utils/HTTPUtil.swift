@@ -87,7 +87,8 @@ enum HTTPUtil {
         request.httpMethod = method
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let (data, res) = try await URLSession.shared.upload(for: request, from: json)
+        let (data, res) = try await URLSession.shared
+            .upload(for: request, from: json)
 
         if let res = res as? HTTPURLResponse, res.statusCode != 200 {
             throw HTTPError.badStatus(status: res.statusCode)

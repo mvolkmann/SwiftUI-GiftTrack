@@ -207,7 +207,6 @@
 				4D6CE0B1275938FF00039CD6 /* Views */,
 				1AE2831328BCF7F100FCDD08 /* ViewModels */,
 				4D19292F273BE60F0056653B /* Preview Content */,
-				1AE8AE7028C4FBC80098E9FF /* Log.swift */,
 			);
 			path = GiftTrack;
 			sourceTree = "<group>";
@@ -274,6 +273,7 @@
 			children = (
 				4D88AFB1274E7FB9005A999F /* global.swift */,
 				4DA8B8352756CC950058688D /* HTTPUtil.swift */,
+				1AE8AE7028C4FBC80098E9FF /* Log.swift */,
 				4D90AA4627496AA10056FF3B /* PersistenceController.swift */,
 			);
 			path = Utils;
