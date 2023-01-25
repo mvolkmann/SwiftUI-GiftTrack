@@ -27,10 +27,10 @@ struct GiftTrackApp: App {
                 .environmentObject(csManager)
                 .onAppear { csManager.applyColorScheme() }
                 .alert(
-                    "In-App Purchase Failed",
-                    isPresented: $storeViewModel.purchaseFailed,
+                    "In-App Purchase Status",
+                    isPresented: $storeViewModel.haveMessage,
                     actions: {},
-                    message: { Text("The app could not be purchased.") }
+                    message: { Text(storeViewModel.message) }
                 )
         }
         .onChange(of: scenePhase) { phase in

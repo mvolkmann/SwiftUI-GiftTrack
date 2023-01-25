@@ -59,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A0D13EC2981D2800087474E /* Test.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test.storekit; sourceTree = "<group>"; };
 		1A11EE4C28862C2600CAD52B /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		1A4F14A42894B0B200FF3810 /* MyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyList.swift; sourceTree = "<group>"; };
 		1A4F14A82896A30F00FF3810 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 				4D192929273BE60E0056653B /* GiftTrackApp.swift */,
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D6CE0BC275BD59D00039CD6 /* Configuration.storekit */,
+				1A0D13EC2981D2800087474E /* Test.storekit */,
 				1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */,
 				4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */,
 				1AB3714928B9544D00B34C26 /* LocationManager.swift */,
@@ -574,7 +576,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"GiftTrack/Preview Content\"";
 				DEVELOPMENT_TEAM = 4BG3523GAZ;
 				ENABLE_PREVIEWS = YES;
@@ -584,7 +586,6 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is used to take a photo of a potential gift.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Your location is used to record the location of a gift such as a store.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to record the location of a gift such as a store.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -593,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = r.mark.volkmann.gmail.com.GiftTrack;
 				PRODUCT_NAME = GiftTrack;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -609,7 +610,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"GiftTrack/Preview Content\"";
 				DEVELOPMENT_TEAM = 4BG3523GAZ;
 				ENABLE_PREVIEWS = YES;
@@ -619,7 +620,6 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is used to take a photo of a potential gift.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Your location is used to record the location of a gift such as a store.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location is used to record the location of a gift such as a store.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -628,7 +628,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = r.mark.volkmann.gmail.com.GiftTrack;
 				PRODUCT_NAME = GiftTrack;
 				SWIFT_EMIT_LOC_STRINGS = YES;

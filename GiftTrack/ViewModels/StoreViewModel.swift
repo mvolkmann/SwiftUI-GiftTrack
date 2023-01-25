@@ -25,7 +25,8 @@ class StoreViewModel: NSObject, ObservableObject {
     // MARK: - Properties
 
     @Published var appPurchased = false
-    @Published var purchaseFailed = false
+    @Published var haveMessage = false
+    @Published var message = ""
 
     // We only offer one product and it is non-consumable
     // meaning that once purchased it is owned forever.
@@ -41,7 +42,7 @@ class StoreViewModel: NSObject, ObservableObject {
         case .none:
             break
         case .some:
-            DispatchQueue.main.async { self.appPurchased = true }
+            Task { @MainActor in appPurchased = true }
         }
     }
 
@@ -65,13 +66,10 @@ class StoreViewModel: NSObject, ObservableObject {
         // TODO: Try with your iPhone and iPad where the app
         // TODO: is purchased on one and not on the other.
         for await result in Transaction.updates {
-            // print("StoreKitViewModel: listenForTransactions: result =", result)
             let transaction = try checkVerified(result)
             try await updateCustomerProductStatus()
 
-            // print("StoreKitViewModel: listenForTransactions: transaction =", transaction)
-
-            DispatchQueue.main.async { self.appPurchased = true }
+            Task { @MainActor in appPurchased = true }
 
             // TODO: Does this restore previous in-app purchases?
             await transaction.finish()
@@ -88,39 +86,43 @@ class StoreViewModel: NSObject, ObservableObject {
                     case .unverified:
                         print("StoreViewModel.purchaseApp: purchase unverified")
                     case .verified:
-                        DispatchQueue.main.async { self.appPurchased = true }
+                        Task { @MainActor in appPurchased = true }
                     }
                 case .userCancelled:
                     break
                 default:
-                    print(
-                        "StoreViewModel.purchaseApp: failed, result =",
-                        result
-                    )
-                    DispatchQueue.main.async { self.purchaseFailed = true }
+                    Task { @MainActor in
+                        message = "In-app purchase failed: \(result)"
+                        haveMessage = true
+                    }
                 }
             } catch {
-                print("StoreViewModel.purchaseApp: error =", error)
-                DispatchQueue.main.async { self.purchaseFailed = true }
+                Task { @MainActor in
+                    message = "Error: \(error)"
+                    haveMessage = true
+                }
             }
         }
     }
 
     func restorePurchase() {
-        let queue = SKPaymentQueue.default()
-        queue.restoreCompletedTransactions()
+        Task { @MainActor in
+            do {
+                try await AppStore.sync()
+                message = "Your in-app purchase was restored."
+            } catch {
+                message = "Failed to restore your in-app purchase."
+            }
+            haveMessage = true
+        }
     }
 
     private func updateCustomerProductStatus() async throws {
         for await result in Transaction.currentEntitlements {
             let transaction = try checkVerified(result)
             try await updateCustomerProductStatus()
-            print(
-                "StoreKitViewModel: updateCustomerProductStatus: transaction =",
-                transaction
-            )
             if transaction.productType == .nonConsumable {
-                DispatchQueue.main.async { self.appPurchased = true }
+                Task { @MainActor in self.appPurchased = true }
             }
         }
     }

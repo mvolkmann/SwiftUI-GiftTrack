@@ -49,7 +49,7 @@ struct TitledWheelPicker<T>: View where T: NSFetchRequestResult {
 
     func pickerWidth(_ geometry: GeometryProxy) -> CGFloat {
         let width = geometry.size.width
-        return width == 0 ? 0 : max(0, (width - padding * 3) / 2)
+        return max(0, width - padding * 2)
     }
 
     func value(_ object: NSObject) -> String {
