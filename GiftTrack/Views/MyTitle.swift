@@ -25,20 +25,11 @@ struct MyTitle: View {
     var edgeSet: Edge.Set = []
 
     var body: some View {
-        HStack {
-            Text(title)
-                .font(small ? smallTitle : .largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(Color.fromJSON(titleColor))
-                .padding(edgeSet, 20)
-            if viewModel.isKeyboardShown {
-                Spacer()
-                Button(action: dismissKeyboard) {
-                    Image(systemName: "keyboard.chevron.compact.down")
-                }
-                .padding(.trailing)
-            }
-        }
+        Text(title)
+            .font(small ? smallTitle : .largeTitle)
+            .fontWeight(.bold)
+            .foregroundColor(Color.fromJSON(titleColor))
+            .padding(edgeSet, 20)
     }
 }
 

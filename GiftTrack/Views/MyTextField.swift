@@ -13,36 +13,51 @@ struct MyTextField: View {
         edit: Bool = true,
         autocorrect: Bool = true,
         capitalizationType: UITextAutocapitalizationType = .none,
-        keyboard: UIKeyboardType = .default
+        keyboard: UIKeyboardType = .default,
+        canDismissKeyboard: Bool = true
     ) {
         self.title = title
         _text = text
         self.valuePrefix = valuePrefix
         self.edit = edit
         self.autocorrect = autocorrect
+        self.canDismissKeyboard = canDismissKeyboard
         self.capitalizationType = capitalizationType
         self.keyboard = keyboard
     }
 
     // MARK: - Properties
 
-    private let title: String
-    @Binding private var text: String
+    private let canDismissKeyboard: Bool
     private let edit: Bool
     private let autocorrect: Bool
     private let capitalizationType: UITextAutocapitalizationType
     private let keyboard: UIKeyboardType
+    @Binding private var text: String
+    private let title: String
     private let valuePrefix: String
 
     var body: some View {
         if edit {
             HStack {
                 Text(valuePrefix)
+
                 TextField(title, text: $text)
                     .autocapitalization(capitalizationType)
                     .disableAutocorrection(!autocorrect)
                     .keyboardType(keyboard)
                     .focused($isFocused)
+                    .if(canDismissKeyboard) { view in
+                        view.toolbar {
+                            ToolbarItem(placement: .keyboard) {
+                                Button(action: dismissKeyboard) {
+                                    Image(
+                                        systemName: "keyboard.chevron.compact.down"
+                                    )
+                                }
+                            }
+                        }
+                    }
                     .onChange(of: isFocused) { _ in
                         viewModel.isKeyboardShown = isFocused
                     }

@@ -130,8 +130,14 @@ struct GiftForm: View {
 
                 MyTextField("Gift Name", text: $name, edit: edit)
                     .focused($showKeyboard)
-                MyTextField("Description", text: $desc, edit: edit)
-                    .focused($showKeyboard)
+
+                MyTextField(
+                    "Description",
+                    text: $desc,
+                    edit: edit,
+                    canDismissKeyboard: false
+                )
+                .focused($showKeyboard)
 
                 MyTextField(
                     "Price",
@@ -139,7 +145,8 @@ struct GiftForm: View {
                     valuePrefix: "$",
                     edit: edit,
                     autocorrect: false,
-                    keyboard: .decimalPad
+                    keyboard: .decimalPad,
+                    canDismissKeyboard: false
                 )
                 .focused($showKeyboard)
                 .onChange(of: price) { _ in
@@ -168,8 +175,13 @@ struct GiftForm: View {
                 }
 
                 if edit || !location.isEmpty {
-                    MyTextField("Location", text: $location, edit: edit)
-                        .focused($showKeyboard)
+                    MyTextField(
+                        "Location",
+                        text: $location,
+                        edit: edit,
+                        canDismissKeyboard: false
+                    )
+                    .focused($showKeyboard)
                 }
 
                 if edit || (latitude != 0.0 || longitude != 0.0) {
