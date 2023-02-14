@@ -14,7 +14,8 @@ struct MyTextField: View {
         autocorrect: Bool = true,
         capitalizationType: UITextAutocapitalizationType = .none,
         keyboard: UIKeyboardType = .default,
-        canDismissKeyboard: Bool = true
+        canDismissKeyboard: Bool = true,
+        onCommit: @escaping () -> Void = {}
     ) {
         self.title = title
         _text = text
@@ -24,6 +25,7 @@ struct MyTextField: View {
         self.canDismissKeyboard = canDismissKeyboard
         self.capitalizationType = capitalizationType
         self.keyboard = keyboard
+        self.onCommit = onCommit
     }
 
     // MARK: - Properties
@@ -33,6 +35,7 @@ struct MyTextField: View {
     private let autocorrect: Bool
     private let capitalizationType: UITextAutocapitalizationType
     private let keyboard: UIKeyboardType
+    private let onCommit: () -> Void
     @Binding private var text: String
     private let title: String
     private let valuePrefix: String
@@ -42,7 +45,7 @@ struct MyTextField: View {
             HStack {
                 Text(valuePrefix)
 
-                TextField(title, text: $text)
+                TextField(title, text: $text, onCommit: onCommit)
                     .autocapitalization(capitalizationType)
                     .disableAutocorrection(!autocorrect)
                     .keyboardType(keyboard)

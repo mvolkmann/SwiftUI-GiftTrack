@@ -1,23 +1,26 @@
 import SwiftUI
 
 struct MyURL: View {
-    private let title: String
-    @Binding var url: String
-    private let edit: Bool
-
     init(
         _ title: String,
         url: Binding<String>,
-        edit: Bool = true
+        edit: Bool = true,
+        onCommit: @escaping () -> Void = {}
     ) {
         self.title = title
         _url = url
         self.edit = edit
+        self.onCommit = onCommit
     }
+
+    private let edit: Bool
+    private let onCommit: () -> Void
+    private let title: String
+    @Binding var url: String
 
     var body: some View {
         if edit {
-            TextField(title, text: $url)
+            TextField(title, text: $url, onCommit: onCommit)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
                 .onDisappear { url = addHTTP(url) }

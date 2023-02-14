@@ -11,7 +11,7 @@ struct GiftForm: View {
 
     @Environment(\.managedObjectContext) var moc
 
-    @FocusState private var showKeyboard: Bool
+    @FocusState private var focus: AnyKeyPath?
 
     // @State private var barScanError = ""
     // Core Data won't allow an attribute to be named "description".
@@ -34,7 +34,7 @@ struct GiftForm: View {
     @State private var showMessage = false
     // @State private var showQRScanError = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
-    @State private var url = ""
+    @State private var websiteUrl = ""
 
     @Binding var mode: GiftMode
 
@@ -69,7 +69,7 @@ struct GiftForm: View {
             _name = State(initialValue: gift.name ?? "")
             _purchased = State(initialValue: gift.purchased)
             _price = State(initialValue: gift.price ?? "")
-            _url = State(initialValue: gift.url?.absoluteString ?? "")
+            _websiteUrl = State(initialValue: gift.url?.absoluteString ?? "")
 
             if let data = gift.image {
                 _image = State(initialValue: UIImage(data: data))
@@ -128,16 +128,22 @@ struct GiftForm: View {
             Form {
                 // if edit { barCodeView }
 
-                MyTextField("Gift Name", text: $name, edit: edit)
-                    .focused($showKeyboard)
+                MyTextField(
+                    "Gift Name",
+                    text: $name,
+                    edit: edit,
+                    onCommit: nextFocus
+                )
+                .focused($focus, equals: \Self.name)
 
                 MyTextField(
                     "Description",
                     text: $desc,
                     edit: edit,
-                    canDismissKeyboard: false
+                    canDismissKeyboard: false,
+                    onCommit: nextFocus
                 )
-                .focused($showKeyboard)
+                .focused($focus, equals: \Self.desc)
 
                 MyTextField(
                     "Price",
@@ -146,18 +152,25 @@ struct GiftForm: View {
                     edit: edit,
                     autocorrect: false,
                     keyboard: .decimalPad,
-                    canDismissKeyboard: false
+                    canDismissKeyboard: false,
+                    onCommit: nextFocus
                 )
-                .focused($showKeyboard)
+                .focused($focus, equals: \Self.price)
                 .onChange(of: price) { _ in
                     price = formatPrice(price)
                 }
 
                 MyToggle("Purchased?", isOn: $purchased, edit: edit)
 
-                if edit || !url.isEmpty {
+                if edit || !websiteUrl.isEmpty {
                     HStack {
-                        MyURL("Website URL", url: $url, edit: edit)
+                        MyURL(
+                            "Website URL",
+                            url: $websiteUrl,
+                            edit: edit,
+                            onCommit: nextFocus
+                        ).focused($focus, equals: \Self.websiteUrl)
+
                         /*
                          if edit {
                              Spacer()
@@ -170,7 +183,13 @@ struct GiftForm: View {
                 Group {
                     MyPhoto("Photo", image: $image, edit: edit)
                     if edit || !imageUrl.isEmpty {
-                        MyImageURL("Image URL", url: $imageUrl, edit: edit)
+                        MyImageURL(
+                            "Image URL",
+                            url: $imageUrl,
+                            edit: edit,
+                            onCommit: nextFocus
+                        )
+                        .focused($focus, equals: \Self.imageUrl)
                     }
                 }
 
@@ -179,9 +198,10 @@ struct GiftForm: View {
                         "Location",
                         text: $location,
                         edit: edit,
-                        canDismissKeyboard: false
+                        canDismissKeyboard: false,
+                        onCommit: nextFocus
                     )
-                    .focused($showKeyboard)
+                    .focused($focus, equals: \Self.location)
                 }
 
                 if edit || (latitude != 0.0 || longitude != 0.0) {
@@ -362,7 +382,7 @@ struct GiftForm: View {
         toSave.name = name.trim()
         toSave.price = price
         toSave.purchased = purchased
-        toSave.url = URL(string: url.trim())
+        toSave.url = URL(string: websiteUrl.trim())
 
         if adding {
             toSave.to = person
@@ -370,5 +390,17 @@ struct GiftForm: View {
         }
 
         PersistenceController.shared.save()
+    }
+
+    private func nextFocus() {
+        switch focus {
+        case \Self.name: focus = \Self.desc
+        case \Self.desc: focus = \Self.price
+        case \Self.price: focus = \Self.websiteUrl
+        case \Self.websiteUrl: focus = \Self.imageUrl
+        case \Self.imageUrl: focus = \Self.location
+        case \Self.location: focus = \Self.name
+        default: break
+        }
     }
 }

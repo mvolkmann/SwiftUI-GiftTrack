@@ -6,11 +6,13 @@ struct MyImageURL: View {
     init(
         _ title: String,
         url: Binding<String>,
-        edit: Bool = true
+        edit: Bool = true,
+        onCommit: @escaping () -> Void = {}
     ) {
         self.title = title
         _url = url
         self.edit = edit
+        self.onCommit = onCommit
     }
 
     // MARK: - Constants
@@ -19,14 +21,15 @@ struct MyImageURL: View {
 
     // MARK: - Properties
 
+    private let edit: Bool
+    private let onCommit: () -> Void
     private let title: String
     @Binding private var url: String
-    private let edit: Bool
 
     var body: some View {
         if edit {
             HStack {
-                TextField(title, text: $url)
+                TextField(title, text: $url, onCommit: onCommit)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
                     .onDisappear { url = addHTTP(url) }
