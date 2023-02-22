@@ -23,6 +23,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Run tests
 
+### ios certs
+
+```sh
+[bundle exec] fastlane ios certs
+```
+
+Creates a signing certificate and provisioning profile
+
+### ios build
+
+```sh
+[bundle exec] fastlane ios build
+```
+
+
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

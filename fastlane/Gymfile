@@ -1,0 +1,3 @@
+scheme("SwiftUI-GiftTrack")
+export_options({method: "app-store"})
+output_directory("./fastlane/builds")

@@ -11,4 +11,15 @@ platform :ios do
       devices: ["iPhone 8 Plus", "iPhone 13 Pro Max"]
     )
   end
+
+  desc "Creates a signing certificate and provisioning profile"
+  lane :certs do
+    get_certificates(development: true)
+    get_provisioning_profile(development: true)
+  end
+
+  lane :build do
+    build_app
+  end
 end
+
