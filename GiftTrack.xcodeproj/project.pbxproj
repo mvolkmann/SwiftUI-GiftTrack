@@ -69,6 +69,9 @@
 		1AA7F6392883832B00763FF8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtension.swift; sourceTree = "<group>"; };
 		1AB3714928B9544D00B34C26 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		1ADFAE5E29A6782D00862D32 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fastlane; sourceTree = "<group>"; };
+		1ADFAE5F29A6782D00862D32 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
+		1ADFAE6029A6782D00862D32 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		1AE2831428BCF80700FCDD08 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1AE8AE7028C4FBC80098E9FF /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		1AEE7137288624FD00876C7F /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -176,6 +179,9 @@
 		4D19291D273BE60E0056653B = {
 			isa = PBXGroup;
 			children = (
+				1ADFAE5E29A6782D00862D32 /* fastlane */,
+				1ADFAE6029A6782D00862D32 /* Gemfile */,
+				1ADFAE5F29A6782D00862D32 /* Gemfile.lock */,
 				4DA8B8382756FF7C0058688D /* SwiftUI-GiftTrack-Info.plist */,
 				4D192928273BE60E0056653B /* GiftTrack */,
 				4D192927273BE60E0056653B /* Products */,
