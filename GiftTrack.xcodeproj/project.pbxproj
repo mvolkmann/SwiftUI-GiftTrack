@@ -16,6 +16,9 @@
 		1AA7F63A2883832B00763FF8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F6392883832B00763FF8 /* StringExtension.swift */; };
 		1AA7F63C28838E8500763FF8 /* EnvironmentValuesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */; };
 		1AB3714A28B9544D00B34C26 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3714928B9544D00B34C26 /* LocationManager.swift */; };
+		1ADFAE6829A69C3E00862D32 /* GiftTrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFAE6729A69C3E00862D32 /* GiftTrackTests.swift */; };
+		1ADFAE7529A69DAA00862D32 /* GiftTrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFAE7429A69DAA00862D32 /* GiftTrackUITests.swift */; };
+		1ADFAE7E29A69DE600862D32 /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFAE7D29A69DE600862D32 /* XCTestCaseExtension.swift */; };
 		1AE2831528BCF80700FCDD08 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE2831428BCF80700FCDD08 /* ViewModel.swift */; };
 		1AE8AE7128C4FBC80098E9FF /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE8AE7028C4FBC80098E9FF /* Log.swift */; };
 		1AEE7138288624FD00876C7F /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE7137288624FD00876C7F /* ViewExtension.swift */; };
@@ -58,6 +61,23 @@
 		4DF89BDA27432C13007C703E /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1ADFAE6929A69C3E00862D32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D19291E273BE60E0056653B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D192925273BE60E0056653B;
+			remoteInfo = "SwiftUI-GiftTrack";
+		};
+		1ADFAE7829A69DAA00862D32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D19291E273BE60E0056653B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D192925273BE60E0056653B;
+			remoteInfo = "SwiftUI-GiftTrack";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1A0D13EC2981D2800087474E /* Test.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test.storekit; sourceTree = "<group>"; };
 		1A11EE4C28862C2600CAD52B /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -72,6 +92,11 @@
 		1ADFAE5E29A6782D00862D32 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fastlane; sourceTree = "<group>"; };
 		1ADFAE5F29A6782D00862D32 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
 		1ADFAE6029A6782D00862D32 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
+		1ADFAE6529A69C3E00862D32 /* GiftTrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ADFAE6729A69C3E00862D32 /* GiftTrackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftTrackTests.swift; sourceTree = "<group>"; };
+		1ADFAE7229A69DAA00862D32 /* GiftTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ADFAE7429A69DAA00862D32 /* GiftTrackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftTrackUITests.swift; sourceTree = "<group>"; };
+		1ADFAE7D29A69DE600862D32 /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		1AE2831428BCF80700FCDD08 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		1AE8AE7028C4FBC80098E9FF /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		1AEE7137288624FD00876C7F /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -118,6 +143,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1ADFAE6229A69C3E00862D32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1ADFAE6F29A69DAA00862D32 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4D192923273BE60E0056653B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,6 +174,23 @@
 				4DA8B8592757DE3A0058688D /* UPCProduct.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1ADFAE6629A69C3E00862D32 /* GiftTrackTests */ = {
+			isa = PBXGroup;
+			children = (
+				1ADFAE6729A69C3E00862D32 /* GiftTrackTests.swift */,
+			);
+			path = GiftTrackTests;
+			sourceTree = "<group>";
+		};
+		1ADFAE7329A69DAA00862D32 /* GiftTrackUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1ADFAE7429A69DAA00862D32 /* GiftTrackUITests.swift */,
+				1ADFAE7D29A69DE600862D32 /* XCTestCaseExtension.swift */,
+			);
+			path = GiftTrackUITests;
 			sourceTree = "<group>";
 		};
 		1AE2831328BCF7F100FCDD08 /* ViewModels */ = {
@@ -184,6 +240,8 @@
 				1ADFAE5F29A6782D00862D32 /* Gemfile.lock */,
 				4DA8B8382756FF7C0058688D /* SwiftUI-GiftTrack-Info.plist */,
 				4D192928273BE60E0056653B /* GiftTrack */,
+				1ADFAE6629A69C3E00862D32 /* GiftTrackTests */,
+				1ADFAE7329A69DAA00862D32 /* GiftTrackUITests */,
 				4D192927273BE60E0056653B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -192,6 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				4D192926273BE60E0056653B /* GiftTrack.app */,
+				1ADFAE6529A69C3E00862D32 /* GiftTrackTests.xctest */,
+				1ADFAE7229A69DAA00862D32 /* GiftTrackUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,6 +368,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		1ADFAE6429A69C3E00862D32 /* GiftTrackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1ADFAE6B29A69C3E00862D32 /* Build configuration list for PBXNativeTarget "GiftTrackTests" */;
+			buildPhases = (
+				1ADFAE6129A69C3E00862D32 /* Sources */,
+				1ADFAE6229A69C3E00862D32 /* Frameworks */,
+				1ADFAE6329A69C3E00862D32 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1ADFAE6A29A69C3E00862D32 /* PBXTargetDependency */,
+			);
+			name = GiftTrackTests;
+			productName = GiftTrackTests;
+			productReference = 1ADFAE6529A69C3E00862D32 /* GiftTrackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1ADFAE7129A69DAA00862D32 /* GiftTrackUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1ADFAE7A29A69DAA00862D32 /* Build configuration list for PBXNativeTarget "GiftTrackUITests" */;
+			buildPhases = (
+				1ADFAE6E29A69DAA00862D32 /* Sources */,
+				1ADFAE6F29A69DAA00862D32 /* Frameworks */,
+				1ADFAE7029A69DAA00862D32 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1ADFAE7929A69DAA00862D32 /* PBXTargetDependency */,
+			);
+			name = GiftTrackUITests;
+			productName = GiftTrackUITests;
+			productReference = 1ADFAE7229A69DAA00862D32 /* GiftTrackUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		4D192925273BE60E0056653B /* SwiftUI-GiftTrack */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D192934273BE60F0056653B /* Build configuration list for PBXNativeTarget "SwiftUI-GiftTrack" */;
@@ -337,9 +433,17 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					1ADFAE6429A69C3E00862D32 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 4D192925273BE60E0056653B;
+					};
+					1ADFAE7129A69DAA00862D32 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 4D192925273BE60E0056653B;
+					};
 					4D192925273BE60E0056653B = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -362,11 +466,27 @@
 			projectRoot = "";
 			targets = (
 				4D192925273BE60E0056653B /* SwiftUI-GiftTrack */,
+				1ADFAE6429A69C3E00862D32 /* GiftTrackTests */,
+				1ADFAE7129A69DAA00862D32 /* GiftTrackUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1ADFAE6329A69C3E00862D32 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1ADFAE7029A69DAA00862D32 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4D192924273BE60E0056653B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +521,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1ADFAE6129A69C3E00862D32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ADFAE6829A69C3E00862D32 /* GiftTrackTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1ADFAE6E29A69DAA00862D32 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1ADFAE7E29A69DE600862D32 /* XCTestCaseExtension.swift in Sources */,
+				1ADFAE7529A69DAA00862D32 /* GiftTrackUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4D192922273BE60E0056653B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,7 +593,98 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		1ADFAE6A29A69C3E00862D32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4D192925273BE60E0056653B /* SwiftUI-GiftTrack */;
+			targetProxy = 1ADFAE6929A69C3E00862D32 /* PBXContainerItemProxy */;
+		};
+		1ADFAE7929A69DAA00862D32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4D192925273BE60E0056653B /* SwiftUI-GiftTrack */;
+			targetProxy = 1ADFAE7829A69DAA00862D32 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		1ADFAE6C29A69C3E00862D32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4BG3523GAZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = r.mark.volkmann.gmail.com.GiftTrackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GiftTrack.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GiftTrack";
+			};
+			name = Debug;
+		};
+		1ADFAE6D29A69C3E00862D32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4BG3523GAZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = r.mark.volkmann.gmail.com.GiftTrackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GiftTrack.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GiftTrack";
+			};
+			name = Release;
+		};
+		1ADFAE7B29A69DAA00862D32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4BG3523GAZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = r.mark.volkmann.gmail.com.GiftTrackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "SwiftUI-GiftTrack";
+			};
+			name = Debug;
+		};
+		1ADFAE7C29A69DAA00862D32 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4BG3523GAZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = r.mark.volkmann.gmail.com.GiftTrackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "SwiftUI-GiftTrack";
+			};
+			name = Release;
+		};
 		4D192932273BE60F0056653B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4DA8B8372756CDAB0058688D /* Secrets.xcconfig */;
@@ -646,6 +874,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1ADFAE6B29A69C3E00862D32 /* Build configuration list for PBXNativeTarget "GiftTrackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ADFAE6C29A69C3E00862D32 /* Debug */,
+				1ADFAE6D29A69C3E00862D32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1ADFAE7A29A69DAA00862D32 /* Build configuration list for PBXNativeTarget "GiftTrackUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ADFAE7B29A69DAA00862D32 /* Debug */,
+				1ADFAE7C29A69DAA00862D32 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4D192921273BE60E0056653B /* Build configuration list for PBXProject "GiftTrack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

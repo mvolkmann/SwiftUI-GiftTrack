@@ -34,10 +34,12 @@ struct MainScreen: View {
         TabView(selection: $screenTag) {
             AboutScreen().tabItem {
                 Label("About", systemImage: "info.circle")
+                    .accessibilityIdentifier("about-tab")
             }.tag("About")
 
             PeopleScreen().tabItem {
                 Label("People", systemImage: "person.3.fill")
+                    .accessibilityIdentifier("people-tab")
             }.tag("People")
 
             OccasionsScreen().tabItem {
@@ -45,14 +47,17 @@ struct MainScreen: View {
                     .renderingMode(.template)
                     .foregroundColor(Color("Title"))
                 Text("Occasions")
+                    .accessibilityIdentifier("occasions-tab")
             }.tag("Occasions")
 
             GiftsScreen().tabItem {
                 Label("Gifts", systemImage: "gift")
+                    .accessibilityIdentifier("gifts-tab")
             }.tag("Gifts")
 
             SettingsScreen().tabItem {
                 Label("Settings", systemImage: "gear")
+                    .accessibilityIdentifier("settings-tab")
             }.tag("Settings")
         }
 
