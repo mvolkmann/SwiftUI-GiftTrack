@@ -21,5 +21,58 @@ platform :ios do
   lane :build do
     build_app
   end
+
+  # Uploads the app to TestFlight
+  lane :beta do
+    # I prefer to update the Version and Build numbers manually in Xcode.
+    # increment_build_number
+    # increment_version_number(bump_type: "patch")
+    upload_to_testflight(
+      ipa: './fastlane/builds/GiftTrack.ipa',
+      # I prefer to submit manually on the App Store Connect web page
+      # so I can enter a description of what changed in this version.
+      skip_submission: true
+    )
+  end
+
+  desc "Generates localized screenshots"
+  lane :screenshots do
+    capture_screenshots(scheme: "{screenshot-scheme-name}")
+  end
+
+  desc "Creates new screenshots from existing ones that have device frames"
+  lane :frames do
+    frame_screenshots
+  end
+
+  desc "Uploads localized screenshots to App Store"
+  lane :upload_screenshots do
+    upload_to_app_store(
+      skip_app_version_update: true,
+      skip_binary_upload: true,
+      skip_metadata: true
+    )
+  end
+
+  desc "Prints the version and build number"
+  lane :version do
+    version = get_version_number
+    build = get_build_number
+    puts "version #{version}, build #{build}"
+  end
+
+  # Uploads the app to the App Store
+  lane :prod do
+    upload_to_app_store(
+      ipa: './fastlane/builds/GiftTrack.ipa', # in fastlane/builds
+      run_precheck_before_submit: false,
+      skip_app_version_update: true,
+      skip_metadata: true,
+      skip_screenshots: true
+      # I prefer to submit manually on the App Store Connect web page
+      # so I can enter a description of what changed in this version.
+      # submit_for_review: true # defaults to false
+    )
+  end
 end
 
