@@ -1,10 +1,12 @@
+import RevenueCat
 import StoreKit
 
 class StoreViewModel: NSObject, ObservableObject {
     // MARK: - Constants
 
     // This must match the value in the file Configuration.storekit.
-    var productId = "r.mark.volkmann.gmail.com.GiftTrack"
+    let productId = "r.mark.volkmann.gmail.com.GiftTrack"
+    let revenueCatAPIKey = "appl_oYZoWVaTYyQNiKMuecCeaRxNdal"
 
     // MARK: - Initializer
 
@@ -12,6 +14,7 @@ class StoreViewModel: NSObject, ObservableObject {
         super.init()
         Task {
             do {
+                Purchases.configure(withAPIKey: revenueCatAPIKey)
                 try await getProduct()
                 await checkEntitlement()
                 restorePurchase()
@@ -28,6 +31,8 @@ class StoreViewModel: NSObject, ObservableObject {
     @Published var haveMessage = false
     @Published var message = ""
 
+    var package: Package? // RevenueCat
+
     // We only offer one product and it is non-consumable
     // meaning that once purchased it is owned forever.
     private var product: Product!
@@ -37,12 +42,27 @@ class StoreViewModel: NSObject, ObservableObject {
     func checkEntitlement() async {
         // This app only has one entitlement corresponding
         // to the one and only in-app purchase option.
+
+        /* StoreKit approach
         let entitlement = await product.currentEntitlement
         switch entitlement {
         case .none:
             break
         case .some:
             Task { @MainActor in appPurchased = true }
+        }
+        */
+
+        // RevenueCat approach
+        do {
+            appPurchased = try await Purchases.shared.customerInfo()
+                .entitlements["pro"]?.isActive ?? false
+        } catch {
+            appPurchased = false
+            Task { @MainActor in
+                message = "Error: \(error)"
+                haveMessage = true
+            }
         }
     }
 
@@ -56,8 +76,19 @@ class StoreViewModel: NSObject, ObservableObject {
     }
 
     func getProduct() async throws {
+        // StoreKit approach
+        /*
         let products = try await Product.products(for: [productId])
         product = products.first!
+        */
+
+        // RevenueCat approach
+        let offerings = try await Purchases.shared.offerings()
+        guard let currentOffering = offerings.current else {
+            throw "Couldn't find the current offering!"
+        }
+        let packages = currentOffering.availablePackages
+        package = packages.first
     }
 
     private func listenForTransactions() async throws {
@@ -79,6 +110,8 @@ class StoreViewModel: NSObject, ObservableObject {
     func purchaseApp() {
         Task {
             do {
+                // StoreKit approach
+                /*
                 let result = try await product.purchase()
                 switch result {
                 case let .success(verification):
@@ -91,11 +124,17 @@ class StoreViewModel: NSObject, ObservableObject {
                 case .userCancelled:
                     break
                 default:
-                    Task { @MainActor in
-                        message = "In-app purchase failed: \(result)"
-                        haveMessage = true
-                    }
                 }
+                */
+
+                // RevenueCat approach
+                guard let package = package else {
+                    throw "Couldn't find the package."
+                }
+                let result = try await Purchases.shared
+                    .purchase(package: package)
+                self.appPurchased = result.customerInfo.entitlements["pro"]?
+                    .isActive ?? false
             } catch {
                 Task { @MainActor in
                     message = "Error: \(error)"

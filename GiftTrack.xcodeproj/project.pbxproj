@@ -12,9 +12,11 @@
 		1A4F14A92896A31000FF3810 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4F14A82896A30F00FF3810 /* ImagePicker.swift */; };
 		1A4F14AB2896A31A00FF3810 /* MyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4F14AA2896A31A00FF3810 /* MyURL.swift */; };
 		1A4F14AD2896A35900FF3810 /* MyImageURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4F14AC2896A35900FF3810 /* MyImageURL.swift */; };
+		1A54CE662A00380400ACB634 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 1A54CE652A00380400ACB634 /* RevenueCat */; };
 		1A79034628837A940006702E /* MyTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79034528837A940006702E /* MyTitle.swift */; };
 		1AA7F63A2883832B00763FF8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F6392883832B00763FF8 /* StringExtension.swift */; };
 		1AA7F63C28838E8500763FF8 /* EnvironmentValuesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */; };
+		1AAD67972A0043DC007559A3 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 1AAD67962A0043DC007559A3 /* StoreKitTestCertificate.cer */; };
 		1AB3714A28B9544D00B34C26 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3714928B9544D00B34C26 /* LocationManager.swift */; };
 		1ADFAE6829A69C3E00862D32 /* GiftTrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFAE6729A69C3E00862D32 /* GiftTrackTests.swift */; };
 		1ADFAE7529A69DAA00862D32 /* GiftTrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFAE7429A69DAA00862D32 /* GiftTrackUITests.swift */; };
@@ -98,6 +100,7 @@
 		1A79034528837A940006702E /* MyTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTitle.swift; sourceTree = "<group>"; };
 		1AA7F6392883832B00763FF8 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		1AA7F63B28838E8500763FF8 /* EnvironmentValuesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValuesExtension.swift; sourceTree = "<group>"; };
+		1AAD67962A0043DC007559A3 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = StoreKitTestCertificate.cer; path = ../../../../../Desktop/StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		1AB3714928B9544D00B34C26 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1ADFAE5E29A6782D00862D32 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fastlane; sourceTree = "<group>"; };
 		1ADFAE5F29A6782D00862D32 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A54CE662A00380400ACB634 /* RevenueCat in Frameworks */,
 				4D454A4B2756ADCA006F00AC /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +300,7 @@
 				4D19292D273BE60F0056653B /* Assets.xcassets */,
 				4D6CE0BC275BD59D00039CD6 /* Configuration.storekit */,
 				1A0D13EC2981D2800087474E /* Test.storekit */,
+				1AAD67962A0043DC007559A3 /* StoreKitTestCertificate.cer */,
 				1AFDA19B28A06C2E00A5E637 /* ColorSchemeManager.swift */,
 				4DF89BD827432C13007C703E /* CoreDataModel.xcdatamodeld */,
 				1AB3714928B9544D00B34C26 /* LocationManager.swift */,
@@ -472,6 +477,7 @@
 			name = "SwiftUI-GiftTrack";
 			packageProductDependencies = (
 				4D454A4A2756ADCA006F00AC /* CodeScanner */,
+				1A54CE652A00380400ACB634 /* RevenueCat */,
 			);
 			productName = "gift-track";
 			productReference = 4D192926273BE60E0056653B /* GiftTrack.app */;
@@ -515,6 +521,7 @@
 			mainGroup = 4D19291D273BE60E0056653B;
 			packageReferences = (
 				4D454A492756ADCA006F00AC /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				1A54CE642A00380400ACB634 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 			);
 			productRefGroup = 4D192927273BE60E0056653B /* Products */;
 			projectDirPath = "";
@@ -556,6 +563,7 @@
 			files = (
 				4D192931273BE60F0056653B /* Preview Assets.xcassets in Resources */,
 				4D19292E273BE60F0056653B /* Assets.xcassets in Resources */,
+				1AAD67972A0043DC007559A3 /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1040,6 +1048,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1A54CE642A00380400ACB634 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		4D454A492756ADCA006F00AC /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/CodeScanner";
@@ -1051,6 +1067,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1A54CE652A00380400ACB634 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A54CE642A00380400ACB634 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
 		4D454A4A2756ADCA006F00AC /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4D454A492756ADCA006F00AC /* XCRemoteSwiftPackageReference "CodeScanner" */;
