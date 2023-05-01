@@ -111,6 +111,7 @@ class StoreViewModel: NSObject, ObservableObject {
                 try await AppStore.sync()
                 message = "Your in-app purchase was restored."
             } catch {
+                print("StoreViewModel.restorePurchase: error =", error)
                 message = "Failed to restore your in-app purchase."
             }
             haveMessage = true
